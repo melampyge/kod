@@ -1,10 +1,13 @@
 #!/usr/bin/env python
+
+# Takes a picture. Press 't' to save the screenshot in my-pic-1.jpg,
+# my-pic-2.jpg, etc.. Every press will increment the number.
 import cv
 
 class Capture:
     
     def save(self, pic):
-        cv.SaveImage('deneme' + str(self.i) + '.jpg', pic)
+        cv.SaveImage('my-pic-' + str(self.i) + '.jpg', pic)
     
     def __init__(self):
         self.i = 1

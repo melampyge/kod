@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+#
+# Simple recorder that uses OpenCV. Records webcam into a file
+# called movie.avi.
+
 import cv
 import cv2
 
