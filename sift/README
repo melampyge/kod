@@ -1,3 +1,6 @@
 Run make under siftpp, then make.sh under siftpy. After this you will have 
-a siftpy.so under this directory. Then you can run the test-opencv.py 
+a siftpy.so under this directory. Then you can run the test.py 
 code. 
+
+The scale parameter siftpy.c must match the scale parameter in test.py.
+It's a little hacky - for now.
