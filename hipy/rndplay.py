@@ -1,3 +1,5 @@
+# Plays mp3 files found under sys.argv[1] one by one, randomly. 
+# Meant to simulate a radio.
 import glob, os, random, sys
 import threading
 import select
