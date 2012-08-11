@@ -41,9 +41,9 @@ class Capture:
             for item in n_res:
                 xx = item[0]*__scale__
                 yy = item[1]*__scale__
-                label_sift_point(small_img, xx, yy)
+                label_sift_point(frame, xx, yy)
             
-            cv.ShowImage( "CamShiftDemo", small_img )
+            cv.ShowImage( "CamShiftDemo", frame )
             
             c = cv.WaitKey(7)
             if c == 27:

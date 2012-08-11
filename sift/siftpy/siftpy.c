@@ -17,7 +17,7 @@ extern "C" {
   int _smin = -1;
   int _smax = 2;
   float threshold = 0.006667;
-  float edgeThreshold = 1.3;
+  float edgeThreshold = 0.8;
 
   static float pr(float x) {
     return round(x*100)/100;
