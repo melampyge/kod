@@ -1,0 +1,1 @@
+/usr/share/emacs/site-lisp/dictionaries-common/debian-ispell.el

@@ -1,0 +1,1 @@
+/usr/share/emacs/site-lisp/auctex/tex-info.el

@@ -1,0 +1,66 @@
+INSTALL
+
+o Install Pymacs
+
+o Install JDE
+
+o Based on the emacs-ubuntu.el make your changes to your .emacs. 
+
+o Drop the contents of zip file (or if using git the entire working directory)
+  as pyjde directory under your site-lisp directory. Make sure you change some
+  hard-code paths to point to this directory.
+  
+o You can use testmyclass.py for testing purposes. python testmyclass.py.
+
+o It is assumed your Java project has prj.el file with sourcepath and lib path
+  defined in it. Look under test directory for an example.
+
+DESIGN
+
+A *PyJde* buffer is the communication window to/fro the user. All output will be
+listed here. 
+  
+CURRENT STATE
+
+Our menu has
+
+   ["PyJde Find Descendants..." pyjde-do-find-descendants]
+   ["PyJde Visit Class..." pyjde-do-find-file-at-symbol]
+   ["PyJde Goto Definition..." pyjde-do-goto-definition]
+   ["PyJde List Methods..." pyjde-do-find-public-methods]
+   ["PyJde List Imports..." pyjde-do-find-imports]
+   ["PyJde Pick Method..." pyjde-do-pick-method]
+   ["PyJde Pick Import..." pyjde-do-pick-import]
+   
+For intellisense, after "." type \C p p to list methods, and \C p m to pick a
+method. If you would like Emacs to guide you to each param entry by highlighing
+them, press M-# M-#. It will send you to first param, you enter this, then M-#
+M-# takes you to next one, so on.
+
+DECOMPILE NEW JARS
+
+In order to get java files from jar files, you need to include 
+
+  <target name="unjar">
+    <exec executable="python">
+      <arg line="/usr/share/emacs/22.2/site-lisp/pyjde/unjar.py"/>
+      <arg line="[TOP OF YOUR SOURCE TREE]"/>
+    </exec>
+  </target>
+
+to your build.xml and call this target whenever you have a new jar in your
+prj.el.
+  
+
+FUTURE
+
+Call trees (per class, per method), 
+
+ISSUES
+
+o Decompiling rt.jar from JAVA_HOME does not work (at least for Java 6); If you
+  want to get source code browsing, method completion for java.util, java.lang
+  classes, I suggest you download JDK SE 6 sources from Sun and simply copy them
+  under ~/.pyjde/yourproject/rt.jar/. Pyjde will pick up classes from here. You
+  don't have to change your prj.el for this.
+
