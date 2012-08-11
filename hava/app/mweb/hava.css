@@ -1,0 +1,46 @@
+#about {
+    text-align: center;
+}
+.gun {
+  font-size: 12pt;
+  float: left;
+  width: 100px;
+}
+.mins, .maxs {
+  font-size: 12pt;
+  float: left;
+  width: 35px;
+}
+.minn, .maxn, .hiz {
+  font-size: 12pt;
+  float: left;
+  width: 30px;
+}
+.yon img {
+  width: 20px;
+}
+.hadise img {
+  margin-left: 10px;
+  width: 25px;
+}
+#moreButton {
+    margin-top: 20px;
+    margin-left: 100px;
+    font-size: 12pt;
+    width: 40px;
+}
+#nemtitle {
+    font-weight: normal;
+    font-size: 10pt;
+    margin-left: 110px;
+    width: 70px;
+    float: left;
+}
+#ruzgartitle {
+    font-size: 10pt;
+    font-weight: normal;
+}
+#morebuttonblock {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

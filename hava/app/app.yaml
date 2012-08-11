@@ -1,0 +1,14 @@
+application: havatahminlerim
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /mweb
+  static_dir: mweb
+- url: /jqtouch
+  static_dir: /jqtouch
+- url: /themes
+  static_dir: /themes
+- url: .*
+  script: main.py

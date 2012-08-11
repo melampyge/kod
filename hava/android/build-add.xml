@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Havatahmini" default="help">
+    
+  <path id="cp">
+    <path path="./bin/classes"/>
+  </path>
+    
+  <target name="test" depends="compile">
+    <taskdef  resource = "net/sf/antcontrib/antlib.xml" classpathref="cp"/>   
+    <taskdef name="testng" classpathref="cp" classname="org.testng.TestNGAntTask" />    
+    <testng classpathref="cp" haltonfailure="yes" outputDir="/tmp">
+      <classfileset dir="bin/classes" includes="**/*.class"/>
+    </testng>
+  </target>
+
+  <target name="test-one"  depends="compile">
+    <taskdef  resource = "net/sf/antcontrib/antlib.xml" classpathref="cp"/>   
+    <taskdef name="testng" classpathref="cp" classname="org.testng.TestNGAntTask" />    
+    <echo>Testing ${test}...</echo>
+    <testng classpathref="cp" haltonfailure="yes" outputDir="/tmp">
+      <classfileset dir="bin/classes" includes="**/${test}.class"/>
+    </testng>
+  </target>
+
+  <target name="clean">
+    <delete dir="bin/classes"/>
+  </target>
+    
+</project>

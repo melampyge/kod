@@ -1,0 +1,14 @@
+{
+  "name": "Hava Tahmini",
+  "version": "1",
+  "icons": { "128": "icon_128.png" },
+  "app": {
+    "urls": [
+      "http://havatahminlerim.appspot.com/"
+    ],
+    "launch": {
+      "web_url": "http://havatahminlerim.appspot.com/mweb/index.html"
+    }
+  },
+  "permissions": ["unlimitedStorage"]
+}
