@@ -1,0 +1,112 @@
+
+/* ---------------------------------------------*/
+
+#top #title {
+    margin-left: 0% ;
+}
+
+#document {
+    margin-left: 4.5%;
+}
+
+#datainput {
+    margin-top: 5px;
+    height: 50px;
+    width: 450px;
+}
+
+/* ---------------------------------------------*/
+
+#content #summary {
+    width: 450px;
+}
+
+#content #lewitext {    
+    width: 450px; 
+}
+
+#content #lewitext, #content #summary, #content #explanation {
+    margin-top: 0px;
+    padding-top: 20px;
+}
+
+
+/* ---------------------------------------------*/
+
+#midupperad {
+    top: 240px;
+}
+
+/* ---------------------------------------------*/
+
+#comments .commentHeader, #comment-form .commentHeader {
+    background-position: 110px 100%;
+    padding: 0px 0px 25px 0px;
+    width: 132px;
+}
+
+#new input, #addgroup input, #add input, #search input
+{
+    height: 25px;
+}
+
+#friends #buttons input {
+    padding: 2px;
+}
+
+#content #friends, #content #forums {
+    margin-top: 0px;
+}
+
+#friends table .actions {
+    margin-right: 10px;
+}
+
+.btyperesults {
+    width: 600px;
+}
+
+#pagetitle {
+    height: 70px;
+}
+
+#friendedit img {
+    margin-left: 20px;
+}
+
+#friendedit #day {
+    margin-left: 3px;
+}
+
+#friendedit #year {
+    margin-top: -1px;
+    margin-left: -1px;
+}
+
+#profile #mon {
+    margin-right: -4px;
+}
+#profile #year {
+    margin-top: -1px;
+}
+
+#profile #day {
+    margin-left: 3px;
+}
+#addnew, #follow, #access {
+    margin-left: 158px;
+}
+
+.links img {
+    margin-left: 40px;
+}
+
+#ingcheck input {
+    margin-left: -123px;
+}
+#facebookimport {
+    left: 710px;
+}
+.replylink {
+    margin-left: 0px;
+}

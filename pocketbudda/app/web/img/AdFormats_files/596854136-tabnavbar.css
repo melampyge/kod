@@ -1,0 +1,109 @@
+/* There are two tab types -- active, and inactive.
+*/
+
+td.activeTab, td.inactiveTab {
+  text-align: center;
+  vertical-align: top;
+  color:#efefef;
+}
+
+td.activeTab {
+  font-weight:bold;
+  background-color:#6699cc;
+}
+
+td.inactiveTab {
+  background-color:#efefef;
+  cursor: pointer;
+}
+
+div.inactive1 {
+  height: 4px;
+  background: url(../static/en_US/images/ulborder.gif) no-repeat top left;
+}
+
+div.inactive2 {
+  height: 4px;
+  background: url(../static/en_US/images/urborder.gif) no-repeat top right;
+  padding: 0 4px;
+}
+
+div.inactive3 {
+  border-top: 1px solid #c6ced7;
+}
+
+div.inactiveTabText {
+  border-left: 1px solid #c6ced7;
+  border-right: 1px solid #c6ced7;
+  padding: 0px 1em 2px;
+  color: blue;
+  white-space: nowrap;
+}
+
+div.inactiveTabText a {
+  text-decoration: none;
+  color: blue;
+}
+
+div.active1 {
+  height: 4px;
+  background: url(../static/en_US/images/ul.gif) no-repeat top left;
+}
+
+div.active2 {
+  height: 4px;
+  background: url(../static/en_US/images/ur.gif) no-repeat top right;
+  padding: 1px 6px;
+}
+
+div.active3 {}
+
+div.activeTabText {
+  padding: 0px 1em 2px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* second level bar */
+#subTabs div.subtab2 {
+  height: 4px;
+  background: url(../static/en_US/images/ur.gif) no-repeat top right;
+  padding: 1 4px;
+}
+
+#subTabs td {
+  color: #cbe5ff;
+  padding: 4px;
+  background: #6699cc;
+  white-space: nowrap;
+}
+
+#subTabs span.activeText {
+  font-weight: bold;
+  color: #cbe5ff;
+  display: inline;
+}
+
+#subTabs span.inactiveText {
+  color: #fff;
+  margin: 0 1px;
+  display: inline;
+}
+
+#subTabs span.inactiveText a {
+  color: #fff;
+}
+
+table.breadcrumbContainer {
+  background:#E6F3FF;
+  width: 100%;
+}
+
+table.breadcrumbContainer td {
+  padding: 4px;
+  padding-left: 8px;
+}
+
+#crumbs span.activeText {
+  font-weight: bold;
+}

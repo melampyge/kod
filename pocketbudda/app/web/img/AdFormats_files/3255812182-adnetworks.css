@@ -1,0 +1,13 @@
+.metalinks a {color: #77c;}
+.sourceheader {background: #e0e6f1; font-weight: bold;}
+.googleheader td {border-bottom: 1px solid #666;}
+.networklabel {padding-left: 2.5em; color: #666;}
+.dim {margin-left: 0.25em; color :#666; font-size: 0.9em;}
+.formtable td {padding: 0.5em;}
+.formtable table.formtable td {border-bottom: 1px solid #ccc; padding: 0.25em 0.5em;}
+.borderleft {border-left: 2px solid #ccc;}
+.confirmation span {background:#fc3;padding:0.5em;font-weight:bold;line-height:2em;}
+
+#unitlist td {padding: 8px;}
+#unitlist td.child1 {padding-left: 24px;}
+

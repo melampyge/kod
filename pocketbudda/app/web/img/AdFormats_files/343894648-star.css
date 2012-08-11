@@ -1,0 +1,69 @@
+.tabcontent {
+  border: 1px solid #ccc;
+  border-width: 0 1px 1px 1px;
+  padding: 0.5em 0 0 0;
+}
+
+.approvaltable .adgroupheader a:hover {
+  border: 0;
+}
+
+.approvaltable thead td {
+  background: #eee;
+  font-weight: bold;
+}
+
+.approvaltable td {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding: 4px 3px;
+}
+
+.approvaltable .shaded td {
+  background: #ddd;
+}
+
+.approvaltable .adgroupad td {
+  border-top: 0;
+}
+
+.approvaltable .adgroupad td.textad table td, .textad table td {
+  border: 1px solid #999;
+  background: #fff;
+  padding: 3px;
+}
+
+.approvaltable .adgroupad td.creativenum {
+  width: 20px;
+}
+
+.approvaltable a img {
+  border-width: 1px;
+}
+
+.approvaltable td:first-child {
+  padding-top: 8px;
+}
+
+.approvaltable thead td:first-child {
+  padding-top: 0;
+}
+
+.inlineapprovalform {
+  border: 1px solid #ccc;
+  background: #eee;
+  padding: 0 0.5em;
+  margin: 0.5em 0;
+}
+
+.networkdayparttd  a img {
+  border-width: 0px;
+}
+
+.thirdpartynote {
+  border-style: solid;
+  border-color: rgb(255, 201, 69);
+  border-width: 2px 2px 2px 12px;
+  padding: 4px 6px;
+  background: rgb(255, 248, 206) none repeat scroll 0%;
+}

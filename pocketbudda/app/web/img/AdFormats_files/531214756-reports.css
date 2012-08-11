@@ -1,0 +1,519 @@
+/* common for all reports tables */
+
+table.report {
+  border-right: 1px solid #6699cc;
+  border-left: 1px solid #6699cc;
+  border-top: 1px solid #6699cc;
+  border-bottom: 1px solid #6699cc;
+}
+
+/* alternate rows get these colors */
+table.report tr.odd {
+  background-color: #ffffff;
+}
+table.report tr.even {
+  background-color: #efefef;
+}
+
+/* category title is bold, bg color dddddd */
+table.report tr.categorytitle td {
+  text-align:center;
+  background-color: #dddddd;
+  font-weight: bold;
+  color: #606060;
+}
+
+/* column title is bold, bg color efefef */
+table.report tr.columntitle td {
+  background-color: #efefef;
+  font-weight: bold;
+}
+
+/* report table title */
+table.report tr.tabletitle td {
+  text-align:left;
+  background-color: #6699cc;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 4px;
+}
+
+/* links */
+table.reportV2 tr.columntitle a {
+  color: #0000ff
+}
+
+/* totals row is white, bold, 12pt */
+table.report tr.totals td {
+  background-color: #6699cc;
+  font-weight: bold;
+  font-size: small;
+  color: #ffffff;
+}
+
+/* averages is white, 10pt */
+table.report tr.averages td {
+  padding-top: 0;
+  background-color: #6699cc;
+  color: #ffffff;
+}
+
+/* cells aligned to the right unless otherwise specified */
+table.report td {
+  text-align: right;
+}
+
+/* use this for no data row */
+table.report td.nodata {
+  text-align: center;
+  background-color: #ffffff;
+}
+
+/* new report style */
+
+table.reportV2 {
+  width: 97%;
+  margin: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+table.reportV2 td {
+  padding: 5px 7px;
+  text-align: right;
+  vertical-align: top;
+  font-size: 0.83em;
+  border-bottom: 1px solid #eee;
+}
+
+/* don't alternate colors... */
+table.reportV2 tr.odd { }
+table.reportV2 tr.even { }
+
+/* hover color */
+table.reportV2 tr.hover {
+  background: #ffffee  !important;
+}
+
+/* column title */
+table.reportV2 tr.columntitle td {
+  color: #666;
+  font-weight: bold;
+}
+
+/* report table title -- used for totals row at the top */
+table.reportV2 tr.tabletitle td {
+  color: #333;
+  font-size: 1em;
+  border-top: 1px solid #ccc;
+  background:#efefef;
+}
+
+/* links */
+table.report tr.columntitle a {
+  color: #0000ff
+}
+
+/* totals row */
+table.reportV2 tr.totals td {
+  color: #333;
+  font-size: 1em;
+  border-top: 1px solid #ccc;
+  background:#efefef;
+}
+
+/* averages */
+table.reportV2 tr.averages td {
+  color: #333;
+  font-size: 1em;
+  border-top: 0px solid #ccc;
+  background: #f9f9f9;
+}
+
+/* summary */
+table.reportV2 tr.summary td {
+  color: #333;
+  font-size: 1em;
+  border-top: 0px solid #ccc;
+  background: #dfdfdf;
+}
+
+
+/* use this for no data row */
+table.reportV2 td.nodata {
+  text-align: center;
+	font-size: 1em;
+  color: #999;
+  border: 1px solid #ccc;
+}
+
+/* payment summary report table */
+
+table.paymentreport {
+  border-right: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+table.paymentreport td {
+  border-right: 1px solid #e0e0e0;
+  border-left: 0px;
+  border-top: 0px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* column title is bold, bg color efefef */
+table.paymentreport tr.columntitle td {
+  background-color: #efefef;
+  font-weight: bold;
+}
+
+/* report table title */
+table.paymentreport tr.tabletitle td {
+  text-align:left;
+  background-color: #6699cc;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 4px;
+}
+
+table.daterange-selector {
+  background-color: #efefef;
+  border: 1px solid #6699cc;
+  border-bottom: 0px;
+}
+
+table.payment-details {
+  border: 1px solid #6699cc;
+}
+
+td.payment-description {
+  border-top: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+  border-left: 1px solid #cfcfcf;
+}
+
+td.payment-value {
+  border-top: 1px solid #cfcfcf;
+  border-right: 1px solid #dfdfdf;
+}
+
+td.payment-description-top {
+  border-bottom: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+  border-left: 1px solid #cfcfcf;
+}
+
+td.payment-value-top {
+  border-bottom: 1px solid #cfcfcf;
+  border-right: 1px solid #dfdfdf;
+}
+
+div.advanced-report-settings {
+  background: #eee;
+  padding: 0.5em 1%;
+  margin: 0 0 1em 0;
+}
+
+td.advanced-report-settings-column {
+  text-align: left;
+  vertical-align: top;
+  width: 50%;
+}
+
+td.advanced-report-separator {
+  border-top: 1px solid #cccccc;
+  padding-top: 10px;
+}
+
+td.advanced-report-show-data {
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: top;
+}
+
+input.advanced-report-submit {
+  font-weight: bold;
+  font-size: 1.15em;
+}
+
+.report-flexible-select {
+  border: 1px solid #ddd;
+  background: #E6F3FF;
+  width: 400px;
+}
+
+input.report-flexible-select {
+  text-align: left;
+}
+
+.report-flexible-select-bottom-bar {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.report-flexible-select-no-bar {
+  padding: 5px;
+  text-align: left;
+}
+
+.report-group-by {
+  background: #ffffff;
+}
+
+.report-group-by div {
+  padding: 5px;
+}
+
+table.advanced-report-settings {
+  width: 95%;
+}
+
+td.websearch-graph-title {
+  text-align: center;
+  font-size: 110%;
+  font-weight: bold;
+}
+
+.lightblue {
+  background-color: #E6F3FF;
+}
+
+.reportmanagertable {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  width:100%;
+}
+
+.reportmanagertable thead td {
+  font-weight: bold;
+  background: #eee;
+}
+
+.reportmanagertable thead td.small {
+  font-weight: normal;
+  font-size: x-small;
+}
+
+.reportmanagertable td {
+  padding: 0.25em 0.5em;
+  border-bottom: 1px solid #ddd;
+}
+
+tr.submitrow td {
+  padding: 0.5em;
+  margin: 0;
+  background: #E6F3FF;
+  border: 1px solid #ccc;
+  border-width: 1px 0;
+}
+
+p.submitrow {
+  padding: 0.5em;
+  background: #E6F3FF;
+  border: 1px solid #ccc;
+  border-width: 1px 0;
+}
+
+.warningicon {
+  border: 1px solid #B9960B;
+  background-color: #F2C313;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+  font-weight: bold;
+}
+
+/* RTL-aware formatting styles */
+.ip-block-cell {
+  border-bottom: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+}
+
+/* Crawling report styles */
+.crawlreporttable {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  margin-left: 0.5em;
+  width: 45em;
+}
+
+.crawlreporttable a:visited {
+  color: blue;
+}
+
+.crawlreporttable thead td {
+  font-weight: bold;
+  background: #eee;
+  margin-top: 0px;
+  vertical-align:bottom;
+}
+
+.crawlreporttable td {
+  padding: 0.5em 0.5em;
+  border-bottom: 1px solid #ddd;
+  vertical-align: top;
+}
+
+.crawlreporttable tr.columntitle {
+  background: #eee;
+  font-weight: bold;
+}
+
+.crawlreporttable td.nodata {
+  text-align: center;
+  padding: 1em;
+  color: #999;
+}
+
+tr.nested-data {
+  padding:0px;
+  border:0px;
+  background:#E6F3FF;
+}
+
+tr.nesting-data a {
+  color: black;
+  text-decoration: none;
+}
+
+tr.nesting-data a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+tr.nesting-data a:visited {
+  color: black;
+}
+
+td.nestable-spacer {
+  padding:0px;
+  padding-top:3px;
+  width:15px;
+  text-align:center;
+}
+
+td.expandcollapse {
+  text-align: right;
+  padding: 0px;
+}
+
+div.sectiontext {
+  width: 56em;
+}
+
+a.activelink:visited {
+  color: blue;
+}
+
+span.client-id-text {
+  padding-left: 0.5em;
+}
+
+/* Site authentication styles */
+.keyvaltable {
+  border: none;
+  padding: 0.25em 0.5em;
+  margin-left: -0.5em;
+}
+
+.keyvaltable td {
+  border:none;
+  padding: 0.25em 0.25em;
+}
+
+.keyvaltable th {
+  font-weight: bold;
+}
+
+.sectioncontent {
+  margin-left:1em;
+}
+
+.authrule {
+  margin-left:1em;
+}
+
+#emptysiteauths {
+  color: #999;
+  text-align: center;
+  padding: 1em;
+}
+
+.verifyauthbody {
+  padding: 0px;
+  margin: 0px;
+}
+
+#verifyauthheader {
+  text-align: center;
+  background: #e6f3ff;
+  width: 100%;
+  padding-left: 5px;
+  border:2px solid #93cfff;
+}
+
+.verifyauthtable {
+  margin:0px;
+  padding: 0px;
+  padding-left:10px;
+  text-align: left;
+}
+
+.verifyauthtable p.errorheading {
+  vertical-align: middle;
+  margin: 0px;
+  color: red;
+  font-weight: bold;
+}
+
+.verifyauthtable p.errortext {
+  vertical-align: middle;
+  margin: 0px;
+  color: red;
+}
+
+.verifyauthtable td.verfityauthbutton {
+  text-align:left;
+  padding-top: 5px;
+}
+
+p.labellink {
+  padding-left: .75em;
+}
+
+p.labeltext {
+  padding-left: .75em;
+  font-weight: bold;
+}
+
+div.exampletext {
+  font-weight: normal;
+  color: #666;
+  font-size: 0.9em;
+}
+
+h2.sectiontitle {
+  margin-top:0.25em;
+}
+
+h3.tabletitle {
+  padding-bottom: 1em;
+}
+
+tr.submitrow td.savecancel {
+  padding: 0px;
+}
+
+tr.submitrow td.submitbutton {
+  border: none;
+  width: 10px;
+}
+
+tr.submitrow td.submitlink {
+  border: none;
+  text-align: right;
+  vertical-align: bottom;
+}

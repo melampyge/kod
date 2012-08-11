@@ -1,0 +1,30 @@
+.tax-title-block {
+  font-weight: bold;
+  font-size: large;
+  text-align: center;
+}
+
+.tax-title-block small {
+  font-weight: normal;
+  font-size: 83%;
+}
+
+.tax-sectionhead {
+  font-weight: bold;
+  background-color: #efefef;
+  width: 100%;
+}
+.tax-warning-block {
+  margin: 0.5em 0 0.5em 0;
+}
+
+.tax-warning-icon {
+  border: 1px solid #B9960B;
+  background-color: #F2C313;
+  font-weight: bold;
+}
+
+.tax-wizard-first-cell {
+  width: 50%;
+  border-right: solid 1px #6699cc;
+}

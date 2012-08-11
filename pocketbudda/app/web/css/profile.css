@@ -1,0 +1,68 @@
+fieldset {
+    border-top: 1px solid #C3BBB6;
+    border-left: 1px solid #C3BBB6;
+    border-right: none;
+    border-bottom: none;
+}
+
+#flogin img {
+    width: 200;
+}
+
+#bdayblood #day, #bdayblood #mon {
+    float: left;
+}
+
+#profile {
+    margin-top: 10;
+}
+
+#profile img {
+    margin-left: 10;
+}
+ 
+#profile input {
+    height: 22;
+}    
+
+#profile #year {
+    margin-left: 3;
+}
+#profile #day {
+    margin-right: 3;
+}
+
+#ok1
+{
+    float: left; 
+    background-color:#417596;
+    color:white;
+    font-size:8pt;
+    font-weight:bold;
+    border:1px solid black;
+    height: 20;    
+}
+
+#ok1 input:hover {
+    background-color:#294B60;
+}
+
+#profileedit {
+    margin-left: 5;
+}
+
+#addnew, #follow, #access {
+    margin-left: 155;
+}
+
+#follow .remove, #access .remove {
+    visibility: hidden;
+    font-size: 7pt;
+}
+
+#listaccess {
+    width: 200;
+    margin-left: 155;
+    display: none;
+}
+

@@ -1,0 +1,33 @@
+This code package is composed of two parts: the cell segmentation and cell tracking.
+
+1. Cell Segmentation based on Chan-Vese Level Set Method, including files:
+levelsetsegmentation.m
+Initial.m
+Initial2.m
+Heaviside.m
+Delta.m
+ChanVeseImp.m
+ReInitializeOrd1Damped.m
+
+Main function: levelsetsegmentation.m
+You can get the cells' segmentation outlines as:
+
+[phi]=levelsetsegmentation('input_image.tif');
+
+You can change the numbers in the 27th and 49th line, to look for better segmentation results.
+
+
+2.Cell Tracking, including files:
+full_tracking.m
+cell_tracking2.m
+tracking_resultsshow.m
+graphmatrix.m
+getcentroid_f.m
+getcentroid.m
+getcentralcell.m
+centralcell_trackingn.m
+
+Main function:full_tracking.m
+[correspondence]=full_tracking(phi1,phi2,3,3,60,1,1);
+
+

@@ -1,0 +1,13 @@
+.pager_arrow {
+  font-weight: bold;
+}
+
+.pager_current {
+  font-weight: bold;
+}
+
+.pager_not_current {
+}
+
+.pager_next_prev {
+}

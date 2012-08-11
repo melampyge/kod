@@ -1,0 +1,74 @@
+
+#document #welcomeimage img {
+    width: 500pxn;     
+}
+
+#document #faceimage  {
+    background-color: lightcyan;
+    width: 600px;
+    margin-bottom: 30px;
+}
+
+#document #faceimage a img {
+    border-color: lightcyan;
+}
+
+#document #faceimage img {
+    width: 60px;
+    margin: 10px;
+}
+
+.blurbtitle {
+    background-color: #004080;;
+    color: white;
+    font-size: 9.5pt;
+    width: 90px;
+    text-align: center;
+}
+
+.blurb {    
+    padding-bottom: 40px;
+    margin-bottom: 30px;
+}
+
+.blurbleft {    
+    width: 50px;    
+    float: left;
+    clear: both;
+}
+
+.blurbleft img {
+    margin: 20px 0px 0px 0px;
+    width: 100px;
+}
+
+.friendmatchimg img {
+    margin-left: 6px;
+    width: 80px;    
+}
+
+.blurb .text {
+    margin: 0px 0px 0px 150px;
+    width: 400px;    
+}
+
+.blurbad {
+    margin-left: 10%;    
+    margin: 0px 0px 60px 40px;
+}
+
+#ingcheck {
+    font-size: 9.0pt;    
+    position: absolute;
+    top: 790px;
+    left: 650px;
+    margin-left: 10%;    
+}
+
+#ingcheck #food {
+    float: left;
+}
+
+#ingcheck .button {
+    margin-top: 5px;
+}

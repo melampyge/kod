@@ -1,0 +1,96 @@
+<html>
+
+    {% include "top.html" %}
+
+    <script type="text/javascript">        
+      function get_reading() {
+        day = document.getElementById('day').value;
+        month = document.getElementById('month').value;
+        year = document.getElementById('year').value;
+        if (day.length == 1) day = "0" + day;
+        d = year + month + day;        
+        url = "/reading?d="+d;
+        btype = document.getElementById('btype').value;
+        if (btype != '' && btype != undefined) {
+          url += "&btype="+btype;
+        }
+        window.location.href=url;
+      }
+    </script>
+           
+    <div id="document">
+      <div id="pagetitle">
+        Explore
+      </div>      
+      <font color="red">
+        {{error}}
+      </font>
+      <div id="content">            
+        <div id="datainput">
+          <div id="bdayinput"> 
+            <div id="label">Birthday</div>
+            <input type="text" id="day" size="2" value=""/>            
+            <select id="month">
+              <option value=""></option>
+              <option value="01">Jan</option>
+              <option value="02">Feb</option>
+              <option value="03">Mar</option>
+              <option value="04">Apr</option>
+              <option value="05">May</option>
+              <option value="06">Jun</option>
+              <option value="07">Jul</option>
+              <option value="08">Aug</option>
+              <option value="09">Sep</option>
+              <option value="10">Oct</option>
+              <option value="11">Nov</option>
+              <option value="12">Dec</option>              
+            </select>
+            <input type="text" id="year" size="4" value=""/> 
+          </div>          
+          <div id="bloodinput"> 
+            <div id="label">Blood type</div>
+            <select id="btype">
+              <option value=""></option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="AB">AB</option>
+              <option value="O">O</option>
+            </select>                          
+          </div>
+          <div id="button"> 
+            <a onclick="get_reading()" href="#">
+              <img src="/web/img/cal-next.png"/>
+            </a>
+          </div>          
+
+        </div>
+
+        
+      </div>
+      
+
+      <br/><br/><br/><br/><br/><br/><br/><br/>
+      <br/><br/><br/><br/><br/><br/><br/><br/>
+      {% include "footer.html" %}    
+    
+      <div id="adrightside">
+        <!-- <img src="/web/img/AdFormats_files/imagead_336x280.gif"/> -->
+        <script type="text/javascript"><!--
+                                           google_ad_client = "pub-8892285732370920";
+                                           /* 336x280, created 5/7/11 */
+                                           google_ad_slot = "9186683309";
+                                           google_ad_width = 336;
+                                           google_ad_height = 280;
+                                           //-->
+        </script>
+        <script type="text/javascript"
+                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>      
+        
+      </div>
+      
+    </div>
+    
+  </body>
+  
+</html>

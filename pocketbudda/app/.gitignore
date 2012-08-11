@@ -1,0 +1,4 @@
+scripts/my-release-key.keystore
+*.pyc
+mweb/main.html
+scripts/mb-celeb-astro.txt

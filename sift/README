@@ -1,0 +1,3 @@
+Run make under siftpp, then make.sh under siftpy. After this you will have 
+a siftpy.so under this directory. Then you can run the test-opencv.py 
+code. 

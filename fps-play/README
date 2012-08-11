@@ -1,0 +1,10 @@
+Our aim is to replicate an FPS player with software, so we can play
+the game through a virtual player. Virtual player software will
+process raw images coming from the game and send key messages to move
+around, and shoot. This project's code wil not be a "bot" because
+usual bots can and do make game API calls and get direct
+information. Our job is harder, our software will need to process
+images, run pattern recognition, calculate features, etc. in order to
+"see" inside the game, just like a regular "human" player would. 
+
+For installation, testing info see NOTES.

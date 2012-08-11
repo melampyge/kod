@@ -1,0 +1,16 @@
+
+.rtl-safe-align-right  {
+  text-align: right !important;
+}
+
+.rtl-safe-align-left {
+  text-align: left !important;
+}
+
+.rtl-safe-float-right {
+  float: right !important;
+}
+
+.rtl-safe-float-left {
+  float: left !important;
+}

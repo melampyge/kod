@@ -1,0 +1,184 @@
+.links li {
+  display: inline;
+  list-style-type: none;
+  padding: 0px 0.5em;
+  margin-left: 320px;
+}
+
+#content #forums {
+    margin-top: 15px;
+    padding-bottom: 200px;
+}
+
+#content {
+    margin-top: 0px;
+}
+
+#comments, #comment-form .preview {
+    float: left;
+    clear: both;
+    background-color: aliceblue;
+    width: 590px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#comment-form .preview {
+    margin-bottom: 20px;
+}
+
+#comments .comment, #comment-form .comment {
+    position: relative;
+    float: left;
+    width: 100%;
+    clear: both;
+    margin: 0px 0px 9px 0px;
+}
+
+#comments .commentHeader, #comment-form .commentHeader {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    width: 127px;
+    margin: 0px 0px 0px 0px;
+    background-image: url('/img/comment_bubble_bg2.gif');
+    background-repeat: no-repeat;
+    background-position: 110px 100%;
+    padding: 0px 15px 33px 0px;
+}
+
+#comments .comment .author, #comment-form .comment .author {
+    float: left;
+    width: 100%;
+    font-size: 1.2em;
+    color: #1a1a1a;
+    text-align: right;
+    overflow: hidden;    
+}
+
+#comments .comment .posted, #comment-form .comment .posted {
+    float: left;
+    width: 100%;
+    margin: 0px 15px 0px 0px;
+    font-size: 1.1em;
+    color: #999;
+    text-align: right;
+    overflow: hidden;
+}
+
+#comments .content, #comment-form .content {
+    position: relative;
+    float: right;
+    z-index: 0px;
+    width: 410px;
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
+    padding: 16px 18px 0px;
+    min-height: 42px;
+    overflow: hidden;
+    font-size: 8.0pt;
+}
+
+#comments .reply {
+    position: relative;
+    float: right;
+    width: 410px;
+    background-color: #fff;
+    padding: 16px 18px 20px;
+    min-height: 42px;
+    overflow: hidden;
+    font-size: 8.0pt;
+}
+
+#comments .newname, #comments .subject, #comments .reply #name {
+    font-size: 8.0pt;
+    border: 1px solid black;
+    margin-bottom: 8px;
+}
+
+#comments input {
+    border: 1px solid black;    
+    font-size: 8.0pt;
+}
+
+#comments textarea, #comments .reply textarea {
+    border: 1px solid black;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    font-size: 8.0pt;
+}
+
+#comments .content p, #comment-form .content p {
+    font-size: 1.1em;
+    color: #4c4c4c;
+}
+
+#main #comments .content .links ul, #comment-form .content .links ul {
+    float: right;
+    clear: both;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    text-align: right;
+}
+
+#main #comments .content .links li, #comment-form .content .links li {
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: none;
+}
+
+#main #comments .content .links li a, #comment-form .content .links li a {
+    font-size: .9em;
+    float: left;
+    padding: 2px 5px;
+}
+
+#main #comments .indented, #comment-form .indented {
+    margin: 0px;
+    padding: 0px;
+}
+
+.replylink {
+    margin-left: 330px;
+}
+
+#forumsearch { 
+    margin: 10px 0px 10px 0px;
+}
+
+#forumsearch #textbox { 
+    float: left;
+    margin-right: 5px;
+}
+
+#forumsearch #buttons {
+    margin-top: 10px;
+}
+
+#forumsearch #buttons a {
+    margin-right: 10px;
+}
+
+.links img {
+    margin-bottom: -10px;
+    margin-left: 90px;
+    width: 25px;
+}
+
+#topicscroller .scrollelem {
+    float: left;
+    margin-left: 20px;
+}
+
+#topicscroller {
+    background-color: whitesmoke;
+    margin-left: 200px;
+}
+
+#topicscroller a {
+    text-decoration: none;
+}
