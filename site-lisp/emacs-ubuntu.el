@@ -1005,11 +1005,15 @@ This command does not push erased text to kill-ring."
 
 (defadvice preview-region (around preview-at-point-no-long-pauses activate)
   "Make `preview-at-point' a no-op if mark is inactive and point is not on a preview."
-  (when (or (not (eq this-command 'preview-at-point))
+  (message "preview-region")
+  (if (or (not (eq this-command 'preview-at-point))
             (TeX-active-mark)
             (texmathp)
             (member (LaTeX-current-environment) previewable-environments))
-    ad-do-it))
+    ad-do-it
+    (preview-section)
+    )
+  )
 
 (eval-after-load 'doc-view
   '(defun doc-view-buffer-message ()
