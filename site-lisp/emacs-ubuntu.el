@@ -977,7 +977,6 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Dropbox/resmi/2012")
 (find-file-other-window "/home/burak/kod/books")
 (find-file-other-window "/home/burak/data")
-(find-file-other-window "/home/burak/Documents/classnotes/app-math-tr/emmix")
 (find-file-other-window "/home/burak/Downloads/em_mvb")
 
 (switch-to-buffer "*scratch*")
