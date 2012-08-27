@@ -964,20 +964,18 @@ This command does not push erased text to kill-ring."
 ;; ;; boylece ikidebir oraya dired'den gezerek gitmek gerekmez
 ;; ;;
 ;; ;;(find-file-other-window "/usr/share/emacs23/site-lisp/pyjde")
-(find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/tmp")
 (find-file-other-window "/home/burak/kod")
 (find-file-other-window "/home/burak/Documents/classnotes")
 (find-file-other-window "/home/burak/Desktop")
 (find-file-other-window "/home/burak/Dropbox")
-(find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/Dropbox/Public/skfiles")
-(find-file-other-window "/home/burak/Dropbox/TODO.txt")
 (find-file-other-window "/home/burak/kod/pocketbudda/app/scripts")
 (find-file-other-window "/home/burak/Dropbox/resmi/2012")
 (find-file-other-window "/home/burak/kod/books")
+(find-file-other-window "/home/burak/Dropbox/TODO.txt")
+(find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/data")
-(find-file-other-window "/home/burak/Downloads/em_mvb")
 
 (switch-to-buffer "*scratch*")
 (delete-other-windows)
