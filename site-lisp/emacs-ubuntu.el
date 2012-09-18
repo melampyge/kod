@@ -83,6 +83,7 @@ This command does not push erased text to kill-ring."
 (require 'nxml-mode)
 (load-file "/usr/share/emacs23/site-lisp/_latin_post_ek.elc")
 (require 'tempo)
+(require 'magit)
 
 (setq bell-volume 0)
 ;;(set-message-beep 'silent)
