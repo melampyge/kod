@@ -1,8 +1,9 @@
 ;;; emacs-goodies-loaddefs.el
 ;;  autoloads generated upon installation of the emacs-goodies-el package
 
-;;;### (autoloads (all) "all" "all.el" (19951 23695))
-;;; Generated autoloads from all.el
+;;;### (autoloads (all) "all" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/all.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/all.el
 
 (autoload 'all "all" "\
 Show all lines in the current buffer containing a match for REGEXP.
@@ -21,9 +22,9 @@ Any changes made in that buffer will be propagated to this buffer.
 
 ;;;***
 
-;;;### (autoloads (apache-mode) "apache-mode" "apache-mode.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from apache-mode.el
+;;;### (autoloads (apache-mode) "apache-mode" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/apache-mode.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/apache-mode.el
 
 (autoload 'apache-mode "apache-mode" "\
 Major mode for editing Apache configuration files.
@@ -38,8 +39,9 @@ Major mode for editing Apache configuration files.
 ;;;***
 
 ;;;### (autoloads (ascii-off ascii-on ascii-display ascii-customize)
-;;;;;;  "ascii" "ascii.el" (19951 23695))
-;;; Generated autoloads from ascii.el
+;;;;;;  "ascii" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/ascii.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/ascii.el
 
 (autoload 'ascii-customize "ascii" "\
 Customize ASCII options.
@@ -69,8 +71,9 @@ Turn off ASCII code display.
 ;;;***
 
 ;;;### (autoloads (bar-cursor-change bar-cursor-mode) "bar-cursor"
-;;;;;;  "bar-cursor.el" (19951 23695))
-;;; Generated autoloads from bar-cursor.el
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/bar-cursor.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/bar-cursor.el
 
 (autoload 'bar-cursor-mode "bar-cursor" "\
 Toggle use of variable `bar-cursor-mode'.
@@ -90,8 +93,9 @@ Enable or disable advice based on value of variable `bar-cursor-mode'.
 ;;;***
 
 ;;;### (autoloads (bm-previous-mouse bm-previous bm-next-mouse bm-next
-;;;;;;  bm-toggle-mouse bm-toggle) "bm" "bm.el" (19951 23695))
-;;; Generated autoloads from bm.el
+;;;;;;  bm-toggle-mouse bm-toggle) "bm" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/bm.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/bm.el
 
 (autoload 'bm-toggle "bm" "\
 Toggle bookmark at point.
@@ -134,9 +138,9 @@ EV is the mouse event.
 ;;;;;;  boxquote-describe-variable boxquote-describe-function boxquote-boxquote
 ;;;;;;  boxquote-paragraph boxquote-defun boxquote-yank boxquote-kill-ring-save
 ;;;;;;  boxquote-insert-buffer boxquote-insert-file boxquote-buffer
-;;;;;;  boxquote-region boxquote-title) "boxquote" "boxquote.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from boxquote.el
+;;;;;;  boxquote-region boxquote-title) "boxquote" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/boxquote.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/boxquote.el
 
 (autoload 'boxquote-title "boxquote" "\
 Set the title of the current boxquote to TITLE.
@@ -270,9 +274,9 @@ Remove the boxquote that contains `point'.
 ;;;***
 
 ;;;### (autoloads (browse-huge-tar-copy-file-at-point browse-huge-tar-view-file-at-point
-;;;;;;  browse-huge-tar-file) "browse-huge-tar" "browse-huge-tar.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from browse-huge-tar.el
+;;;;;;  browse-huge-tar-file) "browse-huge-tar" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/browse-huge-tar.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/browse-huge-tar.el
 
 (autoload 'browse-huge-tar-file "browse-huge-tar" "\
 Create a buffer containing a listing of FILENAME as a tar file.
@@ -293,8 +297,9 @@ This requires the value of `shell-file-name' to support redirection using \">\".
 ;;;***
 
 ;;;### (autoloads (browse-kill-ring browse-kill-ring-default-keybindings)
-;;;;;;  "browse-kill-ring" "browse-kill-ring.el" (19951 23695))
-;;; Generated autoloads from browse-kill-ring.el
+;;;;;;  "browse-kill-ring" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/browse-kill-ring.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/browse-kill-ring.el
 
 (autoload 'browse-kill-ring-default-keybindings "browse-kill-ring" "\
 Set up M-y (`yank-pop') so that it can invoke `browse-kill-ring'.
@@ -315,8 +320,9 @@ Display items in the `kill-ring' in another buffer.
 ;;;;;;  color-theme-compare color-theme-make-snapshot color-theme-analyze-defun
 ;;;;;;  color-theme-print color-theme-install-at-point-for-current-frame
 ;;;;;;  color-theme-install-at-mouse color-theme-describe color-theme-select)
-;;;;;;  "color-theme" "color-theme.el" (19951 23695))
-;;; Generated autoloads from color-theme.el
+;;;;;;  "color-theme" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/color-theme.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/color-theme.el
 
 (autoload 'color-theme-select "color-theme" "\
 Displays a special buffer for selecting and installing a color theme.
@@ -452,8 +458,9 @@ Initialize the color theme package by loading color-theme-libraries.
 
 ;;;### (autoloads (ctypes-read-file ctypes-auto-parse-mode ctypes-file
 ;;;;;;  ctypes-dir ctypes-tags ctypes-all-buffers ctypes-buffer ctypes-define-type-in-mode
-;;;;;;  ctypes-define-type) "ctypes" "ctypes.el" (19951 23695))
-;;; Generated autoloads from ctypes.el
+;;;;;;  ctypes-define-type) "ctypes" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/ctypes.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/ctypes.el
 
 (autoload 'ctypes-define-type "ctypes" "\
 Add a new TYPE to current major mode and inform font-lock.
@@ -562,9 +569,9 @@ Return non-nil if new types are found.
 
 ;;;***
 
-;;;### (autoloads (dedicated-mode) "dedicated" "dedicated.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from dedicated.el
+;;;### (autoloads (dedicated-mode) "dedicated" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/dedicated.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/dedicated.el
 
 (autoload 'dedicated-mode "dedicated" "\
 Toggle dedicated minor mode.
@@ -574,8 +581,9 @@ With ARG, turn minor mode on if ARG is positive, off otherwise.
 
 ;;;***
 
-;;;### (autoloads (df) "df" "df.el" (19951 23695))
-;;; Generated autoloads from df.el
+;;;### (autoloads (df) "df" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/df.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/df.el
 
 (autoload 'df "df" "\
 Enables display of space left on any PARTITION in mode-lines.
@@ -586,8 +594,9 @@ This display updates automatically every `df-refresh' seconds.
 ;;;***
 
 ;;;### (autoloads (diminished-modes diminish-undo diminish) "diminish"
-;;;;;;  "diminish.el" (19951 23695))
-;;; Generated autoloads from diminish.el
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/diminish.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/diminish.el
 
 (autoload 'diminish "diminish" "\
 Diminish mode-line display of minor mode MODE to TO-WHAT (default \"\").
@@ -637,29 +646,9 @@ what diminished modes would be on the mode-line if they were still minor.
 
 ;;;***
 
-;;;### (autoloads (dir-locals-mode) "dir-locals" "dir-locals.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from dir-locals.el
-
-(defvar dir-locals-mode nil "\
-Non-nil if Dir-Locals mode is enabled.
-See the command `dir-locals-mode' for a description of this minor mode.
-Setting this variable directly does not take effect;
-either customize it (see the info node `Easy Customization')
-or call the function `dir-locals-mode'.")
-
-(custom-autoload 'dir-locals-mode "dir-locals" nil)
-
-(autoload 'dir-locals-mode "dir-locals" "\
-Toggle use of directory-wide file-local variables.
-See `dir-locals-file-name'.
-
-\(fn &optional ARG)" t nil)
-
-;;;***
-
-;;;### (autoloads (edit-env) "edit-env" "edit-env.el" (19951 23695))
-;;; Generated autoloads from edit-env.el
+;;;### (autoloads (edit-env) "edit-env" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/edit-env.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/edit-env.el
 
 (autoload 'edit-env "edit-env" "\
 Display, edit, delete and add environment variables.
@@ -669,9 +658,9 @@ Display, edit, delete and add environment variables.
 ;;;***
 
 ;;;### (autoloads (egocentric-update-regexp-list egocentric-mode-off
-;;;;;;  egocentric-mode-on egocentric-mode) "egocentric" "egocentric.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from egocentric.el
+;;;;;;  egocentric-mode-on egocentric-mode) "egocentric" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/egocentric.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/egocentric.el
 
 (autoload 'egocentric-mode "egocentric" "\
 Toggle egocentric mode.
@@ -696,9 +685,75 @@ Update ``egocentric-regexp-list'' from $USER and $NAME variables.
 
 ;;;***
 
-;;;### (autoloads (ff-paths-install) "ff-paths" "ff-paths.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from ff-paths.el
+;;;### (autoloads (eproject-compile eproject-eshell-cd-here eproject-multi-isearch-buffers
+;;;;;;  eproject-todo eproject-grep eproject-revisit-project eproject-kill-project-buffers
+;;;;;;  eproject-ibuffer eproject-find-file) "eproject-extras" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/eproject-extras.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/eproject-extras.el
+
+(autoload 'eproject-find-file "eproject-extras" "\
+Present the user with a list of files in the current project.
+to select from, open file when selected.
+
+\(fn)" t nil)
+
+(autoload 'eproject-ibuffer "eproject-extras" "\
+Open an IBuffer window showing all buffers in the current project, or named project if PREFIX arg is supplied.
+
+\(fn PREFIX)" t nil)
+
+(autoload 'eproject-kill-project-buffers "eproject-extras" "\
+Kill every buffer in the current project, including the current buffer.
+
+If PREFIX is specified, prompt for a project name and kill those
+buffers instead.
+
+\(fn PREFIX)" t nil)
+
+(autoload 'eproject-revisit-project "eproject-extras" "\
+Given a project name, visit the root directory.
+
+If PREFIX arg is supplied, run `eproject-find-file'.
+
+\(fn PREFIX)" t nil)
+
+(autoload 'eproject-grep "eproject-extras" "\
+Search all files in the current project for REGEXP.
+
+\(fn REGEXP)" t nil)
+
+(autoload 'eproject-todo "eproject-extras" "\
+Display a project TODO list.
+
+Customize `eproject-todo-expressions' to control what this function looks for.
+
+\(fn)" t nil)
+
+(autoload 'eproject-multi-isearch-buffers "eproject-extras" "\
+Do a `multi-isearch' on opened buffers in the current project.
+
+Run `eproject-open-all-project-files' first or just
+`eproject-grep' if you want to search all project files.
+
+\(fn)" t nil)
+
+(autoload 'eproject-eshell-cd-here "eproject-extras" "\
+If there is an EShell buffer, cd to the project root in that buffer.
+
+With the prefix arg LOOK-IN-INVISIBLE-BUFFERS looks in buffers that are not currently displayed.
+
+\(fn &optional LOOK-IN-INVISIBLE-BUFFERS)" t nil)
+
+(autoload 'eproject-compile "eproject-extras" "\
+Run `compile-command' in the project root.
+
+\(fn)" t nil)
+
+;;;***
+
+;;;### (autoloads (ff-paths-install) "ff-paths" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/ff-paths.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/ff-paths.el
 
 (autoload 'ff-paths-install "ff-paths" "\
 Install ff-paths as a `find-file-not-found-hooks' and to ffap package.
@@ -707,8 +762,9 @@ Install ff-paths as a `find-file-not-found-hooks' and to ffap package.
 
 ;;;***
 
-;;;### (autoloads (floatbg-mode) "floatbg" "floatbg.el" (19951 23695))
-;;; Generated autoloads from floatbg.el
+;;;### (autoloads (floatbg-mode) "floatbg" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/floatbg.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/floatbg.el
 
 (autoload 'floatbg-mode "floatbg" "\
 Toggle floatbg mode
@@ -721,9 +777,9 @@ Toggle floatbg mode
 ;;;;;;  folding-mode-add-find-file-hook folding-keep-hooked folding-install-hooks
 ;;;;;;  folding-uninstall-hooks folding-mode-hook-no-regexp folding-mode-string
 ;;;;;;  folding-inside-mode-name folding-default-mouse-keys-function
-;;;;;;  folding-default-keys-function) "folding" "folding.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from folding.el
+;;;;;;  folding-default-keys-function) "folding" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/folding.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/folding.el
 
 (defvar folding-mode nil "\
 When Non nil, Folding mode is active in the current buffer.")
@@ -958,8 +1014,9 @@ Mouse behavior
 ;;;***
 
 ;;;### (autoloads (framepop-display-buffer framepop-enable framepop-disable)
-;;;;;;  "framepop" "framepop.el" (19951 23695))
-;;; Generated autoloads from framepop.el
+;;;;;;  "framepop" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/framepop.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/framepop.el
 
 (autoload 'framepop-disable "framepop" "\
 Disable automatic pop-up temporary windows.
@@ -987,9 +1044,9 @@ typing the keymap prefix (default F2).
 
 ;;;***
 
-;;;### (autoloads (graphviz-dot-mode) "graphviz-dot-mode" "graphviz-dot-mode.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from graphviz-dot-mode.el
+;;;### (autoloads (graphviz-dot-mode) "graphviz-dot-mode" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/graphviz-dot-mode.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/graphviz-dot-mode.el
 
 (autoload 'graphviz-dot-mode "graphviz-dot-mode" "\
 Major mode for the dot language. \\<graphviz-dot-mode-map> 
@@ -1044,8 +1101,9 @@ Turning on Graphviz Dot mode calls the value of the variable
 ;;;***
 
 ;;;### (autoloads (highlight-beyond-fill-column) "highlight-beyond-fill-column"
-;;;;;;  "highlight-beyond-fill-column.el" (19951 23695))
-;;; Generated autoloads from highlight-beyond-fill-column.el
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/highlight-beyond-fill-column.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/highlight-beyond-fill-column.el
 
 (autoload 'highlight-beyond-fill-column "highlight-beyond-fill-column" "\
 Setup this buffer to highlight beyond the `fill-column'.
@@ -1055,8 +1113,9 @@ Setup this buffer to highlight beyond the `fill-column'.
 ;;;***
 
 ;;;### (autoloads (highlight-current-line-minor-mode) "highlight-current-line"
-;;;;;;  "highlight-current-line.el" (19951 23695))
-;;; Generated autoloads from highlight-current-line.el
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/highlight-current-line.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/highlight-current-line.el
 
 (autoload 'highlight-current-line-minor-mode "highlight-current-line" "\
 Toggle highlight-current-line minor mode.
@@ -1068,9 +1127,9 @@ line is hightlighted by customizing the group highlight-current-line.
 
 ;;;***
 
-;;;### (autoloads (home-end-end home-end-home) "home-end" "home-end.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from home-end.el
+;;;### (autoloads (home-end-end home-end-home) "home-end" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/home-end.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/home-end.el
 
 (autoload 'home-end-home "home-end" "\
 Go to beginning of line/window/buffer.
@@ -1089,9 +1148,9 @@ of window, third in a row goes to end of buffer.
 ;;;***
 
 ;;;### (autoloads (htmlize-many-files-dired htmlize-many-files htmlize-file
-;;;;;;  htmlize-region htmlize-buffer) "htmlize" "htmlize.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from htmlize.el
+;;;;;;  htmlize-region htmlize-buffer) "htmlize" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/htmlize.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/htmlize.el
 
 (autoload 'htmlize-buffer "htmlize" "\
 Convert BUFFER to HTML, preserving colors and decorations.
@@ -1155,9 +1214,9 @@ HTMLize dired-marked files.
 
 ;;;***
 
-;;;### (autoloads (joc-toggle-buffer) "joc-toggle-buffer" "joc-toggle-buffer.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from joc-toggle-buffer.el
+;;;### (autoloads (joc-toggle-buffer) "joc-toggle-buffer" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/joc-toggle-buffer.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/joc-toggle-buffer.el
 
 (autoload 'joc-toggle-buffer "joc-toggle-buffer" "\
 Switch to previous active buffer.
@@ -1168,8 +1227,9 @@ Switch to previous active buffer.
 
 ;;;### (autoloads (joc-toggle-case-by-region joc-toggle-case-by-word-backwards
 ;;;;;;  joc-toggle-case-by-word joc-toggle-case-backwards joc-toggle-case)
-;;;;;;  "joc-toggle-case" "joc-toggle-case.el" (19951 23695))
-;;; Generated autoloads from joc-toggle-case.el
+;;;;;;  "joc-toggle-case" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/joc-toggle-case.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/joc-toggle-case.el
 
 (autoload 'joc-toggle-case "joc-toggle-case" "\
 Toggle the case of the character under point.
@@ -1215,8 +1275,9 @@ Toggles the case of all characters in the current region.
 
 ;;;***
 
-;;;### (autoloads (keydef) "keydef" "keydef.el" (19951 23695))
-;;; Generated autoloads from keydef.el
+;;;### (autoloads (keydef) "keydef" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/keydef.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/keydef.el
 
 (autoload 'keydef "keydef" "\
 Define the key sequence SEQ, written in kbd form, to run CMD.
@@ -1244,9 +1305,9 @@ the name of the mode-map that goes with the given mode.
 
 ;;;***
 
-;;;### (autoloads (lcomp-keys-mode lcomp-mode) "lcomp" "lcomp.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from lcomp.el
+;;;### (autoloads (lcomp-keys-mode lcomp-mode) "lcomp" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/lcomp.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/lcomp.el
 
 (defvar lcomp-mode nil "\
 Non-nil if Lcomp mode is enabled.
@@ -1281,8 +1342,9 @@ Add keybindings to the completions buffer.
 ;;;***
 
 ;;;### (autoloads (map-lines-copy map-lines-kill copy-line map-lines)
-;;;;;;  "map-lines" "map-lines.el" (19951 23695))
-;;; Generated autoloads from map-lines.el
+;;;;;;  "map-lines" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/map-lines.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/map-lines.el
 
 (autoload 'map-lines "map-lines" "\
 Map a COMMAND-C (kill, copying, or a custom command) over lines matching REGEX.
@@ -1306,9 +1368,9 @@ Copy all lines matching REGEX to the kill ring.  Yanking will insert all such li
 
 ;;;***
 
-;;;### (autoloads (markdown-mode) "markdown-mode" "markdown-mode.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from markdown-mode.el
+;;;### (autoloads (markdown-mode) "markdown-mode" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/markdown-mode.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/markdown-mode.el
 
 (autoload 'markdown-mode "markdown-mode" "\
 Major mode for editing Markdown files.
@@ -1318,9 +1380,9 @@ Major mode for editing Markdown files.
 ;;;***
 
 ;;;### (autoloads (marker-visit-truncate-mark-ring marker-visit-next
-;;;;;;  marker-visit-prev) "marker-visit" "marker-visit.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from marker-visit.el
+;;;;;;  marker-visit-prev) "marker-visit" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/marker-visit.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/marker-visit.el
 
 (autoload 'marker-visit-prev "marker-visit" "\
 From point, visit the nearest mark earlier in the buffer.
@@ -1339,9 +1401,9 @@ Truncate the `mark-ring'.
 
 ;;;***
 
-;;;### (autoloads (matlab-shell matlab-mode) "matlab" "matlab.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from matlab.el
+;;;### (autoloads (matlab-shell matlab-mode) "matlab" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/matlab.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/matlab.el
 
 (autoload 'matlab-mode "matlab" "\
 MATLAB(R) mode is a major mode for editing MATLAB dot-m files.
@@ -1410,9 +1472,9 @@ a console application.
 ;;;***
 
 ;;;### (autoloads (miniedit-install-for-xemacs miniedit-install miniedit
-;;;;;;  miniedit-introduction miniedit-quick-start) "miniedit" "miniedit.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from miniedit.el
+;;;;;;  miniedit-introduction miniedit-quick-start) "miniedit" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/miniedit.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/miniedit.el
 
 (autoload 'miniedit-quick-start "miniedit" "\
 Provides electric help for function `miniedit-quick-start'.
@@ -1441,9 +1503,9 @@ Try to Install miniedit for Xemacs.
 
 ;;;***
 
-;;;### (autoloads (muttrc-mode) "muttrc-mode" "muttrc-mode.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from muttrc-mode.el
+;;;### (autoloads (muttrc-mode) "muttrc-mode" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/muttrc-mode.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/muttrc-mode.el
 
 (autoload 'muttrc-mode "muttrc-mode" "\
 Major mode for editing Muttrc files.
@@ -1455,9 +1517,9 @@ This function ends by invoking the function(s) `muttrc-mode-hook'.
 
 ;;;***
 
-;;;### (autoloads (obfuscate-url) "obfusurl" "obfusurl.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from obfusurl.el
+;;;### (autoloads (obfuscate-url) "obfusurl" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/obfusurl.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/obfusurl.el
 
 (autoload 'obfuscate-url "obfusurl" "\
 Obfuscate an URL under `point'.
@@ -1470,9 +1532,9 @@ most mortals anyway).
 
 ;;;***
 
-;;;### (autoloads (pack-windows) "pack-windows" "pack-windows.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from pack-windows.el
+;;;### (autoloads (pack-windows) "pack-windows" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/pack-windows.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/pack-windows.el
 
 (autoload 'pack-windows "pack-windows" "\
 Resize all windows vertically to display as much information as possible.
@@ -1497,8 +1559,9 @@ displayed in the echo area if `pack-windows-verbose' is non-nil.
 ;;;***
 
 ;;;### (autoloads (perldoc-perl-hook perldoc-at-point perldoc) "perldoc"
-;;;;;;  "perldoc.el" (19951 23695))
-;;; Generated autoloads from perldoc.el
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/perldoc.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/perldoc.el
 
 (autoload 'perldoc "perldoc" "\
 Run perldoc on the given STRING.
@@ -1520,8 +1583,9 @@ A hook which binds F1 to `perldoc-at-point'.
 
 ;;;***
 
-;;;### (autoloads (pod-mode) "pod-mode" "pod-mode.el" (19951 23695))
-;;; Generated autoloads from pod-mode.el
+;;;### (autoloads (pod-mode) "pod-mode" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/pod-mode.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/pod-mode.el
 
 (autoload 'pod-mode "pod-mode" "\
 Major mode for editing POD files (Plain Old Documentation for Perl).
@@ -1539,9 +1603,9 @@ Turning on pod mode calls the hooks in `pod-mode-hook'.
 ;;;***
 
 ;;;### (autoloads (refresh-pretty-control-l pp^L-^L-display-table-entry
-;;;;;;  pp^L-^L-string Pretty-Control-L) "pp-c-l" "pp-c-l.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from pp-c-l.el
+;;;;;;  pp^L-^L-string Pretty-Control-L) "pp-c-l" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/pp-c-l.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/pp-c-l.el
 
 (let ((loads (get 'Pretty-Control-L 'custom-loads))) (if (member '"pp-c-l" loads) nil (put 'Pretty-Control-L 'custom-loads (cons '"pp-c-l" loads))))
 
@@ -1577,8 +1641,9 @@ Reinitialize `pretty-control-l-mode', if on, to update the display.
 
 ;;;***
 
-;;;### (autoloads (project-add) "projects" "projects.el" (19951 23695))
-;;; Generated autoloads from projects.el
+;;;### (autoloads (project-add) "projects" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/projects.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/projects.el
 
 (autoload 'project-add "projects" "\
 Add the project named NAME with root directory DIRECTORY.
@@ -1588,8 +1653,9 @@ Add the project named NAME with root directory DIRECTORY.
 ;;;***
 
 ;;;### (autoloads (protect-process-buffer-from-kill-mode protect-buffer-from-kill-mode)
-;;;;;;  "protbuf" "protbuf.el" (19951 23695))
-;;; Generated autoloads from protbuf.el
+;;;;;;  "protbuf" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/protbuf.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/protbuf.el
 
 (defvar protect-buffer-from-kill-mode nil "\
 *If non-nil, then prevent buffer from being accidentally killed.
@@ -1627,8 +1693,9 @@ alternate BUFFER.
 ;;;***
 
 ;;;### (autoloads (protocols-clear-cache protocols-lookup) "protocols"
-;;;;;;  "protocols.el" (19951 23695))
-;;; Generated autoloads from protocols.el
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/protocols.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/protocols.el
 
 (autoload 'protocols-lookup "protocols" "\
 Find a protocol and display its details.
@@ -1643,9 +1710,9 @@ Clear the protocols \"cache\".
 ;;;***
 
 ;;;### (autoloads (quack-install quack-pltfile-mode quack-scheme-mode-hookfunc
-;;;;;;  quack-inferior-scheme-mode-hookfunc) "quack" "quack.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from quack.el
+;;;;;;  quack-inferior-scheme-mode-hookfunc) "quack" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/quack.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/quack.el
 (add-to-list 'auto-mode-alist '("\\.plt\\'" . quack-pltfile-mode))
 
 (autoload 'quack-inferior-scheme-mode-hookfunc "quack" "\
@@ -1671,8 +1738,9 @@ Install quack.el into scheme-mode.
 ;;;***
 
 ;;;### (autoloads (rfcview-mode rfcview-find-index rfcview-find-rfc
-;;;;;;  rfcview-customize) "rfcview" "rfcview.el" (19951 23695))
-;;; Generated autoloads from rfcview.el
+;;;;;;  rfcview-customize) "rfcview" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/rfcview.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/rfcview.el
 
 (autoload 'rfcview-customize "rfcview" "\
 Enter the RFCview Custom group.
@@ -1705,8 +1773,9 @@ Key bindings:
 ;;;***
 
 ;;;### (autoloads (services-clear-cache services-lookup) "services"
-;;;;;;  "services.el" (19951 23695))
-;;; Generated autoloads from services.el
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/services.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/services.el
 
 (autoload 'services-lookup "services" "\
 Find a service and display its details.
@@ -1720,9 +1789,30 @@ Clear the services \"cache\".
 
 ;;;***
 
-;;;### (autoloads (turn-on-setnu-mode setnu-mode) "setnu" "setnu.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from setnu.el
+;;;### (autoloads (session-jump-to-last-change) "session" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/session.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/session.el
+
+(autoload 'session-jump-to-last-change "session" "\
+Jump to the position of the last change.
+Without prefix arg, jump successively to previous change positions which
+differ by at least `session-jump-undo-threshold' characters by repeated
+invocation of this command.  With prefix argument 0, jump to end of last
+change.  With numeric prefix argument, jump to start of first change in
+the ARG's undo block in the `buffer-undo-list'.
+
+With non-numeric prefix argument (\\[universal-argument] only), set
+point as oldest change position.  It might change slightly if you jump
+to it due to intermediate insert/delete elements in the
+`buffer-undo-list'.
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads (turn-on-setnu-mode setnu-mode) "setnu" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/setnu.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/setnu.el
 
 (autoload 'setnu-mode "setnu" "\
 Toggle `setnu-mode'.
@@ -1744,8 +1834,9 @@ to automatically turn on line numbering when enterting `text-mode'.
 ;;;***
 
 ;;;### (autoloads (shell-command-completion-mode) "shell-command"
-;;;;;;  "shell-command.el" (19951 23695))
-;;; Generated autoloads from shell-command.el
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/shell-command.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/shell-command.el
 
 (autoload 'shell-command-completion-mode "shell-command" "\
 Enable or disable tab-completion for some commands.
@@ -1757,9 +1848,9 @@ The commands are `shell-command', `shell-command-on-region', `grep',
 ;;;***
 
 ;;;### (autoloads (show-ws-toggle-show-trailing-whitespace show-ws-toggle-show-hard-spaces
-;;;;;;  show-ws-toggle-show-tabs) "show-wspace" "show-wspace.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from show-wspace.el
+;;;;;;  show-ws-toggle-show-tabs) "show-wspace" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/show-wspace.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/show-wspace.el
 
 (defalias 'toggle-show-tabs-show-ws 'show-ws-toggle-show-tabs)
 
@@ -1787,8 +1878,9 @@ Uses face `show-ws-trailing-whitespace'.
 ;;;***
 
 ;;;### (autoloads (sm-add-all-headers sm-add-random-header) "silly-mail"
-;;;;;;  "silly-mail.el" (19951 23695))
-;;; Generated autoloads from silly-mail.el
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/silly-mail.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/silly-mail.el
 
 (autoload 'sm-add-random-header "silly-mail" "\
 Insert a random silly mail header.
@@ -1805,9 +1897,9 @@ The choice of available headers is taken from `sm-mail-header-table'.
 
 ;;;***
 
-;;;### (autoloads (slang-mode) "slang-mode" "slang-mode.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from slang-mode.el
+;;;### (autoloads (slang-mode) "slang-mode" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/slang-mode.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/slang-mode.el
 
 (autoload 'slang-mode "slang-mode" "\
 Major mode for editing slang scripts.
@@ -1818,9 +1910,9 @@ The following keys are bound:
 
 ;;;***
 
-;;;### (autoloads (sys-apropos) "sys-apropos" "sys-apropos.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from sys-apropos.el
+;;;### (autoloads (sys-apropos) "sys-apropos" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/sys-apropos.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/sys-apropos.el
 
 (autoload 'sys-apropos "sys-apropos" "\
 Ask the system apropos command for man-pages matching QUERY.
@@ -1835,9 +1927,9 @@ Ask the system apropos command for man-pages matching QUERY.
 ;;;;;;  tabbar-mwheel-forward tabbar-mwheel-backward tabbar-press-scroll-right
 ;;;;;;  tabbar-press-scroll-left tabbar-press-home tabbar-forward-tab
 ;;;;;;  tabbar-backward-tab tabbar-forward-group tabbar-backward-group
-;;;;;;  tabbar-forward tabbar-backward) "tabbar" "tabbar.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from tabbar.el
+;;;;;;  tabbar-forward tabbar-backward) "tabbar" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tabbar.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tabbar.el
 
 (autoload 'tabbar-backward "tabbar" "\
 Select the previous available tab.
@@ -1998,9 +2090,9 @@ Returns non-nil if the new state is enabled.
 
 ;;;***
 
-;;;### (autoloads (tail-command tail-file) "tail" "tail.el" (19951
-;;;;;;  23695))
-;;; Generated autoloads from tail.el
+;;;### (autoloads (tail-command tail-file) "tail" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tail.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tail.el
 
 (autoload 'tail-file "tail" "\
 Tails FILE specified with argument FILE inside a new buffer.
@@ -2017,8 +2109,9 @@ It is also called by `tail-file'
 
 ;;;***
 
-;;;### (autoloads (trivial-cite) "tc" "tc.el" (19951 23695))
-;;; Generated autoloads from tc.el
+;;;### (autoloads (trivial-cite) "tc" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tc.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tc.el
 
 (autoload 'trivial-cite "tc" "\
 A simple citation function for use in news/mailreaders.
@@ -2038,8 +2131,9 @@ tc-citation-string, tc-make-attribution and tc-header-funs.
 ;;;***
 
 ;;;### (autoloads (thinks-maybe-region thinks-yank thinks-region
-;;;;;;  thinks) "thinks" "thinks.el" (19951 23695))
-;;; Generated autoloads from thinks.el
+;;;;;;  thinks) "thinks" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/thinks.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/thinks.el
 
 (autoload 'thinks "thinks" "\
 Insert TEXT wrapped in a think bubble.
@@ -2073,8 +2167,9 @@ If not, query for text to insert in bubble.
 
 ;;;***
 
-;;;### (autoloads (tlc-mode) "tlc" "tlc.el" (19951 23695))
-;;; Generated autoloads from tlc.el
+;;;### (autoloads (tlc-mode) "tlc" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tlc.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tlc.el
 
 (autoload 'tlc-mode "tlc" "\
 Major mode for editing Tlc files, or files found in tlc directories.
@@ -2084,8 +2179,9 @@ Major mode for editing Tlc files, or files found in tlc directories.
 
 ;;;***
 
-;;;### (autoloads (tld) "tld" "tld.el" (19951 23695))
-;;; Generated autoloads from tld.el
+;;;### (autoloads (tld) "tld" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tld.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tld.el
 
 (autoload 'tld "tld" "\
 Search the TLD list.
@@ -2094,9 +2190,9 @@ Search the TLD list.
 
 ;;;***
 
-;;;### (autoloads (twiddle-compile twiddle-start) "twiddle" "twiddle.el"
-;;;;;;  (19951 23695))
-;;; Generated autoloads from twiddle.el
+;;;### (autoloads (twiddle-compile twiddle-start) "twiddle" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/twiddle.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/twiddle.el
 
 (autoload 'twiddle-start "twiddle" "\
 Start a mode line display hack.
@@ -2115,8 +2211,9 @@ If called with a prefix argument, prompt for a specific hack to run.
 
 ;;;***
 
-;;;### (autoloads (underhat-region) "under" "under.el" (19951 23695))
-;;; Generated autoloads from under.el
+;;;### (autoloads (underhat-region) "under" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/under.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/under.el
 
 (autoload 'underhat-region "under" "\
 Underline the region.
@@ -2125,8 +2222,9 @@ Underline the region.
 
 ;;;***
 
-;;;### (autoloads (xrdb-mode) "xrdb-mode" "xrdb-mode.el" (19951 23695))
-;;; Generated autoloads from xrdb-mode.el
+;;;### (autoloads (xrdb-mode) "xrdb-mode" "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/xrdb-mode.el"
+;;;;;;  (20581 27347))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/xrdb-mode.el
 
 (autoload 'xrdb-mode "xrdb-mode" "\
 Major mode for editing xrdb config files.
@@ -2136,19 +2234,100 @@ Major mode for editing xrdb config files.
 
 ;;;***
 
-;;;### (autoloads nil nil ("auto-fill-inhibit.el" "clipper.el" "coffee.el"
-;;;;;;  "color-theme-library.el" "color-theme_seldefcustom.el" "csv-mode.el"
-;;;;;;  "cwebm.el" "dict.el" "emacs-goodies-custom.el" "emacs-goodies-el.el"
-;;;;;;  "filladapt.el" "highlight-completion.el" "initsplit.el" "keywiz.el"
-;;;;;;  "maplev.el" "minibuf-electric.el" "minibuffer-complete-cycle.el"
-;;;;;;  "mutt-alias.el" "session.el" "todoo.el" "toggle-option.el"
-;;;;;;  "upstart-mode.el") (19951 23696 793276))
+;;;### (autoloads nil nil ("../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/align-string.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/all.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/apache-mode.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/ascii.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/auto-fill-inhibit.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/bar-cursor.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/bm.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/boxquote.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/browse-huge-tar.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/browse-kill-ring.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/clipper.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/coffee.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/color-theme-library.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/color-theme.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/color-theme_seldefcustom.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/csv-mode.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/ctypes.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/dedicated.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/df.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/dict.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/diminish.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/dir-locals.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/edit-env.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/egocentric.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/emacs-goodies-custom.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/emacs-goodies-el.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/emacs-goodies-loaddefs.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/eproject-extras.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/eproject.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/ff-paths.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/filladapt.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/floatbg.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/folding.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/framepop.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/graphviz-dot-mode.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/highlight-beyond-fill-column.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/highlight-completion.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/highlight-current-line.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/home-end.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/htmlize.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/initsplit.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/joc-toggle-buffer.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/joc-toggle-case.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/keydef.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/keywiz.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/lcomp.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/map-lines.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/maplev.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/markdown-mode.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/marker-visit.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/matlab.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/minibuf-electric.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/minibuffer-complete-cycle.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/miniedit.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/mutt-alias.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/muttrc-mode.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/obfusurl.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/pack-windows.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/perldoc.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/pod-mode.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/pp-c-l.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/projects.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/protbuf.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/protocols.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/quack.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/rfcview.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/services.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/session.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/setnu.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/shell-command.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/show-wspace.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/silly-mail.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/slang-mode.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/sys-apropos.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tabbar.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tail.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tc.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/thinks.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tlc.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/tld.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/todoo.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/toggle-option.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/twiddle.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/under.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/upstart-mode.el"
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/xrdb-mode.el")
+;;;;;;  (20581 27347 183454))
 
 ;;;***
 
 ;;;### (autoloads (align-all-strings align-string) "align-string"
-;;;;;;  "align-string.el" (19951 23695))
-;;; Generated autoloads from align-string.el
+;;;;;;  "../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/align-string.el"
+;;;;;;  (20581 27346))
+;;; Generated autoloads from ../../../../../usr/share/emacs23/site-lisp/emacs-goodies-el/align-string.el
 
 (autoload 'align-string "align-string" "\
 Align first occurrence of REGEXP in each line of region.

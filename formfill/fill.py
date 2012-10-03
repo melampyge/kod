@@ -19,7 +19,7 @@ except Exception, e:
     exit()
     
 for line in fillfile:
-    font_size = 26
+    font_size = 30
     locline = locfile.readline()
     line=line.replace("\n","")
     locline=locline.replace("\n","")
