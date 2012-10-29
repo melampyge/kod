@@ -315,7 +315,7 @@ ISTJ:Julia Robers -
 ISTJ:Jack Webb - actor, producer
 ISTJ:Jackie Joyner-Kersee - athlete (heptathlon)
 ISTJ:Malcolm McDowell -
-ISTJ:George Hamilto
+ISTJ:George Hamilton
 #####################################################################
 ISTP:Bruce Lee -
 ISTP:Charles Bronson - actor

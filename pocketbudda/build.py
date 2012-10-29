@@ -1,3 +1,5 @@
 import os, sys
 
-os.system("zip ~/Dropbox/Public/pocketbudda.zip -r * ")
+if sys.argv[1] == 'deploy':
+    os.system("python /home/burak/Downloads/google_appengine/appcfg.py update /home/burak/kod/pocketbudda/app")
+

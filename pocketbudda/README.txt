@@ -48,6 +48,11 @@ Training MB Statistical Method
   
   Or just look at / run mbti.sh
 
+  Good aliases
+  
+  alias pocdev="cd $HOME/Downloads/google_appengine; python dev_appserver.py ~/kod/pocketbudda/app --debug"
+  alias pocdep="cd $HOME/Downloads/google_appengine; python appcfg.py update ~/kod/pocketbudda/app"
+  
   
 TODO
 -----
