@@ -6,9 +6,8 @@ dormant[data$last_visit > 90 & data$rank == data$per_customer_count] = 1
 
 fit.1 <- glm(dormant ~ month + netamount + gender +
       	    day + day_of_week + totalamount + rank + categoryname +
-	    per_customer_count + total_total_amount +
-            income +  season  + cat_freq + creditcardtype ,
-	   family=binomial(link="logit"))
+	    total_total_amount + income +  season  + cat_freq + creditcardtype ,
+	    family=binomial(link="logit"))
 	   	   
 print (summary(fit.1))
 
