@@ -41,6 +41,8 @@ def calculate_mb(choices):
     for i in range(1,8):
         new_choices.append([int(choices[j-1]) for j in range(i,71,7) ])
 
+    #print new_choices
+        
     # apparently setting a single character in a string using
     # the [] operator is not possible, so we start with a list, then 
     # go back to string when we are finished.
