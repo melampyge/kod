@@ -7,6 +7,5 @@
 #sed -n 30000,60000p $HOME/dell.csv >> $HOME/dell-validate.csv
 
 #R -f pred.R
-#R -f predglm.R
+R -f predglm.R
 #R -f prednn.R
-R -f predlogreg.py

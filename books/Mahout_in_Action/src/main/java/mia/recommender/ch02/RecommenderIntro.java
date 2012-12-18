@@ -1,4 +1,3 @@
-package mia.recommender.ch02;
 
 import org.apache.mahout.cf.taste.impl.model.file.*;
 import org.apache.mahout.cf.taste.impl.neighborhood.*;
@@ -13,8 +12,7 @@ import java.util.*;
 
 class RecommenderIntro {
 
-  private RecommenderIntro() {
-  }
+  private RecommenderIntro() { }
 
   public static void main(String[] args) throws Exception {
 

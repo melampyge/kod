@@ -5,14 +5,18 @@ model <- glm(formula = last_visit ~ month + netamount + gender +
       	    day + day_of_week + totalamount + rank + categoryname +
 	    per_customer_count + total_total_amount +
             income +  season  + cat_freq + creditcardtype,
-	    family=Gamma(link="log")
+	    family=gaussian(link="log")
 	    )
 print (summary(model))
 
 data.validate <- read.csv ("/home/burak/dell-validate.csv",header=TRUE,sep=",")
 estimate = predict (model, newdata=data.validate)
+estimate = exp(estimate)
 
-rmse <- sqrt(sum((data.validate$last_visit-exp(estimate))^2)
-        /length(data.validate$last_visit)) 
-print(paste("RMSE: ", rmse))
+diff = abs(data.validate$last_visit-estimate)
+#rmse <- sqrt(sum(diff^2))
+#        /length(data.validate$last_visit)) 
+#print(paste("RMSE: ", rmse))
 
+error <- sum(diff) / length(diff)
+print (error)

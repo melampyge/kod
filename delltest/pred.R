@@ -7,14 +7,10 @@ model <- lm(formula = last_visit ~ month + netamount + gender +
             income +  season  + cat_freq + creditcardtype)
 print (summary(model))
 
-plot(last_visit, resid(model))
+data.validate <- read.csv ("/home/burak/dell-validate.csv",header=TRUE,sep=",")
+estimate = predict (model, newdata=data.validate)
 
-#data.validate <- read.csv ("/home/burak/dell-validate.csv",header=TRUE,sep=",")
-#estimate = predict (model, newdata=data.validate)
-#
-#rmse <- sqrt(sum((data.validate$last_visit-estimate)^2)
-#        /length(data.validate$last_visit)) 
-#print(paste("RMSE: ", rmse))
-#plot(estimate, data.validate$last_visit)
+diff = abs(data.validate$last_visit-estimate)
 
-
+error <- sum(diff) / length(diff)
+print (error)
