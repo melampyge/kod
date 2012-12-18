@@ -13,8 +13,7 @@ print (summary(nn))
 data.validate <- read.csv ("/home/burak/dell-validate.csv",header=TRUE,sep=",")
 estimate = predict (nn, newdata=data.validate)
 
-rmse <- sqrt(sum((data.validate$last_visit-estimate)^2)
-        /length(data.validate$last_visit)) 
-print(paste("RMSE: ", rmse))
+diff = abs(data.validate$last_visit-estimate)
+error <- sum(diff) / length(diff)
+print (error)
 
-# 53
