@@ -1,3 +1,4 @@
+package mia.recommender.ch02;
 
 import org.apache.mahout.cf.taste.impl.model.file.*;
 import org.apache.mahout.cf.taste.impl.neighborhood.*;
