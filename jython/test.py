@@ -33,7 +33,7 @@ class SlopeOneRecommenderBuilder(RecommenderBuilder):
 
 def main():
     RandomUtils.useTestSeed()
-    model = FileDataModel(File("intro.csv"))
+    model = FileDataModel(File("ua.base"))
     builder = GenericRecommenderBuilder()
 
     print 'Starting run at %s' % datetime.now()
