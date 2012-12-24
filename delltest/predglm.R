@@ -2,9 +2,12 @@ data <- read.csv ("/home/burak/dell.csv",header=TRUE,sep=",")
 attach (data)
 
 model <- glm(formula = last_visit ~ month + netamount + gender + day +
-      	    day_of_week + totalamount + rank + categoryname +
+      	    day_of_week + totalamount + rank + categoryname + time_on_site +
       	    per_customer_count + total_total_amount + income + season +
-      	    cat_freq + creditcardtype 
+      	    cat_freq + creditcardtype + frequency + season:rank + 
+       	    frequency:rank + frequency:season + frequency:per_customer_count +
+	    frequency:total_total_amount + frequency:time_on_site +
+	    frequency:month 
 	    ,
       	    family=gaussian(link="log") )
 
