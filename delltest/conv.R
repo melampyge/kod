@@ -1,4 +1,7 @@
-
+# generate expanded new file for factors, this new file
+# can be used easily by Weka and other "pickier" tools that
+# have trouble reading missing data, categories
+#
 orders <- read.csv ("/home/burak/dell.csv",header=TRUE,sep=",")
 
 orders <- orders[, c('rank','per_customer_count','total_total_amount',
