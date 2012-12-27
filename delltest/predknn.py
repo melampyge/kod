@@ -7,9 +7,8 @@ from pandas import *
 __day__ = 130
 
 cols = """
-0 + month + netamount + gender + day + day_of_week + totalamount +
-rank + categoryname + time_on_site + per_customer_count +
-total_total_amount + income + season + cat_freq + creditcardtype
+0 + month + day + day_of_week + rank + categoryname + time_on_site +
+per_customer_count + income + season + cat_freq + creditcardtype
 """
 
 orders = read_csv("/home/burak/dell-train.csv",sep=",")
@@ -20,7 +19,7 @@ last_value = orders[['last_visit']].as_matrix()[:,0] > __day__
 print len(last_value[last_value==True])
 print len(last_value[last_value==False])
 
-knn = neighbors.KNeighborsClassifier(n_neighbors=50)
+knn = neighbors.KNeighborsClassifier(n_neighbors=10)
 knn.fit(train,last_value)
 
 orders = read_csv("/home/burak/dell-validate.csv",sep=",")
