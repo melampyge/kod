@@ -7,29 +7,16 @@ import java.util.Collections;
 import org.jlewi.simple.alg.Zodiac;
 import swisseph.*;
 
-/**
- * << Class description goes here >>
- *
- * @author Burak Bayramli
- */
-public class Lewi {
-  
+public class Lewi
+{  
   String POINTER[] = new String[36];
-
-  String[] POINTER_BASE = new String[36];
-    
+  String[] POINTER_BASE = new String[36];    
   HashMap map = new HashMap();
     
-  /**
-   * Creates a new <code>Lewi</code> instance.
-   *
-   */
-  public Lewi() {        
-        
+  public Lewi() {                
     for (int i=0;i<36;i++) {
       POINTER_BASE[i]="";
     }
-
     POINTER_BASE[6] = "STAR";
     POINTER_BASE[9] = "SQUARE";
     POINTER_BASE[12] = "TRIANGLE";
@@ -37,7 +24,6 @@ public class Lewi {
     POINTER_BASE[24] = "TRIANGLE";
     POINTER_BASE[27] = "SQUARE";
     POINTER_BASE[30] = "STAR";
-
 
     addCode(SweConst.SE_MOON, "TICK", SweConst.SE_SUN, 245);
     addCode(SweConst.SE_MOON , "TICK", SweConst.SE_MERCURY, 145);
@@ -302,28 +288,11 @@ public class Lewi {
     addCode(SweConst.SE_NEPTUNE , "HELIX", SweConst.SE_PLUTO , 277);
   }
 
-  /**
-   * Describe <code>addCode</code> method here.
-   *
-   * @param p1 an <code>int</code> value
-   * @param angle a <code>String</code> value
-   * @param p2 an <code>int</code> value
-   * @param code an <code>int</code> value
-   */
   public void addCode(int p1, String angle, int p2, int code) {
     String key = p1+"-"+angle+"-"+p2;
     map.put(key, code);
   }
-
-
-  /**
-   * Describe <code>getCode</code> method here.
-   *
-   * @param p1 an <code>int</code> value
-   * @param angle a <code>String</code> value
-   * @param p2 an <code>int</code> value
-   * @return an <code>int</code> value
-   */
+    
   public int getCode(int p1, String angle, int p2) {
     String key = p1+"-"+angle+"-"+p2;
     if (map.get(key) != null) {
@@ -427,10 +396,6 @@ public class Lewi {
   }
 
 
-  /**
-   * Describe <code>rearrangePointerWheel</code> method here.
-   *
-   */
   public void rearrangePointerWheel(int offset) {
     for (int i=0;i<36;i++) {
       POINTER[i]="";
