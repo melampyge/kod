@@ -1,5 +1,16 @@
-We test our code using Deathmatch setting, where players are
-constantly respawned. 
+=============================================================
+MAIN IDEA
+=============================================================
+
+UrbanTerror is started at a particular location on the screen, in
+minimized fashion. We take a snapshot of the desktop, continuously and
+feed this series of images to a recognizer / player "program".
+
+Once an action is decided the keystrokes are sent to the game just
+like a regular user would.
+
+We tested our code using Deathmatch setting, where players are
+constantly respawned.
 
 =============================================================
 TODO
