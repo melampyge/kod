@@ -29,8 +29,7 @@ project directory, and you will get a jlewi.jar file. To run tests, type
 HOW TO USE
 ============
 
-o Using jlewi is, ahem, simple. Just include the jar file in your lib,
-then:
+o Just include the jar file in your lib, then:
 
 Lewi l = new Lewi();
 int decan = l.calc(SweConst.MARS, "29.10.1965");
@@ -43,7 +42,4 @@ ArrayList r = l.calc("1.3.1933");
 Also, you can generate all Lewi numbers for 20th century, and part of 00s by
 using "ant run" which calls GenerateLewi.java class.
 
-That's pretty much it.
-
-Have fun. Open source rules.
 
