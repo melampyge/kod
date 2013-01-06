@@ -16,7 +16,6 @@
 (setq shell-file-name "bash")
 (setq shell-command-switch "-ic")
 
-
 (set-variable (quote latex-run-command) "pdflatex")
 (set-variable (quote tex-dvi-view-command) "xpdf")
 
@@ -82,6 +81,7 @@ This command does not push erased text to kill-ring."
 (require 'java-mode-indent-annotations)
 (require 'nxml-mode)
 (load-file "/usr/share/emacs23/site-lisp/_latin_post_ek.elc")
+(load-file "/usr/share/emacs23/site-lisp/ein/ein.el")
 (require 'tempo)
 (require 'magit)
 
@@ -953,6 +953,15 @@ This command does not push erased text to kill-ring."
 ;; iptal et boylece bizim tanimladigimiz aktif olsun. 
 ;;
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; ein: mode icin not: change ein-notebook.el icinde
+;;  (define-key map "\M-p"          'previous-line)
+;;  (define-key map "\M-n"          'next-line)
+;;
+;; olmali.
+
+
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
@@ -986,8 +995,6 @@ This command does not push erased text to kill-ring."
 (delete-other-windows)
 
 (load-file "/usr/share/emacs23/site-lisp/pyjde/pyjde.el")
-
-(load-file "/usr/share/emacs23/site-lisp/ein/ein.el")
 
 (pymacs-load "/usr/share/emacs23/site-lisp/githist")
 

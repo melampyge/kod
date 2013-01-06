@@ -1135,8 +1135,8 @@ This hook is run regardless the actual major mode used."
   (define-key map (kbd "C-c C-.") 'ein:pytools-jump-to-source-command)
   (define-key map "\M-,"          'ein:pytools-jump-back-command)
   (define-key map (kbd "C-c C-,") 'ein:pytools-jump-back-command)
-  (define-key map "\M-p"          'ein:worksheet-previous-input-history)
-  (define-key map "\M-n"          'ein:worksheet-next-input-history)
+  (define-key map "\M-p"          'previous-line)
+  (define-key map "\M-n"          'next-line)
   (define-key map (kbd "C-c C-/") 'ein:notebook-scratchsheet-open)
   ;; Worksheets
   (define-key map (kbd "C-c !")     'ein:worksheet-rename-sheet)
