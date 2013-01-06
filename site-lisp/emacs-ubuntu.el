@@ -343,14 +343,6 @@ This command does not push erased text to kill-ring."
 (add-hook 'LaTeX-mode-hook '(lambda ()
                               (set-fill-column 75)
                               ))
-(defun my-shell-mode-common-hook () 
-  (local-unset-key "\C-d")
-  (local-set-key "\M-\r" 'alternative-compile)
-  (local-set-key "\C-d" 'forward-word)
-  (local-set-key [?\M-g] 'keyboard-quit)
-  (local-set-key "\C-j" 'backward-char) 
-  )
-(add-hook 'shell-mode-common-hook 'my-shell-mode-common-hook)
 (defun my-sql-mode-common-hook () 
   (local-set-key "\C-j" 'backward-char) 
   )
@@ -367,7 +359,6 @@ This command does not push erased text to kill-ring."
   (local-set-key "\M-s" 'isearch-forward) 
   )
 (add-hook 'dired-mode-hook 'my-dired-mode-hook)
-
 (defun my-buffer-mode-hook ()  "Bind some private functions."
   (local-set-key "\C-o" 'other-window)	
   (local-set-key [mouse-1] 'Buffer-menu-mouse-select)
@@ -386,7 +377,6 @@ This command does not push erased text to kill-ring."
   (local-set-key [?\M-g] 'keyboard-quit)
   )
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook11)
-
 ;;
 ;; compilation mode buffer should wrap lines
 (defun my-compilation-mode-hook ()
@@ -396,6 +386,19 @@ This command does not push erased text to kill-ring."
   (local-set-key [?\M-g] 'keyboard-quit)
   )
 (add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
+
+(defun my-shell-mode-common-hook () 
+  (local-unset-key "\C-d")
+  (local-unset-key (kbd "M-p"))
+  (local-unset-key (kbd "M-n"))
+  (local-set-key "\M-\r" 'alternative-compile)
+  (local-set-key "\C-d" 'forward-word)
+  (local-set-key [?\M-g] 'keyboard-quit)
+  (local-set-key "\C-j" 'backward-char) 
+  (local-set-key (kbd "M-p") 'previous-line) 
+  (local-set-key (kbd "M-n") 'next-line) 
+  )
+(add-hook 'shell-mode-hook 'my-shell-mode-common-hook)
 
 ;;
 ;; Byte compiles the _emacs file, saves it as _emacs.elc, and re-loads
@@ -976,6 +979,7 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/kod/books")
 (find-file-other-window "/home/burak/Dropbox/TODO.txt")
 (find-file-other-window "/home/burak/Downloads")
+(find-file-other-window "/home/burak/kod/books/Python_for_Data_Analysis")
 (find-file-other-window "/home/burak/data")
 
 (switch-to-buffer "*scratch*")
