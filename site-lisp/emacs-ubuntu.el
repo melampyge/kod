@@ -983,6 +983,8 @@ This command does not push erased text to kill-ring."
 
 (load-file "/usr/share/emacs23/site-lisp/pyjde/pyjde.el")
 
+(load-file "/usr/share/emacs23/site-lisp/ein/ein.el")
+
 (pymacs-load "/usr/share/emacs23/site-lisp/githist")
 
 (defun githist-do-show-version(num) 
