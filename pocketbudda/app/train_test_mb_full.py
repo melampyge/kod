@@ -1,6 +1,6 @@
 # some experimental code to determine to full type based on 
 # the celeb database. 
-import sys; sys.path.append('..')
+import sys
 import calculate
 import math
 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19260606') # erdal inonu
     #res =  calculate.calculate('19380110') # knuth    
     #res =  calculate.calculate('19530111') # mehmet altan
-    res =  calculate.calculate('19500502') # ahmet altan
+    #res =  calculate.calculate('19500502') # ahmet altan
     #res =  calculate.calculate('19621128') # stewart        
     #res =  calculate.calculate('19460819') # bill clinton
     #res =  calculate.calculate('19471026') # hillary clinton

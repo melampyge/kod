@@ -988,7 +988,7 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/kod/books")
 (find-file-other-window "/home/burak/Dropbox/TODO.txt")
 (find-file-other-window "/home/burak/Downloads")
-(find-file-other-window "/home/burak/kod/books/Python_for_Data_Analysis")
+(find-file-other-window "/home/burak/kod/books/python_for_data_analysis")
 (find-file-other-window "/home/burak/data")
 
 (switch-to-buffer "*scratch*")
