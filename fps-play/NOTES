@@ -2,45 +2,18 @@
 MAIN IDEA
 =============================================================
 
-UrbanTerror is started at a particular location on the screen, in
-minimized fashion. We take a snapshot of the desktop, continuously and
-feed this series of images to a recognizer / player "program".
+We make sure UrbanTerror is started at a speficific location on the
+screen, in a window (not maximized). fps-play takes a snapshot of the
+desktop continuously and feeds this series of images to a recognizer /
+player "program". Once an action is decided the keystrokes are sent to
+the game just like a regular user. 
 
-Once an action is decided the keystrokes are sent to the game just
-like a regular user would.
-
-We tested our code using Deathmatch setting, where players are
-constantly respawned.
-
-=============================================================
-TODO
-=============================================================
-
-Beginning
-
-We need to determine the beginning of the game. For this the health
-status in the lower left corner can be used (simple pixel match should
-be fine). Also if there is too much blue in the middle of the screen,
-this is the weapon info screen shown only once in the very beginning,
-and we need to send "ESC" key to the game to shut it off. 
-
-If there are no health sign in the lower left corner, that means we
-died, and have to wait for respawn, or, until that health sign (all
-white) shows up again.
-
-Cython did not add improvements, it might need more tweaking and some
-more hints about the Numpy data types.
-
-=============================================================
-INSTALL
-=============================================================
 xdotool
 
 In order to send keystrokes to UrT, you need to install xdotool
 
 http://www.semicomplete.com/projects/xdotool/
 
-=============================================================
 UrbanTerror 
 
 Download install UrbanTerror, say under [DIR]/UrbanTerror. 

@@ -231,19 +231,12 @@ This command does not push erased text to kill-ring."
   (list
    "Custom"
    "--"
-   ["PyJde Find Descendants..." pyjde-do-find-descendants]
-   ["PyJde Visit Class..." pyjde-do-find-file-at-symbol]
-   ["PyJde Goto Definition..." pyjde-do-goto-definition]
-   ["PyJde List Methods..." pyjde-do-find-public-methods]
-   ["PyJde List Imports..." pyjde-do-find-imports]
-   ["PyJde Pick Method..." pyjde-do-pick-method]
-   ["PyJde Pick Import..." pyjde-do-pick-import]   
-   "--"
    ["Open Dired In Current Dir..." my-dired]   
+   ["IPython Notebook..." ein:notebooklist-open]   
+   ["Open Shell In Current Dir..." open-cmd-in-current-dir]   
    ["Open Explorer In Current Dir..." open-explorer-in-current-dir]   
-   ["Open Cmd In Current Dir..." open-cmd-in-current-dir]   
+   ["Notebook Server..." open-notebook-in-current-dir]
    ["Refresh..." revert-buffer]
-   ["Python Build" python-compile]
    ["Emacs Derle" byte-me]
    ["Ready for Blog" ready-for-blog]   
    "--"
@@ -465,6 +458,18 @@ This command does not push erased text to kill-ring."
   (setq komut (concat komut (dired-current-directory)))
   (setq komut (concat komut " &"))
   (shell-command komut))
+
+;; Dired icinde iken, o anda baktigimiz dizinde cmd
+;; icinde acar.
+(defun open-notebook-in-current-dir()
+  (interactive)
+  (defvar komut)
+  (setq komut "cd ")
+  (setq komut (concat komut (dired-current-directory)))
+  (setq komut (concat komut ";"))
+  (setq komut (concat komut "xterm -e 'ipython notebook --pylab=inline'"))
+  (message komut)
+  (async-shell-command komut))
 
 ;;
 ;; UI
@@ -979,17 +984,16 @@ This command does not push erased text to kill-ring."
 ;; ;;(find-file-other-window "/usr/share/emacs23/site-lisp/pyjde")
 (find-file-other-window "/tmp")
 (find-file-other-window "/home/burak/kod")
+(find-file-other-window "/home/burak/kod/pocketbudda/app/mweb")
 (find-file-other-window "/home/burak/Documents/classnotes")
 (find-file-other-window "/home/burak/Desktop")
 (find-file-other-window "/home/burak/Dropbox")
 (find-file-other-window "/home/burak/Dropbox/Public/skfiles")
-(find-file-other-window "/home/burak/kod/pocketbudda/app/scripts")
 (find-file-other-window "/home/burak/Dropbox/resmi/2012")
 (find-file-other-window "/home/burak/kod/books")
 (find-file-other-window "/home/burak/Dropbox/TODO.txt")
 (find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/kod/books/python_for_data_analysis")
-(find-file-other-window "/home/burak/data")
 
 (switch-to-buffer "*scratch*")
 (delete-other-windows)

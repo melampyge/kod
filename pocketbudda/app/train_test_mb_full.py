@@ -12,16 +12,6 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19451005')    
     #res =  calculate.calculate('19490222')
     #res =  calculate.calculate('19820108')
-
-    #res =  calculate.calculate('19100422') # Norman Steenrod, 
-    #res =  calculate.calculate('19160430') # Claude Shannon
-    #res =  calculate.calculate('19230521') # Armand Borel
-    #res =  calculate.calculate('19170617') # Atle Selberg
-    #res =  calculate.calculate('19090821') # Nikolay Bogolyubov
-    #res =  calculate.calculate('19640825') # Maxim Kontsevich
-    #res =  calculate.calculate('19341012') # Albert Shiryaev
-    #res =  calculate.calculate('19061024') # Alexander Gelfond
-    #res =  calculate.calculate('19381103') # Martin Dunwoody    
     
     #res =  calculate.calculate('19610804') # barack obama
     #res =  calculate.calculate('19730326') # larry page
@@ -30,7 +20,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19590226') # ahmet davutoglu
     #res =  calculate.calculate('19501029') # abdullah gul
     #res =  calculate.calculate('19560120') # bill maher
-    #res =  calculate.calculate('19700929') # jen
+    #res =  calculate.calculate('19700921') # jen
     #res =  calculate.calculate('19180511') # richard feynman
     #res =  calculate.calculate('19691228') # linus torvalds
     #res =  calculate.calculate('19200102') # isaac asimov
@@ -119,6 +109,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19521007') # putin
     #res =  calculate.calculate('19650404') # cemalettin tasci
     #res =  calculate.calculate('19610506') # george clooney
+    res =  calculate.calculate('19881217') # her
     
     print calculate.calculate_mbti_full(res)
     print res
