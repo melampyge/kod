@@ -236,6 +236,7 @@ This command does not push erased text to kill-ring."
    ["Open Shell In Current Dir..." open-cmd-in-current-dir]   
    ["Open Explorer In Current Dir..." open-explorer-in-current-dir]   
    ["Notebook Server..." open-notebook-in-current-dir]
+   ["Ein Execute All Cells..." ein:worksheet-execute-all-cell]
    ["Refresh..." revert-buffer]
    ["Emacs Derle" byte-me]
    ["Ready for Blog" ready-for-blog]   
