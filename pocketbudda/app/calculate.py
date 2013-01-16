@@ -183,3 +183,5 @@ def calculate_mbti_full(astro):
 
     return mbti
 
+if __name__ == "__main__": 
+    print calculate_millman("18890420")

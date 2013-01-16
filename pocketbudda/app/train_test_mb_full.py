@@ -109,7 +109,8 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19521007') # putin
     #res =  calculate.calculate('19650404') # cemalettin tasci
     #res =  calculate.calculate('19610506') # george clooney
-    res =  calculate.calculate('19881217') # her
+    #res =  calculate.calculate('19881217') # her
+    res =  calculate.calculate('19451005') # baba
     
     print calculate.calculate_mbti_full(res)
     print res
