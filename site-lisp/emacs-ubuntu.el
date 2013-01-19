@@ -989,6 +989,7 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Documents/classnotes")
 (find-file-other-window "/home/burak/Desktop")
 (find-file-other-window "/home/burak/Dropbox")
+(find-file-other-window "/home/burak/Dropbox/Public")
 (find-file-other-window "/home/burak/Dropbox/Public/skfiles")
 (find-file-other-window "/home/burak/Dropbox/resmi/2012")
 (find-file-other-window "/home/burak/kod/books")

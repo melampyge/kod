@@ -88,7 +88,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19490119') # amca
     #res =  calculate.calculate('19501025') # teyze
     #res =  calculate.calculate('19790719') # bengi
-    #res =  calculate.calculate('19250205') # anneanne
+    res =  calculate.calculate('19250205') # anneanne
     #res =  calculate.calculate('19560531') # dayi
     #res =  calculate.calculate('19870517') # volkan
     #res =  calculate.calculate('19911124') # berk    
