@@ -995,6 +995,8 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Dropbox/TODO.txt")
 (find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/kod/books/python_for_data_analysis")
+(find-file-other-window "/home/burak/Documents/classnotes/app-math-tr")
+
 
 (switch-to-buffer "*scratch*")
 (delete-other-windows)

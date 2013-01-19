@@ -24,7 +24,6 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19180511') # richard feynman
     #res =  calculate.calculate('19691228') # linus torvalds
     #res =  calculate.calculate('19200102') # isaac asimov
-    #res =  calculate.calculate('19231215') # dyson
     #res =  calculate.calculate('19690312') # acun
     #res =  calculate.calculate('19270622') # cetin altan
     #res =  calculate.calculate('19560101') # mumtaz turkone
@@ -102,15 +101,14 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19770727') # parag khanna
     #res =  calculate.calculate('19610210') # george stephanapolous
     #res =  calculate.calculate('19670514') # sebastian thrun
-    #res =  calculate.calculate('19770628') # harun tekin
-    #res =  calculate.calculate('19771220') # kerem kabadayi
     #res =  calculate.calculate('18890420') # adolf hitler
-    #res =  calculate.calculate('19601023') # randy pausch (last lecture)
     #res =  calculate.calculate('19521007') # putin
     #res =  calculate.calculate('19650404') # cemalettin tasci
     #res =  calculate.calculate('19610506') # george clooney
     #res =  calculate.calculate('19881217') # her
-    res =  calculate.calculate('19451005') # baba
+    #res =  calculate.calculate('19451005') # baba
+    #res =  calculate.calculate('19871027') # irem
+    #res =  calculate.calculate('19200701') # sabahattin dede
     
     print calculate.calculate_mbti_full(res)
     print res
