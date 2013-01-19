@@ -109,6 +109,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19451005') # baba
     #res =  calculate.calculate('19871027') # irem
     #res =  calculate.calculate('19200701') # sabahattin dede
+    #res =  calculate.calculate('19570310') # bin laden
     
     print calculate.calculate_mbti_full(res)
     print res

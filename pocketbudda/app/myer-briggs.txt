@@ -151,11 +151,12 @@ INFJ:Shirley Temple Black - actress
 INFJ:Sidney Poitier -
 INFJ:Sudi-Kate - American dramatist, evangelist
 INFJ:Tom Selleck - actor
-INFJ:Mel Gibson
-INFJ:Nicole Kidman
-INFJ:Jerry Seinfeld
-INFJ:Mark Harmon
-INFJ:Nelson Mandela
+INFJ:Mel Gibson -
+INFJ:Nicole Kidman -
+INFJ:Jerry Seinfeld -
+INFJ:Mark Harmon -
+INFJ:Nelson Mandela -
+INFJ:Osama bin Laden -
 #####################################################################
 INFP:A. A. Milne - author (Winnie the Pooh)
 INFP:Anne Lindbergh -

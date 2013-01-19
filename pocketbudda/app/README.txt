@@ -41,9 +41,10 @@ SCRIPTS
 
 Training MB Statistical Method
 
-* Names of celebs whose MB types are known are in
-  myer-briggs.txt. generate_celeb_mbti.py look these names up in celebs and
-  celeb_life_goal, and creates a combined mb-celeb-astro.txt. Then we run
-  train_mb_celeb.py. 
+* Names of celebs whose MB types are known are in myer-briggs.txt. If
+  new celeb is added call generate_new_celeb.py. 
+
+* If there are new celebrity added to MBTI, since these are used for
+  regular bday MBTI stat calculations, we call generate_celeb_mbti.py.
 
   
