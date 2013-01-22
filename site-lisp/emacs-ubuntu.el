@@ -536,9 +536,9 @@ This command does not push erased text to kill-ring."
 ;;(tool-bar-add-item "fwd-arrow" 'jde-ant-build 'jde-ant-build :help "JDE Compile" )
 (tool-bar-add-item "fwd-arrow" 'revert-buffer 'revert-buffer :help "Refresh" )
 (tool-bar-add-item "contact" 
-                   'git-commit-all
-                   'git-commit-all
-                   :help "Git Commit All" )
+                   'open-notebook-in-current-dir
+                   'open-notebook-in-current-dir
+                   :help "Open iPython Notebook Server" )
 
 ;; when enter is pressed, it automatically indents.
 (setq next-line-add-newlines nil)
@@ -631,9 +631,9 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "tex-equation" ;; 
- '("\\[ "
+ '("$$ "
    (s)
-   " \\]") 
+   " $$") 
  "d" ;; 
  "") ;; 
 

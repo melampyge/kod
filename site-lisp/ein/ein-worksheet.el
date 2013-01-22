@@ -40,7 +40,7 @@
 (define-obsolete-variable-alias
   'ein:notebook-enable-undo 'ein:worksheet-enable-undo "0.2.0")
 
-(defcustom ein:worksheet-enable-undo 'yes
+(defcustom ein:worksheet-enable-undo 'full
   "Configure undo in notebook buffers.
 
 `no' : symbol
