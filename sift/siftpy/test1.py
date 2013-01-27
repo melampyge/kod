@@ -8,10 +8,11 @@ __start__ = 44
 __scale__ = 3
             
 def label_sift_point(image, xx, yy, label):
-    line_type = cv.CV_AA  # change it to 8 to see non-antialiased graphics
-    pt1 = cv.cvPoint (int(xx-6), int(yy+8))
-    font = cv.cvInitFont (CV_FONT_HERSHEY_SIMPLEX, 1.0, 0.1, 0, 1, CV_AA)
-    cvPutText (image, label, pt1, font, CV_RGB(255,255,0))
+    color = cv.CV_RGB(255,255,255)
+    center = (int(xx), int(yy))
+    cv.Circle(image, center, cv.Round(4), color, 3, cv.CV_AA, 0)
+    font = cv.InitFont (cv.CV_FONT_HERSHEY_SIMPLEX, 1.0, 0.1, 0, 1, cv.CV_AA)
+    cv.PutText (image, label, center, font, cv.CV_RGB(255,255,0))
 
 def is_point_in_region(point):
     if (point[0] > 150 and point[0] < 400 and point[1] > 100): return False
@@ -54,7 +55,6 @@ if __name__ == "__main__":
         # capture the current frame
         frame = cv.QueryFrame(capture)
         image_size = cv.GetSize(frame)
-        print image_size
         gray = cv.CreateImage (image_size, 8, 1)
         cv.CvtColor(frame, gray, cv.CV_BGR2GRAY )
                 
@@ -63,10 +63,7 @@ if __name__ == "__main__":
                                     cv.Round(image_size[1]/__scale__)), 8, 1 )
         cv.Resize(gray, small_img, cv.CV_INTER_LINEAR )
         cv.EqualizeHist( small_img, small_img )
-        arr = np.fromstring( small_img.tostring())                        
-        s_res = sift(arr.flatten('C'))
-        #s_res = sift(np.asarray(small_img).flatten('C'))
-
+        s_res = sift(np.array(cv.GetMat(small_img)).flatten('C'))
         n_res = np.array(s_res)
         
         #if frame_no == __start__ or mod(frame_no, 6) == 0:
@@ -86,29 +83,29 @@ if __name__ == "__main__":
                 best = 999999999.
                 bkey = None
                 for key in tree_copy.keys():
-                    d = sum(abs(diff(tree_copy[key][1] - item[4:-1])))
+                    d = sum(abs(np.diff(tree_copy[key][1] - item[4:-1])))
                     if d < best:
-                        bkey = key; best = d 
-                dist1 = [xx, yy] - tree_copy[bkey][0]
-                dist = sqrt(dist1[0]**2 + dist1[1]**2)
+                        bkey = key; best = d
+                if bkey in tree_copy:
+                    dist1 = [xx, yy] - tree_copy[bkey][0]
+                dist = np.sqrt(dist1[0]**2 + dist1[1]**2)
 
                 if dist > 100 or not bkey: continue
                 
                 tree[bkey][0][0] = xx
                 tree[bkey][0][1] = yy
-                cvCircle( frame, pt, 8, CV_RGB(100,100,255), 0, CV_AA, 0 ) 
+                cv.Circle( frame, pt, 8, cv.CV_RGB(100,100,255), 0, cv.CV_AA, 0 ) 
                 label_sift_point(frame, xx, yy, bkey)                
                 del tree_copy[bkey]
         
         # display webcam image
-        #cv.ShowImage('Camera', frame)                     
-        cv.ShowImage('Camera', small_img)
+        cv.ShowImage('Camera', frame)                     
+        #cv.ShowImage('Camera', small_img)
         
         frame_no += 1
         
         # handle events        
         k = cv.WaitKey(40) 
-        #k = cvWaitKey() 
         if k == "t":            
             cv.SaveImage('snap-' + str(snap_no) + '.jpg', frame)
             snap_no += 1
