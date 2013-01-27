@@ -6,7 +6,7 @@ ENFJ:Brenda Vaccaro - actress
 ENFJ:Craig T. Nelson - actor (Coach)
 ENFJ:James Garner - actor
 ENFJ:John Wooden - basketball player, coach
-ENFJ:King David - King of Israel
+ENFJ:Martin Luther King Jr - 
 ENFJ:Kirstie Alley - actress
 ENFJ:Lauren Graham - actress
 ENFJ:Matthew McConaughey - actor
@@ -89,6 +89,7 @@ ESFJ:Sally Struthers - actress
 ESFJ:Steve Spurrier - football player
 ESFJ:Terry Bradshaw - football player
 ESFJ:William McKinley - American President
+ESFJ:Desmond Tutu -
 #####################################################################
 ESFP:Bill Clinton - American President, politician
 ESFP:Pablo Picasso - Spanish painter, sculptor
@@ -105,10 +106,11 @@ ESFP:Suzanne Somers -
 ESFP:Red Skelton -
 ESFP:Woody Harrelson -
 ESFP:Bob Hope -
-ESFP:Marilyn Monroe
-ESFP:Dale Evans
-ESFP:Tim Burton
-ESFP:Heather Locklear
+ESFP:Marilyn Monroe -
+ESFP:Dale Evans -
+ESFP:Tim Burton -
+ESFP:Heather Locklear -
+ESFP:John F Kennedy -
 #####################################################################
 ESTJ:Andrew Jackson - American President
 ESTJ:Bette Davis - actress
@@ -122,6 +124,7 @@ ESTJ:Ivanka Trump -
 ESTJ:James Monroe - American President
 ESTJ:Sam Walton - founder of Wal-Mart
 ESTJ:William Henry Harrison - American President
+ESTJ:Henry Ford -
 #####################################################################
 ESTP:Ann Jillian - actress
 ESTP:Bruce Willis - actor (Die Hard)
@@ -135,6 +138,7 @@ ESTP:Jack Nicholson - actor
 ESTP:Jacob (Israel) - Isaac's son, Abraham's grandson
 ESTP:Roy Rogers - singer, actor
 ESTP:Tom Cruise - actor
+ESTP:George Patton IV -
 #####################################################################
 INFJ:Adam Sandler - actor, comedian
 INFJ:Anthony Kiedis - singer (Red Hot Chili Peppers)
@@ -219,6 +223,7 @@ ISFJ:William Shatner -
 ISFJ:Julianne Moore -
 ISFJ:Bob Gunton -
 ISFJ:Elijah Wood -
+ISFJ:Mother Teresa -
 #####################################################################
 ISFP:Alan Ayckbourn -
 ISFP:Auguste Rodin - French sculptor
