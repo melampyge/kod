@@ -1,6 +1,11 @@
-Run make under siftpp, then make.sh under siftpy. After this you will have 
-a siftpy.so under this directory. Then you can run the test.py 
-code. 
+Run make under siftpp, then make.sh under siftpy. After this you will
+have a siftpy.so under this directory. Then you can run the test3.py
+code. The scale parameter siftpy.c must match the scale parameter in
+test3.py.  It's a little hacky - for now. For the most basic example
+creating img3.key, you need
 
-The scale parameter siftpy.c must match the scale parameter in test.py.
-It's a little hacky - for now.
+int _width=800;
+int _height=640;
+
+in siftpy.c.
+
