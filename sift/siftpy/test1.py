@@ -43,15 +43,13 @@ if __name__ == "__main__":
         print "Error opening capture device"
         sys.exit(1)
 
-
     # fast forward
     frame_no = 0
     while (frame_no < __start__):
         frame = cv.QueryFrame(capture)
         frame_no += 1
             
-    while True:
-        
+    while True:        
         # capture the current frame
         frame = cv.QueryFrame(capture)
         image_size = cv.GetSize(frame)
