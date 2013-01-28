@@ -4,7 +4,7 @@ import numpy as np
 from siftpy import *
 import cv
 import copy
-__start__ = 44
+__start__ = 1
 __scale__ = 3
             
 def label_sift_point(image, xx, yy, label):
@@ -98,12 +98,12 @@ if __name__ == "__main__":
         
         # display webcam image
         cv.ShowImage('Camera', frame)                     
-        #cv.ShowImage('Camera', small_img)
         
         frame_no += 1
         
         # handle events        
         k = cv.WaitKey(40) 
+        if k == 27: break
         if k == "t":            
             cv.SaveImage('snap-' + str(snap_no) + '.jpg', frame)
             snap_no += 1

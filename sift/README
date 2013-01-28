@@ -9,3 +9,6 @@ int _height=640;
 
 in siftpy.c.
 
+TODO
+
+There are bugs in the matching of SIFT points to eachother. 
