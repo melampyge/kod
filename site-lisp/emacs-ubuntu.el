@@ -623,11 +623,11 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "verb" 
- '("\\verb!"         
-   (p "Enter verbatim: ") 
-   "!") 
+ '("<code>"
+   (s)
+   "</code>") 
  "d" 
- "Inserts a print debug message")
+ "") 
 
 (tempo-define-template 
  "tex-equation" ;; 
