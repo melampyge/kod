@@ -88,7 +88,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19490119') # amca
     #res =  calculate.calculate('19501025') # teyze
     #res =  calculate.calculate('19790719') # bengi
-    res =  calculate.calculate('19250205') # anneanne
+    #res =  calculate.calculate('19250205') # anneanne
     #res =  calculate.calculate('19560531') # dayi
     #res =  calculate.calculate('19870517') # volkan
     #res =  calculate.calculate('19911124') # berk    
@@ -105,12 +105,11 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19521007') # putin
     #res =  calculate.calculate('19650404') # cemalettin tasci
     #res =  calculate.calculate('19610506') # george clooney
-    #res =  calculate.calculate('19881217') # her
+    #res =  calculate.calculate('19840916') # her
     #res =  calculate.calculate('19451005') # baba
     #res =  calculate.calculate('19871027') # irem
     #res =  calculate.calculate('19200701') # sabahattin dede
     #res =  calculate.calculate('19570310') # bin laden
-    res =  calculate.calculate('19861108') # aaron swartz
 
     print calculate.calculate_mbti_full(res)
     print res

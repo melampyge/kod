@@ -57,6 +57,18 @@ ENTJ:Norman Schwarzkopf -
 ENTJ:Quentin Tarantino -
 ENTJ:Penn Jillette -
 ENTJ:Robert James Waller -
+ENTJ:Margaret Thatcher -
+ENTJ:Aung San Suu Kyi -
+ENTJ:Carl Sagan -
+ENTJ:Dick Cheney -
+ENTJ:Karl Rove -
+ENTJ:Peter Thiel -
+ENTJ:Madeleine Albright -
+ENTJ:Nancy Pelosi -
+ENTJ:Peter Drucker -
+ENTJ:Jack Welch -
+ENTJ:George Clooney -
+ENTJ:Matt Damon -
 #####################################################################
 ENTP:Niall Ferguson -
 ENTP:Jonathan Israel -
@@ -70,6 +82,14 @@ ENTP:Denis Diderot -
 ENTP:Slavoj Zizek -
 ENTP:Bill Maher -
 ENTP:Sacha Baron Cohen -
+ENTP:Richard Feynman -
+ENTP:Karl Popper -
+ENTP:Bertrand Russell -
+ENTP:John von Neumann -
+ENTP:Steve Wozniak -
+ENTP:Newt Gingrich -
+ENTP:Henry Kissenger -
+ENTP:Barack Obama -
 #####################################################################
 ESFJ:Barbara Walters -
 ESFJ:Danny Glover - actor
@@ -125,6 +145,15 @@ ESTJ:James Monroe - American President
 ESTJ:Sam Walton - founder of Wal-Mart
 ESTJ:William Henry Harrison - American President
 ESTJ:Henry Ford -
+ESTJ:Henry Ford -
+ESTJ:Tom Clancy -
+ESTJ:Dr. Phil -
+ESTJ:Amy Chua -
+ESTJ:Martha Stewart -
+ESTJ:Michelle Obama -
+ESTJ:Ann Coulter -
+ESTJ:Bill O'Reilly -
+ESTJ:Alan Dershowitz -
 #####################################################################
 ESTP:Ann Jillian - actress
 ESTP:Bruce Willis - actor (Die Hard)
@@ -137,8 +166,24 @@ ESTP:George W. Bush - American President
 ESTP:Jack Nicholson - actor
 ESTP:Jacob (Israel) - Isaac's son, Abraham's grandson
 ESTP:Roy Rogers - singer, actor
-ESTP:Tom Cruise - actor
 ESTP:George Patton IV -
+ESTP:Winston Churchill -
+ESTP:George S. Patton -
+ESTP:Theodore Roosevelt -
+ESTP:Malcolm X -
+ESTP:Douglas MacArthur -
+ESTP:Donald Trump -
+ESTP:Peter Schiff -
+ESTP:Ernest Hemingway -
+ESTP:Stephen R. Covey -
+ESTP:Dale Carnegie -
+ESTP:David Cameron -
+ESTP:Al Capone -
+ESTP:Hermann Goering -
+ESTP:Angelina Jolie -
+ESTP:Meryl Streep -
+ESTP:Madonna -
+ESTP:Alfred Hitchcock -
 #####################################################################
 INFJ:Adam Sandler - actor, comedian
 INFJ:Anthony Kiedis - singer (Red Hot Chili Peppers)
@@ -161,6 +206,16 @@ INFJ:Jerry Seinfeld -
 INFJ:Mark Harmon -
 INFJ:Nelson Mandela -
 INFJ:Osama bin Laden -
+INFJ:Carl Gustav Jung -
+INFJ:Niels Bohr -
+INFJ:Mahatma Gandhi -
+INFJ:Ron Paul -
+INFJ:Woodrow Wilson -
+INFJ:Mary Wollstonecraft -
+INFJ:Simone de Beauvoir -
+INFJ:Ludwig Wittgenstein -
+INFJ:Sam Harris -
+INFJ:Noam Chomsky -
 #####################################################################
 INFP:A. A. Milne - author (Winnie the Pooh)
 INFP:Anne Lindbergh -
@@ -175,13 +230,28 @@ INFP:Tom Brokaw - television journalist
 INFP:James Taylor -
 INFP:Julia Roberts -
 INFP:Scott Bakula -
+INFP:Albert Camus -
+INFP:George Orwell -
+INFP:Virginia Woolf -
+INFP:John Kerry -
+INFP:Jared Diamond -
+INFP:Francis Fukuyama -
+INFP:Bjoern Lomborg -
+INFP:Bill Watterson -
+INFP:J.K. Rowling -
+INFP:John Lennon -
+INFP:Jim Morrison -
+INFP:Kurt Cobain -
+INFP:Ian Curtis -
+INFP:Nicolas Cage -
+INFP:Heath Ledger -
+INFP:Tim Burton -
 #####################################################################
 INTJ:Bill Gates - Microsoft Founder
 INTJ:Alan Greenspan -
 INTJ:Ayn Rand -
 INTJ:Ben Bernanke -
 INTJ:Colin Powell - former U.S. Secretary of State
-INTJ:Donald Rumsfeld - former U.S. Secretary of Defense
 INTJ:Dwight D. Eisenhower - American President
 INTJ:Greg Gumbel - TV sportscaster
 INTJ:Veronica Hamel - actress
@@ -189,6 +259,18 @@ INTJ:William F. Buckley, Jr. - journalist
 INTJ:George Lucas -
 INTJ:Anthony Hopkins -
 INTJ:Mark Zuckerberg -
+INTJ:Bobby Fischer -
+INTJ:Garry Kasporov -
+INTJ:Isaac Asimov -
+INTJ:Christopher Hitchens -
+INTJ:John Nash -
+INTJ:Jane Austen -
+INTJ:Stephen Hawking -
+INTJ:Ted Kaczynski -
+INTJ:Anders Breivik -
+INTJ:Arnold Schwarzenegger -
+INTJ:James Cameron -
+INTJ:Russell Crowe -
 #####################################################################
 INTP:Brent Spiner - actor ("Data" on Star Trek)
 INTP:Carl Jung - Swiss psychiatrist
@@ -205,6 +287,21 @@ INTP:William James - American psychologist
 INTP:Albert Einstein -
 INTP:Tiger Woods -
 INTP:Henri Mancini -
+INTP:Charles Darwin -
+INTP:Richard Dawkins -
+INTP:Hannah Arendt -
+INTP:Marie Curie -
+INTP:Immanuel Kant -
+INTP:James Madison -
+INTP:Friedrich A. Hayek -
+INTP:Milton Friedman -
+INTP:Paul Allen -
+INTP:Larry Page -
+INTP:Sergey Brin -
+INTP:Alan Greenspan -
+INTP:Sigourney Weaver -
+INTP:Tina Fey -
+INTP:Jesse Eisenberg -
 #####################################################################
 ISFJ:Robert E. Lee - Army Officer
 ISFJ:Alfred, Lord Tennyson - poet
@@ -224,6 +321,21 @@ ISFJ:Julianne Moore -
 ISFJ:Bob Gunton -
 ISFJ:Elijah Wood -
 ISFJ:Mother Teresa -
+ISFJ:David Petraeus -
+ISFJ:George Marshall -
+ISFJ:Mitt Romney -
+ISFJ:George H.W. Bush -
+ISFJ:Jimmy Carter -
+ISFJ:Mother Teresa -
+ISFJ:Bruce Willis -
+ISFJ:Lance Reddick -
+ISFJ:Naomi Watts -
+ISFJ:Halle Berry -
+ISFJ:Kanye West -
+ISFJ:Jessica Simpson -
+ISFJ:Kirsten Dunst -
+ISFJ:Prince Charles -
+ISFJ:Kate Middleton -
 #####################################################################
 ISFP:Alan Ayckbourn -
 ISFP:Auguste Rodin - French sculptor
@@ -284,3 +396,15 @@ ISTP:Simon Cowell -
 ISTP:James Murdoch -
 ISTP:Jenna Jameson -
 ISTP:Burt Reynolds -
+ISTP:Jack Dorsey -
+ISTP:Donald Rumsfeld -
+ISTP:Vladimir Putin -
+ISTP:Stanley Kubrick -
+ISTP:Harrison Ford -
+ISTP:Christian Bale -
+ISTP:Tom Cruise -
+ISTP:Kristen Stewart -
+ISTP:Scarlett Johansson -
+ISTP:Bruce Lee -
+ISTP:Steven Wright -
+ISTP:Cher -
