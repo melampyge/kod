@@ -29,7 +29,3 @@ for line in file:
     
 out.close()
 file.close()
-
-
-
-

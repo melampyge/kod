@@ -27563,7 +27563,7 @@ Mark Lanegan:member of Screaming Trees:2911
 Bernie Kosar:American football player:2810
 Gilbert Delorme:Canadian ice hockey player:279
 Amy Grant:American singer:257
-John F. Kennedy, Jr., American publisher:(d. 1999):257
+John F Kennedy:American President:347
 Charles Kennedy:British politician:336
 Steve Rothery:British guitarist (Marillion):336
 Bob Ehrlich:Jr., former Maryland governor:314
@@ -30450,3 +30450,4 @@ Lionel Daunais:Quebec singer and composer:1910
 James Murdoch:Son of Rupert Murdoch:268
 Alvin Toffler:Futurist:257
 John Stewart:Comedian:303
+Anders Breivik:Murderer:325

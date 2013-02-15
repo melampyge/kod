@@ -17,6 +17,24 @@ ENFJ:Nick Nolte -
 ENFJ:Patrick Swayze -
 ENFJ:Charlton Heston -
 ENFJ:Ronald Reagan - American President, actor
+ENFJ:Nelson Mandela -
+ENFJ:Mikhail Gorbachev -
+ENFJ:Pope John Paul II -
+ENFJ:Stephen Jay Gould -
+ENFJ:Neil deGrasse Tyson -
+ENFJ:Carl Rogers -
+ENFJ:Erich Fromm -
+ENFJ:Joe Biden -
+ENFJ:Tony Blair -
+ENFJ:Michael Moore -
+ENFJ:Yasser Arafat -
+ENFJ:Oprah Winfrey -
+ENFJ:Charlie Rose -
+ENFJ:Morgan Freeman -
+ENFJ:Denzel Washington -
+ENFJ:Jennifer Lawrence -
+ENFJ:Bono -
+ENFJ:James Lipton -
 #####################################################################
 ENFP:Franz Joseph Haydn - composer
 ENFP:James Dobson - evangelical psychologist
@@ -28,7 +46,6 @@ ENFP:Andy Kaufman -
 ENFP:Lewis Grizzard -
 ENFP:I. King Jordan -
 ENFP:Alicia Silverstone -
-ENFP:Regis Philbin -
 ENFP:Will Smith -
 ENFP:James Woods -
 ENFP:Heather Locklear -
@@ -39,6 +56,31 @@ ENFP:Gary Rhodes -
 ENFP:Uri Geller -
 ENFP:Alvin Toffler -
 ENFP:Keanu Reeves -
+ENFP:Oscar Wilde -
+ENFP:Julian Assange -
+ENFP:Ralph Nader -
+ENFP:Salman Rushdie -
+ENFP:Umberto Eco -
+ENFP:Arianna Huffington -
+ENFP:Walt Disney -
+ENFP:Ray Kurzweil -
+ENFP:Naomi Klein -
+ENFP:Brian Cox -
+ENFP:Alan Watts -
+ENFP:Joseph Campbell -
+ENFP:Che Guevara -
+ENFP:Fidel Castro -
+ENFP:Muammar Gaddafi -
+ENFP:Hugo Chávez -
+ENFP:Ellen DeGeneres -
+ENFP:Katie Couric -
+ENFP:Rachel Maddow -
+ENFP:Keira Knightley -
+ENFP:Oliver Stone -
+ENFP:Orson Welles -
+ENFP:Gwen Stefani -
+ENFP:Jerry Seinfeld -
+ENFP:Sandra Bullock -
 #####################################################################
 ENTJ:Al Gore - former American Vice President
 ENTJ:Benny Goodman - Jazz musician
@@ -49,7 +91,6 @@ ENTJ:Patrick Stewart - actor (Star Trek's "Cpt. Picard")
 ENTJ:Richard Nixon - American President
 ENTJ:Sigourney Weaver - actress
 ENTJ:Steve Martin - actor, comedian
-ENTJ:Robert Downey Jr. -
 ENTJ:Dwayne Douglas Johnson -
 ENTJ:John Lennon -
 ENTJ:William H. Macy -
@@ -69,6 +110,12 @@ ENTJ:Peter Drucker -
 ENTJ:Jack Welch -
 ENTJ:George Clooney -
 ENTJ:Matt Damon -
+ENTJ:Rush Limbaugh -
+ENTJ:Joseph Stalin -
+ENTJ:Charlize Theron -
+ENTJ:Cobie Smulders -
+ENTJ:Adele -
+ENTJ:Téa Leoni -
 #####################################################################
 ENTP:Niall Ferguson -
 ENTP:Jonathan Israel -
@@ -90,7 +137,31 @@ ENTP:Steve Wozniak -
 ENTP:Newt Gingrich -
 ENTP:Henry Kissenger -
 ENTP:Barack Obama -
+ENTP:Werner Heisenberg -
+ENTP:Murray Rothbard -
+ENTP:Mahmoud Ahmadinejad -
+ENTP:Jon Stewart -
+ENTP:Stephen Colbert -
+ENTP:Robert Downey Jr. -
+ENTP:Rowan Atkinson -
+ENTP:Federico Fellini -
+ENTP:Stephen Fry -
+ENTP:Billy Crystal -
+ENTP:Tom Hanks -
+ENTP:Neil Patrick Harris -
+ENTP:Hugh Grant -
+ENTP:Gillian Anderson -
+ENTP:Salma Hayek -
+ENTP:Rose McGowan -
+ENTP:Sarah McLachlan -
+ENTP:Sarah Silverman -
+ENTP:Louis C.K. -
+ENTP:Jeremy Clarkson -
+ENTP:Niall Ferguson -
+ENTP:Steven Pinker -
+ENTP:George Bernard Shaw -
 #####################################################################
+ESFJ:Colin Powell - former U.S. Secretary of State
 ESFJ:Barbara Walters -
 ESFJ:Danny Glover - actor
 ESFJ:Desi Arnaz - actor, comedian, musician
@@ -110,6 +181,31 @@ ESFJ:Steve Spurrier - football player
 ESFJ:Terry Bradshaw - football player
 ESFJ:William McKinley - American President
 ESFJ:Desmond Tutu -
+ESFJ:Daniel Goleman -
+ESFJ:Gerald Ford -
+ESFJ:Sam Walton -
+ESFJ:Andrew Carnegie -
+ESFJ:Sarah Palin -
+ESFJ:Rick Santorum -
+ESFJ:John Boehner -
+ESFJ:Anne Hathaway -
+ESFJ:Jason Segel -
+ESFJ:Alyson Hannigan -
+ESFJ:Jessica Alba -
+ESFJ:Jennifer Garner -
+ESFJ:Sarah Jessica Parker -
+ESFJ:Mariah Carey -
+ESFJ:Whitney Houston -
+ESFJ:Prince William -
+ESFJ:Lesley Stahl -
+ESFJ:Elton John -
+ESFJ:Vin Diesel -
+ESFJ:Jessica Biel -
+ESFJ:Woody Harrelson -
+ESFJ:Monica Belucci -
+ESFJ:Laura Harring -
+ESFJ:Jenny McCarthy -
+ESFJ:Victoria Beckham -
 #####################################################################
 ESFP:Bill Clinton - American President, politician
 ESFP:Pablo Picasso - Spanish painter, sculptor
@@ -131,6 +227,30 @@ ESFP:Dale Evans -
 ESFP:Tim Burton -
 ESFP:Heather Locklear -
 ESFP:John F Kennedy -
+ESFP:Larry Ellison -
+ESFP:Hugh Hefner -
+ESFP:Howard Schultz -
+ESFP:Deepak Chopra -
+ESFP:Tony Robbins -
+ESFP:Paulo Coelho -
+ESFP:Benito Mussolini -
+ESFP:Idi Amin -
+ESFP:Quentin Tarantino -
+ESFP:Steven Spielberg -
+ESFP:Mel Gibson -
+ESFP:Dana White -
+ESFP:Zac Efron -
+ESFP:Leonardo DiCaprio -
+ESFP:Justin Bieber -
+ESFP:Pink -
+ESFP:Lady Gaga -
+ESFP:Katy Perry -
+ESFP:Cameron Diaz -
+ESFP:Jamie Oliver -
+ESFP:Robbie Williams -
+ESFP:Ringo Starr -
+ESFP:Megan Fox -
+ESFP:Dan Brown -
 #####################################################################
 ESTJ:Andrew Jackson - American President
 ESTJ:Bette Davis - actress
@@ -154,6 +274,16 @@ ESTJ:Michelle Obama -
 ESTJ:Ann Coulter -
 ESTJ:Bill O'Reilly -
 ESTJ:Alan Dershowitz -
+ESTJ:Billy Graham -
+ESTJ:Jerry Falwell -
+ESTJ:Saddam Hussein -
+ESTJ:Augusto Pinochet -
+ESTJ:Uma Thurman -
+ESTJ:Emma Watson -
+ESTJ:Kelsey Grammer -
+ESTJ:Alec Baldwin -
+ESTJ:Judy Sheindlin -
+ESTJ:Ivanka Trump -
 #####################################################################
 ESTP:Ann Jillian - actress
 ESTP:Bruce Willis - actor (Die Hard)
@@ -184,6 +314,11 @@ ESTP:Angelina Jolie -
 ESTP:Meryl Streep -
 ESTP:Madonna -
 ESTP:Alfred Hitchcock -
+ESTP:Jack Nicholson -
+ESTP:Kevin Spacey -
+ESTP:Ben Affleck -
+ESTP:Milla Jovovich -
+ESTP:Judi Dench -
 #####################################################################
 INFJ:Adam Sandler - actor, comedian
 INFJ:Anthony Kiedis - singer (Red Hot Chili Peppers)
@@ -251,8 +386,6 @@ INTJ:Bill Gates - Microsoft Founder
 INTJ:Alan Greenspan -
 INTJ:Ayn Rand -
 INTJ:Ben Bernanke -
-INTJ:Colin Powell - former U.S. Secretary of State
-INTJ:Dwight D. Eisenhower - American President
 INTJ:Greg Gumbel - TV sportscaster
 INTJ:Veronica Hamel - actress
 INTJ:William F. Buckley, Jr. - journalist
@@ -271,6 +404,21 @@ INTJ:Anders Breivik -
 INTJ:Arnold Schwarzenegger -
 INTJ:James Cameron -
 INTJ:Russell Crowe -
+INTJ:John Maynard Keynes -
+INTJ:Jean-Paul Sartre -
+INTJ:Julia Stiles -
+INTJ:Roger Waters -
+INTJ:Joseph Stiglitz -
+INTJ:Paul Krugman -
+INTJ:Elon Musk -
+INTJ:Ray Dalio -
+INTJ:Susan Sontag -
+INTJ:Anders Fogh Rasmussen -
+INTJ:Lars Seier Christensen -
+INTJ:Jodie Foster -
+INTJ:Betty Friedan -
+INTJ:Theodore Dalrymple -
+INTJ:Varg Vikernes -
 #####################################################################
 INTP:Brent Spiner - actor ("Data" on Star Trek)
 INTP:Carl Jung - Swiss psychiatrist
@@ -358,11 +506,39 @@ ISFP:Paul McCartney -
 ISFP:Michael Jackson  
 ISFP:Matt Le Blanc - 
 ISFP:Robert DeNiro -
+ISFP:Jonathan Ive -
+ISFP:Jacqueline Kennedy Onassis -
+ISFP:Rudolf Hess -
+ISFP:Brad Pitt -
+ISFP:Justin Timberlake -
+#ISFP:David Beckham -
+ISFP:Ryan Gosling -
+#ISFP:Sofia Coppola -
+ISFP:Elizabeth Taylor -
+ISFP:Audrey Hepburn -
+ISFP:Nicole Kidman -
+ISFP:Prince -
+ISFP:Bob Dylan -
+ISFP:Eminem -
+ISFP:David Bowie -
+ISFP:Enya -
+ISFP:Britney Spears -
+ISFP:Paris Hilton -
+ISFP:Christina Aguilera -
+ISFP:Beyonce -
+ISFP:Rihanna -
+ISFP:Mick Jagger -
+ISFP:Keith Richards -
+ISFP:David Gilmour -
+ISFP:John Travolta -
+ISFP:Drew Barrymore -
+ISFP:Prince Harry -
+ISFP:Liv Tyler -
 #####################################################################
+ISTJ:Dwight D. Eisenhower - American President
 ISTJ:Andrew Johnson - American President
 ISTJ:Benjamin Harrison - American President
 ISTJ:Evander Holyfield - boxer
-ISTJ:George H. W. Bush - American President
 ISTJ:George Washington - American President
 ISTJ:Harry Truman - American President
 ISTJ:Herbert Hoover - American President
@@ -379,6 +555,20 @@ ISTJ:Jack Webb - actor, producer
 ISTJ:Jackie Joyner-Kersee - athlete (heptathlon)
 ISTJ:Malcolm McDowell -
 ISTJ:George Hamilton
+ISTJ:Jeff Bezos -
+ISTJ:Warren Buffett -
+ISTJ:Ingvar Kamprad -
+ISTJ:Joseph Ratzinger -
+ISTJ:Sigmund Freud -
+ISTJ:Hillary Clinton -
+ISTJ:Angela Merkel -
+ISTJ:Condoleezza Rice -
+ISTJ:Erich von Manstein -
+ISTJ:Robert de Niro -
+ISTJ:Sean Connery -
+ISTJ:Natalie Portman -
+ISTJ:Danica McKellar -
+#ISTJ:Queen Elizabeth II of the United Kingdom -
 #####################################################################
 ISTP:Bruce Lee -
 ISTP:Charles Bronson - actor
