@@ -736,9 +736,9 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "tex-function-in-pieces" 
- '("\\left\\{ \\begin{array}{ll}\n"
+ '("\\begin{cases}\n"
    (s)
-   "\n\\end{array} \\right."
+   "\n\\end{cases}."
    )
  "")
 
