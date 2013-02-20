@@ -283,7 +283,6 @@ ESTJ:Emma Watson -
 ESTJ:Kelsey Grammer -
 ESTJ:Alec Baldwin -
 ESTJ:Judy Sheindlin -
-ESTJ:Ivanka Trump -
 #####################################################################
 ESTP:Ann Jillian - actress
 ESTP:Bruce Willis - actor (Die Hard)
@@ -511,9 +510,7 @@ ISFP:Jacqueline Kennedy Onassis -
 ISFP:Rudolf Hess -
 ISFP:Brad Pitt -
 ISFP:Justin Timberlake -
-#ISFP:David Beckham -
 ISFP:Ryan Gosling -
-#ISFP:Sofia Coppola -
 ISFP:Elizabeth Taylor -
 ISFP:Audrey Hepburn -
 ISFP:Nicole Kidman -
@@ -542,7 +539,6 @@ ISTJ:Evander Holyfield - boxer
 ISTJ:George Washington - American President
 ISTJ:Harry Truman - American President
 ISTJ:Herbert Hoover - American President
-ISTJ:Queen Elizabeth II - Queen of England
 ISTJ:Thomas - Christ's Apostle
 ISTJ:Warren Buffet - investor, businessman
 ISTJ:Henry Silva -
@@ -554,7 +550,7 @@ ISTJ:Julia Roberts -
 ISTJ:Jack Webb - actor, producer
 ISTJ:Jackie Joyner-Kersee - athlete (heptathlon)
 ISTJ:Malcolm McDowell -
-ISTJ:George Hamilton
+ISTJ:George Hamilton -
 ISTJ:Jeff Bezos -
 ISTJ:Warren Buffett -
 ISTJ:Ingvar Kamprad -
@@ -568,7 +564,6 @@ ISTJ:Robert de Niro -
 ISTJ:Sean Connery -
 ISTJ:Natalie Portman -
 ISTJ:Danica McKellar -
-#ISTJ:Queen Elizabeth II of the United Kingdom -
 #####################################################################
 ISTP:Bruce Lee -
 ISTP:Charles Bronson - actor
@@ -598,3 +593,4 @@ ISTP:Scarlett Johansson -
 ISTP:Bruce Lee -
 ISTP:Steven Wright -
 ISTP:Cher -
+ISTP:Steve Jobs -
