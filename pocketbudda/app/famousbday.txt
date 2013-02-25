@@ -39497,3 +39497,5 @@ James Murdoch:Son of Rupert Murdoch:13/12/1972
 Alvin Toffler:Futurist:04/10/1928
 John Stewart:Comedian:28/11/1962
 Anders Breivik:Murderer:13/2/1979
+Baba:Baba:5/10/1945
+Anne:Anne:22/2/1948

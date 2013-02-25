@@ -728,9 +728,9 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "tex-matrix" 
- '("\\left[\\begin{array}{rr}\n"
+ '("\\begin{bmatrix}\n"
    (s)
-   "\n\\end{array}\\right]"
+   "\n\\end{bmatrix}"
    )
  "")
 
@@ -997,6 +997,7 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/kod/books/python_for_data_analysis")
 (find-file-other-window "/home/burak/Documents/classnotes/app-math-tr")
+(find-file-other-window "/home/burak/Documents/classnotes/stat")
 
 
 (switch-to-buffer "*scratch*")

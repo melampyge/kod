@@ -283,6 +283,7 @@ ESTJ:Emma Watson -
 ESTJ:Kelsey Grammer -
 ESTJ:Alec Baldwin -
 ESTJ:Judy Sheindlin -
+ESTJ:Baba -
 #####################################################################
 ESTP:Ann Jillian - actress
 ESTP:Bruce Willis - actor (Die Hard)
@@ -483,6 +484,7 @@ ISFJ:Jessica Simpson -
 ISFJ:Kirsten Dunst -
 ISFJ:Prince Charles -
 ISFJ:Kate Middleton -
+ISFJ:Anne -
 #####################################################################
 ISFP:Alan Ayckbourn -
 ISFP:Auguste Rodin - French sculptor

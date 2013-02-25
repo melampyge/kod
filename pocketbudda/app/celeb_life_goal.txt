@@ -30451,3 +30451,5 @@ James Murdoch:Son of Rupert Murdoch:268
 Alvin Toffler:Futurist:257
 John Stewart:Comedian:303
 Anders Breivik:Murderer:325
+Baba:Baba:257
+Anne:Anne:2810
