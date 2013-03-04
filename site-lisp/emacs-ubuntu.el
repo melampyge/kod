@@ -468,7 +468,7 @@ This command does not push erased text to kill-ring."
   (setq komut "cd ")
   (setq komut (concat komut (dired-current-directory)))
   (setq komut (concat komut ";"))
-  (setq komut (concat komut "xterm -e 'ipython notebook --pylab=inline --no-browser '"))
+  (setq komut (concat komut "gnome-terminal -e 'ipython notebook --pylab=inline --no-browser '"))
   (message komut)
   (async-shell-command komut))
 
