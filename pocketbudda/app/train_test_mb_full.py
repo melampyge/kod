@@ -42,7 +42,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19741016') # yannos
     #res =  calculate.calculate('19480216') # tolle
     #res =  calculate.calculate('19640902') # keanu reeves
-    res =  calculate.calculate('19271013') # turgut ozal
+    #res =  calculate.calculate('19271013') # turgut ozal
     #res =  calculate.calculate('19260606') # erdal inonu
     #res =  calculate.calculate('19380110') # knuth    
     #res =  calculate.calculate('19530111') # mehmet altan
@@ -105,7 +105,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19521007') # putin
     #res =  calculate.calculate('19650404') # cemalettin tasci
     #res =  calculate.calculate('19610506') # george clooney
-    res =  calculate.calculate('19830916') # her2
+    #res =  calculate.calculate('19830916') # her2
     #res =  calculate.calculate('19451005') # baba
     #res =  calculate.calculate('19871027') # irem
     #res =  calculate.calculate('19200701') # sabahattin dede

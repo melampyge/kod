@@ -103,10 +103,14 @@ ENTJ:Aung San Suu Kyi -
 ENTJ:Carl Sagan -
 ENTJ:Dick Cheney -
 ENTJ:Karl Rove -
+ENTJ:Rahm Emanuel -
+ENTJ:Al Gore -
+ENTJ:Rush Limbaugh -
 ENTJ:Peter Thiel -
 ENTJ:Madeleine Albright -
 ENTJ:Nancy Pelosi -
 ENTJ:Peter Drucker -
+ENTJ:Michael Porter -
 ENTJ:Jack Welch -
 ENTJ:George Clooney -
 ENTJ:Matt Damon -
@@ -116,6 +120,16 @@ ENTJ:Charlize Theron -
 ENTJ:Cobie Smulders -
 ENTJ:Adele -
 ENTJ:Téa Leoni -
+ENTJ:Penn Jillette -
+ENTJ:Katharine Hepburn -
+ENTJ:H.J. Eysenck -
+ENTJ:Theodore Millon -
+ENTJ:Frederick Taylor -
+ENTJ:Paul Ryan -
+ENTJ:Elizabeth Anscombe -
+ENTJ:Benazir Bhutto -
+ENTJ:Robert Parker -
+ENTJ:Gretchen Rubin -
 #####################################################################
 ENTP:Niall Ferguson -
 ENTP:Jonathan Israel -
@@ -274,8 +288,9 @@ ESTJ:Michelle Obama -
 ESTJ:Ann Coulter -
 ESTJ:Bill O'Reilly -
 ESTJ:Alan Dershowitz -
-ESTJ:Billy Graham -
+ESTJ:BillyGraham -
 ESTJ:Jerry Falwell -
+ESTJ:Steve Ballmer -
 ESTJ:Saddam Hussein -
 ESTJ:Augusto Pinochet -
 ESTJ:Uma Thurman -
@@ -284,6 +299,12 @@ ESTJ:Kelsey Grammer -
 ESTJ:Alec Baldwin -
 ESTJ:Judy Sheindlin -
 ESTJ:Baba -
+ESTJ:Nancy Grace -
+ESTJ:Laura Schlessinger -
+ESTJ:Ivanka Trump -
+ESTJ:Michele Bachmann -
+ESTJ:Dennis Genpo Merzel -
+ESTJ:Diane Hamilton -
 #####################################################################
 ESTP:Ann Jillian - actress
 ESTP:Bruce Willis - actor (Die Hard)
@@ -319,7 +340,19 @@ ESTP:Kevin Spacey -
 ESTP:Ben Affleck -
 ESTP:Milla Jovovich -
 ESTP:Judi Dench -
+ESTP:Helen Mirren -
+ESTP:Glenn Close -
+ESTP:Camilla Parker Bowles -
+ESTP:Taylor Swift -
+ESTP:Nicolas Sarkozy -
+ESTP:Silvio Berlusconi -
+ESTP:John Grisham -
+ESTP:Danielle Steel -
+ESTP:Anton Szandor LaVey -
+ESTP:Rhonda Byrne -
+#ESTP:Cem Yilmaz -
 #####################################################################
+INFJ:Carl Jung - Swiss psychiatrist
 INFJ:Adam Sandler - actor, comedian
 INFJ:Anthony Kiedis - singer (Red Hot Chili Peppers)
 INFJ:Aristophanes - Greek dramatist
@@ -341,7 +374,6 @@ INFJ:Jerry Seinfeld -
 INFJ:Mark Harmon -
 INFJ:Nelson Mandela -
 INFJ:Osama bin Laden -
-INFJ:Carl Gustav Jung -
 INFJ:Niels Bohr -
 INFJ:Mahatma Gandhi -
 INFJ:Ron Paul -
@@ -351,6 +383,43 @@ INFJ:Simone de Beauvoir -
 INFJ:Ludwig Wittgenstein -
 INFJ:Sam Harris -
 INFJ:Noam Chomsky -
+INFJ:Baruch Spinoza -
+INFJ:Arthur Schopenhauer -
+INFJ:John Rawls -
+INFJ:Adolf Hitler -
+INFJ:Ayatollah Khomeini -
+INFJ:Robert Mugabe -
+INFJ:Leon Trotsky -
+INFJ:Chiang Kai-shek -
+INFJ:Mohamed Atta -
+INFJ:Lars von Trier -
+INFJ:Marilyn Manson -
+INFJ:George Harrison -
+INFJ:Al Pacino -
+INFJ:Edward Norton -
+INFJ:Cate Blanchett -
+INFJ:Michelle Pfeiffer-
+INFJ:Tilda Swinton -
+INFJ:Adrien Brody -
+INFJ:Rooney Mara -
+INFJ:Carey Mulligan -
+INFJ:Josh Radnor -
+INFJ:Theodor Adorno -
+INFJ:Pierre Bourdieu -
+INFJ:Jiddu Krishnamurti -
+INFJ:A.C. Grayling -
+INFJ:A.N. Whitehead -
+INFJ:Irvin Yalom -
+INFJ:Eleanor Roosevelt -
+INFJ:Agatha Christie -
+INFJ:Florence Nightingale -
+INFJ:Iris Murdoch -
+INFJ:Leo Strauss -
+INFJ:Kofi Annan -
+INFJ:James Hillman -
+INFJ:Marti Laney -
+INFJ:Alison Green -
+INFJ:Rene Girard -
 #####################################################################
 INFP:A. A. Milne - author (Winnie the Pooh)
 INFP:Anne Lindbergh -
@@ -381,6 +450,25 @@ INFP:Ian Curtis -
 INFP:Nicolas Cage -
 INFP:Heath Ledger -
 INFP:Tim Burton -
+INFP:Johnny Depp -
+INFP:Heath Ledger -
+INFP:Florence Welch -
+INFP:Björk -
+INFP:Tori Amos -
+INFP:Fiona Apple -
+INFP:Jarvis Cocker -
+INFP:Thom Yorke -
+INFP:Morrissey -
+INFP:David Simon -
+INFP:David Lynch -
+INFP:Terrence Malick -
+INFP:Andy Warhol -
+INFP:Teller -
+INFP:Mia Wasikowska -
+INFP:Chloe Sevigny -
+INFP:Andrew Garfield -
+INFP:Robert Pattinson -
+INFP:Jude Law -
 #####################################################################
 INTJ:Bill Gates - Microsoft Founder
 INTJ:Alan Greenspan -
@@ -419,9 +507,16 @@ INTJ:Jodie Foster -
 INTJ:Betty Friedan -
 INTJ:Theodore Dalrymple -
 INTJ:Varg Vikernes -
+INTJ:H. L. Mencken -
+INTJ:Martin Heidegger -
+INTJ:Theodore Dalrymple -
+INTJ:Samantha Power -
+INTJ:Friedrich Schiller -
+INTJ:Gudo Nishijima -
+INTJ:Lou Salome -
+INTJ:Lone Frank -
 #####################################################################
 INTP:Brent Spiner - actor ("Data" on Star Trek)
-INTP:Carl Jung - Swiss psychiatrist
 INTP:Charles Darwin - English naturalist
 INTP:Douglas Hofstadter -
 INTP:Gerald Ford - American President
@@ -450,6 +545,17 @@ INTP:Alan Greenspan -
 INTP:Sigourney Weaver -
 INTP:Tina Fey -
 INTP:Jesse Eisenberg -
+INTP:Jimmy Wales -
+INTP:Franz Kafka -
+INTP:Albert Speer -
+INTP:David Cronenberg -
+INTP:Jesse Eisenberg -
+INTP:Charlotte Gainsbourg -
+INTP:Sigourney Weaver -
+INTP:Tina Fey -
+INTP:Ben Stein -
+INTP:Andreas Scholl -
+INTP:Randall Munroe -
 #####################################################################
 ISFJ:Robert E. Lee - Army Officer
 ISFJ:Alfred, Lord Tennyson - poet
@@ -485,6 +591,7 @@ ISFJ:Kirsten Dunst -
 ISFJ:Prince Charles -
 ISFJ:Kate Middleton -
 ISFJ:Anne -
+ISFJ:Bruce Willis -
 #####################################################################
 ISFP:Alan Ayckbourn -
 ISFP:Auguste Rodin - French sculptor
@@ -533,6 +640,7 @@ ISFP:John Travolta -
 ISFP:Drew Barrymore -
 ISFP:Prince Harry -
 ISFP:Liv Tyler -
+#ISFP:David Beckham -
 #####################################################################
 ISTJ:Dwight D. Eisenhower - American President
 ISTJ:Andrew Johnson - American President
@@ -566,6 +674,7 @@ ISTJ:Robert de Niro -
 ISTJ:Sean Connery -
 ISTJ:Natalie Portman -
 ISTJ:Danica McKellar -
+#ISTJ:Queen Elizabeth II of the United Kingdom -
 #####################################################################
 ISTP:Bruce Lee -
 ISTP:Charles Bronson - actor
@@ -596,3 +705,13 @@ ISTP:Bruce Lee -
 ISTP:Steven Wright -
 ISTP:Cher -
 ISTP:Steve Jobs -
+ISTP:Hans-Ulrich Rudel -
+ISTP:Richard Stallman -
+ISTP:Chesley Sullenberger -
+ISTP:Sally Ride -
+ISTP:James Murdoch -
+ISTP:Kyudo Nakagawa -
+ISTP:Snoop Dogg -
+ISTP:Phil Ivey -
+ISTP:David Blaine -
+ISTP:Ellen Page -
