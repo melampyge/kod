@@ -1,1 +1,0 @@
-/usr/share/emacs/site-lisp/emacs-goodies-el/color-theme-library.el

@@ -1,1 +1,0 @@
-/usr/share/emacs/site-lisp/emacs-goodies-el/marker-visit.el
