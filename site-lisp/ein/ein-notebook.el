@@ -1129,7 +1129,7 @@ This hook is run regardless the actual major mode used."
   (define-key map (kbd "C-c C-#") 'ein:notebook-close)
   (define-key map (kbd "C-:") 'ein:shared-output-eval-string)
   (define-key map "\C-c\C-o" 'ein:console-open)
-  (define-key map "\M-3" 'ein:notebook-save-notebook-command)
+  (define-key map "\C-x\C-s" 'ein:notebook-save-notebook-command)
   (define-key map "\C-x\C-w" 'ein:notebook-rename-command)
   (define-key map "\M-."          'ein:pytools-jump-to-source-command)
   (define-key map (kbd "C-c C-.") 'ein:pytools-jump-to-source-command)

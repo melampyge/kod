@@ -83,7 +83,7 @@ This command does not push erased text to kill-ring."
 (load-file "/usr/share/emacs23/site-lisp/_latin_post_ek.elc")
 (load-file "/usr/share/emacs23/site-lisp/ein/ein.el")
 (require 'tempo)
-;;(require 'magit)
+(require 'magit)
 
 (setq bell-volume 0)
 ;;(set-message-beep 'silent)
@@ -489,14 +489,14 @@ This command does not push erased text to kill-ring."
 ;;(set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1" )
 ;;(set-default-font "-unknown-FreeMono-bold-bold-normal-*-*-*-*-*-m-0-iso10646-1"  )
 ;;(set-default-font "-unknown-FreeMono-bold-normal-normal-*-*-*-*-*-m-0-iso10646-1"  )
-;;(set-default-font "-misc-fixed-medium-r-normal--6-*-75-75-c-40-iso8859-7")
-(set-default-font "-bitstream-Courier 10 Pitch-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1")
+(set-default-font "-misc-fixed-medium-r-normal--6-*-75-75-c-40-iso8859-7")
+;;(set-default-font "-bitstream-Courier 10 Pitch-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1")
 
-(set-face-attribute 'default nil :height 110)
+(set-face-attribute 'default nil :height 70)
 
 (setq default-frame-alist
       '((top . 0) (left . 500)
-        (width . 80) (height . 40)
+        (width . 59) (height . 26)
 ))
 
 (defun python-compile() 
@@ -1002,7 +1002,6 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/kod/books/python_for_data_analysis")
 (find-file-other-window "/home/burak/Documents/classnotes/app-math-tr")
 (find-file-other-window "/home/burak/Documents/classnotes/stat")
-(find-file-other-window "/home/burak/Dropbox/prog/svd")
 
 (switch-to-buffer "*scratch*")
 (delete-other-windows)
