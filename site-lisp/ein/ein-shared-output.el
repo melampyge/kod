@@ -65,9 +65,24 @@
 
 (defmethod ein:cell--handle-output ((cell ein:shared-output-cell)
                                     msg-type content -metadata-not-used-)
-  (ein:log 'info "Got output '%s' in the shared buffer." msg-type)
+  ;; Show short message
+  (ein:case-equal msg-type
+    (("pyout")
+     (let ((num (plist-get content :execution_count))
+           (text (plist-get (plist-get content :data) :text/plain)))
+       (when text
+         (ein:log 'info "Out[%s]: %s" num (car (split-string text "\n"))))))
+    (("stream")
+     (let ((stream (or (plist-get content :stream) "stdout"))
+           (text (plist-get content :data)))
+       (when text
+         (ein:log 'info "%s: %s" stream (car (split-string text "\n"))))))
+    (t
+     (ein:log 'info "Got output '%s' in the shared buffer." msg-type)))
+  ;; Open `ein:shared-output-buffer-name' if necessary
   (when (oref cell :popup)
     (pop-to-buffer (ein:shared-output-create-buffer)))
+  ;; Finally do the normal drawing
   (call-next-method))
 
 
@@ -184,7 +199,10 @@ shared output buffer.  You can open the buffer by the command
          ;; ... so error will be raised before user typing code if it
          ;; is impossible to execute
          (code (read-string
-                "IP[y]: " nil 'ein:shared-output-eval-string-history)))
+                "IP[y]: "
+                (when (region-active-p)
+                  (buffer-substring (region-beginning) (region-end)))
+                'ein:shared-output-eval-string-history)))
      (list code nil t kernel)))
   (unless kernel (setq kernel (ein:get-kernel-or-error)))
   (let ((cell (ein:shared-output-get-cell)))

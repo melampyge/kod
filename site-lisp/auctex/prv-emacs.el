@@ -1,1 +1,0 @@
-/usr/share/emacs/site-lisp/auctex/preview/prv-emacs.el

@@ -39,8 +39,10 @@
                             (default-value 'ac-sources))
   "Extra `ac-sources' used in notebook.")
 
+(make-obsolete-variable 'ein:ac-max-cache nil "0.1.2")
 (defcustom ein:ac-max-cache 1000
-  "Maximum number of cache to store."
+  "[This value is not used anymore!]
+Maximum number of cache to store."
   :type 'integer
   :group 'ein)
 
@@ -79,8 +81,6 @@
 
 ;;; AC Source
 
-(defvar ein:ac-cache-matches nil)
-
 (defvar ein:ac-direct-matches nil
   "Variable to store completion candidates for `auto-completion'.")
 ;; FIXME: Maybe this should be buffer-local?
@@ -88,29 +88,32 @@
 (defun ein:ac-direct-get-matches ()
   (ein:ac-chunk-candidates-from-list ein:ac-direct-matches))
 
-(defun ein:ac-cache-get-matches ()
-  (ein:ac-chunk-candidates-from-list ein:ac-cache-matches))
-
 (ac-define-source ein-direct
   '((candidates . ein:ac-direct-get-matches)
     (requires . 0)
     (prefix . ein:ac-chunk-beginning)
     (symbol . "s")))
 
-(ac-define-source ein-cached
-  '((candidates . ein:ac-cache-get-matches)
+(ac-define-source ein-async
+  '((candidates . ein:ac-direct-get-matches)
     (requires . 0)
     (prefix . ein:ac-chunk-beginning)
     (init . ein:ac-request-in-background)
     (symbol . "c")))
 
+(define-obsolete-function-alias 'ac-complete-ein-cached 'ac-complete-ein-async
+  "0.2.1")
+(define-obsolete-variable-alias 'ac-source-ein-cached 'ac-source-ein-async
+  "0.2.1")
+
 (defun ein:ac-request-in-background ()
-  (ein:and-let* ((kernel (ein:get-kernel)))
+  (ein:and-let* ((kernel (ein:get-kernel))
+                 ((ein:kernel-live-p kernel)))
     (ein:completer-complete
      kernel
      :callbacks
      (list :complete_reply
-           (cons (lambda (_ content _)
+           (cons (lambda (_ content __)
                    (ein:ac-prepare-completion (plist-get content :matches)))
                  nil)))))
 
@@ -121,12 +124,10 @@
   "Prepare `ac-source-ein-direct' using MATCHES from kernel.
 Call this function before calling `auto-complete'."
   (when matches
-    (setq ein:ac-direct-matches matches)  ; let-binding won't work
-    (setq ein:ac-cache-matches (append matches ein:ac-cache-matches))
-    (run-with-idle-timer 1 nil #'ein:ac-clear-cache)))
+    (setq ein:ac-direct-matches matches)))  ; let-binding won't work
 
 (defun* ein:completer-finish-completing-ac
-    (-matched-text-not-used-
+    (matched-text
      matches
      &key (expand ac-expand-on-auto-complete)
      &allow-other-keys)
@@ -141,12 +142,8 @@ compatibility with `ein:completer-finish-completing-default'."
   (ein:ac-prepare-completion matches)
   (when matches      ; No auto-complete drop-down list when no matches
     (let ((ac-expand-on-auto-complete expand))
-      (auto-complete '(ac-source-ein-direct)))))
-
-(defun ein:ac-clear-cache ()
-  (setq ein:ac-cache-matches
-        (setcdr (nthcdr (1- ein:ac-max-cache)
-                        (delete-dups ein:ac-cache-matches)) nil)))
+      (ac-start))))
+;; Why `ac-start'?  See: `jedi:complete'.
 
 
 ;;; Async document request hack
@@ -162,7 +159,7 @@ popup help string."
          (callbacks (list :object_info_reply
                           (cons #'ein:ac-set-document candidate))))
     (when (and candidate
-               kernel
+               (ein:kernel-live-p kernel)
                (not (get-text-property 0 'document candidate)))
       (ein:log 'debug "Requesting object info for AC candidate %S"
                candidate)
@@ -208,7 +205,7 @@ first candidate when the `ac-menu' pops up."
 
 (defun ein:ac-setup ()
   "Call this function from mode hook (see `ein:ac-config')."
-  (setq ac-sources (append '(ac-source-ein-cached) ein:ac-sources)))
+  (setq ac-sources (append '(ac-source-ein-async) ein:ac-sources)))
 
 (defun ein:ac-setup-maybe ()
   "Setup `ac-sources' for mumamo.

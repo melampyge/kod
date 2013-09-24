@@ -964,6 +964,7 @@ This command does not push erased text to kill-ring."
 ;; ein: mode icin not: change ein-notebook.el icinde
 ;;  (define-key map "\M-p"          'previous-line)
 ;;  (define-key map "\M-n"          'next-line)
+;;  (define-key map "\M-3"          'ein:notebook-save-notebook-command)
 ;;
 ;; olmali.
 
@@ -996,9 +997,6 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Dropbox/TODO.txt")
 (find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/Documents")
-(find-file-other-window "/home/burak/Dropbox/jesta/pMax-2.0")
-(find-file-other-window "/home/burak/Dropbox/jesta/ace_vl_dmt")
-(find-file-other-window "/home/burak/Dropbox/jesta/visit_cluster")
 (find-file-other-window "/home/burak/kod/books/python_for_data_analysis")
 (find-file-other-window "/home/burak/Documents/classnotes/app-math-tr")
 (find-file-other-window "/home/burak/Documents/classnotes/stat")

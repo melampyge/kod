@@ -112,7 +112,7 @@
              "?" (format "notebook=%s" notebook-id))
      :type "POST"
      :parser #'ein:json-read
-     :success (cons #'ein:kernel--kernel-started kernel))))
+     :success (apply-partially #'ein:kernel--kernel-started kernel))))
 
 
 (defun ein:kernel-restart (kernel)
@@ -128,7 +128,7 @@
               "restart")
      :type "POST"
      :parser #'ein:json-read
-     :success (cons #'ein:kernel--kernel-started kernel))))
+     :success (apply-partially #'ein:kernel--kernel-started kernel))))
 
 
 (defun* ein:kernel--kernel-started (kernel &key data &allow-other-keys)
@@ -139,7 +139,7 @@
     (ein:log 'info "Kernel started: %s" kernel_id)
     (setf (ein:$kernel-running kernel) t)
     (setf (ein:$kernel-kernel-id kernel) kernel_id)
-    (setf (ein:$kernel-ws-url kernel) ws_url)
+    (setf (ein:$kernel-ws-url kernel) (ein:kernel--ws-url kernel ws_url))
     (setf (ein:$kernel-kernel-url kernel)
           (concat (ein:$kernel-base-url kernel) "/" kernel_id)))
   (ein:kernel-start-channels kernel)
@@ -153,6 +153,15 @@
       (setf (ein:$websocket-onmessage iopub-channel)
             (lambda (packet)
               (ein:kernel--handle-iopub-reply kernel packet))))))
+
+
+(defun ein:kernel--ws-url (kernel ws_url)
+  "Use `ein:$kernel-url-or-port' if WS_URL is an empty string.
+See: https://github.com/ipython/ipython/pull/3307"
+  (if (string-match-p "^wss?://" ws_url)
+      ws_url
+    (let ((ein:url-localhost-template "ws://127.0.0.1:%s"))
+      (ein:url (ein:$kernel-url-or-port kernel)))))
 
 
 (defun ein:kernel--websocket-closed (kernel ws-url early)
@@ -252,6 +261,7 @@
 
 (defun ein:kernel-live-p (kernel)
   (and
+   (ein:$kernel-p kernel)
    (ein:aand (ein:$kernel-shell-channel kernel) (ein:websocket-open-p it))
    (ein:aand (ein:$kernel-iopub-channel kernel) (ein:websocket-open-p it))))
 
@@ -426,7 +436,8 @@ http://ipython.org/ipython-doc/dev/development/messaging.html#complete
                                            start
                                            stop
                                            (n 10)
-                                           pattern)
+                                           pattern
+                                           unique)
   "Request execution history to KERNEL.
 
 When calling this method pass a CALLBACKS structure of the form:
@@ -456,8 +467,41 @@ Relevant Python code:
                    :start start
                    :stop stop
                    :n n
-                   :pattern pattern))
+                   :pattern pattern
+                   :unique unique))
          (msg (ein:kernel--get-msg kernel "history_request" content))
+         (msg-id (plist-get (plist-get msg :header) :msg_id)))
+    (ein:websocket-send
+     (ein:$kernel-shell-channel kernel)
+     (json-encode msg))
+    (ein:kernel-set-callbacks-for-msg kernel msg-id callbacks)
+    msg-id))
+
+
+(defun ein:kernel-kernel-info-request (kernel callbacks)
+  "Request core information of KERNEL.
+
+When calling this method pass a CALLBACKS structure of the form::
+
+  (:kernel_info_reply (FUNCTION . ARGUMENT))
+
+Call signature::
+
+  (`funcall' FUNCTION ARGUMENT CONTENT METADATA)
+
+CONTENT and METADATA are given by `kernel_info_reply' message.
+
+`kernel_info_reply' message is documented here:
+http://ipython.org/ipython-doc/dev/development/messaging.html#kernel-info
+
+Example::
+
+  (ein:kernel-kernel-info-request
+   (ein:get-kernel)
+   '(:kernel_info_reply (message . \"CONTENT: %S\\nMETADATA: %S\")))
+"
+  (assert (ein:kernel-live-p kernel) nil "Kernel is not active.")
+  (let* ((msg (ein:kernel--get-msg kernel "kernel_info_request" nil))
          (msg-id (plist-get (plist-get msg :header) :msg_id)))
     (ein:websocket-send
      (ein:$kernel-shell-channel kernel)
@@ -475,9 +519,8 @@ Relevant Python code:
               (ein:$kernel-kernel-url kernel)
               "interrupt")
      :type "POST"
-     :success (cons (lambda (&rest ignore)
-                      (ein:log 'info "Sent interruption command."))
-                    nil))))
+     :success (lambda (&rest ignore)
+                (ein:log 'info "Sent interruption command.")))))
 
 
 (defun ein:kernel-kill (kernel &optional callback cbargs)
@@ -486,15 +529,13 @@ Relevant Python code:
      (list 'kernel-kill (ein:$kernel-kernel-id kernel))
      (ein:url (ein:$kernel-url-or-port kernel)
               (ein:$kernel-kernel-url kernel))
-     :cache nil
      :type "DELETE"
-     :success (cons (lambda (packed &rest ignore)
-                      (ein:log 'info "Notebook kernel is killed")
-                      (destructuring-bind (kernel callback cbargs)
-                          packed
-                        (setf (ein:$kernel-running kernel) nil)
-                        (when callback (apply callback cbargs))))
-                    (list kernel callback cbargs)))))
+     :success (apply-partially
+               (lambda (kernel callback cbargs &rest ignore)
+                 (ein:log 'info "Notebook kernel is killed")
+                 (setf (ein:$kernel-running kernel) nil)
+                 (when callback (apply callback cbargs)))
+               kernel callback cbargs))))
 
 
 ;; Reply handlers.
@@ -534,12 +575,16 @@ Relevant Python code:
         for p in payload
         for text = (plist-get p :text)
         for source = (plist-get p :source)
-        if (equal source "IPython.zmq.page.page")
+        if (member source '("IPython.kernel.zmq.page.page"
+                            "IPython.zmq.page.page"))
         do (when (not (equal (ein:trim text) ""))
              (ein:events-trigger
               events 'open_with_text.Pager (list :text text)))
         else if
-        (equal source "IPython.zmq.zmqshell.ZMQInteractiveShell.set_next_input")
+        (member
+         source
+         '("IPython.kernel.zmq.zmqshell.ZMQInteractiveShell.set_next_input"
+           "IPython.zmq.zmqshell.ZMQInteractiveShell.set_next_input"))
         do (let ((cb (plist-get callbacks :set_next_input)))
              (when cb (ein:funcall-packed cb text)))))
 

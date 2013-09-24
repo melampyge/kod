@@ -1,1 +1,0 @@
-/usr/share/emacs/site-lisp/auctex/tex-bar.el

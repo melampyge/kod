@@ -110,13 +110,18 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19871027') # irem
     #res =  calculate.calculate('19200701') # sabahattin dede
     #res =  calculate.calculate('19570310') # bin laden
-    #res =  calculate.calculate('19540609') # dilhan kalyon
+    res =  calculate.calculate('19540609') # dkal
     #res =  calculate.calculate('19440715') # glenn morris
     #res =  calculate.calculate('19440404') # mantak chia
     #res =  calculate.calculate('19730729') # pat
     #res =  calculate.calculate('19701008') # damon
     #res =  calculate.calculate('19460524') # tansu ciller
-    res =  calculate.calculate('19490726') # thaksin
- 
+    #res =  calculate.calculate('19490726') # thaksin
+    #res =  calculate.calculate('19890426') # l-s
+    
     print calculate.calculate_mbti_full(res)
     print res
+
+    print  calculate.calculate_cycle('19910916') 
+ 
+    
