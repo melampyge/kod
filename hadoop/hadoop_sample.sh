@@ -1,0 +1,1 @@
+#ssh localhost -l hduser python /home/burak/Documents/classnotes/stat/stat_hadoop_logreg/logreg.py hdfs:///user/testSet1.txt -r hadoop --step-num=1 --jobconf mapred.map.tasks=2 --jobconf mapred.reduce.tasks=2
