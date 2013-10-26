@@ -6,8 +6,7 @@ import math
 
 if __name__ == '__main__':    
     res =  calculate.calculate('19730424')
-    print calculate.calculate_mbti_full(res)
-    print res
+    print calculate.calculate_mbti_full(res); print res
 
     #res =  calculate.calculate('19451005')    
     #res =  calculate.calculate('19490222')
@@ -23,7 +22,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19700921') # jen
     #res =  calculate.calculate('19180511') # richard feynman
     #res =  calculate.calculate('19691228') # linus torvalds
-    #res =  calculate.calculate('19200102') # isaac asimov
+    #res =  calculate.calculate('19200102') # isaac asimov died 19920406
     #res =  calculate.calculate('19690312') # acun
     #res =  calculate.calculate('19270622') # cetin altan
     #res =  calculate.calculate('19560101') # mumtaz turkone
@@ -57,8 +56,9 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19120712') # milton friedman
     #res =  calculate.calculate('19670101') # mehmet simsek
     #res =  calculate.calculate('19670404') # ali babacan
-    #res =  calculate.calculate('19060428') # godel
-    #res =  calculate.calculate('19091119') # peter drucker 
+    #res =  calculate.calculate('19060428') # godel died 19780114
+    #res =  calculate.calculate('18790314') # einstein died 19559418
+    #res =  calculate.calculate('19091119') # peter drucker died 20051111
     #res =  calculate.calculate('19510611') # hugh laurie
     #res =  calculate.calculate('19281004') # alvin toffler
     #res =  calculate.calculate('19590329') # roubini
@@ -97,7 +97,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19561221') # sevan nisanyan
     #res =  calculate.calculate('19470101') # ahmet inam
     #res =  calculate.calculate('19360627') # mete tuncay
-    #res =  calculate.calculate('19490413') # hitchens
+    #res =  calculate.calculate('19490413') # hitchens, died 20111215
     #res =  calculate.calculate('19770727') # parag khanna
     #res =  calculate.calculate('19610210') # george stephanapolous
     #res =  calculate.calculate('19670514') # sebastian thrun
@@ -110,7 +110,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19871027') # irem
     #res =  calculate.calculate('19200701') # sabahattin dede
     #res =  calculate.calculate('19570310') # bin laden
-    res =  calculate.calculate('19540609') # dkal
+    #res =  calculate.calculate('19540609') # dkal
     #res =  calculate.calculate('19440715') # glenn morris
     #res =  calculate.calculate('19440404') # mantak chia
     #res =  calculate.calculate('19730729') # pat
@@ -118,10 +118,8 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19460524') # tansu ciller
     #res =  calculate.calculate('19490726') # thaksin
     #res =  calculate.calculate('19890426') # l-s
+    #res =  calculate.calculate('18180505') # marx
     
-    print calculate.calculate_mbti_full(res)
-    print res
-
-    print  calculate.calculate_cycle('19910916') 
+    print calculate.calculate_mbti_full(res); print res
  
     

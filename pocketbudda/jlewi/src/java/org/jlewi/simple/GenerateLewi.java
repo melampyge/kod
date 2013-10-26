@@ -55,7 +55,7 @@ public class GenerateLewi
     
     public static final void main(final String[] args) throws Exception {
 	
-	Date date = stringToDateddMM("01/01/1900");
+	Date date = stringToDateddMM("01/01/1800");
 	Date end = stringToDateddMM("01/01/2021");
 
 	BufferedWriter wr = new BufferedWriter(new FileWriter("/tmp/lewi.dat"));

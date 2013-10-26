@@ -213,12 +213,6 @@ This command does not push erased text to kill-ring."
   (if (buffer-live-p (get-buffer "*Buffer List*" ))
       (kill-buffer (get-buffer
 		    "*Buffer List*")))
-  (if (buffer-live-p (get-buffer "*JDEE bsh*" ))
-      (kill-buffer (get-buffer
-		    "*JDEE bsh*")))
-  (if (buffer-live-p (get-buffer "*jde-beanshell-scratch*" ))
-      (kill-buffer (get-buffer
-		    "*jde-beanshell-scratch*")))
   )
 
 ;;
@@ -242,17 +236,10 @@ This command does not push erased text to kill-ring."
    ["Ready for Blog" ready-for-blog]   
    "--"
    ["Git Show Older Version" githist-do-show-version]
-   ["Compile" jde-ant-build]
    ["Test Current..." run-unit-test]
    ["Test All..." (alternative-compile "ant -find build.xml -emacs test ")]
    "--"
    ["Repeat Last Command..." repeat-complex-command]   
-   "--"
-   ["Kill Unused Imports" jde-import-kill-extra-imports]
-   ["Import Class" jde-import-find-and-import]
-   ["Caller Tree" jde-usages-display-call-tree-for-thing-at-point]   
-   ["Subclasses Implementing Method"  jde-usages-display-subs-implementing-method]
-   ["Subclasses"  jde-usages-display-subs-and-implementers]
    ))
 (easy-menu-add my-jde-mode-menu)
 
@@ -533,7 +520,6 @@ This command does not push erased text to kill-ring."
     )
   )
 
-;;(tool-bar-add-item "fwd-arrow" 'jde-ant-build 'jde-ant-build :help "JDE Compile" )
 (tool-bar-add-item "fwd-arrow" 'revert-buffer 'revert-buffer :help "Refresh" )
 (tool-bar-add-item "contact" 
                    'open-notebook-in-current-dir
@@ -983,29 +969,23 @@ This command does not push erased text to kill-ring."
 ;; ;; surekli gereken dizinler onceden acilip buffer'a konuyor.
 ;; ;; boylece ikidebir oraya dired'den gezerek gitmek gerekmez
 ;; ;;
-;; ;;(find-file-other-window "/usr/share/emacs23/site-lisp/pyjde")
 (find-file-other-window "/tmp")
 (find-file-other-window "/home/burak/kod")
-(find-file-other-window "/home/burak/kod/pocketbudda/app/mweb")
 (find-file-other-window "/home/burak/Documents/classnotes")
 (find-file-other-window "/home/burak/Desktop")
 (find-file-other-window "/home/burak/Dropbox")
-(find-file-other-window "/home/burak/Dropbox/Public")
 (find-file-other-window "/home/burak/Dropbox/Public/skfiles")
-(find-file-other-window "/home/burak/Dropbox/resmi/2012")
-(find-file-other-window "/home/burak/kod/books")
 (find-file-other-window "/home/burak/Dropbox/TODO.txt")
 (find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/Documents")
-(find-file-other-window "/home/burak/kod/books/python_for_data_analysis")
 (find-file-other-window "/home/burak/Documents/classnotes/app-math-tr")
 (find-file-other-window "/home/burak/Documents/classnotes/stat")
-(find-file-other-window "/home/burak/Dropbox/prog/svd")
+(find-file-other-window "/home/burak/Documents/classnotes/stat/stat_hadoop_rnd_svd")
+(find-file-other-window "/home/burak/Documents/sasha")
+(find-file-other-window "/home/burak/Downloads/zguide/examples/Python")
 
 (switch-to-buffer "*scratch*")
 (delete-other-windows)
-
-(load-file "/usr/share/emacs23/site-lisp/pyjde/pyjde.el")
 
 (pymacs-load "/usr/share/emacs23/site-lisp/githist")
 

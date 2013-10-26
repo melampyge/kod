@@ -85,7 +85,7 @@ def calculate_millman(date):
 
 # Entry method for all the other calculations
 def calculate(date):    
-  ast = open("pocketbudda.dat")    
+  ast = open("pocketbudda.dat")
   for line in ast.readlines():
     if date == line[0:8]:
         res = line[9:]
