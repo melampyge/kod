@@ -78,7 +78,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19420316') # murat belge
     #res =  calculate.calculate('19420215') # mehmet barlas
     #res =  calculate.calculate('19740101') # serdar kaya
-    #res =  calculate.calculate('19501230') # etyen mahcupyan
+    res =  calculate.calculate('19501230') # etyen mahcupyan
     #res =  calculate.calculate('19300720') # rahmi koc
     #res =  calculate.calculate('19520607') # orhan pamuk
     #res =  calculate.calculate('19410427') # fetullah gulen
@@ -119,6 +119,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19490726') # thaksin
     #res =  calculate.calculate('19890426') # l-s
     #res =  calculate.calculate('18180505') # marx
+    res =  calculate.calculate('19510620') # hadi 
     
     print calculate.calculate_mbti_full(res); print res
  

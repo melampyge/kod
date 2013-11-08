@@ -19,13 +19,11 @@ ENFJ:Charlton Heston -
 ENFJ:Ronald Reagan - American President, actor
 ENFJ:Nelson Mandela -
 ENFJ:Mikhail Gorbachev -
-ENFJ:Pope John Paul II -
 ENFJ:Stephen Jay Gould -
 ENFJ:Neil deGrasse Tyson -
 ENFJ:Carl Rogers -
 ENFJ:Erich Fromm -
 ENFJ:Joe Biden -
-ENFJ:Tony Blair -
 ENFJ:Michael Moore -
 ENFJ:Yasser Arafat -
 ENFJ:Oprah Winfrey -
