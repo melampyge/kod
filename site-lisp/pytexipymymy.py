@@ -1,11 +1,10 @@
 from Pymacs import lisp
 interactions = {}
 
-def break_on_whitespace():
-    start, end = lisp.point(), lisp.mark(True)
-    words = lisp.buffer_substring(start, end).split()
-    lisp.delete_region(start, end)
-    lisp.insert('\n'.join(words))
+def run_py_code():
+    b = lisp.search_forward("\\end{lstlisting}")
+    e = lisp.search_backward("\\begin{lstlisting}")
+    content = lisp.buffer_substring(b, e)
+    lisp.message(content)
 
-interactions[break_on_whitespace] = ''
-
+interactions[run_py_code] = ''
