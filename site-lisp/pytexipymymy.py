@@ -6,10 +6,10 @@ buffer.
 
 INSTALL:
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipymymy")
-(global-set-key [f7] 'pytexipymymy-run-py-code)
+(global-set-key [f1] 'pytexipymymy-run-py-code)
 
 When you are in \begin{lstlisting} and \end{lstlisting} blocks, hit
-f7 and all code in that block will be sent to a ipython kernel and
+f1 and all code in that block will be sent to a ipython kernel and
 the result will be displayed underneath.
 
 Results will be placed in \begin{verbatim}, \end{verbatim} blocks.
@@ -31,7 +31,7 @@ from IPython.kernel.inprocess.ipkernel import InProcessKernel
 from IPython.utils.io import capture_output
 
 from Pymacs import lisp
-import re, sys, time
+import re, sys, time, os
 interactions = {}
 kernels = {}
 
@@ -59,7 +59,25 @@ def get_block_content(start_tag, end_tag):
     
 def run_py_code():
     remember_where = lisp.point()
-    block_begin,block_end,content = get_block_content("\\begin{lstlisting}","\\end{lstlisting}")
+    # check if the line contains \lstinputlisting
+    lisp.beginning_of_line()
+    l1 = lisp.point()
+    lisp.end_of_line()
+    l2 = lisp.point()
+    line = lisp.buffer_substring(l1,l2)
+    # if code comes from file
+    if "\\lstinputlisting" in line:
+        lisp.message(line)
+        py_file = re.search("\{(.*?)\}", line).groups(1)[0]
+        # get code content from file
+        curr_dir = os.path.dirname(lisp.buffer_file_name())
+        content = open(curr_dir + "/" + py_file).read()
+        block_end = l2 # end of block happens to be end of include file line
+        lisp.goto_char(remember_where)
+    else:
+        # get code content from latex
+        block_begin,block_end,content = get_block_content("\\begin{lstlisting}","\\end{lstlisting}")
+        
     kernel = get_kernel_pointer(lisp.buffer_name())
     with capture_output() as io:        
         start = time.time()
@@ -86,6 +104,8 @@ def display_results(end_block, res):
     lisp.insert("\\begin{verbatim}\n")
     lisp.insert(res)
     lisp.insert("\\end{verbatim}")
-                
+
+def run_all_py():
+    pass
 
 interactions[run_py_code] = ''
