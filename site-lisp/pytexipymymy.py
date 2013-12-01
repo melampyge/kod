@@ -101,6 +101,9 @@ def display_results(end_block, res):
         verb_begin,verb_end,content = get_block_content("\\begin{verbatim}","\\end{verbatim}")
         lisp.delete_region(verb_begin, verb_end)
         lisp.goto_char(verb_begin)
+    else:
+        lisp.backward_line_nomark(1)
+        lisp.insert("\n")
     lisp.insert("\\begin{verbatim}\n")
     lisp.insert(res)
     lisp.insert("\\end{verbatim}")
