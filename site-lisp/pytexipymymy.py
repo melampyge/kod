@@ -44,18 +44,18 @@ def get_block_content(start_tag, end_tag):
     content = lisp.buffer_substring(block_begin, block_end)
     content = re.sub("\\\\begin{lstlisting}.*?\]","",content)
     content = re.sub("\\\\end{lstlisting}","",content)
-    lisp.message(content)
     lisp.goto_char(remember_where)
     return block_begin, block_end, content
     
 def run_py_code():
+    remember_where = lisp.point()
     block_begin,block_end,content = get_block_content("\\begin{lstlisting}","\\end{lstlisting}")
     kernel = get_kernel_pointer(lisp.buffer_name())
     with capture_output() as io:
         kernel.shell.run_cell(content)
     result = str(io.stdout)
-    lisp.message(result)
     display_results(block_end, result)
+    lisp.goto_char(remember_where)    
 
 def display_results(end_block, res):
     lisp.goto_char(end_block)
@@ -65,12 +65,13 @@ def display_results(end_block, res):
     lisp.end_of_line()
     verb_line_e = lisp.point()
     verb_line = lisp.buffer_substring(verb_line_b, verb_line_e)
-    lisp.message(verb_line)
-    if "\\begin{verbatim}" not in verb_line:
-        lisp.insert("\\begin{verbatim}\n")
-        lisp.insert(res)
-        lisp.insert("\\end{verbatim}")
-        
-        
+    if "\\begin{verbatim}" in verb_line:
+        verb_begin,verb_end,content = get_block_content("\\begin{verbatim}","\\end{verbatim}")
+        lisp.delete_region(verb_begin, verb_end)
+        lisp.goto_char(verb_begin)
+    lisp.insert("\\begin{verbatim}\n")
+    lisp.insert(res)
+    lisp.insert("\\end{verbatim}")
+                
 
 interactions[run_py_code] = ''
