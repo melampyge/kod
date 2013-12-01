@@ -1,5 +1,4 @@
 #
-# Author: Burak Bayramli
 # Starting from any file, goes up in directory finds the .git
 # directory location, from there executes the git show command. 
 # Comes pretty handy to compare two or more versions of the same file 
