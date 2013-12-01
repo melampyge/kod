@@ -6,8 +6,11 @@ INSTALL:
 
 When you are in \begin{lstlisting} and \end{lstlisting} blocks, hit
 f7 and all code in that block will be sent to a ipython kernel and
-the result will be displayed. 
+the result will be displayed.
 
+Results will be displayed within \begin{verbatim}, \end{verbatim}
+blocks.  The assumption will be there is one space between output
+block and the lstlisting block.
 '''
 
 from __future__ import print_function
@@ -33,22 +36,41 @@ def get_kernel_pointer(buffer):
         kernel = InProcessKernel()
         kernels[buffer] = kernel
     return kernels[buffer]
-        
 
-def run_py_code():
-    lisp.message("buffer file name " + lisp.buffer_file_name())
-    lisp.message("buffer  name " + lisp.buffer_name())
+def get_block_content(start_tag, end_tag):
     remember_where = lisp.point()
-    b = lisp.search_forward("\\end{lstlisting}")
-    e = lisp.search_backward("\\begin{lstlisting}")
-    content = lisp.buffer_substring(b, e)
+    block_end = lisp.search_forward(end_tag)
+    block_begin = lisp.search_backward(start_tag)
+    content = lisp.buffer_substring(block_begin, block_end)
     content = re.sub("\\\\begin{lstlisting}.*?\]","",content)
     content = re.sub("\\\\end{lstlisting}","",content)
+    lisp.message(content)
+    lisp.goto_char(remember_where)
+    return block_begin, block_end, content
     
+def run_py_code():
+    block_begin,block_end,content = get_block_content("\\begin{lstlisting}","\\end{lstlisting}")
     kernel = get_kernel_pointer(lisp.buffer_name())
     with capture_output() as io:
         kernel.shell.run_cell(content)
-    lisp.message(str(io.stdout))
-    lisp.goto_char(remember_where)
+    result = str(io.stdout)
+    lisp.message(result)
+    display_results(block_end, result)
+
+def display_results(end_block, res):
+    lisp.goto_char(end_block)
+    lisp.forward_line(2)
+    lisp.beginning_of_line()
+    verb_line_b = lisp.point()
+    lisp.end_of_line()
+    verb_line_e = lisp.point()
+    verb_line = lisp.buffer_substring(verb_line_b, verb_line_e)
+    lisp.message(verb_line)
+    if "\\begin{verbatim}" not in verb_line:
+        lisp.insert("\\begin{verbatim}\n")
+        lisp.insert(res)
+        lisp.insert("\\end{verbatim}")
+        
+        
 
 interactions[run_py_code] = ''
