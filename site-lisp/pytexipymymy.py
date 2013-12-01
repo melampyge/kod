@@ -6,11 +6,11 @@ INSTALL:
 
 When you are in \begin{lstlisting} and \end{lstlisting} blocks, hit
 f7 and all code in that block will be sent to a ipython kernel and
-the result will be displayed.
+the result will be displayed underneath.
 
-Results will be displayed within \begin{verbatim}, \end{verbatim}
-blocks.  The assumption will be there is one space between output
-block and the lstlisting block.
+Results will be placed in \begin{verbatim}, \end{verbatim} blocks.
+The assumption is there is a single space between output block and the
+lstlisting block.
 '''
 
 from __future__ import print_function
