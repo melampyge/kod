@@ -912,6 +912,7 @@ This command does not push erased text to kill-ring."
 (global-set-key [f10] 'open-explorer-in-current-dir)
 (global-set-key [f12] 'next-error)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; CUA mod'u icin not
 ;;
@@ -1028,3 +1029,13 @@ This command does not push erased text to kill-ring."
                          ""))))
      )
 
+(defun reload-pymacs()
+  (interactive)
+  (if (buffer-live-p (get-buffer "*Pymacs*" ))
+      (kill-buffer (get-buffer
+		    "*Pymacs*")))
+  (pymacs-load "/usr/share/emacs23/site-lisp/pytexipymymy")
+  )
+
+(global-set-key [f11] 'reload-pymacs)
+(global-set-key [f7] 'pytexipymymy-break-on-whitespace)
