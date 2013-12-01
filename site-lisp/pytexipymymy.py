@@ -31,7 +31,7 @@ from IPython.kernel.inprocess.ipkernel import InProcessKernel
 from IPython.utils.io import capture_output
 
 from Pymacs import lisp
-import re, sys
+import re, sys, time
 interactions = {}
 kernels = {}
 
@@ -61,11 +61,15 @@ def run_py_code():
     remember_where = lisp.point()
     block_begin,block_end,content = get_block_content("\\begin{lstlisting}","\\end{lstlisting}")
     kernel = get_kernel_pointer(lisp.buffer_name())
-    with capture_output() as io:
+    with capture_output() as io:        
+        start = time.time()
         kernel.shell.run_cell(content)
+        elapsed = (time.time() - start)
     result = str(io.stdout)
-    display_results(block_end, result)
-    lisp.goto_char(remember_where)    
+    if len(result) > 0: # if result not empty
+        display_results(block_end, result) # display it
+    lisp.goto_char(remember_where)
+    lisp.message("Ran in " + str(elapsed) + " seconds")
 
 def display_results(end_block, res):
     lisp.goto_char(end_block)

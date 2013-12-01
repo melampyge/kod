@@ -805,6 +805,7 @@ This command does not push erased text to kill-ring."
 (global-unset-key [(alt f4)])
 (global-set-key "\C-o" 'other-window)
 (global-set-key "\M-p" 'previous-line)
+(global-set-key "\M-," 'pytexipymymy-run-py-code)
 (global-set-key "\C-p" 'previous-line)
 (global-set-key "\C-k" 'backward-delete-char-untabify)
 (global-set-key "\M-k" 'backward-delete-char-untabify)
