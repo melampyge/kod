@@ -1,6 +1,10 @@
 '''
-INSTALL:
+DESCRIPTION:
+pytexipymymy connects to an inprocess ipython kernel, executes
+notebook code, and displays the results automatically in a LaTeX
+buffer.
 
+INSTALL:
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipymymy")
 (global-set-key [f7] 'pytexipymymy-run-py-code)
 
@@ -11,6 +15,12 @@ the result will be displayed underneath.
 Results will be placed in \begin{verbatim}, \end{verbatim} blocks.
 The assumption is there is a single space between output block and the
 lstlisting block.
+
+TODO: It appears there can be only one inprocess kernel, multiple
+InProcessKernel() calls return the same object. As a side effect of
+this, variables created in one buffer are seen from a different
+buffer.
+
 '''
 
 from __future__ import print_function
