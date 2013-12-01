@@ -6,20 +6,24 @@ buffer.
 
 INSTALL:
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipymymy")
-(global-set-key [f1] 'pytexipymymy-run-py-code)
+(global-set-key [f1] 'pytexipymymy-run-py-code) ; choose any key you like
 
-When you are in \begin{lstlisting} and \end{lstlisting} blocks, hit
-f1 and all code in that block will be sent to a ipython kernel and
-the result will be displayed underneath.
+When you are in \begin{lstlisting} and \end{lstlisting} blocks, hit f1
+and all code in that block will be sent to a ipython kernel and the
+result will be displayed underneath. If we are on \lstinputlisting
+block, Python code will be loaded from script filename found between
+curly braces, i.e. {file.py}.
 
-Results will be placed in \begin{verbatim}, \end{verbatim} blocks.
-The assumption is there is a single space between output block and the
-lstlisting block.
+Results will be placed in \begin{verbatim}, \end{verbatim} blocks
+right next to the code, with one space in between. If a verbatim blocks
+already exists there, it will be refreshed. If not, it will be added.
 
-TODO: It appears there can be only one inprocess kernel, multiple
+LIMITATIONS:
+
+It appears there can be only one inprocess kernel, multiple
 InProcessKernel() calls return the same object. As a side effect of
-this, variables created in one buffer are seen from a different
-buffer.
+this, scope is shared between buffers, that is, variables created in
+one buffer are seen from a different buffer.
 
 '''
 
