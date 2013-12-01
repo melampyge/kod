@@ -88,6 +88,7 @@ def run_py_code():
         kernel.shell.run_cell(content)
         elapsed = (time.time() - start)
     result = str(io.stdout)
+    result = result.replace("Populating the interactive namespace from numpy and matplotlib\n","")
     if len(result) > 0: # if result not empty
         display_results(block_end, result) # display it
     lisp.goto_char(remember_where)
