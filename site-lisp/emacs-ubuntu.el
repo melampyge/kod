@@ -698,7 +698,7 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "tex-listings-python-file" 
- '("\\lstinputlisting[language=Python]{"
+ '("\\inputminted{python}{"
    (s)
    ".py}"
    )
@@ -706,9 +706,9 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "tex-listings-python" 
- '("\\begin{lstlisting}[language=Python]\n"
+ '("\\begin{minted}{python}\n"
    (s)
-   "\n\\end{lstlisting}\n"
+   "\n\\end{minted}\n"
    )
  "")
 
