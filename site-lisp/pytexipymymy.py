@@ -8,7 +8,7 @@ INSTALL:
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipymymy")
 (global-set-key [f1] 'pytexipymymy-run-py-code) ; choose any key you like
 
-When you are in \begin{lstlisting} and \end{lstlisting} blocks, hit f1
+When you are in \begin{minted} and \end{minted} blocks, hit f1
 and all code in that block will be sent to a ipython kernel and the
 result will be displayed underneath. If we are on \lstinputlisting
 block, Python code will be loaded from script filename found between
@@ -56,8 +56,8 @@ def get_block_content(start_tag, end_tag):
     block_end = lisp.search_forward(end_tag)
     block_begin = lisp.search_backward(start_tag)
     content = lisp.buffer_substring(block_begin, block_end)
-    content = re.sub("\\\\begin{lstlisting}.*?\]","",content)
-    content = re.sub("\\\\end{lstlisting}","",content)
+    content = re.sub("\\\\begin{minted}{python}","",content)
+    content = re.sub("\\\\end{minted}","",content)
     lisp.goto_char(remember_where)
     return block_begin, block_end, content
     
@@ -70,9 +70,9 @@ def run_py_code():
     l2 = lisp.point()
     line = lisp.buffer_substring(l1,l2)
     # if code comes from file
-    if "\\lstinputlisting" in line:
+    if "\\inputminted" in line:
         lisp.message(line)
-        py_file = re.search("\{(.*?)\}", line).groups(1)[0]
+        py_file = re.search("\{python\}\{(.*?)\}", line).groups(1)[0]
         # get code content from file
         curr_dir = os.path.dirname(lisp.buffer_file_name())
         content = open(curr_dir + "/" + py_file).read()
@@ -80,7 +80,8 @@ def run_py_code():
         lisp.goto_char(remember_where)
     else:
         # get code content from latex
-        block_begin,block_end,content = get_block_content("\\begin{lstlisting}","\\end{lstlisting}")
+        block_begin,block_end,content = get_block_content("\\begin{minted}","\\end{minted}")
+        lisp.message(content)
         
     kernel = get_kernel_pointer(lisp.buffer_name())
     with capture_output() as io:        

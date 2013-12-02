@@ -73,7 +73,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19590308') # emre akoz
     #res =  calculate.calculate('19460801') # taha akyol
     #res =  calculate.calculate('19480921') # cengiz candar
-    #res =  calculate.calculate('19470827') # halil berktay
+    res =  calculate.calculate('19470827') # halil berktay
     #res =  calculate.calculate('19470521') # ilber ortayli
     #res =  calculate.calculate('19420316') # murat belge
     #res =  calculate.calculate('19420215') # mehmet barlas
