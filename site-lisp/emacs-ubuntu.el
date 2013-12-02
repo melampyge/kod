@@ -1011,8 +1011,6 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Documents")
 (find-file-other-window "/home/burak/Documents/classnotes/app-math-tr")
 (find-file-other-window "/home/burak/Documents/classnotes/stat")
-(find-file-other-window "/home/burak/Documents/sasha")
-(find-file-other-window "/home/burak/Documents/classnotes/app-math-tr/svdrecom")
 
 (switch-to-buffer "*scratch*")
 (delete-other-windows)
