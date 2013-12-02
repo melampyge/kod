@@ -8,6 +8,13 @@ INSTALL:
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
 (global-set-key [f1] 'pytexipy-notebook-run-py-code) ; choose any key you like
 
+Add this to your (custom-set-variables
+
+'(preview-LaTeX-command (quote ("%`%l -shell-escape \"\\nonstopmode\\nofiles\\PassOptionsToPackage{"
+("," . preview-required-option-list) "}{preview}\\AtBeginDocument{\\ifx\\ifPreview\\undefined"
+preview-default-preamble "\\fi}\"%' %t")))
+
+
 When you are in \begin{minted}{python} and \end{minted} blocks, hit f1
 and all code in that block will be sent to a ipython kernel and the
 result will be displayed underneath. If we are on
