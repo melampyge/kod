@@ -89,7 +89,7 @@ def run_py_code():
         # get code content from latex
         block_begin,block_end,content = get_block_content("\\begin{minted}","\\end{minted}")
         
-    content = "%pylab inline\n" + content
+    #content = "%pylab inline\n" + content
         
     kernel = get_kernel_pointer(lisp.buffer_name())
     with capture_output() as io:        
