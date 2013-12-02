@@ -8,11 +8,11 @@ INSTALL:
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
 (global-set-key [f1] 'pytexipy-notebook-run-py-code) ; choose any key you like
 
-When you are in \begin{minted} and \end{minted} blocks, hit f1 and all
-code in that block will be sent to a ipython kernel and the result
-will be displayed underneath. If we are on \inputminted{python}{file.py}
-block, Python code will be loaded from script filename found between
-curly braces.
+When you are in \begin{minted}{python} and \end{minted} blocks, hit f1
+and all code in that block will be sent to a ipython kernel and the
+result will be displayed underneath. If we are on
+\inputminted{python}{file.py} block, Python code will be loaded from
+script filename found between curly braces.
 
 Results will be placed in \begin{verbatim}, \end{verbatim} blocks
 right next to the code, with one space in between. If a verbatim blocks
