@@ -63,7 +63,7 @@ def get_block_content(start_tag, end_tag):
     
 def run_py_code():
     remember_where = lisp.point()
-    # check if the line contains \lstinputlisting
+    # check if the line contains \inputminted
     lisp.beginning_of_line()
     l1 = lisp.point()
     lisp.end_of_line()
@@ -89,6 +89,7 @@ def run_py_code():
         kernel.shell.run_cell(content)
         elapsed = (time.time() - start)
     result = str(io.stdout)
+    # replace this unnecessary message so output becomes blank
     result = result.replace("Populating the interactive namespace from numpy and matplotlib\n","")
     if len(result) > 0: # if result not empty
         display_results(block_end, result) # display it
