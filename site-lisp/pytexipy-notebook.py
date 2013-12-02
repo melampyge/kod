@@ -1,11 +1,11 @@
 '''
 DESCRIPTION:
-pytexipymymy connects to an inprocess ipython kernel, executes
+pytexipy-notebook connects to an inprocess ipython kernel, executes
 notebook code, and displays the results automatically in a LaTeX
 buffer.
 
 INSTALL:
-(pymacs-load "/usr/share/emacs23/site-lisp/pytexipymymy")
+(pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
 (global-set-key [f1] 'pytexipymymy-run-py-code) ; choose any key you like
 
 When you are in \begin{minted} and \end{minted} blocks, hit f1 and all

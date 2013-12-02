@@ -805,7 +805,7 @@ This command does not push erased text to kill-ring."
 (global-unset-key [(alt f4)])
 (global-set-key "\C-o" 'other-window)
 (global-set-key "\M-p" 'previous-line)
-(global-set-key "\M-," 'pytexipymymy-run-py-code)
+(global-set-key "\M-," 'pytexipy-notebook-run-py-code)
 (global-set-key "\C-p" 'previous-line)
 (global-set-key "\C-k" 'backward-delete-char-untabify)
 (global-set-key "\M-k" 'backward-delete-char-untabify)
@@ -1035,8 +1035,8 @@ This command does not push erased text to kill-ring."
   (if (buffer-live-p (get-buffer "*Pymacs*" ))
       (kill-buffer (get-buffer
 		    "*Pymacs*")))
-  (pymacs-load "/usr/share/emacs23/site-lisp/pytexipymymy")
+  (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
   )
 
 (global-set-key [f11] 'reload-pymacs)
-(global-set-key [f7] 'pytexipymymy-run-all-py)
+(global-set-key [f7] 'pytexipy-notebook-run-all-py)
