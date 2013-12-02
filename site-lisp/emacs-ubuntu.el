@@ -638,9 +638,9 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "verb" 
- '("<code>"
+ '("\\verb!"
    (s)
-   "</code>") 
+   "!") 
  "d" 
  "") 
 
