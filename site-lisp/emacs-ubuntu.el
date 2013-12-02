@@ -573,6 +573,35 @@ This command does not push erased text to kill-ring."
 (setq CUA-mode-overwrite-cursor-color "Red")
 (setq CUA-mode-read-only-cursor-color "Red")
 
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(archive-zip-extract (quote ("unzip" "-qq" "-c")))
+ '(blink-cursor-mode nil)
+ '(case-fold-search t)
+ '(compilation-scroll-output t)
+ '(cua-mode t nil (cua-base))
+ '(current-language-environment "Turkish")
+ '(default-input-method "turkish-postfix")
+ '(dired-recursive-copies t)
+ '(ecb-options-version "2.27")
+ '(global-font-lock-mode t)
+ '(inhibit-iso-escape-detection t t)
+ '(inhibit-startup-screen t)
+ '(preview-LaTeX-command (quote ("%`%l -shell-escape \"\\nonstopmode\\nofiles\\PassOptionsToPackage{" ("," . preview-required-option-list) "}{preview}\\AtBeginDocument{\\ifx\\ifPreview\\undefined" preview-default-preamble "\\fi}\"%' %t")))
+ '(preview-auto-cache-preamble nil)
+ '(preview-image-type (quote dvipng))
+ '(preview-scale-function 1.3)
+ '(scroll-conservatively 1)
+ '(scroll-step 1)
+ '(text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify)))
+ '(transient-mark-mode t)
+ '(truncate-lines t)
+ '(which-func-mode-global t nil (which-func))
+ )
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
  ;; Your init file should contain only one such instance.
