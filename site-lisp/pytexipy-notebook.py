@@ -6,7 +6,7 @@ buffer.
 
 INSTALL:
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
-(global-set-key [f1] 'pytexipymymy-run-py-code) ; choose any key you like
+(global-set-key [f1] 'pytexipy-notebook-run-py-code) ; choose any key you like
 
 When you are in \begin{minted} and \end{minted} blocks, hit f1 and all
 code in that block will be sent to a ipython kernel and the result
