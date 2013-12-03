@@ -72,8 +72,9 @@ def get_kernel_pointer(buffer):
         kc = BlockingInProcessKernelClient(kernel=km.kernel)
         kc.start_channels()
         kernel = InProcessKernel()
-        kernel.frontends.append(kc)
+        kernel.frontends.append(kc)        
         kernels[buffer] = kc
+        run_code(kc, '%pylab inline')
     return kernels[buffer]
 
 def get_block_content(start_tag, end_tag):
