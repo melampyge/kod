@@ -274,6 +274,7 @@ This command does not push erased text to kill-ring."
    ["Tex Minted Python (File)" tempo-template-tex-listings-python-file]
    ["Tex Minted Python" tempo-template-tex-listings-python]
    ["Tex Itemize" x-tex-itemize]
+   ["Tex Verbatim" tempo-template-tex-verbatim-big]
    ["Tex Enumerate" tempo-template-tex-enumerate]
    ["Tex Matrix" tempo-template-tex-matrix]
    ["Tex Function In Pieces" tempo-template-tex-function-in-pieces]
@@ -657,6 +658,14 @@ This command does not push erased text to kill-ring."
  '("\\begin{equation}\\label{}\n"
    (s)
    "\n\\end{equation}") 
+ "d" ;; 
+ "") ;; 
+
+(tempo-define-template 
+ "tex-verbatim-big" ;; 
+ '("\\begin{verbatim}\n"
+   (s)
+   "\n\\end{verbatim}") 
  "d" ;; 
  "") ;; 
 

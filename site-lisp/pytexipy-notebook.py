@@ -46,6 +46,23 @@ import re, sys, time, os
 interactions = {}
 kernels = {}
 
+def get_stream_message(kernel_client, timeout=5):
+    """ Gets a single stream message synchronously from the sub channel.
+    """
+    while True:
+        msg = kernel_client.get_iopub_msg(timeout=timeout)
+        if msg['header']['msg_type'] == 'stream':
+            return msg
+
+def run_code(client, code):
+    client.shell_channel.execute(code)
+    reply = client.shell_channel.get_msg()
+    if reply['content']['status'] == 'ok':
+        msg = get_stream_message(client)
+        return msg['content']['data'], 'ok'
+    if reply['content']['status'] == 'error':
+        return reply['content']['traceback'][0]+"\n", 'error'
+        
 def get_kernel_pointer(buffer):
     lisp.message("getting kernel for " + buffer)
     if buffer not in kernels:
@@ -55,7 +72,8 @@ def get_kernel_pointer(buffer):
         kc = BlockingInProcessKernelClient(kernel=km.kernel)
         kc.start_channels()
         kernel = InProcessKernel()
-        kernels[buffer] = kernel
+        kernel.frontends.append(kc)
+        kernels[buffer] = kc
     return kernels[buffer]
 
 def get_block_content(start_tag, end_tag):
@@ -91,12 +109,10 @@ def run_py_code():
         
     #content = "%pylab inline\n" + content
         
-    kernel = get_kernel_pointer(lisp.buffer_name())
-    with capture_output() as io:        
-        start = time.time()
-        kernel.shell.run_cell(content)
-        elapsed = (time.time() - start)
-    result = str(io.stdout)
+    client = get_kernel_pointer(lisp.buffer_name())
+    start = time.time()
+    result,status = run_code(client, content)
+    elapsed = (time.time() - start)
 
     # replace this unnecessary message so output becomes blank
     result = result.replace("Populating the interactive namespace from numpy and matplotlib\n","")
