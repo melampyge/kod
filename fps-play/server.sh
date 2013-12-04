@@ -1,4 +1,4 @@
-cd /home/burak/Downloads/UrbanTerror
+cd $HOME/Downloads/UrbanTerror
 while true
 do
     ./ioUrTded.i386 \
