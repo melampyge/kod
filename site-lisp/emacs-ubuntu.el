@@ -752,17 +752,17 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "tex-matrix" 
- '("\\begin{bmatrix}\n"
+ '("\\left[\\begin{array}{ccc}\n"
    (s)
-   "\n\\end{bmatrix}"
+   "\n\\end{array}\\right]"
    )
  "")
 
 (tempo-define-template 
  "tex-function-in-pieces" 
- '("\\begin{cases}\n"
+ '("\\left\\{ \begin{array}{ll}\n"
    (s)
-   "\n\\end{cases}."
+   "\n\\end{array} \\right."
    )
  "")
 
