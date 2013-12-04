@@ -4,19 +4,20 @@ details.
 
 Among the things improved here are;
 
-o We provide a *precompiled* source base for SwissEph. The package, as it is
-found on the Web, makes it necessary to pass through a precompilation stage,
-similar to software written in C,C++ using #define, #endif constructs. However,
-this usage is very un-Java, hence only one version of the source is included in
-this package. This saves the programmer from understanding unnecessary details
-of the package involved. 
+o We provide a *precompiled* source base for SwissEph. The package, as
+it is found on the Web, makes it necessary to pass through a
+precompilation stage, similar to software written in C,C++ using
+#define, #endif constructs. However, this usage is very un-Java, hence
+only one version of the source is included in this package. This saves
+the programmer from understanding unnecessary details of the package
+involved.
 
-o Calculating the decan (decanate) of planets needed for a certain date in
-question.  was very hard to access through the SwissEph regular functions, hence
-we hacked through the command line interface making SwissEph believe we were
-using it through the command line, we parse the output, providing you the nice
-information you get for your further calculations through a simple calc()
-function.
+o Calculating the decan (decanate) of planets needed for a certain
+date in question. This was very hard to access through the SwissEph
+regular functions, so we hacked through the command line interface
+making SwissEph believe we were using it through the command line, we
+parse the output, providing you the nice information you get for your
+further calculations through a simple calc() function.
 
 
 COMPILING
@@ -39,7 +40,7 @@ To calculate Lewi numbers
 Lewi l = new Lewi();
 ArrayList r = l.calc("1.3.1933");
 
-Also, you can generate all Lewi numbers for 20th century, and part of 00s by
-using "ant run" which calls GenerateLewi.java class.
+Also, you can generate all Lewi numbers for 20th century by using "ant
+run" which calls GenerateLewi.java class.
 
 
