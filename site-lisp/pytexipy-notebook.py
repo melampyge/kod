@@ -27,10 +27,9 @@ already exists there, it will be refreshed. If not, it will be added.
 
 LIMITATIONS:
 
-It appears there can be only one inprocess kernel, multiple
+It appears there can be only one inprocess kernel per editor, multiple
 InProcessKernel() calls return the same object. As a side effect of
-this, scope is shared between buffers, that is, variables created in
-one buffer are seen from a different buffer.
+this, scope is shared between buffers.
 
 '''
 
