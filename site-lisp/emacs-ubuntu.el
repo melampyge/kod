@@ -1075,4 +1075,3 @@ This command does not push erased text to kill-ring."
   )
 
 (global-set-key [f11] 'reload-pymacs)
-(global-set-key [f7] 'pytexipy-notebook-run-all-py)

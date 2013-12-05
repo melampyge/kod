@@ -58,8 +58,10 @@ def run_code(client, code):
     reply = client.shell_channel.get_msg()
     if reply['content']['status'] == 'ok':
         while True:
-            try:
+            try: # receiving until empty, it empty exception is thrown
                 msg = get_stream_message(client)
+                # if output is big, get_stream_message does not get all
+                # in one shot, that's why we extract it piecemeal
                 yield msg['content']['data']
             except: return
     if reply['content']['status'] == 'error':
@@ -76,6 +78,7 @@ def get_kernel_pointer(buffer):
         kernel = InProcessKernel()
         kernel.frontends.append(kc)        
         kernels[buffer] = kc
+        # run this so that plt, np pointers are ready
         kc.shell_channel.execute('%pylab inline')
     return kernels[buffer]
 
@@ -109,11 +112,11 @@ def run_py_code():
     else:
         # get code content from latex
         block_begin,block_end,content = get_block_content("\\begin{minted}","\\end{minted}")
-        
-    #content = "%pylab inline\n" + content
-        
+                
     client = get_kernel_pointer(lisp.buffer_name())
     start = time.time()
+    # TBD: dont build up a single results string, feed it back
+    # piecemeal to Emacs, through yield
     result = ""
     for x in run_code(client, content): result += x
     elapsed = (time.time() - start)
@@ -143,8 +146,5 @@ def display_results(end_block, res):
     lisp.insert("\\begin{verbatim}\n")
     lisp.insert(res)
     lisp.insert("\\end{verbatim}")
-
-def run_all_py():
-    pass
 
 interactions[run_py_code] = ''
