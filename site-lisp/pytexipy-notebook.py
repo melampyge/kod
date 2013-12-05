@@ -57,10 +57,13 @@ def run_code(client, code):
     client.shell_channel.execute(code)
     reply = client.shell_channel.get_msg()
     if reply['content']['status'] == 'ok':
-        msg = get_stream_message(client)
-        return msg['content']['data'], 'ok'
+        while True:
+            try:
+                msg = get_stream_message(client)
+                yield msg['content']['data']
+            except: return
     if reply['content']['status'] == 'error':
-        return reply['content']['traceback'][0]+"\n", 'error'
+        yield reply['content']['traceback'][0]+"\n"
         
 def get_kernel_pointer(buffer):
     lisp.message("getting kernel for " + buffer)
@@ -73,7 +76,7 @@ def get_kernel_pointer(buffer):
         kernel = InProcessKernel()
         kernel.frontends.append(kc)        
         kernels[buffer] = kc
-        run_code(kc, '%pylab inline')
+        kc.shell_channel.execute('%pylab inline')
     return kernels[buffer]
 
 def get_block_content(start_tag, end_tag):
@@ -111,7 +114,8 @@ def run_py_code():
         
     client = get_kernel_pointer(lisp.buffer_name())
     start = time.time()
-    result,status = run_code(client, content)
+    result = ""
+    for x in run_code(client, content): result += x
     elapsed = (time.time() - start)
 
     # replace this unnecessary message so output becomes blank
