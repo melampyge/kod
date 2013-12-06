@@ -1,10 +1,22 @@
 '''
 DESCRIPTION:
+
 pytexipy-notebook connects to an inprocess ipython kernel, executes
 notebook code, and displays the results automatically in a LaTeX
 buffer.
 
-INSTALL:
+HACK:
+
+You must install ipython FROM ITS SOURCES, and add one line before you
+build and install. Go to IPYTHON/IPython/core/interactiveshell.py and
+under method "def run_code(self, code_obj)", add "self.last_outflag =
+outflag" right before "return outflag" is executed. This had to be
+done because there is no other way (I could find) to detect an
+error. shell._get_exc_info gives the error message, but this error
+messages persists until the *next error*. 
+
+EMACS INSTALL:
+
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
 (global-set-key [f1] 'pytexipy-notebook-run-py-code) ; choose any key you like
 
@@ -13,7 +25,6 @@ Add this to your (custom-set-variables
 '(preview-LaTeX-command (quote ("%`%l -shell-escape \"\\nonstopmode\\nofiles\\PassOptionsToPackage{"
 ("," . preview-required-option-list) "}{preview}\\AtBeginDocument{\\ifx\\ifPreview\\undefined"
 preview-default-preamble "\\fi}\"%' %t")))
-
 
 When you are in \begin{minted}{python} and \end{minted} blocks, hit f1
 and all code in that block will be sent to a ipython kernel and the
@@ -27,9 +38,8 @@ already exists there, it will be refreshed. If not, it will be added.
 
 LIMITATIONS:
 
-It appears there can be only one inprocess kernel per editor, multiple
-InProcessKernel() calls return the same object. As a side effect of
-this, scope is shared between buffers.
+* For now, there is one kernel per Emacs session.
+* Also, see HACK session above.
 
 '''
 
@@ -45,28 +55,6 @@ import re, sys, time, os
 interactions = {}
 kernels = {}
 
-def get_stream_message(kernel_client, timeout=5):
-    """ Gets a single stream message synchronously from the sub channel.
-    """
-    while True:
-        msg = kernel_client.get_iopub_msg(timeout=timeout)
-        if msg['header']['msg_type'] == 'stream':
-            return msg
-
-def run_code(client, code):
-    client.shell_channel.execute(code)
-    reply = client.shell_channel.get_msg()
-    if reply['content']['status'] == 'ok':
-        while True:
-            try: # receiving until empty, it empty exception is thrown
-                msg = get_stream_message(client)
-                # if output is big, get_stream_message does not get all
-                # in one shot, that's why we extract it piecemeal
-                yield msg['content']['data']
-            except: return
-    if reply['content']['status'] == 'error':
-        yield reply['content']['traceback'][0]+"\n"
-        
 def get_kernel_pointer(buffer):
     lisp.message("getting kernel for " + buffer)
     if buffer not in kernels:
@@ -76,8 +64,7 @@ def get_kernel_pointer(buffer):
         kc = BlockingInProcessKernelClient(kernel=km.kernel)
         kc.start_channels()
         kernel = InProcessKernel()
-        kernel.frontends.append(kc)        
-        kernels[buffer] = kc
+        kernels[buffer] = (kc,kernel,kernel.shell.get_ipython())
         # run this so that plt, np pointers are ready
         kc.shell_channel.execute('%pylab inline')
     return kernels[buffer]
@@ -113,14 +100,16 @@ def run_py_code():
         # get code content from latex
         block_begin,block_end,content = get_block_content("\\begin{minted}","\\end{minted}")
                 
-    client = get_kernel_pointer(lisp.buffer_name())
+    (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
     start = time.time()
-    # TBD: dont build up a single results string, feed it back
-    # piecemeal to Emacs, through yield
-    result = ""
-    for x in run_code(client, content): result += x
+    with capture_output() as io: ip.run_cell(content)
+    result = ''
+    if kernel.shell.last_outflag:
+        etype, value, tb = kernel.shell._get_exc_info(None)
+        result = str(etype) + " " + str(value) + "\n"
+    else:
+        result = io.stdout    
     elapsed = (time.time() - start)
-
     # replace this unnecessary message so output becomes blank
     result = result.replace("Populating the interactive namespace from numpy and matplotlib\n","")
     if len(result) > 0: # if result not empty
