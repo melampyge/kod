@@ -5,6 +5,14 @@ pytexipy-notebook connects to an inprocess ipython kernel, executes
 notebook code, and displays the results automatically in a LaTeX
 buffer.
 
+HACK:
+
+IPYTHON SOURCE NEEDS TO BE CHANGED. Requires "self.last_outflag =
+outflag" statement to be added in "def run_code(self, code_obj)" right
+before the "return outflag". Otherwise there is no way to know if
+last statement was successful or not. _get_exc_info() is not useful
+because it keeps the same error _until the next error occurs_. 
+
 EMACS INSTALL:
 
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
@@ -92,13 +100,12 @@ def run_py_code():
     (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
     start = time.time()
     res = ''
-    try: 
-        with capture_output() as io:
-            res = kernel.shell.ex(content)
-        res = io.stdout
-    except:
-        etype, value, tb = kernel.shell._get_exc_info(None)
-        res = str(etype) + " " + str(value) + "\n"
+    with capture_output() as io:
+        ip.run_cell(content)
+    res = io.stdout
+    if kernel.shell.last_outflag:
+        etype, value, tb = kernel.shell._get_exc_info()
+        res = str(etype) + " " + str(value)  + "\n"        
     elapsed = (time.time() - start)
     # replace this unnecessary message so output becomes blank
     if res and len(res) > 0:  # if result not empty
