@@ -101,10 +101,9 @@ def run_py_code():
         res = str(etype) + " " + str(value) + "\n"
     elapsed = (time.time() - start)
     # replace this unnecessary message so output becomes blank
-    if res:
-        if len(res) > 0: # if result not empty
-            res = res.replace("Populating the interactive namespace from numpy and matplotlib\n","")
-            display_results(block_end, res) # display it
+    if res and len(res) > 0:  # if result not empty
+        res = res.replace("Populating the interactive namespace from numpy and matplotlib\n","")
+        display_results(block_end, res) # display it
     lisp.goto_char(remember_where)
     lisp.message("Ran in " + str(elapsed) + " seconds")
 
