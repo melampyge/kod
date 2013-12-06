@@ -5,16 +5,6 @@ pytexipy-notebook connects to an inprocess ipython kernel, executes
 notebook code, and displays the results automatically in a LaTeX
 buffer.
 
-HACK:
-
-You must install ipython FROM ITS SOURCES, and add one line before you
-build and install. Go to IPYTHON/IPython/core/interactiveshell.py and
-under method "def run_code(self, code_obj)", add "self.last_outflag =
-outflag" right before "return outflag" is executed. This had to be
-done because there is no other way (I could find) to detect an
-error. shell._get_exc_info gives the error message, but this error
-messages persists until the *next error*. 
-
 EMACS INSTALL:
 
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
@@ -39,7 +29,6 @@ already exists there, it will be refreshed. If not, it will be added.
 LIMITATIONS:
 
 * For now, there is one kernel per Emacs session.
-* Also, see HACK session above.
 
 '''
 
@@ -102,18 +91,20 @@ def run_py_code():
                 
     (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
     start = time.time()
-    with capture_output() as io: ip.run_cell(content)
-    result = ''
-    if kernel.shell.last_outflag:
+    res = ''
+    try: 
+        with capture_output() as io:
+            res = kernel.shell.ex(content)
+        res = io.stdout
+    except:
         etype, value, tb = kernel.shell._get_exc_info(None)
-        result = str(etype) + " " + str(value) + "\n"
-    else:
-        result = io.stdout    
+        res = str(etype) + " " + str(value) + "\n"
     elapsed = (time.time() - start)
     # replace this unnecessary message so output becomes blank
-    result = result.replace("Populating the interactive namespace from numpy and matplotlib\n","")
-    if len(result) > 0: # if result not empty
-        display_results(block_end, result) # display it
+    if res:
+        if len(res) > 0: # if result not empty
+            res = res.replace("Populating the interactive namespace from numpy and matplotlib\n","")
+            display_results(block_end, res) # display it
     lisp.goto_char(remember_where)
     lisp.message("Ran in " + str(elapsed) + " seconds")
 
