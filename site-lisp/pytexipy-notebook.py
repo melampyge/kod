@@ -45,12 +45,21 @@ from StringIO import StringIO
 from IPython.kernel.inprocess.blocking import BlockingInProcessKernelClient
 from IPython.kernel.inprocess.manager import InProcessKernelManager
 from IPython.kernel.inprocess.ipkernel import InProcessKernel
+from IPython.core.interactiveshell import InteractiveShell
 from IPython.utils.io import capture_output
 
 from Pymacs import lisp
 import re, sys, time, os
 interactions = {}
 kernels = {}
+
+def decorated_run_code(fn):
+    def new_run_code(*args, **kwargs):
+        res = fn(*args, **kwargs)
+        setattr(args[0], "last_known_outflag", res)
+        return res
+    return new_run_code
+InteractiveShell.run_code = decorated_run_code(InteractiveShell.run_code)    
 
 def get_kernel_pointer(buffer):
     lisp.message("getting kernel for " + buffer)
@@ -103,7 +112,7 @@ def run_py_code():
     with capture_output() as io:
         ip.run_cell(content)
     res = io.stdout
-    if kernel.shell.last_outflag:
+    if kernel.shell.last_known_outflag:
         etype, value, tb = kernel.shell._get_exc_info()
         res = str(etype) + " " + str(value)  + "\n"        
     elapsed = (time.time() - start)
