@@ -51,6 +51,12 @@ def decorated_run_code(fn):
         setattr(args[0], "last_known_outflag", res)
         return res
     return new_run_code
+
+# wrapping run_code method inside InteractiveShell, we trap the return
+# code here which is 1 for failure, 0 for good, there was no other
+# way to sense an error for its callers. _get_exc_info is no good,
+# because it will keep returning the same errors until the next error
+# resets its state. 
 InteractiveShell.run_code = decorated_run_code(InteractiveShell.run_code)    
 
 def get_kernel_pointer(buffer):
