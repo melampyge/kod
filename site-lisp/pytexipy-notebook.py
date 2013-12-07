@@ -5,14 +5,6 @@ pytexipy-notebook connects to an inprocess ipython kernel, executes
 notebook code, and displays the results automatically in a LaTeX
 buffer.
 
-HACK:
-
-IPYTHON SOURCE NEEDS TO BE CHANGED. Requires "self.last_outflag =
-outflag" statement to be added in "def run_code(self, code_obj)" right
-before the "return outflag". Otherwise there is no way to know if
-last statement was successful or not. _get_exc_info() is not useful
-because it keeps the same error _until the next error occurs_. 
-
 EMACS INSTALL:
 
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
