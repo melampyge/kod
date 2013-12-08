@@ -121,8 +121,6 @@ def run_py_code():
     # command.
     
     bc = get_buffer_content_prev(block_begin)
-    fout = open("/tmp/out", "w")
-    fout.write(bc); fout.close()
     plt_count_before = len(re.findall('plt\.plot\(\)',bc))
     lisp.message("plts before="+str(plt_count_before))
                 
