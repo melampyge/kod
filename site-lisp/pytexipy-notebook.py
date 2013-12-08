@@ -139,7 +139,7 @@ def run_py_code():
     lisp.message(rpl)
     show_replaced = True if "plt.show()" in content else False
     content=content.replace("plt.show()",rpl)
-    include_graphics_command = "\\includegraphics[height=4cm]{%s}" % f
+    include_graphics_command = "\\includegraphics[height=6cm]{%s}" % f
 
     (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
     start = time.time()
