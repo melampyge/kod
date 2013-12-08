@@ -1,34 +1,41 @@
 '''
-DESCRIPTION:
+DESCRIPTION
 
 pytexipy-notebook connects to an inprocess ipython kernel, executes
 notebook code, and displays the results automatically in a LaTeX
 buffer.
 
-EMACS INSTALL:
+EMACS INSTALL
 
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
 (global-set-key [f1] 'pytexipy-notebook-run-py-code) ; choose any key you like
 
-**For minted-TeX integration** Add this to your custom-set-variables (
-
+For minted-TeX integration, add this to your custom-set-variables
 '(preview-LaTeX-command (quote ("%`%l -shell-escape \"\\nonstopmode\\nofiles\\PassOptionsToPackage{"
 ("," . preview-required-option-list) "}{preview}\\AtBeginDocument{\\ifx\\ifPreview\\undefined"
-preview-default-preamble "\\fi}\"%' %t")))
+ preview-default-preamble "\\fi}\"%' %t")))
 
-When you are in \begin{minted}{python} and \end{minted} blocks, hit f1
-and all code in that block will be sent to a ipython kernel and the
-result will be displayed underneath. If we are on
-\inputminted{python}{file.py} block, Python code will be loaded from
-script filename found between curly braces.
+FEATURES
+
+1) When you are in \begin{minted}{python} and \end{minted} blocks,
+call 'pytexipy-notebook-run-py-code, and all code in that block will
+be sent to a ipython kernel and the result will be displayed
+underneath. If on \inputminted{python}{file.py} block, code will be
+loaded from script filename between the curly braces.
 
 Results will be placed in \begin{verbatim}, \end{verbatim} blocks
 right next to the code, with one space in between. If a verbatim blocks
 already exists there, it will be refreshed. If not, it will be added.
 
+2) If plt.show() is detected in code block, all previous code in
+buffer will be scanned for plt.savefig(..) commands. Say there were 5
+of them, in this case show() will be replaced with
+plt.savefig('[file]_6.png').
+
 LIMITATIONS:
 
-* For now, there is one kernel per Emacs session.
+* For now, there is one kernel per Emacs session. For another kernel
+  with another scope, a new Emacs process needs to spawned.
 
 '''
 
