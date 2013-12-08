@@ -119,10 +119,14 @@ def run_py_code():
     # the .png image file, i.e. [buffer name]_[index].png. plt.plot()
     # commands will be replaced by the corresponding plt.savefig
     # command.
-    
+
+    # generate savefig
     bc = get_buffer_content_prev(block_begin)
-    plt_count_before = len(re.findall('plt\.plot\(\)',bc))
-    lisp.message("plts before="+str(plt_count_before))
+    plt_count_before = len(re.findall('plt\.show\(\)',bc))
+    base = os.path.splitext(lisp.buffer_name())[0]
+    rpl = "plt.savefig('%s_%d.png')" % (base, plt_count_before+1)
+    lisp.message(rpl)
+    content=content.replace("plt.show()",rpl)
                 
     (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
     start = time.time()
