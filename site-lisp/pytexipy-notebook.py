@@ -130,7 +130,9 @@ def run_py_code():
     f = '%s_%s.png' % (base, two_digit(plt_count_before+1))
     rpl = "plt.savefig('%s')" % f
     lisp.message(rpl)
+    show_replaced = True if "plt.show()" in content else False
     content=content.replace("plt.show()",rpl)
+    lisp.replace_string("plt.show()",rpl,None,block_begin,block_end)
     include_graphics_command = "\\includegraphics[height=4cm]{%s}" % f
 
     (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
@@ -149,10 +151,11 @@ def run_py_code():
         display_results(block_end, res) # display it
 
     # generate includegraphics command
-    lisp.forward_line(3) # skip over end verbatim, leave one line emtpy
-    lisp.insert(include_graphics_command + '\n')
-    lisp.backward_line_nomark(1) # skip over end verbatim, leave one line emtpy
-    lisp.preview_at_point()
+    if show_replaced:
+        lisp.forward_line(3) # skip over end verbatim, leave one line emtpy
+        lisp.insert(include_graphics_command + '\n')
+        lisp.backward_line_nomark(1) # skip over end verbatim, leave one line emtpy
+        lisp.preview_at_point()        
         
     lisp.goto_char(remember_where)
     lisp.message("Ran in " + str(elapsed) + " seconds")
