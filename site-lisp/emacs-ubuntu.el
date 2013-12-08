@@ -943,7 +943,7 @@ This command does not push erased text to kill-ring."
 ;;
 ;;(global-set-key "\M-\d" 'save-buffers-kill-emacs)
 ;;(global-set-key [f1] 'run-unit-test)
-(global-set-key [f1] 'tempo-template-tex-partial-derivative)
+(global-set-key [f1] 'tempo-template-tex-listings-python)
 (global-set-key [f2] 'tempo-template-verb)
 (global-set-key [f4] 'tempo-template-tex-equation)
 (global-set-key [f6] 'reload-all-buffers)
