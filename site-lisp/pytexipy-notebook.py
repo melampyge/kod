@@ -8,7 +8,7 @@ buffer.
 INSTALL
 
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
-(global-set-key [f1] 'pytexipy-notebook-run-py-code) ; choose any key you like
+(global-set-key [f1] 'pytexipy-notebook-run-py-code) ; or choose any key you like
 
 For minted-TeX integration, add this to your custom-set-variables
 '(preview-LaTeX-command (quote ("%`%l -shell-escape \"\\nonstopmode\\nofiles\\PassOptionsToPackage{"
@@ -130,13 +130,12 @@ def run_py_code():
     # commands will be replaced by the corresponding plt.savefig
     # command.
 
-    # generate savefig
+    # generate savefig for execution code (no output in emacs yet)
     bc = get_buffer_content_prev(block_begin)
     plt_count_before = len(re.findall('plt\.savefig\(',bc))
     base = os.path.splitext(lisp.buffer_name())[0]
     f = '%s_%s.png' % (base, two_digit(plt_count_before+1))
     rpl = "plt.savefig('%s')" % f
-    lisp.message(rpl)
     show_replaced = True if "plt.show()" in content else False
     content=content.replace("plt.show()",rpl)
     include_graphics_command = "\\includegraphics[height=6cm]{%s}" % f
@@ -155,16 +154,19 @@ def run_py_code():
     if res and len(res) > 0:  # if result not empty
         res = res.replace("Populating the interactive namespace from numpy and matplotlib\n","")
         display_results(block_end, res) # display it
+    else:
+        lisp.goto_char(block_end)
 
     # generate includegraphics command
     if show_replaced:
         lisp.forward_line(2) # skip over end verbatim, leave one line emtpy
         lisp.insert(include_graphics_command + '\n')
-        lisp.backward_line_nomark(1) # skip over end verbatim, leave one line emtpy
+        lisp.backward_line_nomark(1) # skip over end verbatim, leave one line emtpy        
+        lisp.goto_char(remember_where)
+        lisp.replace_string("plt.show()",rpl,None,block_begin,block_end)
         
     lisp.goto_char(remember_where)
-    lisp.replace_string("plt.show()",rpl,None,block_begin,block_end)
-    lisp.goto_char(remember_where)
+    lisp.preview_buffer()
     
     lisp.message("Ran in " + str(elapsed) + " seconds")
 
