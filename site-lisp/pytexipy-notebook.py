@@ -82,7 +82,14 @@ def get_block_content(start_tag, end_tag):
     content = re.sub("\\\\end{minted}","",content)
     lisp.goto_char(remember_where)
     return block_begin, block_end, content
-    
+
+def get_buffer_content_prev(bend):
+    where_am_i = lisp.point()
+    lisp.beginning_of_buffer(); st = lisp.point()
+    s = lisp.buffer_substring(st,bend)
+    lisp.goto_char(where_am_i)
+    return s
+
 def run_py_code():
     remember_where = lisp.point()
     # check if the line contains \inputminted
@@ -106,13 +113,19 @@ def run_py_code():
 
     # we have code content at this point
 
-    # scan the content to process plt.plot() commands, they will be
-    # replaced by plt.savefig commands
-
-    pic_idx = 0
-    for i in range(len(re.find('plt.plot', content))):
-        
-        
+    # scan content to find plt.plot(). if there is, scan buffer
+    # previous to *here* to determine order of _this_ plt.plot(), and
+    # give it an appropiate index that will be appended to the end of
+    # the .png image file, i.e. [buffer name]_[index].png. plt.plot()
+    # commands will be replaced by the corresponding plt.savefig
+    # command.
+    
+    bc = get_buffer_content_prev(block_begin)
+    fout = open("/tmp/out", "w")
+    fout.write(bc); fout.close()
+    plt_count_before = len(re.findall('plt\.plot\(\)',bc))
+    lisp.message("plts before="+str(plt_count_before))
+                
     (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
     start = time.time()
     res = ''
@@ -145,6 +158,7 @@ def display_results(end_block, res):
     else:
         lisp.backward_line_nomark(1)
         lisp.insert("\n")
+    res=res.replace("\r","")
     lisp.insert("\\begin{verbatim}\n")
     lisp.insert(res)
     lisp.insert("\\end{verbatim}")
