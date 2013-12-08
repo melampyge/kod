@@ -10,7 +10,7 @@ EMACS INSTALL:
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
 (global-set-key [f1] 'pytexipy-notebook-run-py-code) ; choose any key you like
 
-Add this to your (custom-set-variables
+**For minted-TeX integration** Add this to your custom-set-variables (
 
 '(preview-LaTeX-command (quote ("%`%l -shell-escape \"\\nonstopmode\\nofiles\\PassOptionsToPackage{"
 ("," . preview-required-option-list) "}{preview}\\AtBeginDocument{\\ifx\\ifPreview\\undefined"
@@ -125,12 +125,14 @@ def run_py_code():
 
     # generate savefig
     bc = get_buffer_content_prev(block_begin)
-    plt_count_before = len(re.findall('plt\.show\(\)',bc))
+    plt_count_before = len(re.findall('plt\.savefig\(',bc))
     base = os.path.splitext(lisp.buffer_name())[0]
-    rpl = "plt.savefig('%s_%s.png')" % (base, two_digit(plt_count_before+1))
+    f = '%s_%s.png' % (base, two_digit(plt_count_before+1))
+    rpl = "plt.savefig('%s')" % f
     lisp.message(rpl)
     content=content.replace("plt.show()",rpl)
-                
+    include_graphics_command = "\\includegraphics[height=4cm]{%s}" % f
+
     (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
     start = time.time()
     res = ''
@@ -145,6 +147,13 @@ def run_py_code():
     if res and len(res) > 0:  # if result not empty
         res = res.replace("Populating the interactive namespace from numpy and matplotlib\n","")
         display_results(block_end, res) # display it
+
+    # generate includegraphics command
+    lisp.forward_line(3) # skip over end verbatim, leave one line emtpy
+    lisp.insert(include_graphics_command + '\n')
+    lisp.backward_line_nomark(1) # skip over end verbatim, leave one line emtpy
+    lisp.preview_at_point()
+        
     lisp.goto_char(remember_where)
     lisp.message("Ran in " + str(elapsed) + " seconds")
 
