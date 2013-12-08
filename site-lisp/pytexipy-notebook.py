@@ -5,7 +5,7 @@ pytexipy-notebook connects to an inprocess ipython kernel, executes
 notebook code, and displays the results automatically in a LaTeX
 buffer.
 
-EMACS INSTALL
+INSTALL
 
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
 (global-set-key [f1] 'pytexipy-notebook-run-py-code) ; choose any key you like
