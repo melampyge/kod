@@ -45,6 +45,9 @@ import re, sys, time, os
 interactions = {}
 kernels = {}
 
+# make digits into length two - i.e. 1 into 01
+def two_digit(i): return "0"+str(i) if i < 10 else str(i)
+
 def decorated_run_code(fn):
     def new_run_code(*args, **kwargs):
         res = fn(*args, **kwargs)
@@ -124,7 +127,7 @@ def run_py_code():
     bc = get_buffer_content_prev(block_begin)
     plt_count_before = len(re.findall('plt\.show\(\)',bc))
     base = os.path.splitext(lisp.buffer_name())[0]
-    rpl = "plt.savefig('%s_%d.png')" % (base, plt_count_before+1)
+    rpl = "plt.savefig('%s_%s.png')" % (base, two_digit(plt_count_before+1))
     lisp.message(rpl)
     content=content.replace("plt.show()",rpl)
                 
