@@ -47,7 +47,6 @@ from IPython.kernel.inprocess.ipkernel import InProcessKernel
 from IPython.core.interactiveshell import InteractiveShell
 from IPython.utils.io import capture_output
 
-from threading import Thread
 from Pymacs import lisp
 import re, sys, time, os
 interactions = {}
