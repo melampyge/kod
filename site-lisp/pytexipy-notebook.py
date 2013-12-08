@@ -47,6 +47,7 @@ from IPython.kernel.inprocess.ipkernel import InProcessKernel
 from IPython.core.interactiveshell import InteractiveShell
 from IPython.utils.io import capture_output
 
+from threading import Thread
 from Pymacs import lisp
 import re, sys, time, os
 interactions = {}
@@ -139,7 +140,6 @@ def run_py_code():
     lisp.message(rpl)
     show_replaced = True if "plt.show()" in content else False
     content=content.replace("plt.show()",rpl)
-    lisp.replace_string("plt.show()",rpl,None,block_begin,block_end)
     include_graphics_command = "\\includegraphics[height=4cm]{%s}" % f
 
     (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
@@ -159,12 +159,14 @@ def run_py_code():
 
     # generate includegraphics command
     if show_replaced:
-        lisp.forward_line(3) # skip over end verbatim, leave one line emtpy
+        lisp.forward_line(2) # skip over end verbatim, leave one line emtpy
         lisp.insert(include_graphics_command + '\n')
         lisp.backward_line_nomark(1) # skip over end verbatim, leave one line emtpy
-        lisp.preview_at_point()        
         
     lisp.goto_char(remember_where)
+    lisp.replace_string("plt.show()",rpl,None,block_begin,block_end)
+    lisp.goto_char(remember_where)
+    
     lisp.message("Ran in " + str(elapsed) + " seconds")
 
 def display_results(end_block, res):
