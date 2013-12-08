@@ -103,7 +103,16 @@ def run_py_code():
     else:
         # get code content from latex
         block_begin,block_end,content = get_block_content("\\begin{minted}","\\end{minted}")
-                
+
+    # we have code content at this point
+
+    # scan the content to process plt.plot() commands, they will be
+    # replaced by plt.savefig commands
+
+    pic_idx = 0
+    for i in range(len(re.find('plt.plot', content))):
+        
+        
     (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
     start = time.time()
     res = ''
