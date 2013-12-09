@@ -5,8 +5,8 @@ import os
 
 hatdict = {}
 
-infile = open("../../res/raw/durakhat")
-outfile = open("../../res/raw/hatlar", "w")
+infile = open("/tmp/durakhat")
+outfile = open("/tmp/hatlar", "w")
 for line in infile.readlines():    
     tokens = line.split(":")
     hatlar = tokens[1:len(tokens)]

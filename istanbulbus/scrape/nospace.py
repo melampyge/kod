@@ -3,8 +3,8 @@ import urllib
 import re
 import os
 
-infile = open("../../res/raw/hatdetaydurakutf")
-outfile = open("../../res/raw/hatdetayduraknospaceutf", "w")
+infile = open("/tmp/hatdetaydurakutf")
+outfile = open("/tmp/hatdetayduraknospaceutf", "w")
 for line in infile.readlines():    
     if (line != "\n"):
         outfile.write(line)

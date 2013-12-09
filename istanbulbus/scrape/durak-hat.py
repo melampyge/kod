@@ -3,9 +3,9 @@ import urllib
 import re
 import os
 
-outfile = open ("../../res/raw/durakhat", "w")
+outfile = open ("/tmp/durakhat", "w")
 
-infile = open("../../res/raw/duraklar")
+infile = open("/tmp/duraklar")
 for line in infile.readlines():
     durak = line.split(":")[0]
     url2 = "http://www.iett.gov.tr/saat/orer.php?hid=durakhat&durak=" + durak

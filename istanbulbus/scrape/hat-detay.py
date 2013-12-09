@@ -3,8 +3,8 @@ import urllib
 import re
 import os
 
-infile = open("../../res/raw/hatlar")
-outfile = open("../../res/raw/hatdetay", "w")
+infile = open("/tmp/hatlar")
+outfile = open("/tmp/hatdetay", "w")
 
 
 for hat in infile.readlines():

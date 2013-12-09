@@ -4,8 +4,8 @@ import urllib
 import re
 import os
 
-infile = open("../../res/raw/hatlar")
-outfile = open("../../res/raw/hatdetaydurak", "w")
+infile = open("/tmp/hatlar")
+outfile = open("/tmp/hatdetaydurak", "w")
 
 duraks = {}
 

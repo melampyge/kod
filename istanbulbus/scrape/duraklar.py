@@ -3,7 +3,7 @@ import urllib
 import re
 import os
 
-out = open ("../../res/raw/duraklar", "w")
+out = open ("/tmp/duraklar", "w")
 
 for letter in ['A', 'B', 'C', '%C7', 'D', 'E', 'F', 
                'G', 'H', 'I', '%DD', 'J', 'K', 'L', 
