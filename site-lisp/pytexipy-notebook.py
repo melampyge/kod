@@ -166,7 +166,7 @@ def run_py_code():
         lisp.replace_string("plt.show()",rpl,None,block_begin,block_end)
         
     lisp.goto_char(remember_where)
-    lisp.preview_buffer()
+    if "plt.savefig" in content: lisp.preview_buffer()
     
     lisp.message("Ran in " + str(elapsed) + " seconds")
 
