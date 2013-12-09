@@ -230,15 +230,10 @@ This command does not push erased text to kill-ring."
    ["Open Shell In Current Dir..." open-cmd-in-current-dir]   
    ["Open Explorer In Current Dir..." open-explorer-in-current-dir]   
    ["Notebook Server..." open-notebook-in-current-dir]
-   ["Ein Execute All Cells..." ein:worksheet-execute-all-cell]
    ["Refresh..." revert-buffer]
    ["Emacs Derle" byte-me]
    ["Ready for Blog" ready-for-blog]   
-   "--"
    ["Git Show Older Version" githist-do-show-version]
-   ["Test Current..." run-unit-test]
-   ["Test All..." (alternative-compile "ant -find build.xml -emacs test ")]
-   "--"
    ["Repeat Last Command..." repeat-complex-command]   
    ))
 (easy-menu-add my-jde-mode-menu)
@@ -899,8 +894,6 @@ This command does not push erased text to kill-ring."
 (global-set-key "\M-r" 'isearch-backward)
 (global-set-key "\C-x\C-i" 'tempo-template-py-debug-var)
 (global-set-key "\M-s" 'isearch-forward)
-(global-set-key "\C-c\C-k" 'cleanup)
-(global-set-key "\C-c\C-r" 'repeat-complex-command)
 (global-set-key "\M-[" 'fill-paragraph)
 (global-set-key "\M-'" 'comment-region)
 ;;(global-set-key "\M-"  'beginning-of-buffer)
@@ -942,7 +935,6 @@ This command does not push erased text to kill-ring."
 ;; define F keys
 ;;
 ;;(global-set-key "\M-\d" 'save-buffers-kill-emacs)
-;;(global-set-key [f1] 'run-unit-test)
 (global-set-key [f1] 'tempo-template-tex-listings-python)
 (global-set-key [f2] 'tempo-template-verb)
 (global-set-key [f4] 'tempo-template-tex-equation)
