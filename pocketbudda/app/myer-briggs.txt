@@ -172,6 +172,7 @@ ENTP:Jeremy Clarkson -
 ENTP:Niall Ferguson -
 ENTP:Steven Pinker -
 ENTP:George Bernard Shaw -
+ENTP:Linus Torvalds - 
 #####################################################################
 ESFJ:Colin Powell - former U.S. Secretary of State
 ESFJ:Barbara Walters -

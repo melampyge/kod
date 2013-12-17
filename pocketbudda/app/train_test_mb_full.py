@@ -9,7 +9,7 @@ if __name__ == '__main__':
     print calculate.calculate_mbti_full(res); print res
 
     #res =  calculate.calculate('19451005')    
-    #res =  calculate.calculate('19490222')
+    res =  calculate.calculate('19490222')
     #res =  calculate.calculate('19820108')
     
     #res =  calculate.calculate('19610804') # barack obama
@@ -35,7 +35,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19790213') # breivik
     #res =  calculate.calculate('19551028') # bill gates
     #res =  calculate.calculate('19601014') # perihan magden
-    res =  calculate.calculate('19550804') # serdar turgut
+    #res =  calculate.calculate('19550804') # serdar turgut
     #res =  calculate.calculate('19640120') # fareed zakaria
     #res =  calculate.calculate('19690216') # prashanth
     #res =  calculate.calculate('19741016') # yannos
@@ -73,7 +73,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19590308') # emre akoz
     #res =  calculate.calculate('19460801') # taha akyol
     #res =  calculate.calculate('19480921') # cengiz candar
-    res =  calculate.calculate('19470827') # halil berktay
+    #res =  calculate.calculate('19470827') # halil berktay
     #res =  calculate.calculate('19470521') # ilber ortayli
     #res =  calculate.calculate('19420316') # murat belge
     #res =  calculate.calculate('19420215') # mehmet barlas
@@ -106,14 +106,13 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19650404') # cemalettin tasci
     #res =  calculate.calculate('19610506') # george clooney
     #res =  calculate.calculate('19910916') # her
-    #res =  calculate.calculate('19451005') # baba
     #res =  calculate.calculate('19871027') # irem
     #res =  calculate.calculate('19200701') # sabahattin dede
     #res =  calculate.calculate('19570310') # bin laden
     #res =  calculate.calculate('19540609') # dkal
     #res =  calculate.calculate('19440715') # glenn morris
     #res =  calculate.calculate('19440404') # mantak chia
-    #res =  calculate.calculate('19730729') # pat
+    #res =  calculate.calculate('19730729') # spat
     #res =  calculate.calculate('19701008') # damon
     #res =  calculate.calculate('19460524') # tansu ciller
     #res =  calculate.calculate('19490726') # thaksin
