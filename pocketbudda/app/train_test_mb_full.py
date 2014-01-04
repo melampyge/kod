@@ -122,8 +122,9 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19561015') # sarigul
     #res =  calculate.calculate('19471122') # pamukoglu
     #res =  calculate.calculate('19780317') # yogur
-    res =  calculate.calculate('19460810') # olaciner
-    
+    #res =  calculate.calculate('19460810') # olaciner
+    res =  calculate.calculate('18470211') # edison
+
     print calculate.calculate_mbti_full(res); print res
  
     
