@@ -7,14 +7,33 @@ from math import log
 import operator
 
 def createDataSet():
-    dataSet = [[1, 1, 'yes'],
-               [1, 1, 'yes'],
-               [1, 0, 'no'],
-               [0, 1, 'no'],
-               [0, 1, 'no']]
+    dataSet = [['1', '1', 'yes'],
+               ['1', '1', 'yes'],
+               ['1', '0', 'no'],
+               ['0', '1', 'no'],
+               ['0', '1', 'no']]
     labels = ['no surfacing','flippers']
     #change to discrete values
     return dataSet, labels
+
+def data():
+    data = [
+        ['EVET','HAYIR','HAYIR','EVET','BIRAZ','DDD','HAYIR','EVET','FRANSIZ','0','EVET'],
+        ['EVET','HAYIR','HAYIR','EVET','DOLU','D','HAYIR','HAYIR','TAYLAND','30','HAYIR'],
+        ['HAYIR','EVET','HAYIR','HAYIR','BIRAZ','D','HAYIR','HAYIR','KEBAP','0','EVET'],
+        ['EVET','HAYIR','EVET','EVET','DOLU','D','EVET','HAYIR','TAYLAND','10','EVET'],
+        ['EVET','HAYIR','EVET','HAYIR','DOLU','DDD','HAYIR','EVET','FRANSIZ','60','HAYIR'],
+        ['HAYIR','EVET','HAYIR','EVET','BIRAZ','DD','EVET','EVET','ITALYAN','0','EVET'],
+        ['HAYIR','EVET','HAYIR','HAYIR','HIC','D','EVET','HAYIR','KEBAP','0','HAYIR'],
+        ['HAYIR','HAYIR','HAYIR','EVET','BIRAZ','DD','EVET','EVET','TAYLAND','0','EVET'],
+        ['HAYIR','EVET','EVET','HAYIR','DOLU','D','EVET','HAYIR','KEBAP','60','HAYIR'],
+        ['EVET','EVET','EVET','EVET','DOLU','DDD','HAYIR','EVET','ITALYAN','10','HAYIR'],
+        ['HAYIR','HAYIR','HAYIR','HAYIR','HIC','D','HAYIR','HAYIR','TAYLAND','0','HAYIR'],
+        ['EVET','EVET','EVET','EVET','DOLU','D','HAYIR','HAYIR','KEBAP','30','EVET']
+        ]
+    labels = ['BASKA','BAR','HAFTASONU','ACMIYIZ','MUSTERILER','FIYAT','YAGMUR','RESERVASYON','YEMEKTURU','BEKLEMESURESI']
+    return data, labels
+
 
 def calcShannonEnt(dataSet):
     numEntries = len(dataSet)
@@ -103,3 +122,9 @@ def grabTree(filename):
     fr = open(filename)
     return pickle.load(fr)
     
+
+dataSet, labels = data()
+tree = createTree(dataSet, labels)
+print tree
+import treePlotter
+treePlotter.createPlot(tree)

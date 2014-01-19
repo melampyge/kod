@@ -33,7 +33,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19341027') # strang        
     #res =  calculate.calculate('19340802') # oktay sinanoglu
     #res =  calculate.calculate('19790213') # breivik
-    #res =  calculate.calculate('19551028') # bill gates
+    res =  calculate.calculate('19551028') # bill gates
     #res =  calculate.calculate('19601014') # perihan magden
     #res =  calculate.calculate('19550804') # serdar turgut
     #res =  calculate.calculate('19640120') # fareed zakaria
@@ -81,7 +81,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19501230') # etyen mahcupyan
     #res =  calculate.calculate('19300720') # rahmi koc
     #res =  calculate.calculate('19520607') # orhan pamuk
-    res =  calculate.calculate('19410427') # fetullah gulen
+    #res =  calculate.calculate('19410427') # fetullah gulen
     #res =  calculate.calculate('19311202') # masaaki hatsumi
     #res =  calculate.calculate('19480525') # bulent arinc
     #res =  calculate.calculate('19540717') # merkel
