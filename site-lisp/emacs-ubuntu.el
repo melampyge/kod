@@ -272,6 +272,7 @@ This command does not push erased text to kill-ring."
    ["Tex Verbatim" tempo-template-tex-verbatim-big]
    ["Tex Enumerate" tempo-template-tex-enumerate]
    ["Tex Matrix" tempo-template-tex-matrix]
+   ["Tex Partial Derivative" tempo-template-tex-partial-derivative]
    ["Tex Function In Pieces" tempo-template-tex-function-in-pieces]
    ["Tex Multiline Equation" tempo-template-equation-multiline]
    ["Tex Numbered Equation" tempo-template-tex-eqnarray]
