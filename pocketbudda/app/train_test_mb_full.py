@@ -124,6 +124,7 @@ if __name__ == '__main__':
     #res =  calculate.calculate('19780317') # yogur
     #res =  calculate.calculate('19460810') # olaciner
     #res =  calculate.calculate('18470211') # edison
+    res =  calculate.calculate('19761011') # sal khan
 
     print calculate.calculate_mbti_full(res); print res
  
