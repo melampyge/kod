@@ -17,7 +17,7 @@ For minted-TeX integration, add this to your custom-set-variables
 
 FEATURES
 
-1) When you are in \begin{minted}{python} and \end{minted} blocks,
+1) When you are in \begin{minted} and \end{minted} blocks,
 call 'pytexipy-notebook-run-py-code, and all code in that block will
 be sent to a ipython kernel and the result will be displayed
 underneath. If on \inputminted{python}{file.py} block, code will be
@@ -88,7 +88,7 @@ def get_block_content(start_tag, end_tag):
     block_end = lisp.search_forward(end_tag)
     block_begin = lisp.search_backward(start_tag)
     content = lisp.buffer_substring(block_begin, block_end)
-    content = re.sub("\\\\begin{minted}{python}","",content)
+    content = re.sub("\\\\begin{minted}.*?{python}","",content)
     content = re.sub("\\\\end{minted}","",content)
     lisp.goto_char(remember_where)
     return block_begin, block_end, content
@@ -121,6 +121,8 @@ def run_py_code():
         # get code content from latex
         block_begin,block_end,content = get_block_content("\\begin{minted}","\\end{minted}")
 
+    #lisp.message(content)
+        
     # we have code content at this point
 
     # scan content to find plt.plot(). if there is, scan buffer
