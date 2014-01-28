@@ -732,7 +732,7 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "tex-listings-python-file" 
- '("\\inputminted{python}{"
+ '("\\inputminted[fontsize=\\footnotesize]{python}{"
    (s)
    ".py}"
    )
@@ -740,7 +740,7 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "tex-listings-python" 
- '("\\begin{minted}{python}\n"
+ '("\\begin{minted}[fontsize=\\footnotesize]{python}\n"
    (s)
    "\n\\end{minted}\n"
    )
