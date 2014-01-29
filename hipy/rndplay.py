@@ -8,7 +8,7 @@ while True:
     print "Music Dir", sys.argv[1]
     list = glob.glob(sys.argv[1])
     print '\n'
-    idx = int(random.random() * len(list))
+    idx = random.choice(range(len(list)))
     print "# of songs", len(list), 
     "song idx selected", idx, 
     "song", list[idx]
