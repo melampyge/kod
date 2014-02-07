@@ -4,6 +4,8 @@ import glob, os, random, sys
 import threading
 import select
 
+fout = open("/tmp/rndplay.out","w")
+
 while True:
     print "Music Dir", sys.argv[1]
     list = glob.glob(sys.argv[1])
@@ -12,6 +14,8 @@ while True:
     print "# of songs", len(list), 
     "song idx selected", idx, 
     "song", list[idx]
+    fout.write(str(list[idx]) + "\n")
+    fout.flush()
     print '\n'
     os.system("mplayer '%s'" % list[idx] )
     print "Delete? (Press d for delete)..."
