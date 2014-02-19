@@ -378,6 +378,12 @@ This command does not push erased text to kill-ring."
   )
 (add-hook 'shell-mode-hook 'my-shell-mode-common-hook)
 
+
+(defun my-doc-view-mode-hook () 
+  (local-set-key [?\M-m] 'doc-view-next-page)
+)
+(add-hook 'doc-view-mode-hook 'my-doc-view-mode-hook)
+
 ;;
 ;; Byte compiles the _emacs file, saves it as _emacs.elc, and re-loads
 ;; it too.
