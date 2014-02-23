@@ -157,6 +157,7 @@ def run_py_code():
         res = res.replace("Populating the interactive namespace from numpy and matplotlib\n","")
         display_results(block_end, res) # display it
     else:
+        display_results(block_end, "") # display it
         lisp.goto_char(block_end)
 
     # generate includegraphics command
@@ -184,6 +185,7 @@ def display_results(end_block, res):
         verb_begin,verb_end,content = get_block_content("\\begin{verbatim}","\\end{verbatim}")
         lisp.delete_region(verb_begin, verb_end)
         lisp.goto_char(verb_begin)
+        if res == "": return
     else:
         lisp.backward_line_nomark(1)
         lisp.insert("\n")
