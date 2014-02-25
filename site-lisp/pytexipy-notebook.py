@@ -157,7 +157,7 @@ def run_py_code():
         res = res.replace("Populating the interactive namespace from numpy and matplotlib\n","")
         display_results(block_end, res) # display it
     else:
-        display_results(block_end, "") # display it
+        display_results(block_end, "") 
         lisp.goto_char(block_end)
 
     # generate includegraphics command
@@ -173,25 +173,40 @@ def run_py_code():
     
     lisp.message("Ran in " + str(elapsed) + " seconds")
 
-def display_results(end_block, res):
-    lisp.goto_char(end_block)
+def verb_exists():
+    remem = lisp.point()
     lisp.forward_line(2)
     lisp.beginning_of_line()
     verb_line_b = lisp.point()
     lisp.end_of_line()
     verb_line_e = lisp.point()
     verb_line = lisp.buffer_substring(verb_line_b, verb_line_e)
-    if "\\begin{verbatim}" in verb_line:
+    lisp.goto_char(remem)
+    if "\\begin{verbatim}" in verb_line: return True
+    else: return False
+    
+def display_results(end_block, res):
+    remem = lisp.point()
+    res=res.replace("\r","")
+    lisp.goto_char(end_block)
+    verb_begin = None
+    # if there is output block, remove it whether there output or not
+    # because it will be replaced anyway if something exists
+    if verb_exists():
         verb_begin,verb_end,content = get_block_content("\\begin{verbatim}","\\end{verbatim}")
         lisp.delete_region(verb_begin, verb_end)
-        lisp.goto_char(verb_begin)
-        if res == "": return
-    else:
-        lisp.backward_line_nomark(1)
-        lisp.insert("\n")
-    res=res.replace("\r","")
-    lisp.insert("\\begin{verbatim}\n")
-    lisp.insert(res)
-    lisp.insert("\\end{verbatim}")
+        lisp.goto_char(remem)
 
+    # now if there _is_ output, then go to beginning of old verbatim
+    # output (if removed), if not, this is brand new output, move
+    # down 2 lines, insert the output 
+    if res and len(res) > 0:
+        if verb_begin:
+            lisp.goto_char(verb_begin)
+        else:
+            lisp.forward_line(2)
+        lisp.insert("\\begin{verbatim}\n")
+        lisp.insert(res)
+        lisp.insert("\\end{verbatim}")
+                        
 interactions[run_py_code] = ''
