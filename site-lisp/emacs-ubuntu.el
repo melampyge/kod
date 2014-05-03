@@ -64,7 +64,7 @@ This command does not push erased text to kill-ring."
 
 
 (modify-coding-system-alist 'file "\\.pl\\'" 'latin-5)
-(modify-coding-system-alist 'file "\\.tex\\'" 'latin-5)
+(modify-coding-system-alist 'file "\\.tex\\'" 'raw-text)
 (modify-coding-system-alist 'file "\\.htm\\'" 'utf-8)
 (modify-coding-system-alist 'file "\\.xml\\'" 'utf-8)
 (modify-coding-system-alist 'file "\\.html\\'" 'utf-8)
@@ -1019,8 +1019,8 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Documents")
 (find-file-other-window "/home/burak/Documents/classnotes/app-math-tr")
 (find-file-other-window "/home/burak/Documents/classnotes/stat")
-(find-file-other-window "/home/burak/Documents/outfit")
 (find-file-other-window "/home/burak/Documents/outfit/ps-app-coruscant")
+(find-file-other-window "/home/burak/Documents/outfit/ps-ml-research")
 
 (switch-to-buffer "*scratch*")
 (delete-other-windows)
