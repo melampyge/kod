@@ -34,7 +34,7 @@ while True:
     T.setDaemon(1)
     T.start()
     T.join(int(sys.argv[2])) # wait for [arg] seconds
-    print ">>>>>>>>>" + k
+    print "\n>>>>>>>>>" + k
     if 'd' in k:
         print "deleting ===================> " +  list[idx]
         cmd = "rm '%s'" % list[idx]
