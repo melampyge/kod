@@ -17,7 +17,10 @@ while True:
     fout.write(str(list[idx]) + "\n")
     fout.flush()
     print '\n'
-    os.system("mplayer '%s'" % list[idx] )
+    if ".avi" in list[idx] or ".mp4" in list[idx]:
+        os.system("mplayer  -vf scale -zoom -xy 1100 '%s'" % list[idx] )
+    else:
+        os.system("mplayer '%s'" % list[idx] )
     print "Delete? (Press d for delete)..."
     k=""
     def input():
