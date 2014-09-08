@@ -152,14 +152,12 @@ def bfs_aug(G, H, s, t, f):
     return None, 0                              # No augmenting path found
 
 def test_ford_fulkerson():
-    """
-    >>> G = FF_SIMPLE_GRAPH
-    >>> f = ford_fulkerson(G, 's', 't')
-    >>> sorted(f.items()) ==  [(('s', 'u'), 1), (('s', 'x'), 1),
-    ... (('u', 'v'), 1), (('v', 't'), 1), (('v', 'x'), 0), (('x', 'y'), 1), 
-    ... (('y', 't'), 1)]
-    True
-    """
+    G = FF_SIMPLE_GRAPH
+    f = ford_fulkerson(G, 's', 't')
+    print sorted(f.items())
+    #[(('s', 'u'), 1), (('s', 'x'), 1), \
+#    (('u', 'v'), 1), (('v', 't'), 1), (('v', 'x'), 0), (('x', 'y'), 1), \
+#    (('y', 't'), 1)]
 
 def ford_fulkerson(G, s, t, aug=bfs_aug):       # Max flow from s to t
     H, f = tr(G), defaultdict(int)              # Transpose and flow
@@ -195,38 +193,35 @@ def busacker_gowen(G, W, s, t):                 # Min-cost max-flow
         return P, F[t]                          # Preds and flow reaching t
     return ford_fulkerson(G, s, t, sp_aug)      # Max-flow with Bellman-Ford
 
-def test_busacker_gowen():
-    """
-    >>> G = {
-    ...     0: {1:3, 2:3},
-    ...     1: {3:2, 4:2},
-    ...     2: {3:1, 4:2},
-    ...     3: {5:2},
-    ...     4: {5:2},
-    ...     5: {}
-    ... }
-    >>> W = {
-    ... (0,1): 3,
-    ... (0,2): 1,
-    ... (1,3): 1,
-    ... (1,4): 1,
-    ... (2,3): 4,
-    ... (2,4): 2,
-    ... (3,5): 2,
-    ... (4,5): 1
-    ... }
-    >>> f1 = ford_fulkerson(G, 0, 5)
-    >>> for u, v in W: assert f1[u,v] <= G[u][v]
-    >>> f1[3,5] + f1[4,5]
-    4
-    >>> f1[0,1] + f1[0,2]
-    4
-    >>> f2 = busacker_gowen(G, W, 0, 5)
-    >>> for u, v in W: assert f2[u,v] <= G[u][v]
-    >>> sum(f2[key]*W[key] for key in W)
-    20
-    >>> fs = [f2[key] for key in sorted(W)]
-    >>> fs
-    [2, 2, 2, 0, 0, 2, 2, 2]
-    """
+def test_busacker_gowen():    
+    G = {
+        0: {1:3, 2:3},
+        1: {3:2, 4:2},
+        2: {3:1, 4:2},
+        3: {5:2},
+        4: {5:2},
+        5: {}
+    }
+    W = {
+    (0,1): 3,
+    (0,2): 1,
+    (1,3): 1,
+    (1,4): 1,
+    (2,3): 4,
+    (2,4): 2,
+    (3,5): 2,
+    (4,5): 1
+    }
+    f1 = ford_fulkerson(G, 0, 5)
+    for u, v in W: assert f1[u,v] <= G[u][v]
+    print f1[3,5] + f1[4,5]
+    print f1[0,1] + f1[0,2]
+    f2 = busacker_gowen(G, W, 0, 5)
+    for u, v in W: assert f2[u,v] <= G[u][v]
+    print sum(f2[key]*W[key] for key in W)
+    fs = [f2[key] for key in sorted(W)]
+    print fs
 
+#test_ford_fulkerson()
+
+test_busacker_gowen()

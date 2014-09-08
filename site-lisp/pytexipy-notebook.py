@@ -208,5 +208,41 @@ def display_results(end_block, res):
         lisp.insert("\\begin{verbatim}\n")
         lisp.insert(res)
         lisp.insert("\\end{verbatim}")
-                        
+
+def thing_at_point_regex(right, left):
+    """
+    Mine is a lot better than the emacs thingy which does not
+    'get' types with generics
+    """
+    curridx = lisp.point()
+
+    curr=''
+    while (re.search(right, curr) ) == None:
+        curr = lisp.buffer_substring(curridx, curridx+1)
+        curridx += 1
+    start = curridx-1
+        
+    curridx = lisp.point()
+    curr=''
+    while (re.search(left, curr) ) == None:
+        curr = lisp.buffer_substring(curridx-1, curridx)
+        curridx -= 1
+    end = curridx+1
+        
+    s = lisp.buffer_substring(start, end)
+    return s, end
+        
+def complete_py():
+    thing, start = thing_at_point_regex("\n", "\n")
+    lisp.message(thing)
+    (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
+    text, matches = ip.complete(thing)
+    #lisp.message(matches)
+    lisp.kill_buffer(lisp.get_buffer("*pytexipy*"))
+    lisp.switch_to_buffer_other_window("*pytexipy*")
+    for item in matches:
+        lisp.insert(item)
+        lisp.insert("\n")
+            
 interactions[run_py_code] = ''
+interactions[complete_py] = ''
