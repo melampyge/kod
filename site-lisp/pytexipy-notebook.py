@@ -81,6 +81,9 @@ def get_kernel_pointer(buffer):
         kernels[buffer] = (kc,kernel,kernel.shell.get_ipython())
         # run this so that plt, np pointers are ready
         kc.shell_channel.execute('%pylab inline')
+        kc.shell_channel.execute('%load_ext autoreload')        
+        kc.shell_channel.execute('%autoreload 2')
+
     return kernels[buffer]
 
 def get_block_content(start_tag, end_tag):
@@ -209,22 +212,18 @@ def display_results(end_block, res):
         lisp.insert(res)
         lisp.insert("\\end{verbatim}")
 
-def thing_at_point_regex(right, left):
-    """
-    Mine is a lot better than the emacs thingy which does not
-    'get' types with generics
-    """
+def thing_at_point():
+    right_set = left_set = set(['\n',' '])
     curridx = lisp.point()
-
     curr=''
-    while (re.search(right, curr) ) == None:
+    while (curr in right_set) == False:
         curr = lisp.buffer_substring(curridx, curridx+1)
         curridx += 1
     start = curridx-1
         
     curridx = lisp.point()
     curr=''
-    while (re.search(left, curr) ) == None:
+    while (curr in left_set) == False:
         curr = lisp.buffer_substring(curridx-1, curridx)
         curridx -= 1
     end = curridx+1
@@ -233,7 +232,7 @@ def thing_at_point_regex(right, left):
     return s, end
         
 def complete_py():
-    thing, start = thing_at_point_regex("\W", "\W")
+    thing, start = thing_at_point()
     lisp.message(thing)
     (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
     text, matches = ip.complete(thing)
