@@ -233,14 +233,15 @@ def thing_at_point_regex(right, left):
     return s, end
         
 def complete_py():
-    thing, start = thing_at_point_regex("\n", "\n")
+    thing, start = thing_at_point_regex("\W", "\W")
     lisp.message(thing)
     (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
     text, matches = ip.complete(thing)
-    #lisp.message(matches)
+    lisp.switch_to_buffer("*pytexipy*")
     lisp.kill_buffer(lisp.get_buffer("*pytexipy*"))
     lisp.switch_to_buffer_other_window("*pytexipy*")
-    for item in matches:
+    lisp.insert(thing)
+    for item in matches:        
         lisp.insert(item)
         lisp.insert("\n")
             
