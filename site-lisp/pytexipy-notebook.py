@@ -8,7 +8,8 @@ buffer.
 INSTALL
 
 (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
-(global-set-key [f1] 'pytexipy-notebook-run-py-code) ; or choose any key you like
+(global-set-key [f1] 'pytexipy-notebook-run-py-code); or choose any key you like
+(global-set-key [f5] 'pytexipy-notebook-complete-py); or choose any key you like
 
 For minted-TeX integration, add this to your custom-set-variables
 '(preview-LaTeX-command (quote ("%`%l -shell-escape \"\\nonstopmode\\nofiles\\PassOptionsToPackage{"
@@ -31,6 +32,13 @@ already exists there, it will be refreshed. If not, it will be added.
 buffer will be scanned for plt.savefig(..) commands. Say there were 5
 of them, in this case show() will be replaced with
 plt.savefig('[file]_6.png').
+
+3) After entering any expression, if you call
+'pytexipy-notebook-complete-py, pytexipy will show a list of possible
+completions in a *pytexipy* buffer. This list comes directly from
+ipython, hence it reflects the cumulation of runtime code that has
+been executed and brought into memory thusfar through multiple
+'pytexipy-notebook-run-py-code calls.
 
 LIMITATIONS:
 
