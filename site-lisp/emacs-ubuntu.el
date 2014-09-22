@@ -527,6 +527,10 @@ This command does not push erased text to kill-ring."
                    'open-notebook-in-current-dir
                    :help "Open iPython Notebook Server" )
 
+;;/usr/share/emacs/23.3/etc/images/diropen.xpm
+(tool-bar-add-item "diropen" 'my-dired 'my-dired :help "Open Dired" )
+
+
 ;; when enter is pressed, it automatically indents.
 (setq next-line-add-newlines nil)
 
