@@ -81,9 +81,7 @@ This command does not push erased text to kill-ring."
 (require 'java-mode-indent-annotations)
 (require 'nxml-mode)
 (load-file "/usr/share/emacs23/site-lisp/_latin_post_ek.elc")
-(load-file "/usr/share/emacs23/site-lisp/ein/ein.el")
 (require 'tempo)
-;;(require 'magit)
 
 (setq bell-volume 0)
 ;;(set-message-beep 'silent)
@@ -754,7 +752,7 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "tex-matrix" 
- '("\\left[\\begin{array}{ccc}\n"
+ '("\\left[\\begin{array}{rrr}\n"
    (s)
    "\n\\end{array}\\right]"
    )
