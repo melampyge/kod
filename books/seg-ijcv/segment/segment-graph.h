@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
 #ifndef SEGMENT_GRAPH
 #define SEGMENT_GRAPH
 
+#include <iostream>
 #include <algorithm>
 #include <cmath>
 #include "disjoint-set.h"
@@ -49,6 +50,14 @@ universe *segment_graph(int num_vertices, int num_edges, edge *edges,
 			float c) { 
   // sort edges by weight
   std::sort(edges, edges + num_edges);
+
+  for (int i = 0; i < num_vertices; i++){
+    edge *ppp = &edges[i];
+    std::cout << std::to_string(ppp->w) << " "
+	      << std::to_string(ppp->a) << " " 
+	      << std::to_string(ppp->b)
+	      << std::endl;
+  }
 
   // make a disjoint-set forest
   universe *u = new universe(num_vertices);

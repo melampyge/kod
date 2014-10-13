@@ -1,6 +1,6 @@
-echo "" > /tmp/hard.out
+# Lists hardware specs 
 
-lsb_release -a >> /tmp/hard.out
+echo "" > /tmp/hard.out
 
 uname -a >> /tmp/hard.out
 
