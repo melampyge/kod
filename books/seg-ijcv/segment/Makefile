@@ -1,7 +1,7 @@
 INCDIR = -I.
 DBG    = -g
 OPT    = -O3
-CPP    = g++  -std=c++11 
+CPP    = g++ 
 CFLAGS = $(DBG) $(OPT) $(INCDIR) 
 LINK   = -lm 
 

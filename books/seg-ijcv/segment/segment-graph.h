@@ -51,14 +51,6 @@ universe *segment_graph(int num_vertices, int num_edges, edge *edges,
   // sort edges by weight
   std::sort(edges, edges + num_edges);
 
-  for (int i = 0; i < num_vertices; i++){
-    edge *ppp = &edges[i];
-    std::cout << std::to_string(ppp->w) << " "
-	      << std::to_string(ppp->a) << " " 
-	      << std::to_string(ppp->b)
-	      << std::endl;
-  }
-
   // make a disjoint-set forest
   universe *u = new universe(num_vertices);
 
