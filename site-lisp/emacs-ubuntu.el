@@ -64,7 +64,7 @@ This command does not push erased text to kill-ring."
 
 
 (modify-coding-system-alist 'file "\\.pl\\'" 'latin-5)
-(modify-coding-system-alist 'file "\\.tex\\'" 'raw-text)
+(modify-coding-system-alist 'file "\\.tex\\'" 'latin-5)
 (modify-coding-system-alist 'file "\\.htm\\'" 'utf-8)
 (modify-coding-system-alist 'file "\\.xml\\'" 'utf-8)
 (modify-coding-system-alist 'file "\\.html\\'" 'utf-8)
@@ -764,7 +764,7 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "tex-function-in-pieces" 
- '("\\left\\{ \begin{array}{ll}\n"
+ '("\\left\\{ \\begin{array}{ll}\n"
    (s)
    "\n\\end{array} \\right."
    )
