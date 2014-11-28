@@ -34,22 +34,16 @@ def show_version(num):
     
     # subtract the .git location from the beginning part of the 
     # full path because git show does not like it
-    print "fname="+fname
-    print "dot_git_dir="+dot_git_dir
     suitable_dir_for_git_show = re.sub(dot_git_dir, "", fname)
-    print suitable_dir_for_git_show
 
     # also get rid of the first / 
     suitable_dir_for_git_show = re.sub("^/", "", suitable_dir_for_git_show)
-    print suitable_dir_for_git_show
     
     cmd = "git show %s~%d:%s" % (branch(), num, suitable_dir_for_git_show)
     
-    list = run_command(cmd)
-    
+    res = run_command(cmd)    
     lisp.switch_to_buffer_other_window(cmd)
-    for item in list:
-        lisp.insert(item)
+    for item in res: lisp.insert(item)
             
 def find_dot_git() :     
     fname=lisp.buffer_file_name()
