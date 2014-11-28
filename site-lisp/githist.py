@@ -9,6 +9,22 @@ from Pymacs import lisp
 import re, sys, os
 import glob, string
 
+def run_command(command):
+    result = []
+    print 'Running:', command
+    f = os.popen(command, "r")
+    sys.stdout.flush()
+    for l in f.xreadlines():
+        result.append(l)        
+    return result
+
+def branch():
+    '''
+    run shell command and return the output as list
+    '''
+    f = os.popen("git branch", "r")
+    return re.findall('\\*\s(\w+)',f.read().strip())[0]
+
 def show_version(num):
     print "Getting this version ago:" + str(num)
     dot_git_dir = find_dot_git()
@@ -27,8 +43,7 @@ def show_version(num):
     suitable_dir_for_git_show = re.sub("^/", "", suitable_dir_for_git_show)
     print suitable_dir_for_git_show
     
-    cmd = "git show master~" + str(num) + ":" + suitable_dir_for_git_show
-    print cmd
+    cmd = "git show %s~%d:%s" % (branch(), num, suitable_dir_for_git_show)
     
     list = run_command(cmd)
     
@@ -51,12 +66,3 @@ def find_dot_git() :
             raise Exception("no .git found")
         os.chdir(os.pardir) 
 
-
-def run_command(command):
-    result = []
-    print 'Running:', command
-    f = os.popen(command, "r")
-    sys.stdout.flush()
-    for l in f.xreadlines():
-        result.append(l)        
-    return result
