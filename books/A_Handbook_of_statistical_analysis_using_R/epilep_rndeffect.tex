@@ -1,0 +1,97 @@
+\documentclass[12pt,fleqn]{article}\usepackage{../common}
+\begin{document}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import pandas as pd
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+df = pd.read_csv('respiratory.csv',index_col=0)
+baseline = df[df['month'] == 0][['subject','status']].set_index('subject')
+df['status'] = (df['status'] == 'good').astype(int)
+df['baseline'] = df.apply(lambda x: baseline.ix[x['subject']],axis=1)
+print df.head(4)
+\end{minted}
+
+\begin{verbatim}
+     centre treatment  gender  age  status  month  subject baseline
+1         1   placebo  female   46       0      0        1     poor
+112       1   placebo  female   46       0      1        1     poor
+223       1   placebo  female   46       0      2        1     poor
+334       1   placebo  female   46       0      3        1     poor
+\end{verbatim}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+smf.
+\end{minted}
+
+
+
+\begin{minted}[fontsize=\footnotesize]{python}
+#md = smf.mixedlm("status ~ baseline + month + treatment + gender + age + C(centre)", df, groups=df['subject'])
+md = smf.mnlogit("status ~ baseline + month + treatment + gender + age + C(centre)", df, groups=df['subject'])
+mdf = md.fit()
+print(mdf.summary())
+\end{minted}
+
+\begin{verbatim}
+Optimization terminated successfully.
+         Current function value: 0.500844
+         Iterations 6
+                          MNLogit Regression Results                          
+==============================================================================
+Dep. Variable:                 status   No. Observations:                  555
+Model:                        MNLogit   Df Residuals:                      548
+Method:                           MLE   Df Model:                            6
+Date:                Thu, 19 Feb 2015   Pseudo R-squ.:                  0.2743
+Time:                        15:00:31   Log-Likelihood:                -277.97
+converged:                       True   LL-Null:                       -383.03
+                                        LLR p-value:                 1.327e-42
+==========================================================================================
+              status=1       coef    std err          z      P>|z|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------------
+Intercept                  1.0940      0.357      3.066      0.002         0.395     1.793
+baseline[T.poor]          -2.5365      0.232    -10.925      0.000        -2.992    -2.081
+treatment[T.treatment]     1.1797      0.226      5.229      0.000         0.737     1.622
+gender[T.male]             0.1112      0.280      0.397      0.691        -0.438     0.660
+C(centre)[T.2]             0.5912      0.224      2.641      0.008         0.152     1.030
+month                      0.0989      0.074      1.330      0.184        -0.047     0.245
+age                       -0.0160      0.008     -1.908      0.056        -0.032     0.000
+==========================================================================================
+\end{verbatim}
+
+
+\begin{minted}[fontsize=\footnotesize]{python}
+print mdf.params
+print np.exp(mdf.params)
+\end{minted}
+
+\begin{verbatim}
+                               0
+Intercept               1.094006
+baseline[T.poor]       -2.536486
+treatment[T.treatment]  1.179681
+gender[T.male]          0.111168
+C(centre)[T.2]          0.591167
+month                   0.098892
+age                    -0.015971
+                               0
+Intercept               2.986214
+baseline[T.poor]        0.079144
+treatment[T.treatment]  3.253337
+gender[T.male]          1.117582
+C(centre)[T.2]          1.806095
+month                   1.103947
+age                     0.984156
+\end{verbatim}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
