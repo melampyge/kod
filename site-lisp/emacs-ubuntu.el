@@ -82,6 +82,7 @@ This command does not push erased text to kill-ring."
 (require 'nxml-mode)
 (load-file "/usr/share/emacs23/site-lisp/_latin_post_ek.elc")
 (require 'tempo)
+(require 'julia-mode)
 
 (setq bell-volume 0)
 ;;(set-message-beep 'silent)
@@ -568,6 +569,7 @@ This command does not push erased text to kill-ring."
                 ("\\.inc$" . nxml-mode)
                 ("\\.xml$" . nxml-mode)
                 ("\\.pyx$" . python-mode)
+                ("\\.jl\\'" . julia-mode)
                 ("\\.tld$" . nxml-mode)
                 ("\\.?[Ff][Aa][Qq]$" . faq-mode)
 		)
