@@ -2,6 +2,11 @@
 \begin{document}
 
 \begin{minted}[fontsize=\footnotesize]{python}
+%load_ext rpy2.ipython
+%R library(lme4)
+\end{minted}
+
+\begin{minted}[fontsize=\footnotesize]{python}
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 import pandas as pd
@@ -54,11 +59,6 @@ age                       -0.0160      0.008     -1.908      0.056        -0.032
 ==========================================================================================
 \end{verbatim}
 
-
-\begin{minted}[fontsize=\footnotesize]{python}
-%load_ext rpy2.ipython
-%R library(lme4)
-\end{minted}
 
 
 \begin{minted}[fontsize=\footnotesize]{python}
