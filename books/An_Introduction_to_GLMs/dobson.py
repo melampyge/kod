@@ -40,20 +40,9 @@ import zipfile
 from StringIO import StringIO
 
 def get_data(inFile):
-    '''Get data from original Excel-file'''
-    
-    # get the zip-archive
-    url = 'http://cdn.crcpress.com/downloads/C9500/GLM_data.zip'
-    GLM_archive = urllib2.urlopen(url).read()
-    
-    # extract the requested file from the archive
-    zipdata = StringIO()
-    zipdata.write(GLM_archive)
-    myzipfile = zipfile.ZipFile(zipdata)
-    xlsfile = myzipfile.open(inFile)
-    xls = pd.ExcelFile(xlsfile)
-    df = xls.parse('Sheet1', skiprows=2)    
-    
+    '''Get data from original Excel-file'''    
+    xls = pd.ExcelFile(inFile)
+    df = xls.parse('Sheet1', skiprows=2)        
     return df
 
 def regression():
@@ -82,7 +71,7 @@ def multiple_linear_regression():
     print anova_lm(model)
 
     # as GLM
-    glm = glm('carbohydrate ~ age + weight + protein',
+    p = glm('carbohydrate ~ age + weight + protein',
             family=Gaussian(), data=df).fit()
     print 'Same model, calculated with GLM'
     ''' The confidence intervals are different than those from OLS.
@@ -95,7 +84,7 @@ def multiple_linear_regression():
     error terms and non-trivial link functions. So that's why they're different.
     '''
 
-    print glm.summary()
+    print p.summary()
     
     # ... and for model 1
     model1 = ols('carbohydrate ~ weight + protein', data=df).fit()
@@ -113,8 +102,8 @@ def anova():
     df = get_data(inFile)
     
     # fit the model (p 109)
-    glm = glm('weight~group', family=Gaussian(), data=df)
-    print glm.fit().summary()        
+    p = glm('weight~group', family=Gaussian(), data=df)
+    print p.fit().summary()        
     
     print '-'*65
     print 'OLS'
@@ -369,5 +358,25 @@ def longitudinal_data_tbd():
     print df
 
 if __name__ == '__main__':
+    regression()
+    multiple_linear_regression()
+    anova()
+    ancova()
+    logistic_regression()
+    general_logistic_regression()
+    senility_and_WAIS()
     nominal_logistic_regression()
-
+    ordinal_logistic_regression_tbd()
+    poisson_regression()
+    log_linear_models()
+    remission_times_tbd()
+    multiple_linear_regression()
+    anova()
+    ancova()
+    logistic_regression()
+    general_logistic_regression()
+    nominal_logistic_regression()
+    ordinal_logistic_regression_tbd()
+    log_linear_models()
+    remission_times_tbd()
+    longitudinal_data_tbd()
