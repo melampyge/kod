@@ -2,23 +2,25 @@
 \begin{document}
 
 \begin{minted}[fontsize=\footnotesize]{python}
-import pandas as pd
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
-df = pd.read_csv('respiratory.csv',index_col=0)
+import pandas as pd
+df = pd.read_csv('respiratory2.csv',index_col=0)
 baseline = df[df['month'] == 0][['subject','status']].set_index('subject')
 df['status'] = (df['status'] == 'good').astype(int)
 df['baseline'] = df.apply(lambda x: baseline.ix[x['subject']],axis=1)
+df['centre'] = df['centre'].astype(str)
 print df.head(4)
 \end{minted}
 
 \begin{verbatim}
-     centre treatment  gender  age  status  month  subject baseline
-1         1   placebo  female   46       0      0        1     poor
-112       1   placebo  female   46       0      1        1     poor
-223       1   placebo  female   46       0      2        1     poor
-334       1   placebo  female   46       0      3        1     poor
+    centre treatment  gender  age  status  month  subject baseline
+1        1   placebo  female   46       0      0        1     poor
+112      1   placebo  female   46       0      1        1     poor
+223      1   placebo  female   46       0      2        1     poor
+334      1   placebo  female   46       0      3        1     poor
 \end{verbatim}
+
 
 \begin{minted}[fontsize=\footnotesize]{python}
 mdlm = smf.logit("status ~ baseline + month  + treatment + gender + age + C(centre)", df)
@@ -35,8 +37,8 @@ Optimization terminated successfully.
 Dep. Variable:                 status   No. Observations:                  555
 Model:                          Logit   Df Residuals:                      548
 Method:                           MLE   Df Model:                            6
-Date:                Thu, 19 Feb 2015   Pseudo R-squ.:                  0.2743
-Time:                        22:19:57   Log-Likelihood:                -277.97
+Date:                Fri, 20 Feb 2015   Pseudo R-squ.:                  0.2743
+Time:                        11:35:31   Log-Likelihood:                -277.97
 converged:                       True   LL-Null:                       -383.03
                                         LLR p-value:                 1.327e-42
 ==========================================================================================
@@ -58,40 +60,129 @@ age                       -0.0160      0.008     -1.908      0.056        -0.032
 %R library(lme4)
 \end{minted}
 
+
 \begin{minted}[fontsize=\footnotesize]{python}
-%R data(dietox, package='geepack')
-%R res = summary(lmer('Weight ~ Time + (1|Pig)', data=dietox))
-%Rpull res
+%R -i df 
+%R resp_lmer <- glmer(status ~ baseline + month + treatment + gender + age + centre + (1 | subject),family = binomial(), data = df)
+%R -o res res = summary(resp_lmer)
+%R -o exp_res exp_res = exp(fixef(resp_lmer))
 print res
+print exp_res
 \end{minted}
 
 \begin{verbatim}
-Linear mixed model fit by REML ['lmerMod']
-Formula: Weight ~ Time + (1 | Pig)
-   Data: dietox
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: status ~ baseline + month + treatment + gender + age + centre +  
+    (1 | subject)
+   Data: df
 
-REML criterion at convergence: 4809.6
+     AIC      BIC   logLik deviance df.resid 
+   539.2    573.7   -261.6    523.2      547 
 
 Scaled residuals: 
     Min      1Q  Median      3Q     Max 
--4.7118 -0.5696 -0.0943  0.4877  4.7732 
+-3.8025 -0.4123  0.1637  0.4295  2.4482 
 
 Random effects:
- Groups   Name        Variance Std.Dev.
- Pig      (Intercept) 40.39    6.356   
- Residual             11.37    3.371   
-Number of obs: 861, groups:  Pig, 72
+ Groups  Name        Variance Std.Dev.
+ subject (Intercept) 1.829    1.353   
+Number of obs: 555, groups:  subject, 111
 
 Fixed effects:
-            Estimate Std. Error t value
-(Intercept) 15.72352    0.78805   19.95
-Time         6.94251    0.03339  207.94
+                   Estimate Std. Error z value Pr(>|z|)    
+(Intercept)         1.39252    0.60229   2.312   0.0208 *  
+baselinepoor       -3.42262    0.46095  -7.425 1.13e-13 ***
+month               0.12730    0.08465   1.504   0.1326    
+treatmenttreatment  1.59332    0.39981   3.985 6.74e-05 ***
+gendermale          0.12915    0.49291   0.262   0.7933    
+age                -0.01833    0.01480  -1.238   0.2157    
+centre2             0.70520    0.39676   1.777   0.0755 .  
+---
 
 Correlation of Fixed Effects:
-     (Intr)
-Time -0.275
+            (Intr) bslnpr month  trtmnt gndrml age   
+baselinepor -0.361                                   
+month       -0.254 -0.076                            
+trtmnttrtmn -0.209 -0.308  0.040                     
+gendermale   0.063 -0.094  0.003  0.204              
+age         -0.678 -0.016 -0.011 -0.019 -0.254       
+centre2     -0.208  0.162  0.016  0.007 -0.151 -0.216
+
+       (Intercept)       baselinepoor              month treatmenttreatment 
+        4.02499632         0.03262689         1.13576179         4.92004998 
+        gendermale                age            centre2 
+        1.13785985         0.98184104         2.02425229 
 
 \end{verbatim}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+%R data("respiratory", package = "HSAUR2")
+%R write.csv(respiratory, 'respiratory2.csv')
+%R resp <- subset(respiratory, month > "0")
+%R resp$baseline <- rep(subset(respiratory, month == "0")$status,rep(4, 111))
+%R resp_lmer <- glmer(status ~ baseline + month + treatment + gender + age + centre + (1 | subject),family = binomial(), data = resp)
+%R -o resp_lmer_summary resp_lmer_summary = summary(resp_lmer)
+%R -o exp_res exp_res = exp(fixef(resp_lmer))
+print resp_lmer_summary
+print exp_res
+\end{minted}
+
+\begin{verbatim}
+Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: status ~ baseline + month + treatment + gender + age + centre +  
+    (1 | subject)
+   Data: resp
+
+     AIC      BIC   logLik deviance df.resid 
+   446.6    487.6   -213.3    426.6      434 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.5855 -0.3609  0.1430  0.3640  2.2119 
+
+Random effects:
+ Groups  Name        Variance Std.Dev.
+ subject (Intercept) 3.779    1.944   
+Number of obs: 444, groups:  subject, 111
+
+Fixed effects:
+                   Estimate Std. Error z value Pr(>|z|)    
+(Intercept)        -1.65460    0.77621  -2.132   0.0330 *  
+baselinegood        3.08897    0.59859   5.160 2.46e-07 ***
+month.L            -0.20348    0.27957  -0.728   0.4667    
+month.Q            -0.02821    0.27907  -0.101   0.9195    
+month.C            -0.35571    0.28085  -1.267   0.2053    
+treatmenttreatment  2.16620    0.55157   3.927 8.59e-05 ***
+gendermale          0.23836    0.66606   0.358   0.7204    
+age                -0.02557    0.01994  -1.283   0.1997    
+centre2             1.03850    0.54182   1.917   0.0553 .  
+---
+
+Correlation of Fixed Effects:
+            (Intr) bslngd mnth.L mnth.Q mnth.C trtmnt gndrml age   
+baselinegod -0.392                                                 
+month.L      0.017 -0.037                                          
+month.Q      0.002 -0.005 -0.009                                   
+month.C      0.030 -0.065  0.007  0.005                            
+trtmnttrtmn -0.437  0.305 -0.029 -0.004 -0.050                     
+gendermale  -0.014  0.109 -0.003  0.000 -0.005  0.225              
+age         -0.712  0.013  0.008  0.001  0.014 -0.051 -0.264       
+centre2     -0.089 -0.149 -0.013 -0.002 -0.023  0.058 -0.144 -0.224
+
+       (Intercept)       baselinegood            month.L            month.Q 
+         0.1911685         21.9544829          0.8158839          0.9721799 
+           month.C treatmenttreatment         gendermale                age 
+         0.7006762          8.7251064          1.2691661          0.9747510 
+           centre2 
+         2.8249730 
+
+\end{verbatim}
+
+
 
 
 
