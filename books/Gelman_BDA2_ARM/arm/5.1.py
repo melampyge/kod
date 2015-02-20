@@ -1,15 +1,11 @@
 import pandas as pd
 import numpy as np
 import statsmodels.api as sm
-from scipy import stats
-import statsmodels.api as sm
 import statsmodels.formula.api as smf
     
 def converter(x):
-    if x == 'NA':
-        return np.nan
-    else:
-        return float(x) 
+    if x == 'NA': return np.nan
+    else: return float(x) 
 
 # read data
 nes = np.loadtxt("nes.dat",  skiprows=1, 

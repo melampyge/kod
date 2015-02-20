@@ -7,9 +7,8 @@
 \end{minted}
 
 \begin{minted}[fontsize=\footnotesize]{python}
-import statsmodels.api as sm
+import statsmodels.api as sm, pandas as pd
 import statsmodels.formula.api as smf
-import pandas as pd
 df = pd.read_csv('respiratory2.csv',index_col=0)
 baseline = df[df['month'] == 0][['subject','status']].set_index('subject')
 df['status'] = (df['status'] == 'good').astype(int)
@@ -59,8 +58,6 @@ month                     -0.0643      0.100     -0.646      0.518        -0.259
 age                       -0.0182      0.009     -2.050      0.040        -0.036    -0.001
 ==========================================================================================
 \end{verbatim}
-
-
 
 \begin{minted}[fontsize=\footnotesize]{python}
 %R -i df 
