@@ -36,27 +36,27 @@ print(mdlmf.summary())
 
 \begin{verbatim}
 Optimization terminated successfully.
-         Current function value: 0.500844
+         Current function value: 0.543694
          Iterations 6
                            Logit Regression Results                           
 ==============================================================================
-Dep. Variable:                 status   No. Observations:                  555
-Model:                          Logit   Df Residuals:                      548
+Dep. Variable:                 status   No. Observations:                  444
+Model:                          Logit   Df Residuals:                      437
 Method:                           MLE   Df Model:                            6
-Date:                Fri, 20 Feb 2015   Pseudo R-squ.:                  0.2743
-Time:                        11:35:31   Log-Likelihood:                -277.97
-converged:                       True   LL-Null:                       -383.03
-                                        LLR p-value:                 1.327e-42
+Date:                Fri, 20 Feb 2015   Pseudo R-squ.:                  0.2071
+Time:                        12:36:57   Log-Likelihood:                -241.40
+converged:                       True   LL-Null:                       -304.47
+                                        LLR p-value:                 8.385e-25
 ==========================================================================================
                              coef    std err          z      P>|z|      [95.0% Conf. Int.]
 ------------------------------------------------------------------------------------------
-Intercept                  1.0940      0.357      3.066      0.002         0.395     1.793
-baseline[T.poor]          -2.5365      0.232    -10.925      0.000        -2.992    -2.081
-treatment[T.treatment]     1.1797      0.226      5.229      0.000         0.737     1.622
-gender[T.male]             0.1112      0.280      0.397      0.691        -0.438     0.660
-C(centre)[T.2]             0.5912      0.224      2.641      0.008         0.152     1.030
-month                      0.0989      0.074      1.330      0.184        -0.047     0.245
-age                       -0.0160      0.008     -1.908      0.056        -0.032     0.000
+Intercept                  1.1436      0.426      2.682      0.007         0.308     1.979
+baseline[T.poor]          -1.8841      0.241     -7.802      0.000        -2.357    -1.411
+treatment[T.treatment]     1.3006      0.237      5.488      0.000         0.836     1.765
+gender[T.male]             0.1194      0.295      0.405      0.686        -0.458     0.697
+C(centre)[T.2]             0.6723      0.240      2.805      0.005         0.203     1.142
+month                     -0.0643      0.100     -0.646      0.518        -0.259     0.131
+age                       -0.0182      0.009     -2.050      0.040        -0.036    -0.001
 ==========================================================================================
 \end{verbatim}
 
