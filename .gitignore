@@ -2,3 +2,4 @@
 *.so
 *.pyc
 *.elc
+*_region_*
