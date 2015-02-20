@@ -52,45 +52,52 @@ age                       -0.0160      0.008     -1.908      0.056        -0.032
 ==========================================================================================
 \end{verbatim}
 
+
 \begin{minted}[fontsize=\footnotesize]{python}
-mdmixed = smf.mixedlm("status ~ baseline + month  + treatment + gender + age + C(centre)", df,groups=df['subject'])
-mdmixedf = mdmixed.fit(family=sm.families.Log())
-print(mdmixedf.summary())
+%load_ext rpy2.ipython
+%R library(lme4)
+\end{minted}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+%R data(dietox, package='geepack')
+%R res = summary(lmer('Weight ~ Time + (1|Pig)', data=dietox))
+%Rpull res
+print res
 \end{minted}
 
 \begin{verbatim}
-<type 'exceptions.AttributeError'> 'module' object has no attribute 'Log'
+Linear mixed model fit by REML ['lmerMod']
+Formula: Weight ~ Time + (1 | Pig)
+   Data: dietox
+
+REML criterion at convergence: 4809.6
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-4.7118 -0.5696 -0.0943  0.4877  4.7732 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ Pig      (Intercept) 40.39    6.356   
+ Residual             11.37    3.371   
+Number of obs: 861, groups:  Pig, 72
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept) 15.72352    0.78805   19.95
+Time         6.94251    0.03339  207.94
+
+Correlation of Fixed Effects:
+     (Intr)
+Time -0.275
+
 \end{verbatim}
 
 
-\begin{minted}[fontsize=\footnotesize]{python}
-print mdmixedf.params
-#print np.exp(mdmixedf.params)
-\end{minted}
 
-\begin{verbatim}
-Intercept                 0.727199
-baseline[T.poor]         -0.507719
-treatment[T.treatment]    0.198169
-gender[T.male]            0.020422
-C(centre)[T.2]            0.101670
-month                     0.016216
-age                      -0.002791
-Intercept RE              0.558077
-dtype: float64
-\end{verbatim}
 
-\begin{minted}[fontsize=\footnotesize]{python}
-print np.log(8.81)
-print np.exp(1.9)
-print np.exp(1.2)
-\end{minted}
 
-\begin{verbatim}
-2.17588743995
-6.68589444228
-3.32011692274
-\end{verbatim}
+
 
 
 
