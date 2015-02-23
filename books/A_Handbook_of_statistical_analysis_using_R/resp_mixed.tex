@@ -180,9 +180,52 @@ centre2     -0.089 -0.149 -0.013 -0.002 -0.023  0.058 -0.144 -0.224
 
 \end{verbatim}
 
+\begin{minted}[fontsize=\footnotesize]{python}
+%load_ext rpy2.ipython
+\end{minted}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+%R data("respiratory", package = "HSAUR2")
+%R resp <- subset(respiratory, month > "0")
+%R resp$baseline <- rep(subset(respiratory, month == "0")$status,rep(4, 111))
+%R resp_lmer <- glm(status ~ baseline + month + treatment + gender +age + centre,family = binomial(), data = resp)
+%R -o res res = summary(resp_lmer)
+print res
+\end{minted}
+
+\begin{verbatim}
+
+Call:
+glm(formula = status ~ baseline + month + treatment + gender + 
+    age + centre, family = binomial(), data = resp)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.2735  -0.8440   0.4263   0.8872   1.9974  
+
+Coefficients:
+                    Estimate Std. Error z value Pr(>|z|)    
+(Intercept)        -0.903635   0.338301  -2.671  0.00756 ** 
+baselinegood        1.889451   0.241998   7.808 5.82e-15 ***
+month.L            -0.143725   0.222718  -0.645  0.51872    
+month.Q            -0.024551   0.222655  -0.110  0.91220    
+month.C            -0.232552   0.222989  -1.043  0.29700    
+treatmenttreatment  1.304109   0.237383   5.494 3.94e-08 ***
+gendermale          0.119695   0.295213   0.405  0.68514    
+age                -0.018237   0.008882  -2.053  0.04004 *  
+centre2             0.674176   0.240049   2.808  0.00498 ** 
+---
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 608.93  on 443  degrees of freedom
+Residual deviance: 481.70  on 435  degrees of freedom
+AIC: 499.7
+
+Number of Fisher Scoring iterations: 4
 
 
-
+\end{verbatim}
 
 
 
