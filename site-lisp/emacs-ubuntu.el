@@ -849,7 +849,7 @@ This command does not push erased text to kill-ring."
 (global-unset-key [(alt f4)])
 (global-set-key "\C-o" 'other-window)
 (global-set-key "\M-p" 'previous-line)
-(global-set-key "\M-," 'pytexipy-notebook-run-py-code)
+(global-set-key "\M-," 'ipython-tex-run-py-code)
 (global-set-key "\C-p" 'previous-line)
 (global-set-key "\C-k" 'backward-delete-char-untabify)
 (global-set-key "\M-k" 'backward-delete-char-untabify)
@@ -1027,12 +1027,11 @@ This command does not push erased text to kill-ring."
 (switch-to-buffer "*scratch*")
 (delete-other-windows)
 
-(pymacs-load "/usr/share/emacs23/site-lisp/githist")
-
-(defun githist-do-show-version(num) 
-  (interactive "nHow many commits back: ")
-   (githist-show-version num)
- )
+;;(pymacs-load "/usr/share/emacs23/site-lisp/githist")
+;;(defun githist-do-show-version(num) 
+;;  (interactive "nHow many commits back: ")
+;;   (githist-show-version num)
+;; )
 
 ;;(require 'auto-complete)
 ;;(global-auto-complete-mode t)
@@ -1074,7 +1073,7 @@ This command does not push erased text to kill-ring."
   (if (buffer-live-p (get-buffer "*Pymacs*" ))
       (kill-buffer (get-buffer
 		    "*Pymacs*")))
-  (pymacs-load "/usr/share/emacs23/site-lisp/pytexipy-notebook")
+  (pymacs-load "/usr/share/emacs23/site-lisp/ipython-tex")
   )
 
 (global-set-key [f11] 'reload-pymacs)
