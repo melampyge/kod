@@ -1,0 +1,5 @@
+library("lme4")
+df <- read.csv('/tmp/out.csv')
+resp_lmer <- lmer(Klepto ~ W + S + WS + ( 1  | ccode), data = df)
+res <- summary(resp_lmer)
+print (res)

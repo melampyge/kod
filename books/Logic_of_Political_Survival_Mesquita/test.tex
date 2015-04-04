@@ -1,0 +1,135 @@
+\documentclass[12pt,fleqn]{article}\usepackage{common}
+\begin{document}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import pandas as pd
+df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
+df2 = df
+#df2 = df2[['ccode','year','W','S','pop','democ','GovDebt','aid_gdp','Klepto']]
+df2 = df2[['ccode','year','W','S','Klepto']]
+df2['WS'] = df2['W'] / (df2['S']+1e-5)
+df2.to_csv('/tmp/out.csv')
+\end{minted}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import statsmodels.formula.api as smf
+#results = smf.ols('Klepto ~ W + S + GovDebt + np.log(pop) + aid_gdp', data=df2).fit()
+results = smf.ols('Klepto ~ WS + W + S ', data=df2).fit()
+print results.summary()
+\end{minted}
+
+\begin{verbatim}
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 Klepto   R-squared:                       0.019
+Model:                            OLS   Adj. R-squared:                  0.018
+Method:                 Least Squares   F-statistic:                     14.27
+Date:                Sat, 04 Apr 2015   Prob (F-statistic):           3.26e-09
+Time:                        18:05:52   Log-Likelihood:                -2031.2
+No. Observations:                2214   AIC:                             4070.
+Df Residuals:                    2210   BIC:                             4093.
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept     -0.4352      0.047     -9.254      0.000        -0.527    -0.343
+WS          3.525e-06   1.78e-06      1.982      0.048      3.67e-08  7.01e-06
+W             -0.0439      0.060     -0.733      0.464        -0.161     0.074
+S              0.3013      0.058      5.184      0.000         0.187     0.415
+==============================================================================
+Omnibus:                     3080.971   Durbin-Watson:                   0.707
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):          1136451.664
+Skew:                          -7.793   Prob(JB):                         0.00
+Kurtosis:                     112.892   Cond. No.                     7.01e+04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 7.01e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
+\end{verbatim}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+print df[['WB_pop','s','W_extend','polityW','w2','W','S']].tail(100)
+\end{minted}
+
+\begin{verbatim}
+       WB_pop    s  W_extend  polityW      w2     W    S
+19580     NaN  0.0         2     1522  0.5625  0.75  0.0
+19581     NaN  1.0         2     1522  0.5625  0.75  1.0
+19582     NaN  0.0         2     1522  0.5625  0.75  0.0
+19583     NaN  1.0         2     1522  0.5625  0.75  1.0
+19584     NaN  0.0         2     1522  0.5625  0.75  0.0
+19585     NaN  1.0         2     1522  0.5625  0.75  1.0
+19586     NaN  1.0         2     1522  0.5625  0.75  1.0
+19587     NaN  1.0         2     1522  0.5625  0.75  1.0
+19588     NaN  1.0         2     1522  0.5625  0.75  1.0
+19589     NaN  1.0         2     1522  0.5625  0.75  1.0
+19590     NaN  0.0         2     1522  0.5625  0.75  0.0
+19591     NaN  1.0         2     1522  0.5625  0.75  1.0
+19592     NaN  0.0         2     1522  0.5625  0.75  0.0
+19593     NaN  0.0         2     1522  0.5625  0.75  0.0
+19594     NaN  1.0         2     1522  0.5625  0.75  1.0
+19595     NaN  0.0         2     1522  0.5625  0.75  0.0
+19596     NaN  1.0         2     1522  0.5625  0.75  1.0
+19597     NaN  1.0         2     1522  0.5625  0.75  1.0
+19598     NaN  1.0         2     1522  0.5625  0.75  1.0
+19599     NaN  0.0         2     1522  0.5625  0.75  0.0
+19600     NaN  1.0         2     1522  0.5625  0.75  1.0
+19601     NaN  1.0         2     1522  0.5625  0.75  1.0
+19602     NaN  1.0         2     1522  0.5625  0.75  1.0
+19603     NaN  1.0         2     1522  0.5625  0.75  1.0
+19604     NaN  NaN         2     1523  0.2500  0.50  NaN
+19605     NaN  NaN         2     1523  0.2500  0.50  NaN
+19606     NaN  NaN         2     1523  0.2500  0.50  NaN
+19607     NaN  NaN         2     1523  0.2500  0.50  NaN
+19608     NaN  NaN         2     1523  0.2500  0.50  NaN
+19609     NaN  NaN         2     1523  0.2500  0.50  NaN
+...       ...  ...       ...      ...     ...   ...  ...
+19650   87030  1.0         2     1524  0.5625  0.75  1.0
+19651     NaN  0.5         2     1524  0.5625  0.75  0.5
+19652     NaN  0.5         2     1524  0.5625  0.75  0.5
+19653   52210  0.5         2     1524  0.5625  0.75  0.5
+19654     NaN  0.0         2     1524  0.5625  0.75  0.0
+19655     NaN  0.0         2     1524  0.5625  0.75  0.0
+19656   91500  1.0         2     1524  0.5625  0.75  1.0
+19657     NaN  0.0         2     1524  0.5625  0.75  0.0
+19658   93130  0.5         2     1524  0.5625  0.75  0.5
+19659     NaN  1.0         2     1524  0.5625  0.75  1.0
+19660     NaN  1.0         2     1524  0.5625  0.75  1.0
+19661   60700  1.0         2     1524  0.5625  0.75  1.0
+19662  145400  1.0         2     1524  0.5625  0.75  1.0
+19663     NaN  1.0         2     1524  0.5625  0.75  1.0
+19664  171000  1.0         2     1524  0.5625  0.75  1.0
+19665   94900  1.0         2     1524  0.5625  0.75  1.0
+19666     NaN  0.5         2     1524  0.5625  0.75  0.5
+19667  185980  1.0         2     1524  0.5625  0.75  1.0
+19668     NaN  1.0         2     1524  0.5625  0.75  1.0
+19669     NaN  0.0         2     1524  0.5625  0.75  0.0
+19670   96400  0.0         2     1525  0.2500  0.50  0.0
+19671     NaN  0.0         2     1525  0.2500  0.50  0.0
+19672     NaN  0.0         2     1526  0.5625  0.75  0.0
+19673     NaN  0.5         2     1526  0.5625  0.75  0.5
+19674     NaN  1.0         2     1526  0.5625  0.75  1.0
+19675     NaN  0.5         2     1526  0.5625  0.75  0.5
+19676  223840  0.0         2     1526  0.5625  0.75  0.0
+19677  118300  1.0         2     1526  0.5625  0.75  1.0
+19678   39000  0.5         2     1526  0.5625  0.75  0.5
+19679     NaN  NaN         2     1527     NaN   NaN  NaN
+
+[100 rows x 7 columns]
+\end{verbatim}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
