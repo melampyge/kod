@@ -17,12 +17,16 @@ df2['W2'] += ((pd.isnull(df2['RegimeType'])==False) & \
               (df2['RegimeType'] !=2) & (df2['RegimeType'] != 3)).astype(int)
 df2['W2'] += (df2['xrcomp'] >= 2).astype(int)
 df2['W2'] += (df2['xropen'] > 2).astype(int)
-df2['W2'] += (df2['parcomp'] == 5).astype(int)
+df2['W2'] += (df2['parcomp'] == 5).astype(int) # none for TR
 df2['W2'] = df2['W2'] / 4.
 print df2[['parcomp','year','W','W2','S']]
 \end{minted}
 
 \begin{verbatim}
+13.0
+33.0
+53.0
+53.0
        parcomp  year     W    W2   S
 15018        1  1981  0.50  0.50   0
 15019        1  1982  0.50  0.50   0
