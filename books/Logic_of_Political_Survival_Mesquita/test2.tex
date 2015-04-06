@@ -1,0 +1,251 @@
+\documentclass[12pt,fleqn]{article}\usepackage{common}
+\begin{document}
+
+Polity
+
+http://www.systemicpeace.org/inscrdata.html
+
+\begin{minted}[fontsize=\footnotesize]{python}
+np.log((1 + 1.) * 10.))/3.
+\end{minted}
+
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import pandas as pd
+df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
+\end{minted}
+
+
+\begin{minted}[fontsize=\footnotesize]{python}
+# Russia 365
+
+print 'US'
+df3 =  df[df['ccode'] == 2]
+df4 = df3[df3['year'] < 1918]
+print df4[['W','S','Klepto','democracy']].mean()
+df4 = df3[df3['year'] > 1990]
+print df4[['W','S','Klepto','democracy']].mean()
+
+print '\nTR'
+df3 =  df[df['ccode'] == 640]
+df4 = df3[df3['year'] < 1918]
+print df4[['W','S','Klepto','democracy']].mean()
+df4 = df3[df3['year'] > 1990]
+print df4[['W','S','Klepto','democracy']].mean()
+
+print '\nUK'
+df3 =  df[df['ccode'] == 200]
+df4 = df3[df3['year'] < 1918]
+print df4[['W','S','Klepto','democracy']].mean()
+df4 = df3[df3['year'] > 1990]
+print df4[['W','S','Klepto','democracy']].mean()
+\end{minted}
+
+\begin{verbatim}
+US
+W            0.819915
+S            1.000000
+Klepto       0.035580
+democracy    0.945763
+dtype: float64
+W             1
+S             1
+Klepto      NaN
+democracy     1
+dtype: float64
+
+TR
+W            0.209746
+S            0.050505
+Klepto      -0.047561
+democracy    0.039407
+dtype: float64
+W            0.75
+S            1.00
+Klepto        NaN
+democracy    0.89
+dtype: float64
+
+UK
+W            0.552966
+S            1.000000
+Klepto            NaN
+democracy    0.643220
+dtype: float64
+W             1
+S             1
+Klepto      NaN
+democracy     1
+dtype: float64
+\end{verbatim}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import pandas as pd
+pdf = pd.read_csv('polity4v2013.csv')
+pdf2 = pdf[(pdf['ccode'] == 640) & (pdf['year'] > 1990)]
+print pdf2[['parcomp','year','polity','prior']]
+\end{minted}
+
+\begin{verbatim}
+       parcomp  year  polity  xrreg
+15170        4  1991       9      3
+15171        4  1992       9      3
+15172        4  1993       8      3
+15173        4  1994       8      3
+15174        4  1995       8      3
+15175        4  1996       8      3
+15176        3  1997       7      3
+15177        3  1998       7      3
+15178        3  1999       7      3
+15179        3  2000       7      3
+15180        3  2001       7      3
+15181        3  2002       7      3
+15182        3  2003       7      3
+15183        3  2004       7      3
+15184        3  2005       7      3
+15185        3  2006       7      3
+15186        3  2007       7      3
+15187        3  2008       7      3
+15188        3  2009       7      3
+15189        3  2010       7      3
+15190        4  2011       9      3
+15191        4  2012       9      3
+15192        4  2013       9      3
+\end{verbatim}
+
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import pandas as pd
+pdf2 = pdf[(pdf['ccode'] == 640) & (pdf['year'] == 1979)]
+print pdf2[['parcomp','year','democ']]
+\end{minted}
+
+\begin{verbatim}
+       parcomp  year  democ
+15158        4  1979      9
+\end{verbatim}
+
+
+\begin{minted}[fontsize=\footnotesize]{python}
+pdf['W'] = 0.
+pdf['W'] += ((pdf['democ'] != 2) | (pdf['democ'] != 3)).astype(int)
+pdf['W'] += (pdf['xrcomp'] >= 2).astype(int)
+pdf['W'] += (pdf['xropen'] >= 2).astype(int)
+pdf['W'] += (pdf['parcomp'] == 5).astype(int)
+pdf['W'] = pdf['W'] / np.max(pdf['W'])
+\end{minted}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+# Russia 364
+# TR 640
+pdf2 = pdf[(pdf['ccode'] == 640) & (pdf['year'] > 1990)]
+print pdf2[['democ','year','W']]
+\end{minted}
+
+\begin{verbatim}
+       democ  year     W
+15170      9  1991  0.75
+15171      9  1992  0.75
+15172      9  1993  0.75
+15173      9  1994  0.75
+15174      9  1995  0.75
+15175      9  1996  0.75
+15176      8  1997  0.75
+15177      8  1998  0.75
+15178      8  1999  0.75
+15179      8  2000  0.75
+15180      8  2001  0.75
+15181      8  2002  0.75
+15182      8  2003  0.75
+15183      8  2004  0.75
+15184      8  2005  0.75
+15185      8  2006  0.75
+15186      8  2007  0.75
+15187      8  2008  0.75
+15188      8  2009  0.75
+15189      8  2010  0.75
+15190      9  2011  0.75
+15191      9  2012  0.75
+15192      9  2013  0.75
+\end{verbatim}
+
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import pandas as pd
+df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
+df2 = df[(df['ccode'] == 640) & (df['year'] > 1920)]
+print df2[['year','W','S']]
+\end{minted}
+
+\begin{verbatim}
+       year     W   S
+14958  1921  0.25   1
+14959  1922  0.00   1
+14960  1923  0.25   1
+14961  1924  0.50   1
+14962  1925  0.50   1
+14963  1926  0.50   1
+14964  1927  0.50   1
+14965  1928  0.50   1
+14966  1929  0.50   1
+14967  1930  0.50   1
+14968  1931  0.50   1
+14969  1932  0.50   1
+14970  1933  0.50   1
+14971  1934  0.50   1
+14972  1935  0.50   1
+14973  1936  0.50   1
+14974  1937  0.50   1
+14975  1938  0.50   1
+14976  1939  0.50   1
+14977  1940  0.25 NaN
+14978  1941  0.25 NaN
+14979  1942  0.25 NaN
+14980  1943  0.25 NaN
+14981  1944  0.25 NaN
+14982  1945  0.25 NaN
+14983  1946  0.75   1
+14984  1947  0.75   1
+14985  1948  0.75   1
+14986  1949  0.75   1
+14987  1950  0.75   1
+...     ...   ...  ..
+15008  1971  0.75   1
+15009  1972  0.75   1
+15010  1973  0.75   1
+15011  1974  0.75   1
+15012  1975  0.75   1
+15013  1976  0.75   1
+15014  1977  0.75   1
+15015  1978  0.75   1
+15016  1979  0.75   1
+15017  1980  0.50   0
+15018  1981  0.50   0
+15019  1982  0.50   0
+15020  1983  0.50   1
+15021  1984  0.50   1
+15022  1985  0.50   1
+15023  1986  0.50   1
+15024  1987  0.75   1
+15025  1988  0.75   1
+15026  1989  0.75   1
+15027  1990  0.75   1
+15028  1991  0.75   1
+15029  1992  0.75   1
+15030  1993  0.75   1
+15031  1994  0.75   1
+15032  1995  0.75   1
+15033  1996  0.75   1
+15034  1997  0.75   1
+15035  1998  0.75   1
+15036  1999  0.75   1
+15037  2000   NaN NaN
+
+[80 rows x 3 columns]
+\end{verbatim}
+
+
+
+
+
+\end{document}

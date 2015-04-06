@@ -1,0 +1,93 @@
+\documentclass[12pt,fleqn]{article}\usepackage{common}
+\begin{document}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import pandas as pd
+df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
+df['WS'] = df['W'] / np.log((df['S']+1.)*10.)/3.
+df['Klepto2'] = (df['TAXGDP']-df['Expenditure']).abs()
+df2 = df.copy()
+df2 = df2[['regyr','ccode','year','pop','W','S','WS','Klepto','Klepto2']]
+df2.to_csv('/tmp/out.csv',index=None)
+\end{minted}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import statsmodels.formula.api as smf
+results = smf.ols('Klepto2 ~ WS + np.log(pop)', data=df2).fit()
+print results.summary()
+\end{minted}
+
+\begin{verbatim}
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                Klepto2   R-squared:                       0.012
+Model:                            OLS   Adj. R-squared:                  0.011
+Method:                 Least Squares   F-statistic:                     9.048
+Date:                Mon, 06 Apr 2015   Prob (F-statistic):           0.000124
+Time:                        19:33:23   Log-Likelihood:                -6039.9
+No. Observations:                1489   AIC:                         1.209e+04
+Df Residuals:                    1486   BIC:                         1.210e+04
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+===============================================================================
+                  coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------
+Intercept      12.5143      2.068      6.053      0.000         8.459    16.570
+WS            -39.2120      9.863     -3.976      0.000       -58.559   -19.865
+np.log(pop)    -0.3425      0.212     -1.619      0.106        -0.757     0.072
+==============================================================================
+Omnibus:                     2259.132   Durbin-Watson:                   0.241
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           654623.191
+Skew:                           9.272   Prob(JB):                         0.00
+Kurtosis:                     104.032   Cond. No.                         250.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+\end{verbatim}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+%load_ext rpy2.ipython
+%R library(lme4)
+\end{minted}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+%R -i df2
+%R resp_lmer <- resp_lmer <- lmer(Klepto2 ~ WS + log(pop) + ( 1 + WS | regyr), data = df2)
+%R -o res res = summary(resp_lmer)
+print res
+\end{minted}
+
+\begin{verbatim}
+Linear mixed model fit by REML ['lmerMod']
+Formula: Klepto2 ~ WS + log(pop) + (1 + WS | regyr)
+   Data: df2
+
+REML criterion at convergence: 11887.3
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-4.3514 -0.2893 -0.1035  0.1405 11.7759 
+
+Random effects:
+ Groups   Name        Variance Std.Dev. Corr 
+ regyr    (Intercept)   526.8   22.95        
+          WS          42432.6  205.99   -1.00
+ Residual               147.3   12.14        
+Number of obs: 1489, groups:  regyr, 125
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  20.9740     2.9762   7.047
+WS          -95.3610    22.5907  -4.221
+log(pop)     -0.6643     0.1945  -3.415
+
+Correlation of Fixed Effects:
+         (Intr) WS    
+WS       -0.801       
+log(pop) -0.594  0.018
+
+\end{verbatim}
+
+
+\end{document}
