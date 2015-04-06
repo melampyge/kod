@@ -1,5 +1,5 @@
 library("lme4")
 df <- read.csv('/tmp/out.csv')
-resp_lmer <- lmer(Klepto ~ W + S + WS + ( 1  | ccode), data = df)
+resp_lmer <- lmer(Klepto ~ WS + log(pop) + ( 1  | year), data = df)
 res <- summary(resp_lmer)
 print (res)
