@@ -7,8 +7,12 @@ http://www.systemicpeace.org/inscrdata.html
 
 \begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
+#name = 'TUR'
+#name = 'SGP'
+#name = 'SIN'
+name = 'CHN'
 df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
-df2 = df[(df['ccode']==640) & (df['year'] > 1980)]
+df2 = df[(df['worldbankcode']==name) & (df['year'] > 1980)]
 \end{minted}
 
 \begin{minted}[fontsize=\footnotesize]{python}
@@ -19,35 +23,30 @@ df2['W2'] += (df2['xrcomp'] >= 2).astype(int)
 df2['W2'] += (df2['xropen'] > 2).astype(int)
 df2['W2'] += (df2['parcomp'] == 5).astype(int) # none for TR
 df2['W2'] = df2['W2'] / 4.
-print df2[['parcomp','year','W','W2','S']]
+print df2[['worldbankcode','xrcomp','xropen','parcomp','year','W','W2','S']]
 \end{minted}
 
 \begin{verbatim}
-13.0
-33.0
-53.0
-53.0
-       parcomp  year     W    W2   S
-15018        1  1981  0.50  0.50   0
-15019        1  1982  0.50  0.50   0
-15020        4  1983  0.50  0.50   1
-15021        4  1984  0.50  0.50   1
-15022        4  1985  0.50  0.50   1
-15023        4  1986  0.50  0.50   1
-15024        4  1987  0.75  0.75   1
-15025        4  1988  0.75  0.75   1
-15026        4  1989  0.75  0.75   1
-15027        4  1990  0.75  0.75   1
-15028        4  1991  0.75  0.75   1
-15029        4  1992  0.75  0.75   1
-15030        4  1993  0.75  0.75   1
-15031        4  1994  0.75  0.75   1
-15032        4  1995  0.75  0.75   1
-15033        4  1996  0.75  0.75   1
-15034        3  1997  0.75  0.75   1
-15035        3  1998  0.75  0.75   1
-15036        3  1999  0.75  0.75   1
-15037        3  2000   NaN  0.50 NaN
+      worldbankcode  xrcomp  xropen  parcomp  year    W   W2  S
+16774           CHN       1       4        1  1981  0.5  0.5  1
+16775           CHN       1       4        1  1982  0.5  0.5  1
+16776           CHN       1       4        1  1983  0.5  0.5  1
+16777           CHN       1       4        1  1984  0.5  0.5  1
+16778           CHN       1       4        1  1985  0.5  0.5  1
+16779           CHN       1       4        1  1986  0.5  0.5  1
+16780           CHN       1       4        1  1987  0.5  0.5  1
+16781           CHN       1       4        1  1988  0.5  0.5  1
+16782           CHN       1       4        1  1989  0.5  0.5  1
+16783           CHN       1       4        1  1990  0.5  0.5  1
+16784           CHN       1       4        1  1991  0.5  0.5  1
+16785           CHN       1       4        1  1992  0.5  0.5  1
+16786           CHN       1       4        1  1993  0.5  0.5  1
+16787           CHN       1       4        1  1994  0.5  0.5  1
+16788           CHN       1       4        1  1995  0.5  0.5  1
+16789           CHN       1       4        1  1996  0.5  0.5  1
+16790           CHN       1       4        1  1997  0.5  0.5  1
+16791           CHN       1       4        1  1998  0.5  0.5  1
+16792           CHN       1       4        1  1999  0.5  0.5  1
 \end{verbatim}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,7 +88,7 @@ print df2[['year','legselec','S','S2']]
 
 \begin{minted}[fontsize=\footnotesize]{python}
 che = pd.read_csv('Preworski_cheibub_tax_data.csv')
-che2 = che[(che['ccode']==640) & (che['year'] > 1980)]
+che2 = che[(che['ccode']==code) & (che['year'] > 1980)]
 che2['S2'] = che2['LEGSELEC'] / 2.
 print che2[['year','LEGSELEC','S2']]
 \end{minted}
@@ -108,8 +107,28 @@ print che2[['year','LEGSELEC','S2']]
 3253  1990         2   1
 \end{verbatim}
 
+\begin{minted}[fontsize=\footnotesize]{python}
+pol = pd.read_csv('polity4v2013.csv')
+pol2 = pol[(pol['scode']==name) & (pol['year'] > 2000)]
+print pol2[['scode','year','xrcomp','xropen','parcomp']]
+\end{minted}
 
-
+\begin{verbatim}
+     scode  year  xrcomp  xropen  parcomp
+3041   CHN  2001       1       4        1
+3042   CHN  2002       1       4        1
+3043   CHN  2003       1       4        1
+3044   CHN  2004       1       4        1
+3045   CHN  2005       1       4        1
+3046   CHN  2006       1       4        1
+3047   CHN  2007       1       4        1
+3048   CHN  2008       1       4        1
+3049   CHN  2009       1       4        1
+3050   CHN  2010       1       4        1
+3051   CHN  2011       1       4        1
+3052   CHN  2012       1       4        1
+3053   CHN  2013       1       4        1
+\end{verbatim}
 
 
 
