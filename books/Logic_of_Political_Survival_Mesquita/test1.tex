@@ -6,7 +6,7 @@
 import pandas as pd
 df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
 df['Klepto'] = (df['TAXGDP']-df['Expenditure']).abs()
-df = df[['regyr','ccode','aid_gdp','pop','year','W','S','Klepto']]
+df = df[['regyr','ccode','aid_gdp','lrgdpc','pop','year','W','S','Klepto','laglrgdpc']]
 df.to_csv('/tmp/out.csv')
 \end{minted}
 
@@ -46,6 +46,45 @@ Kurtosis:                      11.176   Cond. No.                         141.
 Warnings:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 \end{verbatim}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import statsmodels.formula.api as smf
+results = smf.ols('lrgdpc ~ W + S + aid_gdp + np.log(pop) + laglrgdpc', data=df).fit()
+print results.summary()
+\end{minted}
+
+\begin{verbatim}
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 lrgdpc   R-squared:                       0.993
+Model:                            OLS   Adj. R-squared:                  0.993
+Method:                 Least Squares   F-statistic:                 7.123e+04
+Date:                Mon, 06 Apr 2015   Prob (F-statistic):               0.00
+Time:                        22:08:39   Log-Likelihood:                 3221.6
+No. Observations:                2541   AIC:                            -6431.
+Df Residuals:                    2535   BIC:                            -6396.
+Df Model:                           5                                         
+Covariance Type:            nonrobust                                         
+===============================================================================
+                  coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------
+Intercept       0.0560      0.020      2.861      0.004         0.018     0.094
+W               0.0262      0.007      3.992      0.000         0.013     0.039
+S              -0.0086      0.004     -1.916      0.055        -0.017     0.000
+aid_gdp        -0.0706      0.021     -3.339      0.001        -0.112    -0.029
+np.log(pop)    -0.0012      0.001     -1.323      0.186        -0.003     0.001
+laglrgdpc       0.9954      0.002    482.672      0.000         0.991     0.999
+==============================================================================
+Omnibus:                      476.268   Durbin-Watson:                   1.702
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             4091.930
+Skew:                          -0.635   Prob(JB):                         0.00
+Kurtosis:                       9.086   Cond. No.                         221.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+\end{verbatim}
+
 
 \begin{minted}[fontsize=\footnotesize]{python}
 %load_ext rpy2.ipython
@@ -92,6 +131,74 @@ log(pop) -0.903  0.195 -0.033
 aid_gdp  -0.417  0.071  0.043  0.329
 
 \end{verbatim}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+%R -i df
+%R resp_lmer <- lmer(lrgdpc ~ W + S + log(pop) + aid_gdp + laglrgdpc + ( 1 | regyr), data = df)
+%R -o res res = summary(resp_lmer)
+print res
+\end{minted}
+
+\begin{verbatim}
+Linear mixed model fit by REML ['lmerMod']
+Formula: lrgdpc ~ W + S + log(pop) + aid_gdp + laglrgdpc + (1 | regyr)
+   Data: df
+
+REML criterion at convergence: -6453.3
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-9.6023 -0.4385  0.0367  0.5086  4.5498 
+
+Random effects:
+ Groups   Name        Variance  Std.Dev.
+ regyr    (Intercept) 0.0003723 0.01930 
+ Residual             0.0042945 0.06553 
+Number of obs: 2541, groups:  regyr, 217
+
+Fixed effects:
+              Estimate Std. Error t value
+(Intercept)  0.0593032  0.0229343     2.6
+W            0.0184700  0.0065761     2.8
+S           -0.0042964  0.0043957    -1.0
+log(pop)    -0.0017439  0.0009528    -1.8
+aid_gdp     -0.0347754  0.0226003    -1.5
+laglrgdpc    0.9957743  0.0023887   416.9
+
+Correlation of Fixed Effects:
+          (Intr) W      S      lg(pp) ad_gdp
+W          0.152                            
+S         -0.138 -0.644                     
+log(pop)  -0.678  0.086 -0.044              
+aid_gdp   -0.580 -0.058  0.044  0.453       
+laglrgdpc -0.918 -0.296  0.122  0.370  0.472
+
+\end{verbatim}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}

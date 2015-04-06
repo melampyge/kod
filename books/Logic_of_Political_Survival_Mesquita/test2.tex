@@ -6,11 +6,6 @@ Polity
 http://www.systemicpeace.org/inscrdata.html
 
 \begin{minted}[fontsize=\footnotesize]{python}
-df['WS'] = df['W']/(np.log((df['S']+1)*10)/3)
-\end{minted}
-
-
-\begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
 df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
 \end{minted}
@@ -79,40 +74,6 @@ democracy     1
 dtype: float64
 \end{verbatim}
 
-\begin{minted}[fontsize=\footnotesize]{python}
-import pandas as pd
-pdf = pd.read_csv('polity4v2013.csv')
-pdf2 = pdf[(pdf['ccode'] == 640) & (pdf['year'] > 1990)]
-print pdf2[['parcomp','year','polity','prior']]
-\end{minted}
-
-\begin{verbatim}
-       parcomp  year  polity  xrreg
-15170        4  1991       9      3
-15171        4  1992       9      3
-15172        4  1993       8      3
-15173        4  1994       8      3
-15174        4  1995       8      3
-15175        4  1996       8      3
-15176        3  1997       7      3
-15177        3  1998       7      3
-15178        3  1999       7      3
-15179        3  2000       7      3
-15180        3  2001       7      3
-15181        3  2002       7      3
-15182        3  2003       7      3
-15183        3  2004       7      3
-15184        3  2005       7      3
-15185        3  2006       7      3
-15186        3  2007       7      3
-15187        3  2008       7      3
-15188        3  2009       7      3
-15189        3  2010       7      3
-15190        4  2011       9      3
-15191        4  2012       9      3
-15192        4  2013       9      3
-\end{verbatim}
-
 
 \begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
@@ -172,7 +133,6 @@ print pdf2[['democ','year','W']]
 
 \begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
-df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
 df2 = df[(df['ccode'] == 640) & (df['year'] > 1920)]
 print df2[['year','W','S']]
 \end{minted}
@@ -243,6 +203,69 @@ print df2[['year','W','S']]
 
 [80 rows x 3 columns]
 \end{verbatim}
+
+
+
+\begin{minted}[fontsize=\footnotesize]{python}
+df['WS'] = df['W']/(np.log((df['S']+1)*10)/3)
+\end{minted}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import pandas as pd
+df = pd.read_csv('WB_DevInd2001.csv')
+df2 = df[df['worldbankcode'] == 'TUR']
+print df2[['year','CurRevenue']]
+\end{minted}
+
+\begin{verbatim}
+      year  CurRevenue
+7480  1960         NaN
+7481  1961         NaN
+7482  1962         NaN
+7483  1963         NaN
+7484  1964         NaN
+7485  1965         NaN
+7486  1966         NaN
+7487  1967         NaN
+7488  1968         NaN
+7489  1969         NaN
+7490  1970   13.961385
+7491  1971   14.976810
+7492  1972   15.449563
+7493  1973   15.464012
+7494  1974   13.768992
+7495  1975   16.139320
+7496  1976   16.768734
+7497  1977   17.045378
+7498  1978   17.851103
+7499  1979   17.424463
+7500  1980   18.072437
+7501  1981   18.269777
+7502  1982         NaN
+7503  1983   16.567173
+7504  1984   12.328418
+7505  1985   13.735672
+7506  1986   13.735950
+7507  1987   13.881064
+7508  1988   13.506572
+7509  1989   13.674712
+7510  1990   13.657337
+7511  1991   14.299362
+7512  1992   16.057449
+7513  1993   17.851700
+7514  1994   19.259369
+7515  1995   17.939838
+7516  1996   18.338795
+7517  1997   21.877291
+7518  1998   23.721193
+7519  1999   25.552168
+\end{verbatim}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import pandas as pd
+df = pd.read_csv('/tmp/out.csv')
+\end{minted}
+
 
 
 
