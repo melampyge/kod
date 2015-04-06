@@ -10,43 +10,45 @@ import pandas as pd
 #name = 'TUR'
 #name = 'SGP'
 #name = 'SIN'
-name = 'CHN'
+#name = 'CHN'
+name = 'VEN'
 df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
 df2 = df[(df['worldbankcode']==name) & (df['year'] > 1980)]
+def W(df_in):
+    df_in['W2'] = 0.
+    df_in['W2'] += ((pd.isnull(df_in['RegimeType'])==False) & (df_in['RegimeType'] !=2) & (df_in['RegimeType'] != 3)).astype(int)
+    df_in['W2'] += (df_in['xrcomp'] >= 2).astype(int)
+    df_in['W2'] += (df_in['xropen'] > 2).astype(int)
+    df_in['W2'] += (df_in['parcomp'] == 5).astype(int) # none for TR
+    df_in['W2'] = df_in['W2'] / 4.
 \end{minted}
 
 \begin{minted}[fontsize=\footnotesize]{python}
-df2['W2'] = 0.
-df2['W2'] += ((pd.isnull(df2['RegimeType'])==False) & \
-              (df2['RegimeType'] !=2) & (df2['RegimeType'] != 3)).astype(int)
-df2['W2'] += (df2['xrcomp'] >= 2).astype(int)
-df2['W2'] += (df2['xropen'] > 2).astype(int)
-df2['W2'] += (df2['parcomp'] == 5).astype(int) # none for TR
-df2['W2'] = df2['W2'] / 4.
-print df2[['worldbankcode','xrcomp','xropen','parcomp','year','W','W2','S']]
+W(df2)
+print df2[['worldbankcode','RegimeType','xrcomp','xropen','parcomp','year','W','W2','S']]
 \end{minted}
 
 \begin{verbatim}
-      worldbankcode  xrcomp  xropen  parcomp  year    W   W2  S
-16774           CHN       1       4        1  1981  0.5  0.5  1
-16775           CHN       1       4        1  1982  0.5  0.5  1
-16776           CHN       1       4        1  1983  0.5  0.5  1
-16777           CHN       1       4        1  1984  0.5  0.5  1
-16778           CHN       1       4        1  1985  0.5  0.5  1
-16779           CHN       1       4        1  1986  0.5  0.5  1
-16780           CHN       1       4        1  1987  0.5  0.5  1
-16781           CHN       1       4        1  1988  0.5  0.5  1
-16782           CHN       1       4        1  1989  0.5  0.5  1
-16783           CHN       1       4        1  1990  0.5  0.5  1
-16784           CHN       1       4        1  1991  0.5  0.5  1
-16785           CHN       1       4        1  1992  0.5  0.5  1
-16786           CHN       1       4        1  1993  0.5  0.5  1
-16787           CHN       1       4        1  1994  0.5  0.5  1
-16788           CHN       1       4        1  1995  0.5  0.5  1
-16789           CHN       1       4        1  1996  0.5  0.5  1
-16790           CHN       1       4        1  1997  0.5  0.5  1
-16791           CHN       1       4        1  1998  0.5  0.5  1
-16792           CHN       1       4        1  1999  0.5  0.5  1
+      worldbankcode  RegimeType  xrcomp  xropen  parcomp  year     W    W2  S
+15018           TUR           3       2       4        1  1981  0.50  0.50  0
+15019           TUR           2       2       4        1  1982  0.50  0.50  0
+15020           TUR           2       2       4        4  1983  0.50  0.50  1
+15021           TUR           2       2       4        4  1984  0.50  0.50  1
+15022           TUR           2       2       4        4  1985  0.50  0.50  1
+15023           TUR           2       2       4        4  1986  0.50  0.50  1
+15024           TUR           1       2       4        4  1987  0.75  0.75  1
+15025           TUR           1       2       4        4  1988  0.75  0.75  1
+15026           TUR           1       3       4        4  1989  0.75  0.75  1
+15027           TUR           1       3       4        4  1990  0.75  0.75  1
+15028           TUR           1       3       4        4  1991  0.75  0.75  1
+15029           TUR           1       3       4        4  1992  0.75  0.75  1
+15030           TUR           1       3       4        4  1993  0.75  0.75  1
+15031           TUR           1       3       4        4  1994  0.75  0.75  1
+15032           TUR           1       3       4        4  1995  0.75  0.75  1
+15033           TUR           1       3       4        4  1996  0.75  0.75  1
+15034           TUR           1       3       4        3  1997  0.75  0.75  1
+15035           TUR           1       3       4        3  1998  0.75  0.75  1
+15036           TUR           1       3       4        3  1999  0.75  0.75  1
 \end{verbatim}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,29 +111,37 @@ print che2[['year','LEGSELEC','S2']]
 
 \begin{minted}[fontsize=\footnotesize]{python}
 pol = pd.read_csv('polity4v2013.csv')
+pol['RegimeType'] = 1.
 pol2 = pol[(pol['scode']==name) & (pol['year'] > 2000)]
-print pol2[['scode','year','xrcomp','xropen','parcomp']]
+W(pol2)
+print pol2[['scode','year','xrcomp','xropen','parcomp','W2']]
 \end{minted}
 
 \begin{verbatim}
-     scode  year  xrcomp  xropen  parcomp
-3041   CHN  2001       1       4        1
-3042   CHN  2002       1       4        1
-3043   CHN  2003       1       4        1
-3044   CHN  2004       1       4        1
-3045   CHN  2005       1       4        1
-3046   CHN  2006       1       4        1
-3047   CHN  2007       1       4        1
-3048   CHN  2008       1       4        1
-3049   CHN  2009       1       4        1
-3050   CHN  2010       1       4        1
-3051   CHN  2011       1       4        1
-3052   CHN  2012       1       4        1
-3053   CHN  2013       1       4        1
+      scode  year  xrcomp  xropen  parcomp    W2
+16248   VEN  2001       3       4        3  0.75
+16249   VEN  2002       3       4        3  0.75
+16250   VEN  2003       3       4        3  0.75
+16251   VEN  2004       3       4        3  0.75
+16252   VEN  2005       3       4        3  0.75
+16253   VEN  2006       3       4        3  0.75
+16254   VEN  2007       3       4        3  0.75
+16255   VEN  2008       3       4        3  0.75
+16256   VEN  2009       1       4        3  0.50
+16257   VEN  2010       1       4        3  0.50
+16258   VEN  2011       1       4        3  0.50
+16259   VEN  2012       1       4        3  0.50
+16260   VEN  2013       2       4        3  0.75
 \end{verbatim}
 
+\begin{minted}[fontsize=\footnotesize]{python}
+a = 0.029
+print 10*1000 * ((1+a)**10.)
+\end{minted}
 
-
+\begin{verbatim}
+13309.2550483
+\end{verbatim}
 
 
 
