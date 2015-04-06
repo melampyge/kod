@@ -1,11 +1,13 @@
 \documentclass[12pt,fleqn]{article}\usepackage{common}
+
 \begin{document}
 
 \begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
 df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
 df['Klepto'] = (df['TAXGDP']-df['Expenditure']).abs()
-df[['regyr','ccode','aid_gdp','pop','year','W','S','WS','Klepto']].to_csv('/tmp/out.csv')
+df = df[['regyr','ccode','aid_gdp','pop','year','W','S','Klepto']]
+df.to_csv('/tmp/out.csv')
 \end{minted}
 
 \begin{minted}[fontsize=\footnotesize]{python}
@@ -21,7 +23,7 @@ Dep. Variable:                 Klepto   R-squared:                       0.205
 Model:                            OLS   Adj. R-squared:                  0.202
 Method:                 Least Squares   F-statistic:                     65.82
 Date:                Mon, 06 Apr 2015   Prob (F-statistic):           1.43e-49
-Time:                        20:07:21   Log-Likelihood:                -3297.9
+Time:                        20:29:15   Log-Likelihood:                -3297.9
 No. Observations:                1027   AIC:                             6606.
 Df Residuals:                    1022   BIC:                             6630.
 Df Model:                           4                                         
@@ -51,41 +53,43 @@ Warnings:
 \end{minted}
 
 \begin{minted}[fontsize=\footnotesize]{python}
-%R -i df2
-%R resp_lmer <- resp_lmer <- lmer(Klepto ~ W + S + ( 1 + W + S| regyr), data = df2)
+%R -i df
+%R resp_lmer <- lmer(Klepto ~ W + S + log(pop) + aid_gdp + ( 1 | regyr), data = df)
 %R -o res res = summary(resp_lmer)
 print res
 \end{minted}
 
 \begin{verbatim}
 Linear mixed model fit by REML ['lmerMod']
-Formula: Klepto ~ W + S + (1 + W + S | regyr)
-   Data: df2
+Formula: Klepto ~ W + S + log(pop) + aid_gdp + (1 | regyr)
+   Data: df
 
-REML criterion at convergence: 11852.2
+REML criterion at convergence: 6569.8
 
 Scaled residuals: 
     Min      1Q  Median      3Q     Max 
--4.4516 -0.2923 -0.1179  0.1457 11.7616 
+-1.9820 -0.6057 -0.1908  0.3338  7.5056 
 
 Random effects:
- Groups   Name        Variance Std.Dev. Corr       
- regyr    (Intercept)  60.62    7.786              
-          W           599.46   24.484   -1.00      
-          S           269.06   16.403    1.00 -1.00
- Residual             146.74   12.114              
-Number of obs: 1489, groups:  regyr, 125
+ Groups   Name        Variance Std.Dev.
+ regyr    (Intercept)  5.245   2.290   
+ Residual             32.296   5.683   
+Number of obs: 1027, groups:  regyr, 122
 
 Fixed effects:
             Estimate Std. Error t value
-(Intercept)    8.202      1.186   6.914
-W            -12.440      2.741  -4.538
-S              8.408      2.047   4.108
+(Intercept)   6.1930     1.2722   4.868
+W            -4.0960     0.8626  -4.748
+S             3.5409     0.6541   5.414
+log(pop)     -0.2682     0.1175  -2.284
+aid_gdp      42.9981     2.9760  14.448
 
 Correlation of Fixed Effects:
-  (Intr) W     
-W -0.619       
-S  0.222 -0.884
+         (Intr) W      S      lg(pp)
+W        -0.256                     
+S        -0.171 -0.651              
+log(pop) -0.903  0.195 -0.033       
+aid_gdp  -0.417  0.071  0.043  0.329
 
 \end{verbatim}
 
