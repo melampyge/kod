@@ -14,7 +14,7 @@ import pandas as pd
 #name = 'SIN'
 #name = 'CHN'
 #name = 'VEN'
-name = 'RUS'
+#name = 'RUS'
 df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
 df2 = df[(df['worldbankcode']==name) & (df['year'] > 1980)]
 def W(df_in):
@@ -147,45 +147,77 @@ print 10*1000 * ((1+a)**10.)
 \end{verbatim}
 
 \begin{minted}[fontsize=\footnotesize]{python}
-import pandas as pd
-cnt = pd.read_csv('/tmp/CNTSDATA.csv')
-\end{minted}
-
-\begin{minted}[fontsize=\footnotesize]{python}
-cnt2 = cnt[(cnt['Wbcode']=='TUR') & (cnt['year'] > 1990)]
-print cnt2[['year','revexp2','revexp4']]
+df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
+df = df[(df['S'] == 0.5) & (df['year'] > 1950)]
+print df[['country','year','xrcomp','xropen','parcomp','W','S']]
 \end{minted}
 
 \begin{verbatim}
-       year  revexp2  revexp4
-14680  1991    92399    37560
-14681  1992    99480    43685
-14682  1993   129088    54288
-14683  1994    92827    42160
-14684  1995   101709    46193
-14685  1996      NaN      NaN
-14686  1997      NaN      NaN
-14687  1998      NaN      NaN
-14688  1999      NaN      NaN
-14689  2000      NaN      NaN
-14690  2001      NaN      NaN
-14691  2002      NaN      NaN
-14692  2003      NaN      NaN
-14693  2004      NaN      NaN
-14694  2005      NaN      NaN
-14695  2006      NaN      NaN
-14696  2007      NaN      NaN
-14697  2008      NaN      NaN
-14698  2009      NaN      NaN
-14699  2010      NaN      NaN
-14700  2011      NaN      NaN
-14701  2012      NaN      NaN
+           country  year  xrcomp  xropen  parcomp     W    S
+2439     NICARAGUA  1980     -77     -77      -77  0.00  0.5
+2440     NICARAGUA  1981       0       0        2  0.00  0.5
+2441     NICARAGUA  1982       0       0        2  0.00  0.5
+2442     NICARAGUA  1983       0       0        2  0.00  0.5
+2884      COLOMBIA  1954       1       4        3  0.25  0.5
+2885      COLOMBIA  1955       1       4        3  0.25  0.5
+2886      COLOMBIA  1956       1       4        3  0.25  0.5
+2887      COLOMBIA  1957       2       4        4  0.50  0.5
+3303      SURINAME  1985     NaN     NaN      NaN  0.50  0.5
+3304      SURINAME  1986     NaN     NaN      NaN  0.50  0.5
+4729       URUGUAY  1973       1       4        1  0.25  0.5
+4730       URUGUAY  1974       1       4        1  0.25  0.5
+4731       URUGUAY  1975       1       4        1  0.25  0.5
+4732       URUGUAY  1976       1       4        1  0.25  0.5
+4733       URUGUAY  1977       1       4        1  0.25  0.5
+4734       URUGUAY  1978       1       4        1  0.25  0.5
+4735       URUGUAY  1979       1       4        1  0.25  0.5
+4736       URUGUAY  1980       1       4        1  0.25  0.5
+4737       URUGUAY  1981       1       4        1  0.25  0.5
+4738       URUGUAY  1982       1       4        1  0.25  0.5
+4739       URUGUAY  1983       1       4        1  0.25  0.5
+6269         SPAIN  1951       0       0        1  0.25  0.5
+6270         SPAIN  1952       0       0        1  0.25  0.5
+6271         SPAIN  1953       0       0        1  0.25  0.5
+6272         SPAIN  1954       0       0        1  0.25  0.5
+6273         SPAIN  1955       0       0        1  0.25  0.5
+6274         SPAIN  1956       0       0        1  0.25  0.5
+6275         SPAIN  1957       0       0        1  0.25  0.5
+6276         SPAIN  1958       0       0        1  0.25  0.5
+6277         SPAIN  1959       0       0        1  0.25  0.5
+...            ...   ...     ...     ...      ...   ...  ...
+18601       BRUNEI  1992     NaN     NaN      NaN  0.75  0.5
+18602       BRUNEI  1993     NaN     NaN      NaN  0.75  0.5
+18603       BRUNEI  1994     NaN     NaN      NaN  0.75  0.5
+18604       BRUNEI  1995     NaN     NaN      NaN  0.75  0.5
+18605       BRUNEI  1996     NaN     NaN      NaN  0.75  0.5
+18606       BRUNEI  1997     NaN     NaN      NaN  0.75  0.5
+18607       BRUNEI  1998     NaN     NaN      NaN  0.75  0.5
+18608       BRUNEI  1999     NaN     NaN      NaN  0.75  0.5
+18681    INDONESIA  1951       1       4        3  0.50  0.5
+18682    INDONESIA  1952       1       4        3  0.50  0.5
+18683    INDONESIA  1953       1       4        3  0.50  0.5
+18684    INDONESIA  1954       1       4        3  0.50  0.5
+18690    INDONESIA  1960       1       4        2  0.50  0.5
+18691    INDONESIA  1961       1       4        2  0.50  0.5
+18692    INDONESIA  1962       1       4        2  0.50  0.5
+18693    INDONESIA  1963       1       4        2  0.50  0.5
+18694    INDONESIA  1964       1       4        2  0.50  0.5
+18695    INDONESIA  1965       1       4        2  0.50  0.5
+18698    INDONESIA  1968       1       4        2  0.25  0.5
+18699    INDONESIA  1969       1       4        2  0.25  0.5
+18700    INDONESIA  1970       1       4        2  0.25  0.5
+19649        TONGA  1970     NaN     NaN      NaN  0.75  0.5
+19651  UA EMIRATES  1972     NaN     NaN      NaN  0.75  0.5
+19652  UA EMIRATES  1973     NaN     NaN      NaN  0.75  0.5
+19653  UA EMIRATES  1974     NaN     NaN      NaN  0.75  0.5
+19658  UA EMIRATES  1979     NaN     NaN      NaN  0.75  0.5
+19666        TONGA  1987     NaN     NaN      NaN  0.75  0.5
+19673  UA EMIRATES  1994     NaN     NaN      NaN  0.75  0.5
+19675  UA EMIRATES  1996     NaN     NaN      NaN  0.75  0.5
+19678        TONGA  1999     NaN     NaN      NaN  0.75  0.5
+
+[270 rows x 7 columns]
 \end{verbatim}
-
-
-
-
-
 
 
 
