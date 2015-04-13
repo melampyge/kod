@@ -1077,4 +1077,4 @@ This command does not push erased text to kill-ring."
   )
 
 (global-set-key [f11] 'reload-pymacs)
-(global-set-key [f5] 'pytexipy-notebook-complete-py)
+(global-set-key [f5] 'ipython-tex-complete-py)
