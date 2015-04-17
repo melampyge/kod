@@ -16,4 +16,3 @@ Some other data I found on http://www.correlatesofwar.org
 
 Keywords: The War Trap, Bruce Bueno da Mesquita, CSV, data file, f**k Stata, f**k Windows Eugene Code
 
-
