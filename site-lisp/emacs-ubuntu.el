@@ -270,6 +270,7 @@ This command does not push erased text to kill-ring."
    ["Tex Itemize" x-tex-itemize]
    ["Tex Verbatim" tempo-template-tex-verbatim-big]
    ["Tex Enumerate" tempo-template-tex-enumerate]
+   ["Tex Vector" tempo-template-tex-vector]
    ["Tex Matrix" tempo-template-tex-matrix]
    ["Tex Partial Derivative" tempo-template-tex-partial-derivative]
    ["Tex Function In Pieces" tempo-template-tex-function-in-pieces]
@@ -715,6 +716,13 @@ This command does not push erased text to kill-ring."
  "d" ;; 
  "") ;; 
 
+(tempo-define-template 
+ "tex-vector" ;; 
+ '("\\left[\\begin{array}{ccc} "
+   (s)
+   " \\end{array}\\right]^T") 
+ "d" ;; 
+ "") ;; 
 
 (tempo-define-template 
  "tex-graphics"	;; 

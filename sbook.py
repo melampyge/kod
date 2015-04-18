@@ -16,18 +16,11 @@ run_command("convert -unsharp 1.5x1.2+1.0+0.10 -crop 300x300+10+0 01.tiff /tmp/g
 run_command("convert -monochrome /tmp/gray.tiff /tmp/mono.tiff")
 run_command("cjb2 -clean /tmp/mono.tiff /home/burak/book.djvu")
 
-for a in range(450):
+for a in range(30):
     i = a + 1
-    file1 = str(two_digitize(i)) + "_0.tiff"
+    file1 = str(two_digitize(i)) + ".tiff"
     print file1
-    run_command("convert -unsharp 1.5x1.2+1.0+0.10  two/" + str(file1) + " /tmp/gray.tiff")
-    run_command("convert -monochrome /tmp/gray.tiff /tmp/mono.tiff")
-    run_command("cjb2 -clean /tmp/mono.tiff /tmp/page.djvu")
-    run_command("djvm -i /home/burak/book.djvu /tmp/page.djvu")
-
-    file2 = str(two_digitize(i)) + "_1.tiff"
-    print file2
-    run_command("convert -unsharp 1.5x1.2+1.0+0.10  two/" + str(file2) + " /tmp/gray.tiff")
+    run_command("convert -unsharp 1.5x1.2+1.0+0.10  " + str(file1) + " /tmp/gray.tiff")
     run_command("convert -monochrome /tmp/gray.tiff /tmp/mono.tiff")
     run_command("cjb2 -clean /tmp/mono.tiff /tmp/page.djvu")
     run_command("djvm -i /home/burak/book.djvu /tmp/page.djvu")
