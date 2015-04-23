@@ -19,8 +19,10 @@ while True:
     print '\n'
     if ".avi" in list[idx] or ".mp4" in list[idx] or ".mkv" in list[idx] :
         os.system("mplayer  -vf scale -zoom -xy 1100 '%s'" % list[idx] )
+        os.system(cmd)
     else:
-        os.system("mplayer '%s'" % list[idx] )
+        #os.system("mplayer '%s'" % list[idx] )
+        os.system("vlc '%s'" % list[idx] )
     print "Delete? (Press d for delete)..."
     k=""
     def input():

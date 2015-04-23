@@ -40,7 +40,7 @@
   )
 
 ;; set name of abbrev file with .el extension
-(setq abbrev-file-name "/usr/share/emacs23/site-lisp/abbrevs.el")
+(setq abbrev-file-name "/usr/share/emacs/site-lisp/abbrevs.el")
 (setq-default abbrev-mode t)
 (setq save-abbrevs nil)
 
@@ -77,10 +77,10 @@ This command does not push erased text to kill-ring."
 (modify-coding-system-alist 'file "\\.txt\\'" 'utf-8)
 (modify-coding-system-alist 'file "\\.pl\\'" 'utf-8)
 
-;;(load-file "/usr/share/emacs23/site-lisp/weblogger.el")
+;;(load-file "/usr/share/emacs/site-lisp/weblogger.el")
 (require 'java-mode-indent-annotations)
 (require 'nxml-mode)
-(load-file "/usr/share/emacs23/site-lisp/_latin_post_ek.elc")
+(load-file "/usr/share/emacs/site-lisp/_latin_post_ek.elc")
 (require 'tempo)
 (require 'julia-mode)
 
@@ -90,8 +90,8 @@ This command does not push erased text to kill-ring."
 
 (setq TeX-master-file-ask nil)
 
-(add-to-list 'load-path "/usr/share/emacs23/site-lisp/python-mode.el-6.0.10") 
-(setq py-install-directory "/usr/share/emacs23/site-lisp/python-mode.el-6.0.10")
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/python-mode.el-6.0.10") 
+(setq py-install-directory "/usr/share/emacs/site-lisp/python-mode.el-6.0.10")
 (autoload 'autopair-global-mode "autopair" nil t)
 ;;(autopair-global-mode)
 (add-hook 'lisp-mode-hook
@@ -171,7 +171,7 @@ This command does not push erased text to kill-ring."
 ;;
 ;; editing settings
 (setq column-number-mode t)
-(pc-selection-mode) ;; Ctrl-C Ctrl-V Windows'daki gibi calisiyor
+;;(pc-selection-mode) ;; Ctrl-C Ctrl-V Windows'daki gibi calisiyor
 ;;(load "cua-mode")
 ;;(CUA-mode t)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -184,7 +184,7 @@ This command does not push erased text to kill-ring."
 
 ;; loads the _emacs file with one keystroke
 (defun find-dotemacs() (interactive)
-  (find-file "/usr/share/emacs23/site-lisp/emacs-ubuntu.el"))
+  (find-file "/usr/share/emacs/site-lisp/emacs-ubuntu.el"))
 (define-key global-map "\C-c\C-f" 'find-dotemacs)
 
 
@@ -391,8 +391,8 @@ This command does not push erased text to kill-ring."
 (defun byte-me()
   "byte compile _emacs file"
   (interactive)
-  (byte-compile-file "/usr/share/emacs23/site-lisp/emacs-ubuntu.el")
-  (load-file "/usr/share/emacs23/site-lisp/emacs-ubuntu.elc")
+  (byte-compile-file "/usr/share/emacs/site-lisp/emacs-ubuntu.el")
+  (load-file "/usr/share/emacs/site-lisp/emacs-ubuntu.elc")
   (message "Byte compiling _emacs...Done")
   )
 
@@ -628,7 +628,7 @@ This command does not push erased text to kill-ring."
 ;;(add-to-list 'LaTeX-verbatim-macros-with-braces-local "url")  
 
 (set-face-foreground 'font-lock-comment-face "DarkGreen")
-(set-face-foreground 'modeline "black") 
+;;(set-face-foreground 'modeline "black") 
 
 ;;turn on interactive prompting for code generation
 (setq tempo-interactive t)
@@ -988,7 +988,7 @@ This command does not push erased text to kill-ring."
 ;;
 ;; recompile using byte-compile-file, and load it like this
 ;;
-(load-file "/usr/share/emacs23/site-lisp/dired.elc")
+(load-file "/usr/share/emacs/site-lisp/dired.elc")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -1035,7 +1035,7 @@ This command does not push erased text to kill-ring."
 (switch-to-buffer "*scratch*")
 (delete-other-windows)
 
-;;(pymacs-load "/usr/share/emacs23/site-lisp/githist")
+;;(pymacs-load "/usr/share/emacs/site-lisp/githist")
 ;;(defun githist-do-show-version(num) 
 ;;  (interactive "nHow many commits back: ")
 ;;   (githist-show-version num)
@@ -1081,7 +1081,7 @@ This command does not push erased text to kill-ring."
   (if (buffer-live-p (get-buffer "*Pymacs*" ))
       (kill-buffer (get-buffer
 		    "*Pymacs*")))
-  (pymacs-load "/usr/share/emacs23/site-lisp/ipython-tex")
+  (pymacs-load "/usr/share/emacs/site-lisp/ipython-tex")
   )
 
 (global-set-key [f11] 'reload-pymacs)
