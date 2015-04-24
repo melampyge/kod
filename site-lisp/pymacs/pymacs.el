@@ -613,11 +613,15 @@ The timer is used only if `post-gc-hook' is not available.")
       (set-buffer-file-coding-system 'raw-text)
       (save-match-data
         ;; Launch the Pymacs helper.
+	(message "python here 1")
+	(message pymacs-python-command)
+	(message "python here 2")
         (let ((process
                (apply 'start-process "pymacs" buffer
                       (let ((python (getenv "PYMACS_PYTHON")))
                         (if (or (null python) (equal python ""))
-                            pymacs-python-command
+;;                            pymacs-python-command
+                            "/home/burak/anaconda/bin/python"
                           python))
                       "-c" (concat "import sys;"
                                    " from Pymacs import main;"

@@ -1025,11 +1025,10 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Documents/classnotes")
 (find-file-other-window "/home/burak/Desktop")
 (find-file-other-window "/home/burak/Dropbox")
-(find-file-other-window "/home/burak/Dropbox/Public/skfiles")
 (find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/Documents")
 (find-file-other-window "/home/burak/Documents/classnotes/app-math-tr")
-(find-file-other-window "/home/burak/Documents/classnotes/stat")
+(find-file-other-window "/home/burak/kod/site-lisp")
 (find-file-other-window "/home/burak/Documents/classnotes/linear")
 
 (switch-to-buffer "*scratch*")
