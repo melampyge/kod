@@ -2,7 +2,7 @@
 
 (autoload 'c++-mode "cc-mode" "C++ Editing Mode" t) 
 (autoload 'c-mode "c-mode" "C mode" t)
-;;(load "preview-latex.el" nil t t)
+(load "preview-latex.el" nil t t)
 
 (setq initial-scratch-message nil) ;; empty scratch buffer
 (setq max-specpdl-size 50000)

@@ -6,6 +6,9 @@ kernels = {}
 from IPython.testing.globalipapp import get_ipython
 from IPython.utils.io import capture_output
 
+from IPython.kernel.inprocess.manager import InProcessKernelManager
+km = InProcessKernelManager()
+
 ip = get_ipython()
 
 def run_cell(cmd):
@@ -14,10 +17,9 @@ def run_cell(cmd):
     res_out = io.stdout
     return res_out
 
-ip.run_cell('%pylab inline')
+ip.run_cell('import matplotlib.pylab as plt')
 ip.run_cell('%load_ext autoreload')        
-ip.run_cell('%autoreload 2')
-    
+ip.run_cell('%autoreload 2')    
 
 # make digits into length two - i.e. 1 into 01
 def two_digit(i): return "0"+str(i) if i < 10 else str(i)
@@ -86,8 +88,7 @@ def run_py_code():
     start = time.time()
     
     with capture_output() as io:
-        res = ip.run_cell(content)
-        print ('suc', res.success)
+        res_code = ip.run_cell(content)
     res = io.stdout
 
     elapsed = (time.time() - start)
