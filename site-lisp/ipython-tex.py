@@ -62,8 +62,6 @@ def run_py_code():
     else:
         # get code content from latex
         block_begin,block_end,content = get_block_content("\\begin{minted}","\\end{minted}")
-
-    #lisp.message(content)
         
     # we have code content at this point
 
