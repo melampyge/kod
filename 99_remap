@@ -6,10 +6,13 @@
 resume()
 {
     echo "in 99" >> /tmp/remap
-    su - burak -c /bin/sh /home/burak/kod/startup.sh
+    su - burak -c /home/burak/kod/startup.sh
 }
 
 case "$1" in
+	hibernate|suspend)
+		echo "suspend" >> /tmp/remap
+		;;
 	thaw|resume) resume ;;
 esac
 

@@ -21,8 +21,7 @@ while True:
         os.system("mplayer  -vf scale -zoom -xy 1100 '%s'" % list[idx] )
         os.system(cmd)
     else:
-        #os.system("mplayer '%s'" % list[idx] )
-        os.system("vlc '%s'" % list[idx] )
+        os.system("cvlc '%s'" % list[idx] )
     print "Delete? (Press d for delete)..."
     k=""
     def input():
