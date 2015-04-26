@@ -1,8 +1,10 @@
 #!/bin/sh
-setxkbmap -option ctrl:nocaps
 
 echo "in startup" >> /tmp/remap
 date >> /tmp/remap
+
+setxkbmap -option ctrl:nocaps
+
 xmodmap -e "keycode 133 = Pointer_Button1"
 xmodmap -e "keycode 108 = Pointer_Button1"
 xmodmap -e "keycode 135 = Pointer_Button3"
