@@ -1,2 +1,10 @@
 
 Source codes for various books I collected over the years.
+
+Dumping data from R
+
+From alr4 package dumping Forbes
+
+data("Forbes",package="alr4")
+write.csv(Forbes, '/tmp/alr4/Forbes.csv')
+
