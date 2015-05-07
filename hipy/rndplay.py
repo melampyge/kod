@@ -18,10 +18,8 @@ while True:
     fout.flush()
     print '\n'
     if ".avi" in list[idx] or ".mp4" in list[idx] or ".mkv" in list[idx] :
-        cmd = "mplayer  -vf scale -zoom -xy 1100 '%s'" % list[idx] 
+        cmd = "mplayer -vf scale -zoom -xy 1100 '%s'" % list[idx] 
         os.system(cmd)
-    else:
-        os.system("mplayer '%s'" % list[idx] )
     print "Delete? (Press d for delete)..."
     k=""
     def input():
