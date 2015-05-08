@@ -42,6 +42,7 @@
 ;; set name of abbrev file with .el extension
 (setq abbrev-file-name "/Users/burakbayramli/kod/site-lisp/abbrevs.el")
 (setq-default abbrev-mode t)
+(setq auto-revert-mode t)
 (setq save-abbrevs nil)
 
 ;; Make all yes-or-no questions as y-or-n
