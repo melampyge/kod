@@ -1,5 +1,7 @@
+# sudo mount /dev/sdb1 /media/burak --rw
+disk="burak"
 #disk="burak/New Volume"
-disk="burak/17EA-3758"
+#disk="burak/17EA-3758"
 echo "Copying files to /media/$disk/archive"
 rsync  --size-only  --delete-after -P -avzh /home/burak/kod "/media/$disk/archive" 
 rsync  --size-only  --delete-after -P -avzh /home/burak/Documents/kitaplar "/media/$disk/archive"
