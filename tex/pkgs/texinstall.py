@@ -6,7 +6,7 @@ under /usr/local/share/texmf and copies files to the right places
 import os
 
 pkgs = ['minted','showkeys','ifplatform','eulervm','etoolbox','cancel',
-        'xstring','lineno','marginnote','algorithm']
+        'xstring','lineno','marginnote','algorithm','algorithmic','pseudocode']
 
 fout = open("/tmp/ls-R","w")
 fout.write("% ls-R -- filename database for kpathsea; do not change this line.")
