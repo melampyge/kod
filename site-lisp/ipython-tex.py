@@ -96,7 +96,7 @@ def run_py_code():
     if show_replaced:
         lisp.forward_line(2) # skip over end verbatim, leave one line emtpy
         lisp.insert(include_graphics_command + '\n')
-        lisp.backward_line_nomark(1) # skip over end verbatim, leave one line emtpy        
+        lisp.scroll_up(1) # skip over end verbatim, leave one line emtpy        
         lisp.goto_char(remember_where)
         lisp.replace_string("plt.show()",rpl,None,block_begin,block_end)
         
