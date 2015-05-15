@@ -164,7 +164,6 @@ def thing_at_point():
 def complete_py():
     thing, start = thing_at_point()
     lisp.message(thing)
-    (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
     text, matches = ip.complete(thing)
     lisp.switch_to_buffer("*pytexipy*")
     lisp.kill_buffer(lisp.get_buffer("*pytexipy*"))
