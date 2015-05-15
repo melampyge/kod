@@ -17,6 +17,7 @@ def run_cell(cmd):
     res_out = io.stdout
     return res_out
 
+ip.run_cell('import numpy as np')
 ip.run_cell('import matplotlib.pylab as plt')
 ip.run_cell('%load_ext autoreload')        
 ip.run_cell('%autoreload 2')    
