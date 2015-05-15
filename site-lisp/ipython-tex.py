@@ -17,6 +17,7 @@ def run_cell(cmd):
     res_out = io.stdout
     return res_out
 
+ip.run_cell('import numpy as np')
 ip.run_cell('import matplotlib.pylab as plt')
 ip.run_cell('%load_ext autoreload')        
 ip.run_cell('%autoreload 2')    
@@ -96,7 +97,7 @@ def run_py_code():
     if show_replaced:
         lisp.forward_line(2) # skip over end verbatim, leave one line emtpy
         lisp.insert(include_graphics_command + '\n')
-        lisp.backward_line_nomark(1) # skip over end verbatim, leave one line emtpy        
+        lisp.scroll_up(1) # skip over end verbatim, leave one line emtpy        
         lisp.goto_char(remember_where)
         lisp.replace_string("plt.show()",rpl,None,block_begin,block_end)
         
@@ -163,7 +164,6 @@ def thing_at_point():
 def complete_py():
     thing, start = thing_at_point()
     lisp.message(thing)
-    (kc,kernel,ip) = get_kernel_pointer(lisp.buffer_name())
     text, matches = ip.complete(thing)
     lisp.switch_to_buffer("*pytexipy*")
     lisp.kill_buffer(lisp.get_buffer("*pytexipy*"))
