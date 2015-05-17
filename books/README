@@ -10,3 +10,12 @@ write.csv(Forbes, '/tmp/alr4/Forbes.csv')
 
 library("DAAG")
 data()
+
+How to convert from dta (Stata) files into csv
+
+Install foreign package
+
+library("foreign")
+df <- read.dta("xxx.dta")
+write.csv(df, "xxx.csv")
+
