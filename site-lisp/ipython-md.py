@@ -67,7 +67,7 @@ def run_py_code():
     plt_count_before = len(re.findall('plt\.savefig\(',bc))
     base = os.path.splitext(lisp.buffer_name())[0]
     f = '%s_%s.png' % (base, two_digit(plt_count_before+1))
-    rpl = "plt.savefig('%s')" % f
+    rpl = "plt.savefig('%s'); plt.hold(False)" % f
     show_replaced = True if "plt.show()" in content else False
     content=content.replace("plt.show()",rpl)
     include_graphics_command = "![](%s)" % f
@@ -80,12 +80,13 @@ def run_py_code():
     res = io.stdout
 
     elapsed = (time.time() - start)
-    display_results(block_end, res) # display it
+    if len(res) > 0: 
+        display_results(block_end, res) # display it
 
     if show_replaced:
         lisp.goto_char(block_end)
         lisp.forward_line(2) # skip over end verbatim, leave one line emtpy
-        lisp.insert(include_graphics_command + '\n')
+        lisp.insert('\n' + include_graphics_command + '\n')
         lisp.scroll_up(1) # skip over end verbatim, leave one line emtpy        
         lisp.goto_char(remember_where)
         lisp.replace_string("plt.show()",rpl,None,block_begin,block_end)
@@ -125,7 +126,7 @@ def display_results(end_block, res):
     if verb_begin:
         lisp.goto_char(verb_begin)
     else:
-        lisp.forward_line(2)
+        lisp.forward_line(1)
     lisp.insert("```text\n")
     lisp.insert(res)
     lisp.insert("```\n")
@@ -149,5 +150,18 @@ def thing_at_point():
     s = lisp.buffer_substring(start, end)
     return s, end
         
+        
+def complete_py():
+    thing, start = thing_at_point()
+    lisp.message(thing)
+    text, matches = ip.complete(thing)
+    lisp.switch_to_buffer("*pytexipy*")
+    lisp.kill_buffer(lisp.get_buffer("*pytexipy*"))
+    lisp.switch_to_buffer_other_window("*pytexipy*")
+    lisp.insert(thing)
+    for item in matches:        
+        lisp.insert(item)
+        lisp.insert("\n")
             
 interactions[run_py_code] = ''
+interactions[complete_py] = ''

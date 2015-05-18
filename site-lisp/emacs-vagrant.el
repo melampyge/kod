@@ -2,7 +2,7 @@
 
 (autoload 'c++-mode "cc-mode" "C++ Editing Mode" t) 
 (autoload 'c-mode "c-mode" "C mode" t)
-(load "/Users/burakbayramli/kod/site-lisp/preview-latex.el" nil t t)
+(load "preview-latex.el" nil t t)
 
 (setq initial-scratch-message nil) ;; empty scratch buffer
 (setq max-specpdl-size 50000)
@@ -10,9 +10,9 @@
 (setq tool-bar-mode -1)
 (setq auto-resize-tool-bars -1) 
 ;;(setq compile-command "ant -find build.xml -emacs ")
-(setq compile-command "/Users/burakbayramli/anaconda/bin/python build.py ")
+(setq compile-command "python build.py ")
 (setq x-select-enable-clipboard t)
-;;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 (setq shell-file-name "bash")
 (setq shell-command-switch "-ic")
 
@@ -40,9 +40,8 @@
   )
 
 ;; set name of abbrev file with .el extension
-(setq abbrev-file-name "/Users/burakbayramli/kod/site-lisp/abbrevs.el")
+(setq abbrev-file-name "/usr/share/emacs/site-lisp/abbrevs.el")
 (setq-default abbrev-mode t)
-(setq auto-revert-mode t)
 (setq save-abbrevs nil)
 
 ;; Make all yes-or-no questions as y-or-n
@@ -78,10 +77,12 @@ This command does not push erased text to kill-ring."
 (modify-coding-system-alist 'file "\\.txt\\'" 'utf-8)
 (modify-coding-system-alist 'file "\\.pl\\'" 'utf-8)
 
-;;(load-file "/Users/burakbayramli/kod/site-lisp/weblogger.el")
+;;(load-file "/usr/share/emacs/site-lisp/weblogger.el")
+(require 'java-mode-indent-annotations)
 (require 'nxml-mode)
-(load-file "/Users/burakbayramli/kod/site-lisp/_Latin_post_ek.elc")
+(load-file "/usr/share/emacs/site-lisp/_latin_post_ek.elc")
 (require 'tempo)
+(require 'julia-mode)
 
 (setq bell-volume 0)
 ;;(set-message-beep 'silent)
@@ -89,8 +90,8 @@ This command does not push erased text to kill-ring."
 
 (setq TeX-master-file-ask nil)
 
-(add-to-list 'load-path "/Users/burakbayramli/kod/site-lisp/python-mode.el-6.0.10") 
-(setq py-install-directory "/Users/burakbayramli/kod/site-lisp/python-mode.el-6.0.10")
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/python-mode.el-6.0.10") 
+(setq py-install-directory "/usr/share/emacs/site-lisp/python-mode.el-6.0.10")
 (autoload 'autopair-global-mode "autopair" nil t)
 ;;(autopair-global-mode)
 (add-hook 'lisp-mode-hook
@@ -170,6 +171,9 @@ This command does not push erased text to kill-ring."
 ;;
 ;; editing settings
 (setq column-number-mode t)
+;;(pc-selection-mode) ;; Ctrl-C Ctrl-V Windows'daki gibi calisiyor
+;;(load "cua-mode")
+;;(CUA-mode t)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'nxml-mode-hook 'turn-on-auto-fill)
 (setq fill-column 80) 
@@ -180,7 +184,7 @@ This command does not push erased text to kill-ring."
 
 ;; loads the _emacs file with one keystroke
 (defun find-dotemacs() (interactive)
-  (find-file "/Users/burakbayramli/kod/site-lisp/emacs-ubuntu.el"))
+  (find-file "/usr/share/emacs/site-lisp/emacs-ubuntu.el"))
 (define-key global-map "\C-c\C-f" 'find-dotemacs)
 
 
@@ -266,6 +270,7 @@ This command does not push erased text to kill-ring."
    ["Tex Itemize" x-tex-itemize]
    ["Tex Verbatim" tempo-template-tex-verbatim-big]
    ["Tex Enumerate" tempo-template-tex-enumerate]
+   ["Tex Vector" tempo-template-tex-vector]
    ["Tex Matrix" tempo-template-tex-matrix]
    ["Tex Partial Derivative" tempo-template-tex-partial-derivative]
    ["Tex Function In Pieces" tempo-template-tex-function-in-pieces]
@@ -386,8 +391,8 @@ This command does not push erased text to kill-ring."
 (defun byte-me()
   "byte compile _emacs file"
   (interactive)
-  (byte-compile-file "/Users/burakbayramli/kod/site-lisp/emacs-ubuntu.el")
-  (load-file "/Users/burakbayramli/kod/site-lisp/emacs-ubuntu.elc")
+  (byte-compile-file "/usr/share/emacs/site-lisp/emacs-ubuntu.el")
+  (load-file "/usr/share/emacs/site-lisp/emacs-ubuntu.elc")
   (message "Byte compiling _emacs...Done")
   )
 
@@ -468,14 +473,20 @@ This command does not push erased text to kill-ring."
 
 ;; screen, display settings
 
-(set-face-attribute 'default nil :family "Courier" :height 145 :weight 'normal)
-;;(set-face-attribute 'default nil :foundry "apple" :family "Anonymous_Pro")
+;;(set-default-font "-unknown-LMMono10-normal-normal-normal-*-*-*-*-*-*-0-iso10646-1" )
+;;(set-default-font "-unknown-LMMonoLt10-bold-normal-normal-*-*-*-*-*-*-0-iso10646-1")
+;;(set-default-font "-unknown-Liberation Mono-bold-normal-normal-*-*-*-*-*-m-0-iso10646-1" )
+;;(set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1" )
+;;(set-default-font "-unknown-FreeMono-bold-bold-normal-*-*-*-*-*-m-0-iso10646-1"  )
+;;(set-default-font "-unknown-FreeMono-bold-normal-normal-*-*-*-*-*-m-0-iso10646-1"  )
+;;(set-default-font "-misc-fixed-medium-r-normal--6-*-75-75-c-40-iso8859-7")
+;;(set-default-font "-bitstream-Courier 10 Pitch-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1")
 
-(set-face-attribute 'default nil :height 130)
+(set-face-attribute 'default nil :height 90)
 
 (setq default-frame-alist
       '((top . 0) (left . 500)
-        (width . 90) (height . 60)
+        (width . 80) (height . 40)
 ))
 
 (defun python-compile() 
@@ -705,6 +716,13 @@ This command does not push erased text to kill-ring."
  "d" ;; 
  "") ;; 
 
+(tempo-define-template 
+ "tex-vector" ;; 
+ '("\\left[\\begin{array}{ccc} "
+   (s)
+   " \\end{array}\\right]^T") 
+ "d" ;; 
+ "") ;; 
 
 (tempo-define-template 
  "tex-graphics"	;; 
@@ -731,10 +749,18 @@ This command does not push erased text to kill-ring."
  "")
 
 (tempo-define-template 
- "tex-listings-python" 
- '("```python\n"
+ "tex-listings-python-file" 
+ '("\\inputminted[fontsize=\\footnotesize]{python}{"
    (s)
-   "\n```\n"
+   ".py}"
+   )
+ "")
+
+(tempo-define-template 
+ "tex-listings-python" 
+ '("\\begin{minted}[fontsize=\\footnotesize]{python}\n"
+   (s)
+   "\n\\end{minted}\n"
    )
  "")
 
@@ -831,7 +857,7 @@ This command does not push erased text to kill-ring."
 (global-unset-key [(alt f4)])
 (global-set-key "\C-o" 'other-window)
 (global-set-key "\M-p" 'previous-line)
-(global-set-key "\M-," 'ipython-md-run-py-code)
+(global-set-key "\M-," 'ipython-tex-run-py-code)
 (global-set-key "\C-p" 'previous-line)
 (global-set-key "\C-k" 'backward-delete-char-untabify)
 (global-set-key "\M-k" 'backward-delete-char-untabify)
@@ -934,7 +960,7 @@ This command does not push erased text to kill-ring."
 (global-set-key [f6] 'reload-all-buffers)
 (global-set-key [f8] 'mark-whole-buffer)
 (global-set-key [f10] 'open-explorer-in-current-dir)
-;;(global-set-key [f12] 'next-error)
+(global-set-key [f12] 'next-error)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -962,7 +988,7 @@ This command does not push erased text to kill-ring."
 ;;
 ;; recompile using byte-compile-file, and load it like this
 ;;
-(load-file "/Users/burakbayramli/kod/site-lisp/dired.elc")
+(load-file "/usr/share/emacs/site-lisp/dired.elc")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -985,7 +1011,6 @@ This command does not push erased text to kill-ring."
 
 ;; ;; Pymacs
 
-(load-file "/Users/burakbayramli/kod/site-lisp/pymacs/pymacs.el")
 (autoload 'pymacs-apply "pymacs")
 (autoload 'pymacs-call "pymacs")
 (autoload 'pymacs-eval "pymacs" nil t)
@@ -996,20 +1021,16 @@ This command does not push erased text to kill-ring."
 ;; ;; boylece ikidebir oraya dired'den gezerek gitmek gerekmez
 ;; ;;
 (find-file-other-window "/tmp")
-(find-file-other-window "/Users/burakbayramli/Downloads")
-(find-file-other-window "/Users/burakbayramli/Documents")
-(find-file-other-window "/Users/burakbayramli/Documents/work")
 
 
 (switch-to-buffer "*scratch*")
 (delete-other-windows)
 
-;;(pymacs-load "/Users/burakbayramli/kod/site-lisp/githist")
-
+(pymacs-load "/usr/share/emacs/site-lisp/githist")
 (defun githist-do-show-version(num) 
-  (interactive "nHow many commits back: ")
-   (githist-show-version num)
- )
+ (interactive "nHow many commits back: ")
+  (githist-show-version num)
+)
 
 ;;(require 'auto-complete)
 ;;(global-auto-complete-mode t)
@@ -1051,9 +1072,8 @@ This command does not push erased text to kill-ring."
   (if (buffer-live-p (get-buffer "*Pymacs*" ))
       (kill-buffer (get-buffer
 		    "*Pymacs*")))
-  (pymacs-load "/Users/burakbayramli/kod/site-lisp/ipython-md")
+  (pymacs-load "/usr/share/emacs/site-lisp/ipython-tex")
   )
 
-(global-set-key [f12] 'reload-pymacs)
-(global-set-key [f5] 'ipython-md-complete-py)
-
+(global-set-key [f11] 'reload-pymacs)
+(global-set-key [f5] 'ipython-tex-complete-py)
