@@ -40,7 +40,7 @@ import pandas.io.excel as xl
 spy = xl.read_excel('SPY.xls')
 spy = spy.sort(columns='Date')
 spy['Returns'] = spy['Adj Close'].pct_change()
-spy['netRet']=(ige['Returns'] - spy['Returns'])/2;
+spy['netRet']=(ige['Returns'] - spy['Returns'])/2.;
 spy['cumret']=(1+spy['netRet']).cumprod()-1.0
 print spy.head()
 ```
@@ -62,7 +62,7 @@ print spy.head()
 ```
 
 ```python
-spy['cumret'].plot(xlim=[0,1600],ylim=[-0.1,0.6])
+spy['cumret'].plot()
 plt.savefig('example3_4_01.png'); plt.hold(False)
 ```
 
@@ -84,6 +84,29 @@ print max_dd(spy['cumret'])
 ```text
 -0.367094351256
 ```
+
+```python
+n = 1000
+xs = np.random.randn(n).cumsum()
+i = np.argmax(np.maximum.accumulate(xs) - xs) # end of the period
+j = np.argmax(xs[:i]) # start of period
+plt.hold(False)
+plt.plot(xs)
+plt.hold(True)
+plt.plot([i, j], [xs[i], xs[j]], 'o', color='Red', markersize=10)
+plt.savefig('example3_4_02.png')
+```
+
+![](example3_4_02.png)
+
+
+
+
+
+
+
+
+
 
 
 
