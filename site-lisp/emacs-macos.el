@@ -180,7 +180,7 @@ This command does not push erased text to kill-ring."
 
 ;; loads the _emacs file with one keystroke
 (defun find-dotemacs() (interactive)
-  (find-file "/Users/burakbayramli/kod/site-lisp/emacs-ubuntu.el"))
+  (find-file "/Users/burakbayramli/kod/site-lisp/emacs-macos.el"))
 (define-key global-map "\C-c\C-f" 'find-dotemacs)
 
 
@@ -427,7 +427,7 @@ This command does not push erased text to kill-ring."
 (defun open-explorer-in-current-dir()
   (interactive)
   (defvar komut)
-  (setq komut "nautilus ")  
+  (setq komut "open ")  
   (setq komut (concat komut "'" ))
   (setq komut (concat komut (dired-current-directory)))
   (setq komut (concat komut "'" ))
@@ -731,14 +731,6 @@ This command does not push erased text to kill-ring."
  "")
 
 (tempo-define-template 
- "tex-listings-python" 
- '("```python\n"
-   (s)
-   "\n```\n"
-   )
- "")
-
-(tempo-define-template 
  "tex-matrix" 
  '("\\left[\\begin{array}{rrr}\n"
    (s)
@@ -928,7 +920,6 @@ This command does not push erased text to kill-ring."
 ;; define F keys
 ;;
 ;;(global-set-key "\M-\d" 'save-buffers-kill-emacs)
-(global-set-key [f1] 'tempo-template-tex-listings-python)
 (global-set-key [f2] 'tempo-template-verb)
 (global-set-key [f4] 'tempo-template-tex-equation)
 (global-set-key [f6] 'reload-all-buffers)
@@ -999,13 +990,15 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/Users/burakbayramli/Downloads")
 (find-file-other-window "/Users/burakbayramli/Documents")
 (find-file-other-window "/Users/burakbayramli/Documents/work")
+(find-file-other-window "/Users/burakbayramli/Documents/classnotes/stat")
+(find-file-other-window "/Users/burakbayramli/Dropbox")
+(find-file-other-window "/Users/burakbayramli/Documents/work/bi-dwh/python3/boas")
 
 
 (switch-to-buffer "*scratch*")
 (delete-other-windows)
 
 ;;(pymacs-load "/Users/burakbayramli/kod/site-lisp/githist")
-
 (defun githist-do-show-version(num) 
   (interactive "nHow many commits back: ")
    (githist-show-version num)
@@ -1049,11 +1042,35 @@ This command does not push erased text to kill-ring."
 (defun reload-pymacs()
   (interactive)
   (if (buffer-live-p (get-buffer "*Pymacs*" ))
-      (kill-buffer (get-buffer
-		    "*Pymacs*")))
-  (pymacs-load "/Users/burakbayramli/kod/site-lisp/ipython-md")
+      (kill-buffer (get-buffer "*Pymacs*")))
+  (message (buffer-file-name (current-buffer)))
+  (message (file-name-extension (buffer-file-name (current-buffer))))
+  (if (equal (file-name-extension (buffer-file-name (current-buffer))) "tex")
+      (progn 
+	(tempo-define-template "tex-listings-python" 
+	 '("\\begin{minted}[fontsize=\\footnotesize]{python}\n"
+	   (s)
+	   "\n\\end{minted}\n"
+	   )
+	 "")	
+	(pymacs-load "/Users/burakbayramli/kod/site-lisp/ipython-tex")
+	(global-set-key "\M-," 'ipython-tex-run-py-code)
+	(global-set-key [f5] 'ipython-tex-complete-py)
+	(global-set-key [f1] 'tempo-template-tex-listings-python)
+	))
+  (if (equal (file-name-extension (buffer-file-name (current-buffer))) "md")
+      (progn 
+	(tempo-define-template "tex-listings-python" 
+	 '("```python\n"
+	   (s)
+	   "\n```\n"
+	   )
+	 "")	
+	(pymacs-load "/Users/burakbayramli/kod/site-lisp/ipython-md")
+	(global-set-key "\M-," 'ipython-md-run-py-code)
+	(global-set-key [f5] 'ipython-md-complete-py)
+	(global-set-key [f1] 'tempo-template-tex-listings-python)
+	))
   )
 
 (global-set-key [f12] 'reload-pymacs)
-(global-set-key [f5] 'ipython-md-complete-py)
-
