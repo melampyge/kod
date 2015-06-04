@@ -1,0 +1,1 @@
+A = load("GLD.mat")
