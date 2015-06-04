@@ -75,14 +75,19 @@ http://stackoverflow.com/questions/21058333/compute-rolling-maximum-drawdown-of-
 
 ```python
 def max_dd(ser):
+    # max dd
     max2here = pd.expanding_max(ser)
     dd2here = ser - max2here
-    return dd2here.min()
+    # max dd duration
+    ser2 = ser.fillna(method='bfill')
+    i = np.argmax(np.maximum.accumulate(ser2) - ser2)
+    j =   np.argmax(ser2[:i])
+    return dd2here.min(), i-j
 print max_dd(spy['cumret'])
 ```
 
 ```text
--0.367094351256
+(-0.36709435125558532, 238)
 ```
 
 ```python
@@ -100,9 +105,29 @@ plt.savefig('example3_4_02.png')
 ![](example3_4_02.png)
 
 
+```python
+spy = spy.fillna(method='bfill')
+arr = np.array(spy['cumret'])
+print arr
+```
+
+```text
+[ 0.01186898  0.01186898 -0.00269089 ...,  0.45771947  0.43550371
+  0.43550371]
+```
 
 
-
+```python
+spy = spy.fillna(method='bfill')
+arr = np.array(spy['cumret'])
+i = np.argmax(np.maximum.accumulate(arr) - arr)
+j = np.argmax(arr[:i])
+plt.hold(False)
+plt.plot(arr)
+plt.hold(True)
+plt.plot([i, j], [arr[i], arr[j]], 'o', color='Red', markersize=10)
+plt.savefig('example3_4_03.png')
+```
 
 
 
