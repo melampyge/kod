@@ -6,11 +6,12 @@ http://edge-fund.com/Lo02.pdf
 http://www.rinfinance.com/agenda/2012/talk/StevenPav.pdf
 
 ```python
+import pandas as pd
 import pandas.io.excel as xl
 ige = xl.read_excel('IGE.xls')
-ige = df.sort(columns='Date')
+ige = ige.sort(columns='Date')
 ige['Returns'] = ige['Adj Close'].pct_change()
-print len(df)
+print len(ige)
 print ige.head()
 ```
 
@@ -37,8 +38,10 @@ print sharpeRatio
 ```python
 import pandas.io.excel as xl
 spy = xl.read_excel('SPY.xls')
+spy = spy.sort(columns='Date')
 spy['Returns'] = spy['Adj Close'].pct_change()
 spy['netRet']=(ige['Returns'] - spy['Returns'])/2;
+spy['cumret']=(1+spy['netRet']).cumprod()-1.0
 print spy.head()
 ```
 
@@ -50,19 +53,37 @@ print spy.head()
 3 2001-11-29  113.66  114.92  113.00  114.87  16354700     104.55  0.013474   
 4 2001-11-30  114.40  114.91  114.02  114.05  13680300     103.81 -0.007078   
 
-     netRet  
-0       NaN  
-1  0.011869  
-2 -0.014389  
-3 -0.015510  
-4  0.006784  
+     netRet    cumret  
+0       NaN       NaN  
+1  0.011869  0.011869  
+2 -0.014389 -0.002691  
+3 -0.015510 -0.018160  
+4  0.006784 -0.011498  
 ```
 
+```python
+spy['cumret'].plot(xlim=[0,1600],ylim=[-0.1,0.6])
+plt.savefig('example3_4_01.png'); plt.hold(False)
+```
+
+![](example3_4_01.png)
 
 
+## Max Drawdown
 
+http://stackoverflow.com/questions/21058333/compute-rolling-maximum-drawdown-of-pandas-series
 
+```python
+def max_dd(ser):
+    max2here = pd.expanding_max(ser)
+    dd2here = ser - max2here
+    return dd2here.min()
+print max_dd(spy['cumret'])
+```
 
+```text
+-0.367094351256
+```
 
 
 
