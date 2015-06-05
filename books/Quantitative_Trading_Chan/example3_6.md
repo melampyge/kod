@@ -28,7 +28,20 @@ df = pd.DataFrame(index=gld.index)
 df['gld'] = gld['Adj Close']
 df['gdx'] = gdx['Adj Close']
 df = df.dropna()
-hedgeRatio = 0.6
+```
+
+```python
+import statsmodels.formula.api as smf
+results = smf.ols('gdx ~ gld', data=df).fit()
+print results.params['gld']
+```
+
+```text
+0.613232143393
+```
+
+```python
+hedgeRatio = results.params['gld']
 df['spread'] = df['gld'] - hedgeRatio*df['gdx']
 trainset = df[0:251]
 df['spread'].plot()
@@ -37,34 +50,6 @@ plt.savefig('example3_6_01.png'); plt.hold(False)
 
 ![](example3_6_01.png)
 
-```python
-import statsmodels.formula.api as smf
-results = smf.ols('gdx ~ gld', data=df).fit()
-print results.summary()
-```
-```text
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:                    gdx   R-squared:                       0.850
-Model:                            OLS   Adj. R-squared:                  0.850
-Method:                 Least Squares   F-statistic:                     2174.
-Date:                Fri, 05 Jun 2015   Prob (F-statistic):          5.39e-160
-Time:                        12:11:33   Log-Likelihood:                -672.42
-No. Observations:                 385   AIC:                             1349.
-Df Residuals:                     383   BIC:                             1357.
-Df Model:                           1                                         
-==============================================================================
-                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
-------------------------------------------------------------------------------
-Intercept     -0.2654      0.862     -0.308      0.758        -1.961     1.430
-gld            0.6132      0.013     46.631      0.000         0.587     0.639
-==============================================================================
-Omnibus:                        9.700   Durbin-Watson:                   0.168
-Prob(Omnibus):                  0.008   Jarque-Bera (JB):               11.146
-Skew:                          -0.280   Prob(JB):                      0.00380
-Kurtosis:                       3.618   Cond. No.                         797.
-==============================================================================
-```
 
 ```python
 plt.hold(True)
