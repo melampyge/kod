@@ -17,10 +17,10 @@ def run_cell(cmd):
     res_out = io.stdout
     return res_out
 
-ip.run_cell('import numpy as np')
-ip.run_cell('import matplotlib.pylab as plt')
 ip.run_cell('%load_ext autoreload')        
 ip.run_cell('%autoreload 2')    
+ip.run_cell('import numpy as np')
+ip.run_cell('import matplotlib.pylab as plt')
 
 # make digits into length two - i.e. 1 into 01
 def two_digit(i): return "0"+str(i) if i < 10 else str(i)

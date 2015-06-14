@@ -756,13 +756,6 @@ This command does not push erased text to kill-ring."
    )
  "")
 
-(tempo-define-template 
- "tex-listings-python" 
- '("\\begin{minted}[fontsize=\\footnotesize]{python}\n"
-   (s)
-   "\n\\end{minted}\n"
-   )
- "")
 
 (tempo-define-template 
  "tex-matrix" 
@@ -857,7 +850,6 @@ This command does not push erased text to kill-ring."
 (global-unset-key [(alt f4)])
 (global-set-key "\C-o" 'other-window)
 (global-set-key "\M-p" 'previous-line)
-(global-set-key "\M-," 'ipython-tex-run-py-code)
 (global-set-key "\C-p" 'previous-line)
 (global-set-key "\C-k" 'backward-delete-char-untabify)
 (global-set-key "\M-k" 'backward-delete-char-untabify)
@@ -1080,10 +1072,36 @@ This command does not push erased text to kill-ring."
 (defun reload-pymacs()
   (interactive)
   (if (buffer-live-p (get-buffer "*Pymacs*" ))
-      (kill-buffer (get-buffer
-		    "*Pymacs*")))
-  (pymacs-load "/usr/share/emacs/site-lisp/ipython-tex")
+      (kill-buffer (get-buffer "*Pymacs*")))
+  (message (buffer-file-name (current-buffer)))
+  (message (file-name-extension (buffer-file-name (current-buffer))))
+  (if (equal (file-name-extension (buffer-file-name (current-buffer))) "tex")
+      (progn 
+	(pymacs-load "/usr/share/emacs/site-lisp/ipython-tex")
+	(global-set-key "\M-," 'ipython-tex-run-py-code)
+	(global-set-key [f5] 'ipython-tex-complete-py)
+	(tempo-define-template 
+	 "tex-listings-python" 
+	 '("\\begin{minted}[fontsize=\\footnotesize]{python}\n"
+	   (s)
+	   "\n\\end{minted}\n"
+	   )
+	 "")	
+	))
+  (if (equal (file-name-extension (buffer-file-name (current-buffer))) "md")
+      (progn 
+	(pymacs-load "/usr/share/emacs/site-lisp/ipython-md")
+	(global-set-key "\M-," 'ipython-md-run-py-code)
+	(global-set-key [f5] 'ipython-md-complete-py)
+	(tempo-define-template 
+	 "tex-listings-python" 
+	 '("```python\n"
+	   (s)
+	   "\n```\n"
+	   )
+	 "")	
+	))
+
   )
 
 (global-set-key [f11] 'reload-pymacs)
-(global-set-key [f5] 'ipython-tex-complete-py)

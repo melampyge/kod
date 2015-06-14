@@ -16,7 +16,7 @@ run_command("convert -unsharp 1.5x1.2+1.0+0.10 -crop 300x300+10+0 01.tiff /tmp/g
 run_command("convert -monochrome /tmp/gray.tiff /tmp/mono.tiff")
 run_command("cjb2 -clean /tmp/mono.tiff /home/burak/book.djvu")
 
-for a in range(5):
+for a in range(404):
     i = a + 1
     file = str(two_digitize(i)) + ".tiff"
     print file
