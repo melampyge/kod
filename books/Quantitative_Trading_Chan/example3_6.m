@@ -14,6 +14,8 @@ clear; % make sure previously defined variables are erased.
 
 tday1=txt(2:end, 1); % the first column (starting from the second row) is the trading days in format mm/dd/yyyy.
 
+disp(tday1);
+
 tday1=datestr(datenum(tday1, 'mm/dd/yyyy'), 'yyyymmdd'); % convert the format into yyyymmdd.
 
 tday1=str2double(cellstr(tday1)); % convert the date strings first into cell arrays and then into numeric format.
