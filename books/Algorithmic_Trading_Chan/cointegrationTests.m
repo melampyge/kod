@@ -4,6 +4,8 @@ clear;
 load('inputData_ETF', 'tday', 'syms', 'cl');
 idxA=find(strcmp('EWA', syms));
 idxC=find(strcmp('EWC', syms));
+disp(idxA);
+disp(idxC);
 
 x=cl(:, idxA);
 y=cl(:, idxC);
@@ -18,6 +20,7 @@ figure;
 scatter(x, y);
 
 figure;
+%savefig(gca,'out.png')
 
 regression_result=ols(y, [x ones(size(x))]);
 hedgeRatio=regression_result.beta(1);

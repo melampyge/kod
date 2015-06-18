@@ -1,5 +1,5 @@
-disk="burak/New Volume"
-#disk="burak/17EA-3758"
+#disk="burak/New Volume"
+disk="burak/17EA-3758"
 echo "Copying files to /media/$disk/archive"
 rsync  -W --size-only  --delete-after -P -avzh /home/burak/Documents/kitaplar "/media/$disk/archive"
 rsync  -W --size-only  --delete-after -P -avzh /home/burak/kod "/media/$disk/archive" 
@@ -7,4 +7,4 @@ rsync  -W --size-only  --delete-after -P -avzh /home/burak/Documents/classnotes 
 rsync  -W --size-only  --delete-after -P -avzh /home/burak/Documents/emacs-ipython "/media/$disk/archive" 
 rsync  -W --size-only  --delete-after -P -avzh /home/skorsky/mindmeld "/media/$disk/archive" 
 rsync  -W --size-only  --delete-after -P -avzh /home/burak/Dropbox "/media/$disk/archive" 
-rsync  -W --size-only  --delete-after -P -avzh /home/burak/Music "/media/$disk/archive" 
+#rsync  -W --size-only  --delete-after -P -avzh /home/burak/Music "/media/$disk/archive" 
