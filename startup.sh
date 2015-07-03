@@ -1,7 +1,6 @@
 #!/bin/sh
 
 echo "in startup" >> /tmp/remap
-date >> /tmp/remap
 
 setxkbmap -option ctrl:nocaps
 

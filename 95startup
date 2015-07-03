@@ -5,14 +5,18 @@
 
 resume()
 {
-    echo "in 99" >> /tmp/remap
+    date >> /tmp/remap
+    echo "resume in 99" >> /tmp/remap
     su - burak -c /home/burak/kod/startup.sh
+}
+suspend()
+{
+    date >> /tmp/remap
+    echo "suspend in 99" >> /tmp/remap
 }
 
 case "$1" in
-	hibernate|suspend)
-		echo "suspend" >> /tmp/remap
-		;;
+	hibernate|suspend) suspend ;;
 	thaw|resume) resume ;;
 esac
 
