@@ -17,7 +17,7 @@ while True:
     fout.write(str(list[idx]) + "\n")
     fout.flush()
     print '\n'
-    if ".avi" in list[idx] or ".mp4" in list[idx] or ".mkv" in list[idx] :
+    if ".m4v" in list[idx]  or ".avi" in list[idx] or ".mp4" in list[idx] or ".mkv" in list[idx] :
         cmd = "mplayer -vf scale -zoom -xy 1100 '%s'" % list[idx] 
         os.system(cmd)
     elif ".mp3" in list[idx] :
