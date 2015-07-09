@@ -75,7 +75,7 @@ This command does not push erased text to kill-ring."
 (modify-coding-system-alist 'file "\\.inc\\'" 'latin-5)
 (modify-coding-system-alist 'file "\\.el\\'" 'utf-8)
 (modify-coding-system-alist 'file "\\.txt\\'" 'utf-8)
-(modify-coding-system-alist 'file "\\.pl\\'" 'utf-8)
+(modify-coding-system-alist 'file "\\.md\\'" 'utf-8)
 
 ;;(load-file "/usr/share/emacs/site-lisp/weblogger.el")
 (require 'java-mode-indent-annotations)
@@ -225,7 +225,6 @@ This command does not push erased text to kill-ring."
    "Custom"
    "--"
    ["Open Dired In Current Dir..." my-dired]   
-   ["IPython Notebook..." ein:notebooklist-open]   
    ["Open Shell In Current Dir..." open-cmd-in-current-dir]   
    ["Open Explorer In Current Dir..." open-explorer-in-current-dir]   
    ["Notebook Server..." open-notebook-in-current-dir]
@@ -458,7 +457,7 @@ This command does not push erased text to kill-ring."
   (setq komut "cd ")
   (setq komut (concat komut (dired-current-directory)))
   (setq komut (concat komut ";"))
-  (setq komut (concat komut "gnome-terminal -e 'ipython notebook --pylab=inline --no-browser '"))
+  (setq komut (concat komut "gnome-terminal -e 'ipython notebook'"))
   (message komut)
   (async-shell-command komut))
 
