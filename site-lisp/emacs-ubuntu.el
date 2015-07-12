@@ -3,6 +3,7 @@
 (autoload 'c++-mode "cc-mode" "C++ Editing Mode" t) 
 (autoload 'c-mode "c-mode" "C mode" t)
 (load "preview-latex.el" nil t t)
+(load "doc-view.el" nil t t)
 
 (setq initial-scratch-message nil) ;; empty scratch buffer
 (setq max-specpdl-size 50000)
@@ -227,7 +228,6 @@ This command does not push erased text to kill-ring."
    ["Open Dired In Current Dir..." my-dired]   
    ["Open Shell In Current Dir..." open-cmd-in-current-dir]   
    ["Open Explorer In Current Dir..." open-explorer-in-current-dir]   
-   ["Notebook Server..." open-notebook-in-current-dir]
    ["Refresh..." revert-buffer]
    ["Emacs Derle" byte-me]
    ["Ready for Blog" ready-for-blog]   
@@ -448,18 +448,6 @@ This command does not push erased text to kill-ring."
   (setq komut (concat komut (dired-current-directory)))
   (setq komut (concat komut " &"))
   (shell-command komut))
-
-;; Dired icinde iken, o anda baktigimiz dizinde cmd
-;; icinde acar.
-(defun open-notebook-in-current-dir()
-  (interactive)
-  (defvar komut)
-  (setq komut "cd ")
-  (setq komut (concat komut (dired-current-directory)))
-  (setq komut (concat komut ";"))
-  (setq komut (concat komut "gnome-terminal -e 'ipython notebook'"))
-  (message komut)
-  (async-shell-command komut))
 
 ;;
 ;; UI
@@ -1017,6 +1005,7 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Desktop")
 (find-file-other-window "/home/burak/Dropbox/TODO.txt")
 (find-file-other-window "/home/burak/Dropbox")
+(find-file-other-window "/home/burak/Dropbox/misc/mesquita")
 (find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/Documents")
 (find-file-other-window "/home/burak/Documents/classnotes/app-math-tr")
