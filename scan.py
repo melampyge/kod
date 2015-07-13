@@ -49,9 +49,9 @@ print device
 while True:
     print two_digitize(i)
     # buyuk sayfa
-    #run_command("scanimage --mode=%s --resolution 200 -x 215 -y 297 -d plustek:libusb:%s --format=tiff > %s.tiff" % (color,device,two_digitize(i)))
+    run_command("scanimage --mode=%s --resolution 200 -x 215 -y 297 -d plustek:libusb:%s --format=tiff > %s.tiff" % (color,device,two_digitize(i)))
     # kucuk sayfa
-    run_command("scanimage --mode=%s  --resolution 300 -x 215 -y 200 -d plustek:libusb:%s --format=tiff > %s.tiff" % (color,device,two_digitize(i)))
+    #run_command("scanimage --mode=%s  --resolution 300 -x 215 -y 200 -d plustek:libusb:%s --format=tiff > %s.tiff" % (color,device,two_digitize(i)))
     run_command("convert -scale %40 " + two_digitize(i) + ".tiff " + two_digitize(i) + ".jpg" )
     i += 1
     r = raw_input(">")
