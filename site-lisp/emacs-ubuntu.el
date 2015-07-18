@@ -3,7 +3,7 @@
 (autoload 'c++-mode "cc-mode" "C++ Editing Mode" t) 
 (autoload 'c-mode "c-mode" "C mode" t)
 (load "preview-latex.el" nil t t)
-(load "doc-view.el" nil t t)
+;;(load "doc-view.el" nil t t)
 
 (setq initial-scratch-message nil) ;; empty scratch buffer
 (setq max-specpdl-size 50000)
@@ -378,10 +378,10 @@ This command does not push erased text to kill-ring."
 (add-hook 'shell-mode-hook 'my-shell-mode-common-hook)
 
 
-(defun my-doc-view-mode-hook () 
-  (local-set-key [?\M-m] 'doc-view-next-page)
-)
-(add-hook 'doc-view-mode-hook 'my-doc-view-mode-hook)
+;;(defun my-doc-view-mode-hook () 
+;;  (local-set-key [?\M-m] 'doc-view-next-page)
+;;)
+;;(add-hook 'doc-view-mode-hook 'my-doc-view-mode-hook)
 
 ;;
 ;; Byte compiles the _emacs file, saves it as _emacs.elc, and re-loads
@@ -559,6 +559,7 @@ This command does not push erased text to kill-ring."
                 ("\\.pyx$" . python-mode)
                 ("\\.jl\\'" . julia-mode)
                 ("\\.tld$" . nxml-mode)
+                ("\\.pdf$" . doc-view-mode)
                 ("\\.?[Ff][Aa][Qq]$" . faq-mode)
 		)
 	      auto-mode-alist))
@@ -1005,7 +1006,7 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Desktop")
 (find-file-other-window "/home/burak/Dropbox/TODO.txt")
 (find-file-other-window "/home/burak/Dropbox")
-(find-file-other-window "/home/burak/Dropbox/misc/mesquita")
+(find-file-other-window "/home/burak/Documents/classnotes/app-math-tr/mesquita")
 (find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/Documents")
 (find-file-other-window "/home/burak/Documents/classnotes/app-math-tr")
@@ -1045,17 +1046,17 @@ This command does not push erased text to kill-ring."
     )
   )
 
-(eval-after-load 'doc-view
-  '(defun doc-view-buffer-message ()
-  ;; Only show this message initially, not when refreshing the buffer (in which
-  ;; case it's better to keep displaying the "stale" page while computing
-  ;; the fresh new ones).
-  (unless (overlay-get (doc-view-current-overlay) 'display)
-    (overlay-put (doc-view-current-overlay) 'display
-                 (concat (propertize "" 'face 'bold)
-                         "\n"
-                         ""))))
-     )
+;; (eval-after-load 'doc-view
+;;   '(defun doc-view-buffer-message ()
+;;   ;; Only show this message initially, not when refreshing the buffer (in which
+;;   ;; case it's better to keep displaying the "stale" page while computing
+;;   ;; the fresh new ones).
+;;   (unless (overlay-get (doc-view-current-overlay) 'display)
+;;     (overlay-put (doc-view-current-overlay) 'display
+;;                  (concat (propertize "" 'face 'bold)
+;;                          "\n"
+;;                          ""))))
+;;      )
 
 (defun reload-pymacs()
   (interactive)

@@ -1,7 +1,0 @@
-library("lme4")
-library("arm")
-df <- read.csv('/tmp/out.csv')
-resp_lmer <- lmer(Klepto ~ W + S + log(pop) + aid_gdp + ( 1 | regyr), data = df)
-res = summary(resp_lmer)
-print (res)
-print (display(resp_lmer))
