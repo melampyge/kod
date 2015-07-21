@@ -78,7 +78,7 @@ def run_py_code():
     plt_count_before = len(re.findall('plt\.savefig\(',bc))
     base = os.path.splitext(lisp.buffer_name())[0]
     f = '%s_%s.png' % (base, two_digit(plt_count_before+1))
-    rpl = "plt.hold(False); plt.savefig('%s'); plt.hold(False)" % f
+    rpl = "plt.hold(False)\nplt.savefig('%s')\nplt.hold(False)" % f
     show_replaced = True if "plt.show()" in content else False
     content=content.replace("plt.show()",rpl)
     include_graphics_command = "\\includegraphics[height=6cm]{%s}" % f
