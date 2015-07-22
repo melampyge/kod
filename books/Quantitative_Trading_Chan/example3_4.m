@@ -51,9 +51,9 @@ plot(cumret);
 
 [maxDrawdown maxDrawdownDuration]=calculateMaxDD(cumret);
 
-maxDrawdown % maximum drawdown. Output should be 0.4454
+maxDrawdown % maximum drawdown. Output should be 0.1053
 
-maxDrawdownDuration % maximum drawdown duration. Output should be 369.
+maxDrawdownDuration % maximum drawdown duration. Output should be 497
 
 
 
