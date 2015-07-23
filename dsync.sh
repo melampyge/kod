@@ -1,5 +1,5 @@
-disk="burak/New Volume"
-#disk="burak/17EA-3758"
+#disk="burak/New Volume"
+disk="burak/17EA-3758"
 echo "Copying files to /media/$disk/archive"
 rsync  -W --size-only  --delete-after -P -avzh /home/burak/Documents/kitaplar "/media/$disk/archive"
 rsync  -W --size-only  --delete-after -P -avzh /home/burak/kod "/media/$disk/archive" 

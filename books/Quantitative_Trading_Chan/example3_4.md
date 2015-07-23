@@ -39,9 +39,6 @@ print sharpeRatio
 
 http://stackoverflow.com/questions/21058333/compute-rolling-maximum-drawdown-of-pandas-series
 
-```python
-import calculateMaxDD
-```
 
 
 
