@@ -116,6 +116,18 @@ address this problem.
 \end{figure}
 
 
+\begin{minted}[fontsize=\footnotesize]{python}
+import pandas as pd
+df = pd.read_csv('../data/ise.csv',index_col='Date')
+df['Adj Close'].head(1000).plot()
+plt.hold(False)
+plt.savefig('ms-thesis-intro_01.png')
+plt.hold(False)
+\end{minted}
+
+\includegraphics[height=6cm]{ms-thesis-intro_01.png}
+
+
 \section{Return of Financial Time Series}
 
 We wanted to limit variations in price changes to a respectable range of values,
