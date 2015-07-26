@@ -115,17 +115,29 @@ address this problem.
 \vspace{0.6cm}
 \end{figure}
 
-
 \begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
-df = pd.read_csv('../data/ise.csv',index_col='Date')
-df['Adj Close'].head(1000).plot()
+df = pd.read_csv('../data/dji.csv',index_col='Date')
+df['Adj Close'].head(100).plot()
+plt.hold(False)
 plt.hold(False)
 plt.savefig('ms-thesis-intro_01.png')
 plt.hold(False)
 \end{minted}
 
 \includegraphics[height=6cm]{ms-thesis-intro_01.png}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import pandas as pd
+df = pd.read_csv('../data/ise.csv',index_col='Date')
+df2 = df[df.index <'22-06-2000']
+df2['Adj Close'].plot()
+plt.hold(False)
+plt.savefig('ms-thesis-intro_02.png')
+plt.hold(False)
+\end{minted}
+
+\includegraphics[height=6cm]{ms-thesis-intro_02.png}
 
 
 \section{Return of Financial Time Series}
