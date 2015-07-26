@@ -105,27 +105,26 @@ In other words Fama's findings indicated that independence assumption was
 incorrect. HMM and KF methods construct a Bayesian graphical model that tries to
 address this problem.
 
-\begin{figure}[ht]
-\center{
-  \scalebox{0.30}{
-  \includegraphics{./intro/somevals.jpg}
-  }
-}
-\caption{Some Values from DJI and ISE-100}
-\vspace{0.6cm}
-\end{figure}
-
 \begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
 df = pd.read_csv('../data/dji.csv',index_col='Date')
 df['Adj Close'].head(100).plot()
 plt.hold(False)
 plt.hold(False)
-plt.savefig('ms-thesis-intro_01.png')
+plt.savefig(./intro/ms-thesis-intro_01.png)
 plt.hold(False)
 \end{minted}
 
-\includegraphics[height=6cm]{ms-thesis-intro_01.png}
+%\includegraphics[height=6cm]{ms-thesis-intro_01.png}
+
+\begin{figure}[ht]
+\center{
+  \scalebox{0.50}{
+  \includegraphics{./intro/ms-thesis-intro_01.png}
+  }
+}
+\vspace{0.6cm}
+\end{figure}
 
 \begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
@@ -133,12 +132,20 @@ df = pd.read_csv('../data/ise.csv',index_col='Date')
 df2 = df[df.index <'22-06-2000']
 df2['Adj Close'].plot()
 plt.hold(False)
-plt.savefig('ms-thesis-intro_02.png')
+plt.savefig(./intro/ms-thesis-intro_02.png)
 plt.hold(False)
 \end{minted}
 
-\includegraphics[height=6cm]{ms-thesis-intro_02.png}
+%\includegraphics[height=6cm]{ms-thesis-intro_02.png}
 
+\begin{figure}[ht]
+\center{
+  \scalebox{0.50}{
+  \includegraphics{./intro/ms-thesis-intro_02.png}
+  }
+}
+\vspace{0.6cm}
+\end{figure}
 
 \section{Return of Financial Time Series}
 
