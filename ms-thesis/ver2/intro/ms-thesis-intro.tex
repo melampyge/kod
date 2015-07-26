@@ -107,8 +107,8 @@ address this problem.
 
 \begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
-df = pd.read_csv('../data/dji.csv',index_col='Date')
-df['Adj Close'].head(100).plot()
+dji = pd.read_csv('../data/dji.csv',index_col='Date')
+dji['Adj Close'].head(100).plot()
 plt.hold(False)
 plt.hold(False)
 plt.savefig(./intro/ms-thesis-intro_01.png)
@@ -128,11 +128,11 @@ plt.hold(False)
 
 \begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
-df = pd.read_csv('../data/ise.csv',index_col='Date')
-df2 = df[df.index <'22-06-2000']
-df2['Adj Close'].plot()
+ise = pd.read_csv('../data/ise.csv',index_col='Date')
+ise2 = ise[df.index <'22-06-2000']
+ise2['Adj Close'].plot()
 plt.hold(False)
-plt.savefig(./intro/ms-thesis-intro_02.png)
+plt.savefig('ms-thesis-intro_02.png')
 plt.hold(False)
 \end{minted}
 
@@ -170,10 +170,22 @@ amount of training points, then HMM or KF would predict returns for
 $R_{T+1},...,R_{T+30}$, and using the last known price point $P_T$, we would
 start multiplying our generated returns and obtain $P_{T+1},...,P_{T+30}$.
 
+\begin{minted}[fontsize=\footnotesize]{python}
+ise2['Returns'] = ise2['Adj Close'].pct_change()
+ise2.Returns.hist()
+ise2.Returns.plot()
+plt.hold(False)
+plt.savefig('ms-thesis-intro_03.png')
+plt.hold(False)
+\end{minted}
+
+%\includegraphics[height=6cm]{ms-thesis-intro_03.png}
+
+
 \begin{figure}[!hbp]
 \center{
-  \scalebox{0.30}{
-  \includegraphics{./intro/volimkb.jpg}
+  \scalebox{0.70}{
+  \includegraphics{./intro/ms-thesis-intro_03.png}
   }
 }
 \caption{IMKB Volatility}
