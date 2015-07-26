@@ -220,51 +220,40 @@ found below. The operator $\odot$ is defined to be element-wise product of two
 equal size vectors or matrices. The algorithm assumes the emission distribution
 is a multidimensional Gaussian.
 
-\begin{figure}[!hbp]
-\center{
-\begin{tabbing}
- {\tt HMM}\={\tt Inference}\=(Y,A,$\pi$,C,R) \\
- {\tt for} t=1  to  T  \% forward pass \\
- \> {\tt for} i=1  to k \\
- \> \>$b_{t,i}=\texttt{exp}\{-\frac{1}{2}(y_t - C_i)'R^{-1}(y_t - C_i)\}|R|^{-1/2}(2\pi)^{-p/2}$\\
- \> {\tt end}\\
- \> if (t=1) $\alpha_t = \pi \odot b_1$ else $\alpha_t = [A'\alpha_{t-1}]\odot b_t$ end \\
- \> $\rho_t = \sum_i \alpha_{t,i}$\\
- \> $\alpha_t = \alpha_t / \rho_t$ \% normalization\\
- {\tt end}\\
- $\beta_T = 1/\rho_t$ \\
- {\tt for }t=T-1 to 1 \% backward pass \\
- \> $\beta_t = A[\beta_{t+1} \odot b_{t+1}]/ \rho_t$\\
- {\tt end}\\
- $\gamma_t = \alpha_t \odot \beta_t / (\alpha_t'\beta_t)$\\
- $\xi_t = \alpha_t[\beta_{t+1} \odot b_{t+1}]'$\\
- $\xi_t = \xi_t / (\sum_{ij}\xi_{ij})$\\
- {\tt return} $\gamma_t, \xi_t, \rho_t$ for all t
-\end{tabbing}
-}
-\caption{HMM Inference Algorithm}
-\vspace{0.6cm}
-\end{figure}
+\begin{algorithm}[h]
+\begin{pseudocode}
+\codename $\code{hmm\_inference}\left(Y,A,\pi,C,R\right)$\\
+\codeline $\code{for} $ $t=1$ to  $T$  ; forward pass \\
+\codeline \> \code{for } $i=1$ to $k$ \\
+\codeline \> \> $b_{t,i}=\texttt{exp}\{-\frac{1}{2}(y_t - C_i)'R^{-1}(y_t - C_i)\}|R|^{-1/2}(2\pi)^{-p/2}$\\
+\codeline \> $\code{if } \code{ then } t=1 \alpha_t = \pi \odot b_1\code{ else } \alpha_t = [A'\alpha_{t-1}]\odot b_t$ \\
+\codeline \> $\rho_t = \sum_i \alpha_{t,i}$\\
+\codeline \> $\alpha_t = \alpha_t / \rho_t$ ; normalization \\
+\codeline  $\beta_T = 1/\rho_t$ \\
+\codeline \code{for } $t=T-1$ to $1$ ;backward pass\\
+\codeline \> $\beta_t = A[\beta_{t+1} \odot b_{t+1}]/ \rho_t$\\
+\codeline  $\gamma_t = \alpha_t \odot \beta_t / (\alpha_t'\beta_t)$\\
+\codeline  $\xi_t = \alpha_t[\beta_{t+1} \odot b_{t+1}]'$\\
+\codeline  $\xi_t = \xi_t / (\sum_{ij}\xi_{ij})$\\
+\codeline  $\code{return } \gamma_t, \xi_t, \rho_t \forall t$
+\end{pseudocode}
+\end{algorithm}
 
-\begin{figure}[!hbp]
-\center{
-\begin{tabbing}
-{\tt HMM}\={\tt Lea}\={\tt rn}(Y,k,$\epsilon$) \\
-\> {\tt initialize}  A, $\pi$, C, R \\
-\> {\tt while change in log likelihood} $>$ $\epsilon$ \\
-\> \> {\tt HMMInference}$(Y,A,\pi,C,R);$ \%E step\\
-\> \> \% M Step\\
-\> \> $\pi = \gamma_1$\\
-\> \> $A = \sum_t \xi_t$\\
-\> \> $A_{ij} = A_{ij} / \sum_l A_{il}$ {\tt for all }$ i,j$\\
-\> \> $C_j = \sum_t \gamma_{t,j} y_t / \sum_t \gamma_{t,j}$ {\tt for all } $j$\\
-\> \> $R = \sum_{t,j} \gamma_{t,j} (y_t - C_j)(y_t - C_j)' / T$\\
-\> {\tt return } $A, \pi, C, R$
-\end{tabbing}
-}
-\caption{HMM Learning Algorithm}
-\vspace{0.6cm}
-\end{figure}
+\begin{algorithm}[h]
+\begin{pseudocode}
+\codename $\code{hmm\_learn}\left(Y,k,\epsilon \right)$\\
+\codeline $\code{initialize } A, \pi, C, R$ \\
+\codeline $\code{while }$ change in log likelihood $>\epsilon$ \\
+\codeline \> $\code{hmm\_inference}(Y,A,\pi,C,R)$ ; E step \\
+\codeline \> ; M Step\\
+\codeline \> $\pi = \gamma_1$\\
+\codeline \> $A = \sum_t \xi_t$\\
+\codeline \> $A_{ij} = A_{ij} / \sum_l A_{il} \forall i,j$\\
+\codeline \> $C_j = \sum_t \gamma_{t,j} y_t / \sum_t \gamma_{t,j} \forall j$\\
+\codeline \> $R = \sum_{t,j} \gamma_{t,j} (y_t - C_j)(y_t - C_j)' / T$\\
+\codeline $\code{return } A, \pi, C, R$
+\end{pseudocode}
+\end{algorithm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Prediction with HMM}
@@ -281,27 +270,24 @@ HMM. Then, we simply pick the last element from this list, roll the dice and
 apply transition once, and this gives us our first prediction for day $T+1$. The
 rest will be the same as generating data from a regular HMM - we keep following
 the transition table. The pseucode for the function
-\verb!observationGeneration!  looks as follows:
+\verb!observation_generation!  looks as follows:
 
-\begin{figure}[!hbp]
-\center{
-\begin{tabbing}
-{\tt obser}\={\tt vation}\={\tt Genera}\={\tt tion}$(A,\pi,C,R,N)$\\
-\> $states$ = {\tt viterbi}($A,\pi,C,R$);\\
-\> $lastState = states[T]$;\\
-\> {\tt } for $i = 1$ {\tt to } $N$\\
-\> \> $currentState = {\tt nextState}(lastState,A,\pi,C,R);$\\
-\> \> $mean = C[currentState]$;\\
-\> \> $variance = R[currentState];$\\
-\> \> $o[i] = $ {\tt gaussianRandomGeneration}$(mean,variance);$\\
-\> \> $lastState = currentState;$\\
-\> {\tt end}\\
-\> {\tt return} $o$;
-\end{tabbing}
-}
-\caption{Algorithm for Generating Observations}
-\vspace{0.6cm}
-\end{figure}
+\begin{algorithm}[h]
+\begin{pseudocode}
+\codename $\code{observation\_generation}\left(A,\pi,C,R,N \right)$\\
+\codeline $states = \code{viterbi}(A,\pi,C,R)$\\
+\codeline $last\_state = states[T]$\\
+\codeline $\code{for} $ $i=1$ to  $N$  \\
+\codeline \> $current\_state = {\tt next\_state}(last\_state,A,\pi,C,R)$\\
+\codeline \> $mean = C[currentState]$\\
+\codeline \> $variance = R[currentState]$\\
+\codeline \> $o[i] =\code{gaussian\_random\_generation}(mean,variance)$\\
+\codeline \> $last\_state = current\_state;$\\
+\codeline $\code{return } o$
+\end{pseudocode}
+\end{algorithm}
+
+
 
 \newpage
 
