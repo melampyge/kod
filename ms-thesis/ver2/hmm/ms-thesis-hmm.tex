@@ -279,38 +279,31 @@ the transition table. The pseucode for the function
 \codeline $last\_state = states[T]$\\
 \codeline $\code{for} $ $i=1$ to  $N$  \\
 \codeline \> $current\_state = {\tt next\_state}(last\_state,A,\pi,C,R)$\\
-\codeline \> $mean = C[currentState]$\\
-\codeline \> $variance = R[currentState]$\\
+\codeline \> $mean = C[current\_state]$\\
+\codeline \> $variance = R[current\_state]$\\
 \codeline \> $o[i] =\code{gaussian\_random\_generation}(mean,variance)$\\
 \codeline \> $last\_state = current\_state;$\\
 \codeline $\code{return } o$
 \end{pseudocode}
 \end{algorithm}
 
-
-
 \newpage
 
-\begin{figure}[ht]
-\center{
-\begin{tabbing}
-{\tt next}\={\tt Sta}\={\tt te}$(stat$\=$e,A,\pi,C,R);$\\ 
-\> $randVal = ${\tt generateUniform(0,1);}\\
-\> $total = 0;$\\
-\> $done = false;$\\
-\> $total = A[currentState][0];$\\
-\> {\tt for } $j = 1$ {\tt to } $numStates$\\
-\> \> {\tt if} $done = true$ {\tt break};\\
-\> \> {\tt if} $(randVal > total$ {\tt and } \\
-\> \> \> $randVal \leq (total + A[currentState][j]))$\\
-\> \> \> $currentState = j;$\\
-\> \> \> $done = true;$\\
-\> \> {\tt end}\\
-\> \> $total = total+ A[currentState][j]$;\\
-\> {\tt end}\\
-\> {\tt return} $currentState$;
-\end{tabbing}
-}
-\caption{State Transition Algorithm}
-\vspace{0.6cm}
-\end{figure}
+\begin{algorithm}[h]
+\begin{pseudocode}
+\codename $\code{next\_state}\left(state,A,\pi,C,R \right)$\\
+\codeline $rand\_val = \code{ generate\_uniform}(0,1)$\\
+\codeline $total = 0;$\\
+\codeline $done = false;$\\
+\codeline $total = A[current\_state][0];$\\
+\codeline $\code{for } j = 1$ to $num\_states$\\
+\codeline \> $\code{if } done = true \code{ break}$\\
+\codeline \> $\code{if } rand\_val > total \code { and } rand\_val \leq (total + A[current\_state][j])$\\
+\codeline \> \> $current\_state = j$\\
+\codeline \> \> $done = true$\\
+\codeline \> $total = total+ A[current\_state][j]$\\
+\codeline $\code{return } current\_state$;
+\end{pseudocode}
+\end{algorithm}
+
+
