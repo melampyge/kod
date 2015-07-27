@@ -1,6 +1,7 @@
 # Code samples for "Neural Networks and Deep Learning"
 
-Note: download mnist.pkl.gz seperately from M. Nielsen's Github
+Note: download mnist.pkl.gz and data_1000.json seperately from
+M. Nielsen's Github
 
 This repository contains code samples for my (forthcoming) book on
 "Neural Networks and Deep Learning".
