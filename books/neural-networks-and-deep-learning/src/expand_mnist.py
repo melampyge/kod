@@ -26,10 +26,10 @@ import numpy as np
 
 print("Expanding the MNIST training set")
 
-if os.path.exists("../data/mnist_expanded.pkl.gz"):
+if os.path.exists("/home/burak/Downloads/mnist_expanded.pkl.gz"):
     print("The expanded training set already exists.  Exiting.")
 else:
-    f = gzip.open("../data/mnist.pkl.gz", 'rb')
+    f = gzip.open("/home/burak/Downloads/mnist.pkl.gz", 'rb')
     training_data, validation_data, test_data = cPickle.load(f)
     f.close()
     expanded_training_pairs = []
@@ -55,6 +55,6 @@ else:
     random.shuffle(expanded_training_pairs)
     expanded_training_data = [list(d) for d in zip(*expanded_training_pairs)]
     print("Saving expanded data. This may take a few minutes.")
-    f = gzip.open("../data/mnist_expanded.pkl.gz", "w")
+    f = gzip.open("/home/burak/Downloads/mnist_expanded.pkl.gz", "w")
     cPickle.dump((expanded_training_data, validation_data, test_data), f)
     f.close()

@@ -442,54 +442,53 @@ fell below this threshold value, we would conclude that training was complete).
 The algorithm that applies forward-backward algorithm and learning through EM is
 described below \cite{ghahramani}.
 
-\begin{figure}[!hbp]
-\center{
-\begin{tabbing}
-{\tt LDS}\={\tt Inf}\={\tt erence}$(Y,A,C,Q,R,x,P)$\\
-\> {\tt for } $t = 1$ {\tt to } $T$ \% forward recursion \\
-\> \> $x_t^{t-1} = Ax_{t-1}^{t-1}$\\
-\> \> $P_t^{t-1} = AP_{t-1}^{t-1}A' + Q$ {\tt if } $t>1$\\
-\> \> $K_t = P_t^{t-1}C'(CP_t^{t-1}C'+R)^{-1}$\\
-\> \> $x_t^t = x_t^{t-1} + K_t(y_t - Cx_t^{t-1})$\\
-\> \> $P_t^t = P_t^{t-1} - K_tCP_t^{t-1}$\\
-\> {\tt end}\\
-\> {\tt initialize } $\hat{P}_{T,T-1}=(I-K_TC)AP_{T-1}^{T-1}$\\
-\> \> {\tt for } $t=T$ {\tt to } $2$ \% backward recursion \\
-\> \> $J_{t-1} = P_{t-1}^{t-1}A'(P_t^{t-1})^{-1}$\\
-\> \> $\hat{x}_{t-1} = x_{t-1}^{t-1} + J_{t-1}(\hat{x}_{t} - Ax_{t-1}^{t-1})$\\
-\> \> $\hat{P}_{t-1} = P_{t-1}^{t-1} + J_{t-1}(\hat{P}_t - P_t^{t-1})J_{t-1}'$\\
-\> \> $\hat{P}_{t,t-1} = P_t^t J_{t-1}' + J_t(\hat{P}_{t+1,t} - AV_t^t)J_{t-1}'$
-   {\tt if } $t<T$\\
-\> {\tt end}\\
-\> {\tt return }$\hat{x}_t, \hat{P}_t, \hat{P}_{t,t-1}$ {\tt for all } $t$
-\end{tabbing}
-}
-\caption{LDS Inference Algorithm}
-\vspace{0.6cm}
-\end{figure}
+\begin{algorithm}[h]
+\begin{pseudocode}
+\codename $\code{lds\_inference}\left(Y,A,C,Q,R,x,P\right)$\\
+\codeline \code{for } $t=1$ to $T$ ;forward recursion \\
+\codeline \> $x_t^{t-1} = Ax_{t-1}^{t-1}$\\
+\codeline \> $P_t^{t-1} = AP_{t-1}^{t-1}A' + Q \code{ if } t>1$\\
+\codeline \> $K_t = P_t^{t-1}C'(CP_t^{t-1}C'+R)^{-1}$\\
+\codeline \> $x_t^t = x_t^{t-1} + K_t(y_t - Cx_t^{t-1})$\\
+\codeline \> $P_t^t = P_t^{t-1} - K_tCP_t^{t-1}$ \\
+\codeline $\hat{P}_{T,T-1}=(I-K_TC)AP_{T-1}^{T-1}$ ;initialize \\
+\codeline $\code{for } t=T$ to $2$ ; backward recursion \\
+\codeline \> $J_{t-1} = P_{t-1}^{t-1}A'(P_t^{t-1})^{-1}$\\
+\codeline \> $\hat{x}_{t-1} = x_{t-1}^{t-1} + J_{t-1}(\hat{x}_{t} - Ax_{t-1}^{t-1})$\\
+\codeline \> $\hat{P}_{t-1} = P_{t-1}^{t-1} + J_{t-1}(\hat{P}_t - P_t^{t-1})J_{t-1}'$\\
+\codeline \> $\hat{P}_{t,t-1} = P_t^t J_{t-1}' + J_t(\hat{P}_{t+1,t} - AV_t^t)J_{t-1}' \code{ if } t<T$\\
+\codeline $\code{ return } \hat{x}_t, \hat{P}_t, \hat{P}_{t,t-1} \forall t$
+\end{pseudocode}
+\end{algorithm}
 
-\begin{figure}[!hbp]
-\center{
-\begin{tabbing}
-{\tt LDS}\={\tt Learn}\=$(Y,k,$\=$\epsilon)$\\ \> {\tt initialize } $A, C, Q, R,
-x_1^0, P_1^0$\\ \> $\alpha = \sum_t y_ty_t'$\\ \> {\tt while change in
-  likelihood >} $\epsilon$\\ \> \> {\tt LDSInference}$(Y,A,C,Q,R,x_1^0,P_1^0)$
-\% E-step\\ \> \> {\tt initialize } $\delta = 0, \gamma = 0, \sigma = 0$\\ \> \>
-   {\tt for } $t = 1$ {\tt to } $T$\\ \> \> \> $\delta = \delta +
-   y_t\hat{x}_t$\\ \> \> \> $\gamma = \gamma + \hat{x}_t\hat{x}_t' +
-   \hat{P}_t$\\ \> \> \> $\beta = \beta + \hat{x}_t\hat{x}_{t-1}' + P_{t,t-1}$
-       {\tt if } $t>1$\\ \> \> {\tt end}\\ \> \> $\gamma_1 = \gamma -
-       \hat{x}_T\hat{x}_T' - \hat{P}_T$\\ \> \> $\gamma_2 = \gamma -
-       \hat{x}_1\hat{x}_1' - \hat{P}_1$\\ \> \> \% M-step\\ \> \> $C = \delta
-       \gamma^{-1}$\\ \> \> $R = (\gamma - C\delta')/T$\\ \> \> $A =
-       \beta\gamma_1^{-1}$\\ \> \> $Q = (\gamma_2 - A\beta') / (T-1)$\\ \> \>
-       $x_1^0 = \hat{x}_1$\\ \> \> $P_1^0 = \hat{P}_1$\\ \> {\tt end}\\ \> {\tt
-         return } $A, C, Q, R, x_1^0, P_1^0$
-\end{tabbing}
-}
-\caption{LDS Learning Algorithm}
-\vspace{0.6cm}
-\end{figure}
+
+\begin{algorithm}[h]
+\begin{pseudocode}
+\codename $\code{lds\_learn}\left(Y,k,\epsilon\right)$\\
+\codeline $A, C, Q, R,x_1^0, P_1^0$\\
+\codeline $\alpha = \sum_t y_ty_t'$\\ 
+\codeline $\code{while}$ change in likelihood $> \epsilon$\\ 
+\codeline \> ; E-step \\
+\codeline \> $\code{lds\_inference}(Y,A,C,Q,R,x_1^0,P_1^0)$ \\
+\codeline \> $\delta = 0, \gamma = 0, \sigma = 0$ \\
+\codeline \> $\code{for} t = 1$ to $T$\\ 
+\codeline \> \> $\delta = \delta + y_t\hat{x}_t$\\ 
+\codeline \> \> $\gamma = \gamma + \hat{x}_t\hat{x}_t' + \hat{P}_t$\\ 
+\codeline \> \> $\beta = \beta + \hat{x}_t\hat{x}_{t-1}' + P_{t,t-1} \code{ if } t>1$\\ 
+\codeline \> $\gamma_1 = \gamma - \hat{x}_T\hat{x}_T' -\hat{P}_T$\\ 
+\codeline \> $\gamma_2 = \gamma - \hat{x}_1\hat{x}_1' - \hat{P}_1$\\ 
+\codeline \> ; M-step\\ 
+\codeline \> $C = \delta \gamma^{-1}$\\ 
+\codeline \> $R = (\gamma - C\delta')/T$\\ 
+\codeline \> $A = \beta\gamma_1^{-1}$\\ 
+\codeline \> $Q = (\gamma_2 - A\beta') / (T-1)$\\ 
+\codeline \> $x_1^0 = \hat{x}_1$\\ 
+\codeline \> $P_1^0 = \hat{P}_1$\\ 
+\codeline $\code{return } A, C, Q, R, x_1^0, P_1^0$
+\end{pseudocode}
+\end{algorithm}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -543,23 +542,17 @@ cov(y_{t+1}|y_{0,...,t}) &=& CA P_{t|t}A'C' + CQC' + R
 We can apply this recursive formula to have our KF generate $M$ many random
 observations starting at $T$ up to $T+N$. The algorithm is
 
-\begin{figure}[!hbp]
-\center{
-\begin{tabbing}
-{\tt ob}\={\tt ser}\={\tt vation}\={\tt Genera}\={\tt tion}$(A,C,R,Q,\mu,\Sigma,T,N)$\\
-\> $mu_x = mu[T-1];$\\
-\> $sigma_x = sigma[T-1];$\\
-\> {\tt for} $i = 1$ {\tt to } $N$\\
-\> \> $mu_y = C A mu_x;$\\
-\> \> $sigma_y = CA sigma_x A'C' + CQC' + R;$\\
-\> \> $o[i] = $ {\tt gaussianNumberGeneration}$(mu_y, sigma_y);$\\
-\> \> $mu_x = A mu_x$\\
-\> \> $sigma_x = A  sigma_x A + Q$\\
-\> {\tt end}\\
-\> {\tt return} $o;$
-\end{tabbing}
-}
-\caption{Generating Observations from an LDS Algorithm}
-\vspace{0.6cm}
-\end{figure}
-
+\begin{algorithm}[h]
+\begin{pseudocode}
+\codename $\code{observation\_generation}\left(A,C,R,Q,\mu,\Sigma,T,N\right)$\\
+\codeline $\mu_x = \mu[T-1];$\\
+\codeline $\sigma_x = \sigma[T-1];$\\
+\codeline $\code{for } i = 1$ to $N$\\
+\codeline \> $\mu_y = C A \mu_x;$\\
+\codeline \> $\sigma_y = CA \sigma_x A'C' + CQC' + R;$\\
+\codeline \> $o[i] = \code{gaussian\_number\_generation}(\mu_y, \sigma_y)$\\
+\codeline \> $\mu_x = A \mu_x$\\
+\codeline \> $\sigma_x = A  \sigma_x A + Q$\\
+\codeline $\code{return } o$
+\end{pseudocode}
+\end{algorithm}
