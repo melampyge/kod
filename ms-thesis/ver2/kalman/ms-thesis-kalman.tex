@@ -32,10 +32,10 @@ where
 In order to model the output variables, we multiply hidden states with another
 constant matrix and add another Gaussian white noise. All together our SSM looks
 as follows:
-\begin{eqnarray}
+\begin{eqnarray*}
 x_{t+1} = Ax_t + v_t \mlabel{1}\\
 y_t = Cx_t + w_t \mlabel{2}
-\end{eqnarray}
+\end{eqnarray*}
 where $w_0,w_1,...$ are white Gaussian noise with $\mathbf{E}w_t = 0$ and $cov
 \:\: w_t = R$. Random variables $w_t$ and $v_t$ are independent of $x_t$
 and $y_t$, and from eachother, this assumption is put forth for simplicity. The
@@ -174,7 +174,7 @@ which results in
       \end{array} \right]           
 \end{eqnarray*}
 We can also re-write this for conditional and with the mean;
-\begin{eqnarray}
+\begin{eqnarray*}
 \left[ \begin{array}{c}
       \hat{x}_{t}^t \\
       C\hat{x}_{t}^t
@@ -184,9 +184,9 @@ We can also re-write this for conditional and with the mean;
       P_{t}^t & P_{t}^tC' \\
       CP_{t}^t & CP_{t}^tC'+R
       \end{array} \right] \mlabel{3}
-\end{eqnarray}
+\end{eqnarray*}
 Same for the joint distribution for $x_{t+1}, y_{t+1}$.
-\begin{eqnarray}
+\begin{eqnarray*}
 \left[ \begin{array}{c}
       \hat{x}_{t+1}^t \\
       C\hat{x}_{t+1}^t
@@ -196,7 +196,7 @@ Same for the joint distribution for $x_{t+1}, y_{t+1}$.
       P_{t+1}^t & P_{t+1}^tC' \\
       CP_{t+1}^t & CP_{t+1}^tC'+R
       \end{array} \right] \mlabel{4}
-\end{eqnarray}
+\end{eqnarray*}
 
 Now in order to get statements for mean and variance for $x_{t+1}^{t+1}$, we
 need to understand partitioned Gaussians. This will guide us when we use
@@ -205,7 +205,7 @@ portions of (4) and deriving the final equation \cite{jordan}.
 An $n$ dimensional Gaussian distribution can be partitioned into $p$ and $q$
 dimensional sub-distributions where $n = p + q$. Hence we can say,
 
-\begin{eqnarray}
+\begin{eqnarray*}
 \mu = 
 \left[ \begin{array}{c}
       \mu_1 \\
@@ -216,7 +216,7 @@ dimensional sub-distributions where $n = p + q$. Hence we can say,
       \Sigma_{11} & \Sigma_{12}\\
       \Sigma_{21} & \Sigma_{22}
       \end{array} \right] \mlabel{6}
-\end{eqnarray}
+\end{eqnarray*}
 \begin{eqnarray*}
 p(x|\mu,\Sigma) &=& \frac{1}{(2\pi)^{(p+q)/2}|\Sigma|^{1/2}} \\
 && exp\bigg\{
@@ -238,10 +238,10 @@ p(x|\mu,\Sigma) &=& \frac{1}{(2\pi)^{(p+q)/2}|\Sigma|^{1/2}} \\
 \end{eqnarray*}
 After much algebra, we can obtain equation for $p(x_1|x_2)$. From this, we can
 get {\em conditioned} $\mu$ and $\Sigma$, as
-\begin{eqnarray}
+\begin{eqnarray*}
 \mu_{1|2} &=& \mu_1 + \Sigma_{12}\Sigma_{22}^{-1}(x_2 - \mu_2) \mlabel{5} \\
 \Sigma_{1|2} &=& \Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21} \nonumber
-\end{eqnarray}
+\end{eqnarray*}
 Now plugging elements from  (5) into (4) according
 to placement in (6) we can formulize $\hat{x}_{t+1}^{t+1}$ and
 $P_{t+1}^{t+1}$. 
@@ -252,11 +252,11 @@ $P_{t+1}^{t+1}$.
 P_{t+1}^{t+1} &=& P_{t+1}^t - P_{t+1}^tC' (CP_{t+1}^tC' + R)^{-1}CP_{t+1}^t
 \end{eqnarray*}
 If we declare $K_t \equiv P_{t+1}^tC' (CP_{t+1}^tC'+ \Sigma_{w})^{-1}$ then,
-\begin{eqnarray}
+\begin{eqnarray*}
 \hat{x}_{t+1}^{t+1} &=& \hat{x}_{t+1}^t + K_t (y_{t+1} -
 C\hat{x}_{t+1}^t) \label{xtplus1} \\
 P_{t+1}^{t+1} &=& P_{t+1}^t - K_t C P_{t+1}^t
-\end{eqnarray}
+\end{eqnarray*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -345,12 +345,12 @@ can have our smoothing equations. Due to the so-called Tower Property:
 Var[X|Z] &=& Var[\mathbf{E}[X|Y,Z]|Z] + \mathbf{E}[Var[X|Y,Z]|Z]
 \end{eqnarray*}
 we can drop $x_{t+1}$ from LHS.
-\begin{eqnarray}
+\begin{eqnarray*}
 \hat{x}_{t}' & \equiv & \mathbf{E}[x_t|y_0,...,y_T] \nonumber\\
 & = & \mathbf{E}[\mathbf{E}[x_t|x_{t+1},y_0,...,y_T]|y_0,...,y_T] \nonumber\\
 & = & \mathbf{E}[\hat{x}_{t}^t +L_t(x_{t+1}-\hat{x}_{t+1}^t)] \nonumber\\
 & = & \hat{x}_{t}^t +L_t(\hat{x}_{t+1}' -\hat{x}_{t+1}^t) \label{xsmooth}
-\end{eqnarray}
+\end{eqnarray*}
 Using similar algebra, we get
 \begin{eqnarray*}
 P_{t}'  = P_{t}^t + L_t(P_{t+1}'-P_{t+1}^t)L_t'
@@ -518,27 +518,27 @@ is for the latter not the former, hence we need to expand the equation for $y_t$
 by taking time transition into account:
 
 Given,
-\begin{eqnarray}
+\begin{eqnarray*}
 x_{t+1} = Ax_t + v_t \\
 y_t = Cx_t + w_t
-\end{eqnarray}
+\end{eqnarray*}
 where $v_0,v_1,...$ is white Gaussian noise with $\mathbf{E}v_t = 0$ and $cov \:
 v_t = Q$ and $w_0,w_1,...$ are also white Gaussian noise with $\mathbf{E}w_t =
 0$ and $cov \: w_t = R$, we can determine $y_{t+1}$ as
-\begin{eqnarray}
+\begin{eqnarray*}
 y_{t+1} &=& Cx_{t+1} + w_{t+1}\\
 &=& C(Ax_t + v_t) + w_{t+1} \\
 &=& CAx_t + Cv_t + w_{t+1}
-\end{eqnarray}
+\end{eqnarray*}
 which gives us the distribution of the emission Gaussian $y_{t+1}$. The
 conditional expectation and variance of this distribution given $y_{1,..,t}$ is
-\begin{eqnarray}
+\begin{eqnarray*}
 y_{t+1} &=& Cx_{t+1} + w_{t+1}\\
 &=& C(Ax_t + v_t) + w_{t+1} \\
 &=& CAx_t + Cv_t + w_{t+1} \\
 \hat{y}_{t+1|t} &=& CA\hat{x}_{t|t} \\
 cov(y_{t+1}|y_{0,...,t}) &=& CA P_{t|t}A'C' + CQC' + R
-\end{eqnarray}
+\end{eqnarray*}
 We can apply this recursive formula to have our KF generate $M$ many random
 observations starting at $T$ up to $T+N$. The algorithm is
 
