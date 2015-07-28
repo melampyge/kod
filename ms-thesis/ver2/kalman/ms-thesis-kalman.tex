@@ -97,6 +97,7 @@ If we take expectation of both sides of (1)
 \begin{eqnarray*}
 \mathbf{E}x_{t+1} = \hat{x}_{t+1} = A\mu_t = A\hat{x}_t
 \end{eqnarray*}
+
 Taking covariance of both sides of (1) and denoting $P_t$ as $cov \: x(t)$
 \begin{eqnarray*}
 P_{t+1} = AP_{t}A' + Q
@@ -105,13 +106,17 @@ This transition is called a ``time update''. It will allow us to propagate the
 normal distribution at time $t$ to time $t_1$. The formulas that contain given
 $y$'s use the same technique;
 \begin{eqnarray*}
-\hat{x}_{t+1}^t = Ax_{t}^t\\
-P_{t+1}^t = AP_{t}^tA' + Q
+\hat{x}_{t+1}^t &=& Ax_{t}^t\\
+P_{t+1}^t  &=& AP_{t}^tA' + Q
 \end{eqnarray*}
 \begin{eqnarray*}
-y_{t+1} &=& Cx_{t+1} + w_t\\
-\mathbf{E}[y_{t+1}|y_0,...,y_t] &=& \mathbf{E}[Cx_{t+1}+w_t|y_0,...,y_t]\\
-\hat{y}_{t+1}^t &=& C\hat{x}_{t+1}
+y_{t+1}  = Cx_{t+1} + w_t
+\end{eqnarray*}
+\begin{eqnarray*}
+\mathbf{E}[y_{t+1}|y_0,...,y_t]  = \mathbf{E}[Cx_{t+1}+w_t|y_0,...,y_t]
+\end{eqnarray*}
+\begin{eqnarray*}
+\hat{y}_{t+1}^t  = C\hat{x}_{t+1}
 \end{eqnarray*}
 Similarly for covariance
 \begin{eqnarray*}
