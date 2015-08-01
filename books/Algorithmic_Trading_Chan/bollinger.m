@@ -27,6 +27,7 @@ entryZscore=1;
 exitZscore=0;
 
 MA=movingAvg(yport, lookback);
+
 MSTD=movingStd(yport, lookback);
 zScore=(yport-MA)./MSTD;
 
