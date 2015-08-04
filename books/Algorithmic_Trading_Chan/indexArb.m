@@ -1,8 +1,8 @@
 clear;
 
 
-stks=load('../Data/inputDataOHLCDaily_20120424', 'stocks', 'tday','cl');
-etf=load('../Data/inputData_ETF', 'tday', 'syms', 'cl');
+stks=load('inputDataOHLCDaily_stocks_20120424', 'stocks', 'tday','cl');
+etf=load('inputData_ETF', 'tday', 'syms', 'cl');
 
 % Ensure data have same dates
 [tday idx1 idx2]=intersect(stks.tday, etf.tday);
