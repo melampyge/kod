@@ -1,7 +1,7 @@
 %port_trade.m
 clear;
 
-load('../Data/inputDataOHLCDaily_20120424');
+load('inputDataOHLCDaily_stocks_20120424');
 
 idxStart=find(tday==20070103);
 idxEnd=find(tday==20111230);

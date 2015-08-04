@@ -4,7 +4,7 @@ topN=10; % Max number of positions
 entryZscore=1;
 lookback=20; % for MA
 
-load('../Data/inputDataOHLCDaily_20120424', 'stocks', 'tday', 'op', 'hi', 'lo', 'cl');
+load('inputDataOHLCDaily_stocks_20120424', 'stocks', 'tday', 'op', 'hi', 'lo', 'cl');
 
 stdretC2C90d=backshift(1, smartMovingStd(calculateReturns(cl, 1), 90));
 buyPrice=backshift(1, lo).*(1-entryZscore*stdretC2C90d);
