@@ -2,7 +2,7 @@ clear;
 
 lookback=20;
 
-load('inputData_AUDCAD_20120426',  'hhmm', 'tday',  'cl');
+load('/home/burak/Downloads/inputData_AUDCAD_20120426',  'hhmm', 'tday',  'cl');
 idx=find(hhmm==1659);
 dailyCl=cl(idx);
 tday=tday(idx);
