@@ -1,7 +1,7 @@
 clear;
 
-usdcad=load('/home/burak/Dropbox/Public/data/inputData_USDCAD_20120426', 'tday', 'hhmm', 'cl');
-audusd=load('/home/burak/Dropbox/Public/data/inputData_AUDUSD_20120426', 'tday', 'hhmm', 'cl');
+usdcad=load('/home/burak/Downloads/inputData_USDCAD_20120426', 'tday', 'hhmm', 'cl');
+audusd=load('/home/burak/Downloads/inputData_AUDUSD_20120426', 'tday', 'hhmm', 'cl');
 
 firstDate=20090101;
 
@@ -31,8 +31,6 @@ numUnits=NaN(size(y, 1), 1);
 for t=trainlen+1:size(y, 1)
     res=johansen(y(t-trainlen:t-1, :), 0, 1);
     hedgeRatio(t, :)=res.evec(:, 1)';
-    disp(res.evec(:, 1)');
-    exit;
 
     % yport is the market value of a unit portfolio of AUDUSD and CADUSD expressed in US$.
     yport=sum(y(t-lookback+1:t, :).*repmat(hedgeRatio(t, :), [lookback 1]), 2);
