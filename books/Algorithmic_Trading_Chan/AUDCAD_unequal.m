@@ -1,7 +1,9 @@
 clear;
 
-usdcad=load('../Data/inputData_USDCAD_20120426', 'tday', 'hhmm', 'cl');
-audusd=load('../Data/inputData_AUDUSD_20120426', 'tday', 'hhmm', 'cl');
+% get the files from my dropbox (see the readme), and change
+% the base paths below
+usdcad=load('/home/burak/Dropbox/Public/data/inputData_USDCAD_20120426', 'tday', 'hhmm', 'cl');
+audusd=load('/home/burak/Dropbox/Public/data/inputData_AUDUSD_20120426', 'tday', 'hhmm', 'cl');
 
 firstDate=20090101;
 
