@@ -10,7 +10,6 @@
 (setq max-lisp-eval-depth 50000)
 (setq tool-bar-mode -1)
 (setq auto-resize-tool-bars -1) 
-;;(setq compile-command "ant -find build.xml -emacs ")
 (setq compile-command "python build.py ")
 (setq x-select-enable-clipboard t)
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
@@ -475,21 +474,6 @@ This command does not push erased text to kill-ring."
       '((top . 0) (left . 500)
         (width . 80) (height . 40)
 ))
-
-(defun python-compile() 
-  (interactive)
-  ;;(alternative-compile "python build.py")  
-  (compile "python build.py")  
-  )
-
-(defun my-compile() 
-  (interactive)
-  (alternative-compile "ant -find build.xml -emacs")  
-  )
-(defun my-clean() 
-  (interactive)
-  (alternative-compile "ant -find build.xml -emacs clean ")  
-  )
 
 
 (defun alternative-compile(&optional command)
