@@ -2,7 +2,9 @@ clear;
 
 lookback=20;
 
-load('/home/burak/Downloads/inputData_AUDCAD_20120426',  'hhmm', 'tday',  'cl');
+% get the files from my dropbox (see the readme), and change
+% the base paths below
+load('/home/burak/Dropbox/Public/data/inputData_AUDCAD_20120426',  'hhmm', 'tday',  'cl');
 idx=find(hhmm==1659);
 dailyCl=cl(idx);
 tday=tday(idx);
