@@ -30,18 +30,20 @@ numUnits=NaN(size(y, 1), 1);
 
 for t=trainlen+1:size(y, 1)
     res=johansen(y(t-trainlen:t-1, :), 0, 1);
+    disp(t);
     hedgeRatio(t, :)=res.evec(:, 1)';
-    disp(res.evec(:, 1)');
-    exit;
 
-    % yport is the market value of a unit portfolio of AUDUSD and CADUSD expressed in US$.
-    yport=sum(y(t-lookback+1:t, :).*repmat(hedgeRatio(t, :), [lookback 1]), 2);
+    % yport is the market value of a unit portfolio of AUDUSD and
+    % CADUSD expressed in US$.
+    tmp1=y(t-lookback+1:t, :)
+    tmp2=repmat(hedgeRatio(t, :), [lookback 1])
+    yport=sum(tmp1.*tmp2, 2);
     ma=mean(yport);
     mstd=std(yport);
     zScore=(yport(end)-ma)/mstd;
-
     % numUnits are number of units of unit portfolio of AUDUSD and CADUSD
     numUnits(t)=-(yport(end)-ma)/mstd;
+    exit;
 
 end
 
