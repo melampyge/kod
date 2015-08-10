@@ -64,7 +64,7 @@ def run_py_code():
     # command.
 
     # generate savefig for execution code (no output in emacs yet)
-    bc = get_buffer_content_prev(block_begin)
+    bc = lisp.buffer_string()
     plt_count_before = len(re.findall('plt\.savefig\(',bc))
     base = os.path.splitext(lisp.buffer_name())[0]
     f = '%s_%s.png' % (base, two_digit(plt_count_before+1))
