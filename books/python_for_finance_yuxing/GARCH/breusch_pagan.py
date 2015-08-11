@@ -1,6 +1,7 @@
 import numpy as np
 import statsmodels.api as sm
 import scipy as sp
+
 def breusch_pagan_test(y,x):
 results=sm.OLS(y,x).fit()
 resid=results.resid
