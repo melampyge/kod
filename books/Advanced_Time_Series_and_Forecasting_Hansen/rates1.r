@@ -12,7 +12,7 @@ plot(t,r,main="10-Year Treasury Bill Rate",type="l",xlab="",ylab="")
 
 # First Difference #
 dr=r[2:n]-r[1:(n-1)]
-windows()
+X11()
 plot(t[2:n],dr,main="Change in 10-Year Rate",type="l",xlab="",ylab="")
 n=n-1
 
