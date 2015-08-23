@@ -17,7 +17,11 @@ C = Consumption.
 W = War years dummy variable, 1 in 1942-1945, 0 other years.
 
 Table F2.2	The U.S. Gasoline Market, 52 Yearly Observations, 1953-2004 
-Source: These data were compiled by Professor Chris Bell, Department of Economics, University of North Carolina, Asheville. Sources: www.bea.gov and www.bls.gov
+
+Source: These data were compiled by Professor Chris Bell, Department
+of Economics, University of North Carolina, Asheville. Sources:
+www.bea.gov and www.bls.gov
+
 Year	= Year, 1953-2004,
 GasExp = Total U.S. gasoline expenditure,
 Pop	= U.S. total population in thousands
