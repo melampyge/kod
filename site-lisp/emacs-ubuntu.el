@@ -263,6 +263,7 @@ This command does not push erased text to kill-ring."
    ["Tex New Equation Page" tempo-template-new-equation-page]
    ["Html Code" tempo-template-cdata]
    ["Python Main" tempo-template-python-main]
+   ["Pandas" tempo-template-pandas]
    ["Tex Minted Python (File)" tempo-template-tex-listings-python-file]
    ["Tex Minted Python" tempo-template-tex-listings-python]
    ["Tex Itemize" x-tex-itemize]
@@ -645,6 +646,15 @@ This command does not push erased text to kill-ring."
  '("\\begin{verbatim}\n"
    (s)
    "\n\\end{verbatim}") 
+ "d" ;; 
+ "") ;; 
+
+(tempo-define-template 
+ "pandas" ;; 
+ '("import pandas as pd\n\n"
+   "df = pd.read_csv('"
+   (s)
+   "')") 
  "d" ;; 
  "") ;; 
 
