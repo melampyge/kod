@@ -2,10 +2,111 @@
 
 \begin{document}
 
+%%%%%%%% Run these first %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import pandas as pd
+df = pd.read_csv('../bdm2s2_nation_year_data_may2002.csv')
+print list(df.columns)
+\end{minted}
+
+\begin{verbatim}
+['Unnamed: 0', 'year', 'AGEA', 'AGEI', 'AUT', 'BRITCOL', 'CATH', 'COMEX',
+'EDT', 'EDTG', 'ELF60', 'ETHNIC', 'GINI', 'GXPDEDUC', 'GXPDHLTH',
+'GXPDSSEC', 'GXPKTOTL', 'INEQ', 'INST', 'LEGSELEC', 'MOSLEM', 'OIL',
+'PROT', 'REGION', 'REGION2', 'RELIGION', 'RIOTS', 'STRIKES', 'UNSTABLE',
+'WAR', 'ccode', 'TAXGDP', 'TAXGNP', 'TREV', 'PRIVCON', 'INCOMEY',
+'INCOMET', 'DIRT', 'INDIRT', 'democ', 'autoc', 'polity', 'polity2',
+'durable', 'xrreg', 'xrcomp', 'xropen', 'xconst', 'parreg', 'parcomp',
+'exrec', 'exconst', 'polcomp', 'bdate', 'bprec', 'change', 'd3', 'sf',
+'regtrans', 'country', 'BANKScode', 'Radios', 'Newspapers', 'Assinations',
+'GenStrikes', 'GovCrises', 'Purges', 'Riots', 'Revolutions', 'AntiGovDem',
+'ConflictIndex', 'RegimeType', 'Coups', 'HeadofState', 'Guerilla',
+'RegisteredVoters', 'MajConstChg', 'Premier', 'Legselec', 'NatGovRevenue',
+'NatGovExpend', 'defenseovertotal', 'name', 'chcode', 'longname',
+'coding_differs', 'WorldBankCode', 'WorldBankName', 'fatlev1', 'hostlev1',
+'legselec', 'esolow', 'bhkavg', 'exchprem', 'sh_staa', 'sh_med_b',
+'sh_med_p', 'sh_h2o_s', 'immig', 'emig', 'ID', 'NAME', 'PR', 'CL', 'cap',
+'milper', 'milex', 'energy', 'irst', 'majpow', 'warnoEX', 'EXdeaths',
+'EXintside', 'EXinitiate', 'sysstat', 'EX_war_start', 'EXduration',
+'EX_WAR', 'number_of_EXwars', 'biggestEXwar', 'warno', 'duration',
+'deaths', 'outcome', 'initiate', 'is_war_start', 'IS_WAR',
+'number_of_ISwars', 'biggestISwar', 'warnoCL', 'CLdeaths', 'CLintside',
+'CLinitiate', 'CL_war_start', 'CLduration', 'CL_WAR', 'number_of_CLwars',
+'biggestCLwar', 'ai', 'sd', 'ainew', 'sdnew', 'idgurr', 'worldbankcode',
+'WB_pop', 'WB_gdppc_constUS95', 'WB_growth', 'WB_gdp_curUS', 'WB_gdp95',
+'Aid_pcUS', 'FemSec', 'Doctors', 'MilPerson', 'MilEx', 'MilExGNI',
+'InfMort', 'LowBirth', 'LifeExp', 'Labor_PrimEd', 'ImmuneMEASLES',
+'ImmuneDPT', 'Illiteracy', 'Beds', 'HealthEXP', 'HealthExpPPP',
+'GrossNatSaving', 'GrossDomSaving', 'Capital_formation', 'Saving_dom',
+'FDI', 'Foreign_Finnace', 'ConsumptionSpending', 'Expenditure',
+'Deathrate', 'newspaper', 'HealthExpend', 'EducExpend',
+'CapitalExpend_tot', 'CurRevenue', 'GrossDomInvest', 'GovDebt',
+'Birthrate', 'total_aid', 'aid_cap_constUS', 'aid_gdp', 'CapitalExpend',
+'pop', 'rgdpch', 'rgdpl', 'c', 'i', 'g', 'rgdptt', 'y', 'cgdp', 'cc', 'ci',
+'cg', 'p', 'pc', 'pi', 'pg', 'xr', 'rgdpea', 'rgdpw', 'kapw', 'kdur',
+'knres', 'kother', 'kres', 'ktranp', 'open', 'rgnp', 'ipri', 'stliv',
+'finittrm', 'yrcurnt', 'military', 'auton', 'eda', 'strikes', 'nspolpr',
+'agovdem', 'govtcris', 'corrupti80_89', 'purges', 'coups', 'riots',
+'constchg', 'cabchg', 'genocide', 'worldbankname', 'NatYr', 'cowreg',
+'regyr', 'demaut', 'lpop', 'lpop_WB', 's', 'S', 'W', 'W_extend', 'W_mod',
+'polityW', 'polityWn', 'Parl_Pres', 'w2', 'demaut2', 'WoverS', 'dbigw',
+'dW', 'dw30', 'lagW', 'lagW2', 'dwos30', 'grow', 'LongGR1', 'LongGR2',
+'LongGR3', 'LongGR4', 'lagGrow', 'lrgdpc', 'laglrgdpc', 'lgdpWB',
+'laglgdpWB', 'VarGrow', 'VarGrow_', 'build', 'bal_bud', 'VarBud',
+'Var_bud', 'Klepto', 'nexcap'] 
+\end{verbatim}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+%load_ext rpy2.ipython
+%R library(lme4)
+\end{minted}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+df['polchange'] = (df.W-df.shift(2).W)**2
+df['DW20'] = df.W-df.shift(2).W
+df['Klepto'] = (df['TAXGDP']-df['Expenditure']).abs()
+\end{minted}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import statsmodels.formula.api as smf
+results = smf.ols('WB_growth ~ W + S + DW20 + polchange', data=df).fit()
+print results.summary()
+\end{minted}
+
+\begin{verbatim}
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              WB_growth   R-squared:                       0.003
+Model:                            OLS   Adj. R-squared:                  0.003
+Method:                 Least Squares   F-statistic:                     4.266
+Date:                Tue, 25 Aug 2015   Prob (F-statistic):            0.00190
+Time:                        16:41:42   Log-Likelihood:                -16242.
+No. Observations:                4985   AIC:                         3.249e+04
+Df Residuals:                    4980   BIC:                         3.253e+04
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      4.2384      0.259     16.382      0.000         3.731     4.746
+W             -0.3539      0.364     -0.972      0.331        -1.068     0.360
+S             -0.3540      0.331     -1.069      0.285        -1.003     0.295
+DW20           0.6777      0.620      1.093      0.274        -0.538     1.893
+polchange     -3.8690      1.014     -3.817      0.000        -5.856    -1.882
+==============================================================================
+Omnibus:                     1170.985   Durbin-Watson:                   1.341
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            61520.180
+Skew:                           0.155   Prob(JB):                         0.00
+Kurtosis:                      20.207   Cond. No.                         16.9
+==============================================================================
+
+\end{verbatim}
+
+
 \begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
 df = pd.read_csv('bdm2s2_nation_year_data_may2002.csv')
-df['Klepto'] = (df['TAXGDP']-df['Expenditure']).abs()
 df = df[['regyr','ccode','aid_gdp','lrgdpc','pop','year','W','S','Klepto','laglrgdpc']]
 \end{minted}
 
@@ -80,11 +181,6 @@ Kurtosis:                       9.086   Cond. No.                         221.
 
 \end{verbatim}
 
-
-\begin{minted}[fontsize=\footnotesize]{python}
-%load_ext rpy2.ipython
-%R library(lme4)
-\end{minted}
 
 \begin{minted}[fontsize=\footnotesize]{python}
 %R -i df

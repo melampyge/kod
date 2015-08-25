@@ -217,46 +217,46 @@ xtreg Klepto WoverS aid_gdp GovDebt , fe i(regyr);
 
 
 /* Table 4.1 */
-	xtreg lgdpWB W S , fe i(regyr);
-	xtreg lgdpWB W S lpop_WB demres , fe i(regyr);
-	xtreg lgdpWB WoverS , fe i(regyr);
-	xtreg lgdpWB WoverS lpop_WB demres , fe i(regyr);
-	xtreg lgdpWB Parl_Pres  if demaut==1, fe i(regyr);	
-	xtreg lgdpWB Parl_Pres lpop_WB if demaut==1, fe i(regyr);
+xtreg lgdpWB W S , fe i(regyr);
+xtreg lgdpWB W S lpop_WB demres , fe i(regyr);
+xtreg lgdpWB WoverS , fe i(regyr);
+xtreg lgdpWB WoverS lpop_WB demres , fe i(regyr);
+xtreg lgdpWB Parl_Pres  if demaut==1, fe i(regyr);	
+xtreg lgdpWB Parl_Pres lpop_WB if demaut==1, fe i(regyr);
 
-	xtreg invest W S , fe i(regyr);
-	heckman invest W S  if year>1959, select(W);
-	xtreg invest W S lpop_WB demres incWB, fe i(regyr);
-	heckman invest W S lpop_WB demres incWB if year>1959, select(W);
-	xtreg invest WoverS , fe i(regyr);
-	heckman invest WoverS if year>1959, select(W);
-	xtreg invest WoverS lpop_WB demres incWB, fe i(regyr);
-	heckman invest WoverS lpop_WB demres incWB if year>1959, select(W);
-	
-	
-	xtreg saving W S , fe i(regyr);
-	heckman saving W S  if year>1959, select(W);
-	xtreg saving W S lpop_WB demres incWB, fe i(regyr);
-	heckman saving W S lpop_WB demres incWB if year>1959, select(W);
-	xtreg saving WoverS , fe i(regyr);
-	heckman saving WoverS if year>1959, select(W);
-	xtreg saving WoverS lpop_WB demres incWB, fe i(regyr);
-	heckman saving WoverS lpop_WB demres incWB if year>1959, select(W);
+xtreg invest W S , fe i(regyr);
+heckman invest W S  if year>1959, select(W);
+xtreg invest W S lpop_WB demres incWB, fe i(regyr);
+heckman invest W S lpop_WB demres incWB if year>1959, select(W);
+xtreg invest WoverS , fe i(regyr);
+heckman invest WoverS if year>1959, select(W);
+xtreg invest WoverS lpop_WB demres incWB, fe i(regyr);
+heckman invest WoverS lpop_WB demres incWB if year>1959, select(W);
 
-	xtreg PRIVCON	 W S , fe i(regyr);
-	heckman PRIVCON W S  if year>1969& year<1991, select(W);
-	xtreg PRIVCON W S lpop_WB demres incWB, fe i(regyr);
-	heckman PRIVCON W S lpop_WB demres incWB if year>1969& year<1991, select(W);
-	xtreg PRIVCON WoverS , fe i(regyr);
-	heckman PRIVCON WoverS if year>1969 & year<1991, select(W);
-	xtreg PRIVCON WoverS lpop_WB demres incWB, fe i(regyr);
-	heckman PRIVCON WoverS lpop_WB demres incWB if year>1969& year<1991, select(W);
+
+xtreg saving W S , fe i(regyr);
+heckman saving W S  if year>1959, select(W);
+xtreg saving W S lpop_WB demres incWB, fe i(regyr);
+heckman saving W S lpop_WB demres incWB if year>1959, select(W);
+xtreg saving WoverS , fe i(regyr);
+heckman saving WoverS if year>1959, select(W);
+xtreg saving WoverS lpop_WB demres incWB, fe i(regyr);
+heckman saving WoverS lpop_WB demres incWB if year>1959, select(W);
+
+xtreg PRIVCON	 W S , fe i(regyr);
+heckman PRIVCON W S  if year>1969& year<1991, select(W);
+xtreg PRIVCON W S lpop_WB demres incWB, fe i(regyr);
+heckman PRIVCON W S lpop_WB demres incWB if year>1969& year<1991, select(W);
+xtreg PRIVCON WoverS , fe i(regyr);
+heckman PRIVCON WoverS if year>1969 & year<1991, select(W);
+xtreg PRIVCON WoverS lpop_WB demres incWB, fe i(regyr);
+heckman PRIVCON WoverS lpop_WB demres incWB if year>1969& year<1991, select(W);
 
 
 /* TaxGDP */
 	
-	xtreg TAXGDP Parl_Pres  if demaut==1, fe i(regyr);
-	xtreg TAXGDP Parl_Pres  lpop_WB incWB if demaut==1, fe i(regyr);
+xtreg TAXGDP Parl_Pres  if demaut==1, fe i(regyr);
+xtreg TAXGDP Parl_Pres  lpop_WB incWB if demaut==1, fe i(regyr);
 		
 
 /* Table 4.4 */
@@ -394,5 +394,3 @@ xtlogit IncomeYN WoverS lpop_WB demres, fe i(regyr);
 xtlogit IncomeYN W lpop_WB  demres Parl_Pres , fe i(regyr);
 
 
-
-                            
