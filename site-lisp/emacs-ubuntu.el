@@ -1005,6 +1005,7 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/kod")
 (find-file-other-window "/home/burak/Documents/classnotes/app-math-tr")
 (find-file-other-window "/home/burak/Documents/classnotes/stat")
+(find-file-other-window "/home/burak/Documents/classnotes/app-math-tr/dict")
 (find-file-other-window "/home/burak/Documents/classnotes")
 (find-file-other-window "/home/burak/Documents/classnotes/tser")
 (find-file-other-window "/home/burak/kod/books/Quantitative_Trading_Chan")
