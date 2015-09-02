@@ -2,15 +2,22 @@
 
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Growth and lagged change in W
-
 \begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
 df = pd.read_csv('../bdm2s2_nation_year_data_may2002.csv')
 df = df.sort_index(by=['ccode','year'],ascending=True)
 \end{minted}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Construction
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Growth and lagged change in W
 
 If ccode at t-2 is different for current, than delta W for this instance
 makes no sense, drop them.

@@ -264,6 +264,7 @@ This command does not push erased text to kill-ring."
    ["Html Code" tempo-template-cdata]
    ["Python Main" tempo-template-python-main]
    ["Pandas" tempo-template-pandas]
+   ["Regression" tempo-template-reg]
    ["Tex Minted Python (File)" tempo-template-tex-listings-python-file]
    ["Tex Minted Python" tempo-template-tex-listings-python]
    ["Tex Itemize" x-tex-itemize]
@@ -655,6 +656,16 @@ This command does not push erased text to kill-ring."
    "df = pd.read_csv('"
    (s)
    "')") 
+ "d" ;; 
+ "") ;; 
+
+(tempo-define-template 
+ "reg" ;; 
+ '("import statsmodels.formula.api as smf\n"
+   "results = smf.ols('"
+   (s)
+   "', data=df).fit()\n"
+   "print results.summary()")
  "d" ;; 
  "") ;; 
 
