@@ -7,9 +7,14 @@
 Run this first, then you can skip to other parts
 
 \begin{minted}[fontsize=\footnotesize]{python}
+import statsmodels.formula.api as smf
 import pandas as pd
 df = pd.read_csv('../bdm2s2_nation_year_data_may2002.csv')
 df = df.sort_index(by=['ccode','year'],ascending=True)
+# take out all W,S effects from Polity's 'democracy', the residuals
+# are what remains in 'democracy' after W,S is accounted for
+resdem = smf.ols('democ ~ W + S', data=df).fit()
+df['demres'] = resdem.resid
 \end{minted}
 
 
@@ -66,9 +71,6 @@ Prob(Omnibus):                  0.000   Jarque-Bera (JB):             4176.816
 Skew:                          -0.006   Prob(JB):                         0.00
 Kurtosis:                       8.385   Cond. No.                         99.7
 ==============================================================================
-
-Warnings:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 \end{verbatim}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -247,7 +249,7 @@ Construction
 
 \begin{minted}[fontsize=\footnotesize]{python}
 import statsmodels.formula.api as smf
-results = smf.ols('build ~ W + np.log(pop) + rgdpch', data=df).fit()
+results = smf.ols('build ~ W + np.log(pop) + rgdpch + demres', data=df).fit()
 print results.summary()
 \end{minted}
 
@@ -256,31 +258,27 @@ print results.summary()
 ==============================================================================
 Dep. Variable:                  build   R-squared:                       0.047
 Model:                            OLS   Adj. R-squared:                  0.045
-Method:                 Least Squares   F-statistic:                     25.55
-Date:                Thu, 03 Sep 2015   Prob (F-statistic):           3.92e-16
-Time:                        09:47:17   Log-Likelihood:                -7576.8
-No. Observations:                1549   AIC:                         1.516e+04
-Df Residuals:                    1545   BIC:                         1.518e+04
-Df Model:                           3                                         
+Method:                 Least Squares   F-statistic:                     19.00
+Date:                Thu, 03 Sep 2015   Prob (F-statistic):           2.91e-15
+Time:                        09:54:14   Log-Likelihood:                -7501.5
+No. Observations:                1534   AIC:                         1.501e+04
+Df Residuals:                    1529   BIC:                         1.504e+04
+Df Model:                           4                                         
 Covariance Type:            nonrobust                                         
 ===============================================================================
                   coef    std err          t      P>|t|      [95.0% Conf. Int.]
 -------------------------------------------------------------------------------
-Intercept     106.1666      5.585     19.010      0.000        95.212   117.121
-W              -9.7059      3.518     -2.759      0.006       -16.607    -2.805
-np.log(pop)     1.1249      0.546      2.060      0.040         0.054     2.196
-rgdpch          0.0019      0.000      7.807      0.000         0.001     0.002
+Intercept     109.3877      5.666     19.306      0.000        98.274   120.502
+W             -10.4276      3.533     -2.952      0.003       -17.357    -3.498
+np.log(pop)     0.8733      0.552      1.583      0.114        -0.209     1.956
+rgdpch          0.0018      0.000      7.663      0.000         0.001     0.002
+demres         -0.1573      0.084     -1.880      0.060        -0.321     0.007
 ==============================================================================
-Omnibus:                      454.767   Durbin-Watson:                   0.088
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1469.708
-Skew:                           1.452   Prob(JB):                         0.00
-Kurtosis:                       6.787   Cond. No.                     5.15e+04
+Omnibus:                      444.538   Durbin-Watson:                   0.092
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1421.627
+Skew:                           1.436   Prob(JB):                    1.98e-309
+Kurtosis:                       6.741   Cond. No.                     5.21e+04
 ==============================================================================
-
-Warnings:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The condition number is large, 5.15e+04. This might indicate that there are
-strong multicollinearity or other numerical problems.
 \end{verbatim}
 
 
