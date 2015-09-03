@@ -247,37 +247,40 @@ Construction
 
 \begin{minted}[fontsize=\footnotesize]{python}
 import statsmodels.formula.api as smf
-results = smf.ols('build ~ W + np.log(pop)', data=df).fit()
+results = smf.ols('build ~ W + np.log(pop) + rgdpch', data=df).fit()
 print results.summary()
 \end{minted}
 
 \begin{verbatim}
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:                  build   R-squared:                       0.010
-Model:                            OLS   Adj. R-squared:                  0.008
-Method:                 Least Squares   F-statistic:                     7.557
-Date:                Thu, 03 Sep 2015   Prob (F-statistic):           0.000542
-Time:                        09:38:36   Log-Likelihood:                -7606.7
-No. Observations:                1549   AIC:                         1.522e+04
-Df Residuals:                    1546   BIC:                         1.524e+04
-Df Model:                           2                                         
+Dep. Variable:                  build   R-squared:                       0.047
+Model:                            OLS   Adj. R-squared:                  0.045
+Method:                 Least Squares   F-statistic:                     25.55
+Date:                Thu, 03 Sep 2015   Prob (F-statistic):           3.92e-16
+Time:                        09:47:17   Log-Likelihood:                -7576.8
+No. Observations:                1549   AIC:                         1.516e+04
+Df Residuals:                    1545   BIC:                         1.518e+04
+Df Model:                           3                                         
 Covariance Type:            nonrobust                                         
 ===============================================================================
                   coef    std err          t      P>|t|      [95.0% Conf. Int.]
 -------------------------------------------------------------------------------
-Intercept     101.2747      5.656     17.905      0.000        90.180   112.369
-W               8.2727      2.711      3.052      0.002         2.955    13.590
-np.log(pop)     1.4234      0.555      2.564      0.010         0.335     2.512
+Intercept     106.1666      5.585     19.010      0.000        95.212   117.121
+W              -9.7059      3.518     -2.759      0.006       -16.607    -2.805
+np.log(pop)     1.1249      0.546      2.060      0.040         0.054     2.196
+rgdpch          0.0019      0.000      7.807      0.000         0.001     0.002
 ==============================================================================
-Omnibus:                      465.894   Durbin-Watson:                   0.078
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1533.292
-Skew:                           1.482   Prob(JB):                         0.00
-Kurtosis:                       6.870   Cond. No.                         65.8
+Omnibus:                      454.767   Durbin-Watson:                   0.088
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1469.708
+Skew:                           1.452   Prob(JB):                         0.00
+Kurtosis:                       6.787   Cond. No.                     5.15e+04
 ==============================================================================
 
 Warnings:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 5.15e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
 \end{verbatim}
 
 
