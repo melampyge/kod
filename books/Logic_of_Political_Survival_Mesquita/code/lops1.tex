@@ -281,6 +281,155 @@ Kurtosis:                       6.741   Cond. No.                     5.21e+04
 ==============================================================================
 \end{verbatim}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+WAR
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import statsmodels.formula.api as smf
+
+df['lmilex'] = np.log(df.milex)
+df['laglmilex'] = df['lmilex'].shift(1)
+df['lagW'] = df['W'].shift(1)
+
+dfwar = df[df.lmilex > -20.] # filter out -inf
+dfwar = dfwar[dfwar.laglmilex > -20.] # filter out -inf
+
+results = smf.ols('lmilex ~ laglmilex + lagW + WAR + WAR*lagW', data=dfwar).fit()
+print results.summary()
+\end{minted}
+
+\begin{verbatim}
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 lmilex   R-squared:                       0.986
+Model:                            OLS   Adj. R-squared:                  0.986
+Method:                 Least Squares   F-statistic:                 6.548e+04
+Date:                Thu, 03 Sep 2015   Prob (F-statistic):               0.00
+Time:                        14:39:01   Log-Likelihood:                -796.93
+No. Observations:                3803   AIC:                             1604.
+Df Residuals:                    3798   BIC:                             1635.
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      0.3261      0.024     13.813      0.000         0.280     0.372
+laglmilex      0.9776      0.002    484.322      0.000         0.974     0.982
+lagW           0.0562      0.017      3.381      0.001         0.024     0.089
+WAR            0.0718      0.030      2.404      0.016         0.013     0.130
+WAR:lagW      -0.0417      0.050     -0.836      0.403        -0.140     0.056
+==============================================================================
+Omnibus:                     1240.152   Durbin-Watson:                   1.981
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           133351.579
+Skew:                           0.529   Prob(JB):                         0.00
+Kurtosis:                      31.990   Cond. No.                         143.
+==============================================================================
+
+\end{verbatim}
+
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import statsmodels.formula.api as smf
+
+df['lmilper'] = np.log(df.milper)
+df['laglmilper'] = df['lmilper'].shift(1)
+df['lagW'] = df['W'].shift(1)
+
+dfwar = df[df.lmilper > -20.] # filter out -inf
+dfwar = dfwar[dfwar.laglmilper > -20.] # filter out -inf
+
+results = smf.ols('lmilper ~ laglmilper + lagW + WAR + WAR*lagW', data=dfwar).fit()
+print results.summary()
+\end{minted}
+
+\begin{verbatim}
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                lmilper   R-squared:                       0.989
+Model:                            OLS   Adj. R-squared:                  0.989
+Method:                 Least Squares   F-statistic:                 8.451e+04
+Date:                Thu, 03 Sep 2015   Prob (F-statistic):               0.00
+Time:                        14:40:06   Log-Likelihood:                 638.28
+No. Observations:                3739   AIC:                            -1267.
+Df Residuals:                    3734   BIC:                            -1235.
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      0.0911      0.009     10.358      0.000         0.074     0.108
+laglmilper     0.9854      0.002    560.981      0.000         0.982     0.989
+lagW          -0.0186      0.011     -1.651      0.099        -0.041     0.003
+WAR            0.0667      0.020      3.288      0.001         0.027     0.106
+WAR:lagW      -0.0329      0.034     -0.964      0.335        -0.100     0.034
+==============================================================================
+Omnibus:                     1528.843   Durbin-Watson:                   2.018
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           136730.088
+Skew:                           1.018   Prob(JB):                         0.00
+Kurtosis:                      32.555   Cond. No.                         48.2
+==============================================================================
+
+\end{verbatim}
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import statsmodels.formula.api as smf
+
+df['lmilexper'] = np.log(df.milex / df.milper)
+df['laglmilexper'] = df['lmilex_per'].shift(1)
+df['lagW'] = df['W'].shift(1)
+
+dfwar = df[np.abs(df.lmilexper) < 20.] # filter out -inf
+dfwar = dfwar[np.abs(dfwar.laglmilexper) < 20.] # filter out -inf
+
+results = smf.ols('lmilex_per ~ laglmilex_per + lagW + WAR + WAR*lagW', data=dfwar).fit()
+print results.summary()
+\end{minted}
+
+\begin{verbatim}
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             lmilex_per   R-squared:                       0.932
+Model:                            OLS   Adj. R-squared:                  0.932
+Method:                 Least Squares   F-statistic:                 1.247e+04
+Date:                Thu, 03 Sep 2015   Prob (F-statistic):               0.00
+Time:                        14:47:00   Log-Likelihood:                -1118.9
+No. Observations:                3625   AIC:                             2248.
+Df Residuals:                    3620   BIC:                             2279.
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------
+Intercept         0.3787      0.037     10.133      0.000         0.305     0.452
+laglmilex_per     0.9548      0.005    205.803      0.000         0.946     0.964
+lagW              0.1074      0.019      5.553      0.000         0.069     0.145
+WAR               0.0078      0.033      0.237      0.813        -0.057     0.072
+WAR:lagW         -0.0321      0.055     -0.580      0.562        -0.141     0.076
+==============================================================================
+Omnibus:                     1023.845   Durbin-Watson:                   2.092
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            21190.406
+Skew:                          -0.832   Prob(JB):                         0.00
+Kurtosis:                      14.727   Cond. No.                         99.2
+==============================================================================
+
+\end{verbatim}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
