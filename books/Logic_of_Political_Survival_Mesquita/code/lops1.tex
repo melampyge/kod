@@ -2,56 +2,16 @@
 
 \begin{document}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Run this first, then you can skip to other parts
+
 \begin{minted}[fontsize=\footnotesize]{python}
 import pandas as pd
 df = pd.read_csv('../bdm2s2_nation_year_data_may2002.csv')
 df = df.sort_index(by=['ccode','year'],ascending=True)
 \end{minted}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Construction
-
-\begin{minted}[fontsize=\footnotesize]{python}
-df['build']=df.knres+df.kres+df.kother
-\end{minted}
-
-\begin{minted}[fontsize=\footnotesize]{python}
-import statsmodels.formula.api as smf
-results = smf.ols('build ~ W + S +  np.log(pop)', data=df).fit()
-print results.summary()
-\end{minted}
-
-\begin{verbatim}
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:                  build   R-squared:                       0.010
-Model:                            OLS   Adj. R-squared:                  0.008
-Method:                 Least Squares   F-statistic:                     5.319
-Date:                Thu, 03 Sep 2015   Prob (F-statistic):            0.00120
-Time:                        09:22:57   Log-Likelihood:                -7562.1
-No. Observations:                1541   AIC:                         1.513e+04
-Df Residuals:                    1537   BIC:                         1.515e+04
-Df Model:                           3                                         
-Covariance Type:            nonrobust                                         
-===============================================================================
-                  coef    std err          t      P>|t|      [95.0% Conf. Int.]
--------------------------------------------------------------------------------
-Intercept     107.3724      5.985     17.940      0.000        95.632   119.112
-W              11.8863      3.423      3.472      0.001         5.171    18.601
-S              -6.9353      3.618     -1.917      0.055       -14.031     0.161
-np.log(pop)     1.1801      0.559      2.111      0.035         0.084     2.277
-==============================================================================
-Omnibus:                      463.505   Durbin-Watson:                   0.079
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1502.905
-Skew:                           1.488   Prob(JB):                         0.00
-Kurtosis:                       6.815   Cond. No.                         70.2
-==============================================================================
-
-Warnings:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-\end{verbatim}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -278,6 +238,46 @@ log(pop)  -0.678  0.086 -0.044
 aid_gdp   -0.580 -0.058  0.044  0.453       
 laglrgdpc -0.918 -0.296  0.122  0.370  0.472
 
+\end{verbatim}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Construction
+
+\begin{minted}[fontsize=\footnotesize]{python}
+import statsmodels.formula.api as smf
+results = smf.ols('build ~ W + np.log(pop)', data=df).fit()
+print results.summary()
+\end{minted}
+
+\begin{verbatim}
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  build   R-squared:                       0.010
+Model:                            OLS   Adj. R-squared:                  0.008
+Method:                 Least Squares   F-statistic:                     7.557
+Date:                Thu, 03 Sep 2015   Prob (F-statistic):           0.000542
+Time:                        09:38:36   Log-Likelihood:                -7606.7
+No. Observations:                1549   AIC:                         1.522e+04
+Df Residuals:                    1546   BIC:                         1.524e+04
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+===============================================================================
+                  coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------
+Intercept     101.2747      5.656     17.905      0.000        90.180   112.369
+W               8.2727      2.711      3.052      0.002         2.955    13.590
+np.log(pop)     1.4234      0.555      2.564      0.010         0.335     2.512
+==============================================================================
+Omnibus:                      465.894   Durbin-Watson:                   0.078
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1533.292
+Skew:                           1.482   Prob(JB):                         0.00
+Kurtosis:                       6.870   Cond. No.                         65.8
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 \end{verbatim}
 
 
