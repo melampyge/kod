@@ -1,5 +1,7 @@
 clear;
 
+% get the files from my dropbox (see the readme), and change
+% the base paths below
 usdcad=load('/home/burak/Dropbox/Public/data/inputData_USDCAD_20120426', 'tday', 'hhmm', 'cl');
 audusd=load('/home/burak/Dropbox/Public/data/inputData_AUDUSD_20120426', 'tday', 'hhmm', 'cl');
 
@@ -30,27 +32,21 @@ numUnits=NaN(size(y, 1), 1);
 
 for t=trainlen+1:size(y, 1)
     res=johansen(y(t-trainlen:t-1, :), 0, 1);
-    disp(t);
     hedgeRatio(t, :)=res.evec(:, 1)';
-
-    % yport is the market value of a unit portfolio of AUDUSD and
-    % CADUSD expressed in US$.
-    tmp1=y(t-lookback+1:t, :)
-    tmp2=repmat(hedgeRatio(t, :), [lookback 1])
+    tmp1=y(t-lookback+1:t, :);
+    tmp2=repmat(hedgeRatio(t, :), [lookback 1]);
     yport=sum(tmp1.*tmp2, 2);
     ma=mean(yport);
     mstd=std(yport);
     zScore=(yport(end)-ma)/mstd;
-    % numUnits are number of units of unit portfolio of AUDUSD and CADUSD
     numUnits(t)=-(yport(end)-ma)/mstd;
-    exit;
-
+    %break;
 end
-
 
 % positions are market values of AUDUSD and CADUSD in portfolio expressed
 % in US$.
-positions=repmat(numUnits, [1 size(y, 2)]).*hedgeRatio.*y; 
+tmp1=repmat(numUnits, [1 size(y, 2)]);
+positions=tmp1.*hedgeRatio.*y;
 
 % daily P&L of portfolio in US$.
 pnl=sum(lag(positions, 1).*(y-lag(y, 1))./lag(y, 1), 2); 
@@ -60,14 +56,10 @@ ret(isnan(ret))=0;
 
 plot(cumprod(1+ret(trainlen+1:end))-1); % Cumulative compounded return
 
-fprintf(1, 'APR=%f Sharpe=%f\n', prod(1+ret(trainlen+1:end)).^(252/length(ret(trainlen+1:end)))-1, sqrt(252)*mean(ret(trainlen+1:end))/std(ret(trainlen+1:end)));
+fprintf(1, 'APR=%f Sharpe=%f\n', ...
+	prod(1+ret(trainlen+1:end)).^(252/length(ret(trainlen+1:end)))-1, ...
+	sqrt(252)*mean(ret(trainlen+1:end))/std(ret(trainlen+1:end)));
 % APR=0.112410 Sharpe=1.610890
 
 
-% Kelly leverage
-f=mean(ret(trainlen+1:end))/std(ret(trainlen+1:end))^2;
-fprintf(1, 'f=%f\n', f);
-% f=23.845328
 
-ret=ret(trainlen+1:end);
-save('/tmp/AUDCAD_unequal_ret', 'ret');
