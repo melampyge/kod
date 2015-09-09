@@ -3,7 +3,6 @@
 (autoload 'c++-mode "cc-mode" "C++ Editing Mode" t) 
 (autoload 'c-mode "c-mode" "C mode" t)
 (load "preview-latex.el" nil t t)
-;;(load "doc-view.el" nil t t)
 
 (setq initial-scratch-message nil) ;; empty scratch buffer
 (setq max-specpdl-size 50000)
@@ -478,24 +477,6 @@ This command does not push erased text to kill-ring."
 ))
 
 
-(defun alternative-compile(&optional command)
-  (interactive
-   (if (or compilation-read-command current-prefix-arg)
-       (list (read-from-minibuffer "Compile command: "
-				   (eval compile-command) nil nil
-				   '(compile-history . 1)))
-     (list (eval compile-command))))
-  (unless (equal command (eval compile-command))
-    (setq compile-command command))
-  (compile compile-command)
-  (let ((old-window (selected-window)))
-    (select-window (get-buffer-window "*compilation*"))
-    (set-window-text-height nil 15)
-    (goto-char (point-max))
-    (select-window old-window)
-    )
-  )
-
 (tool-bar-add-item "fwd-arrow" 'revert-buffer 'revert-buffer :help "Refresh" )
 (tool-bar-add-item "contact" 
                    'open-notebook-in-current-dir
@@ -861,8 +842,8 @@ This command does not push erased text to kill-ring."
 (global-set-key [?\M-w] 'backward-word)
 (global-set-key "\C-p" 'previous-line)
 (global-set-key "\C-t" 'kill-line)
-(global-set-key "\C-x\c" 'alternative-compile)
-(global-set-key "\M-\r" 'alternative-compile)
+(global-set-key "\C-x\c" 'compile)
+(global-set-key "\M-\r" 'compile)
 (global-set-key [?\C-=] 'indent-region)
 (global-set-key [?\M-=] 'indent-region)
 (global-set-key [?\C--] 'undo)
@@ -1036,7 +1017,7 @@ This command does not push erased text to kill-ring."
 
 (setq inferior-lisp-program "sbcli")
 
-(add-to-list 'compile-history compile-command)
+;;(add-to-list 'compile-history compile-command)
 
 (defvar previewable-environments
   "List of environments that should be previewed."
