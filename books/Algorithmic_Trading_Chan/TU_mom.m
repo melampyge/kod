@@ -1,6 +1,6 @@
 clear;
 
-load('../Data/inputDataOHLCDaily_20120511', 'syms', 'tday', 'cl');
+load('inputDataOHLCDaily_20120511', 'syms', 'tday', 'cl');
 % load('//dellquad/Futures_data/inputDataOHLCDaily_20120815', 'syms', 'tday', 'cl');
 idx=strmatch('TU', syms, 'exact');
 
@@ -65,8 +65,8 @@ end
 ret=(backshift(1, pos).*(cl-backshift(1, cl))./backshift(1, cl))/holddays;
 
 ret(isnan(ret))=0;
-idx=find(tday==20090102);
-% idx=1;
+% idx=find(tday==20090102);
+idx=1;
 
 cumret=cumprod(1+ret(idx:end))-1;
 
