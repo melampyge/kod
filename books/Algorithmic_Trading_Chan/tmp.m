@@ -6,6 +6,8 @@ load('/home/burak/Dropbox/Public/data/inputData_USDCAD_20120426', 'tday', 'hhmm'
 % Select the daily close at 16:59 ET.
 y=cl(hhmm==1659);
 
+disp(y);
+
 save('/tmp/y','y')
 
 % Variance ratio test from Matlab Econometrics Toolbox
