@@ -1,6 +1,7 @@
 import matplotlib.pylab as plt
 import numpy as np
 import pandas as pd
+
 dftu = pd.read_csv('TU.csv')
 
 import corr
