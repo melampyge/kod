@@ -1,6 +1,6 @@
+import statsmodels.tsa.stattools as st
 import statsmodels.formula.api as smf
 import statsmodels.api as sm
-import statsmodels.tsa.stattools as st
 import matplotlib.pylab as plt
 import numpy as np
 import pandas as pd
