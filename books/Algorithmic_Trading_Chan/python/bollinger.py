@@ -1,12 +1,25 @@
+import statsmodels.formula.api as smf
+import statsmodels.api as sm
 import statsmodels.tsa.stattools as st
 import matplotlib.pylab as plt
 import numpy as np
 import pandas as pd
 
-df['hedgeRatio'] = pd.read_csv('hedge.csv')['hedgeRatio']
+df = pd.read_csv('gld_uso.csv')
+lookback=20;
+
+df['hedgeRatio'] = np.nan
+for t in range(lookback,len(df)):
+    x = np.array(df['GLD'])[t-lookback:t]
+    x = sm.add_constant(x)
+    y = np.array(df['USO'])[t-lookback:t]
+    df.loc[t,'hedgeRatio'] = sm.OLS(y,x).fit().params[1]
+    
+cols = ['GLD','USO']
+
 yport = np.ones(df[cols].shape); yport[:,0] = -df['hedgeRatio']
 yport = yport * df[cols]
-# altta sum() kullanmadik cunku nan + deger = deger sonucu cikiyordu
+
 yport = yport['GLD'] + yport['USO'] 
 data_mean = pd.rolling_mean(yport, window=20)
 data_std = pd.rolling_std(yport, window=20)

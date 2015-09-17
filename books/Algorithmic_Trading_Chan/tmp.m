@@ -1,24 +1,20 @@
 clear;
 
-% 1 minute data on USDCAD
-load('/home/burak/Dropbox/Public/data/inputData_USDCAD_20120426', 'tday', 'hhmm', 'cl');
+% 1 minute data on GLD-USO
+load('inputData_ETF', 'tday', 'syms', 'cl');
+idxG=find(strcmp('GLD', syms));
+idxU=find(strcmp('USO', syms));
 
-% Select the daily close at 16:59 ET.
-y=cl(hhmm==1659);
+x=cl(:, idxG);
+y=cl(:, idxU);
 
-disp(y);
+lookback=20; % Lookback set arbitrarily short
+hedgeRatio=NaN(size(x, 1), 1);
+for t=lookback:size(hedgeRatio, 1)
+    tmp1 = [x(t-lookback+1:t) ones(lookback, 1)]
+    yy = y(t-lookback+1:t)
+    regression_result=ols(yy, tmp1);
+    hedgeRatio(t)=regression_result.beta(1);
+    disp(hedgeRatio(t));
+end
 
-save('/tmp/y','y')
-
-% Variance ratio test from Matlab Econometrics Toolbox
-[h,pValue]=vratiotest(log(y))
-
-% Find value of lambda and thus the halflife of mean reversion by linear regression fit
-ylag=lag(y, 1);  % lag is a function in the jplv7 (spatial-econometrics.com) package.
-deltaY=y-ylag;
-deltaY(1)=[]; % Regression functions cannot handle the NaN in the first bar of the time series.
-ylag(1)=[];
-regress_results=ols(deltaY, [ylag ones(size(ylag))]); % ols is a function in the jplv7 (spatial-econometrics.com) package.
-halflife=-log(2)/regress_results.beta(1);
-
-fprintf(1, 'halflife=%f days\n', halflife);
