@@ -2,7 +2,7 @@
 % written by:
 % Ernest Chan
 %
-% Author of “Quantitative Trading: 
+% Author of Quantitative Trading: 
 % How to Start Your Own Algorithmic Trading Business”
 %
 % ernest@epchan.com
