@@ -757,9 +757,10 @@ This command does not push erased text to kill-ring."
 
 (tempo-define-template 
  "equation-multiline" 
- '("\\[ \n \\begin{array}{lll}\n "
+ '("\$$ \n \\begin{array}{lll}\n "
    (s)
-   " \]"
+   "\n\\end{array}"
+   "$$"
    )
  "")
 
