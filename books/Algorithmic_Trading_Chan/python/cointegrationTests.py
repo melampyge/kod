@@ -3,7 +3,6 @@ import matplotlib.pylab as plt
 import numpy as np
 import pandas as pd
 
-import pandas as pd
 df = pd.read_csv('ETF.csv',index_col=0)
 plt.hold(True)
 df[['ewa','ewc']].plot()
