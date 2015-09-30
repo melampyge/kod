@@ -1,57 +1,48 @@
+clear;
+
+lookback=252; % use lookback days as estimation (training) period for determining factor exposures.
+numFactors=5;
+topN=50; % for trading strategy, long stocks with topN expected 1-day returns.
+
+load('IJR_20080114'); % test on SP600 smallcap stocks. (This MATLAB binary input file contains tday, stocks, op, hi, lo, cl arrays.
+
+mycls=fillMissingData(cl);
+
+positionsTable=zeros(size(cl));
+
+dailyret=(mycls-lag1(mycls))./lag1(mycls); % note the rows of dailyret are the observations at different time periods
+
+for t=lookback+1:length(tday)
+
+    R=dailyret(t-lookback+1:t,:)'; % here the columns of R are the different observations.
+    
+    hasData=find(all(isfinite(R), 2)); % avoid any stocks with missing returns
+    
+    R=R(hasData, :);
+    
+    avgR=smartmean(R, 2);
+    R=R-repmat(avgR, [1 size(R, 2)]); % subtract mean from returns
+    
+    covR=smartcov(R'); % compute covariance matrix, with observations in rows.
+    
+    [X, B]=eig(covR); % X is the factor exposures matrix, B the variances of factor returns
+    
+    X(:, 1:size(X, 2)-numFactors)=[]; % Retain only numFactors
+    
+    results=ols(R(:, end), X); % b are the factor returns for time period t-1 to t.
+    b=results.beta;
+    
+    Rexp=avgR+X*b; % Rexp is the expected return for next period assuming factor returns remain constant.
+    
+    [foo idxSort]=sort(Rexp, 'ascend');
+    
+    positionsTable(t, hasData(idxSort(1:topN)))=-1; % short topN stocks with lowest expected returns
+    positionsTable(t, hasData(idxSort(end-topN+1:end)))=1; % buy topN stocks with highest  expected returns
+end
+
+ret=smartsum(backshift(1, positionsTable).*dailyret, 2); % compute daily returns of trading strategy
+avgret=smartmean(ret)*252 % compute annualized average return of trading strategy
+% A very poor return!
+% avgret =
 % 
-% written by:
-% Ernest Chan
-%
-% Author of “Quantitative Trading: 
-% How to Start Your Own Algorithmic Trading Business”
-%
-% ernest@epchan.com
-% www.epchan.com
-
-clear; % make sure previously defined variables are erased.
- 
-[num1, txt1]=xlsread('OIH'); % read a spreadsheet named "OIH.xls" into MATLAB. 
- 
-tday1=txt1(2:end, 1); % the first column (starting from the second row) is the trading days in format mm/dd/yyyy.
- 
-tday1=datestr(datenum(tday1, 'mm/dd/yyyy'), 'yyyymmdd'); % convert the format into yyyymmdd.
- 
-tday1=str2double(cellstr(tday1)); % convert the date strings first into cell arrays and then into numeric format.
- 
-adjcls1=num1(:, end); % the last column contains the adjusted close prices.
- 
-[num2, txt2]=xlsread('RKH'); % read a spreadsheet named "RKH.xls" into MATLAB. 
- 
-tday2=txt2(2:end, 1); % the first column (starting from the second row) is the trading days in format mm/dd/yyyy.
- 
-tday2=datestr(datenum(tday2, 'mm/dd/yyyy'), 'yyyymmdd'); % convert the format into yyyymmdd.
- 
-tday2=str2double(cellstr(tday2)); % convert the date strings first into cell arrays and then into numeric format.
-
-adjcls2=num2(:, end);
-
-[num3, txt3]=xlsread('RTH'); % read a spreadsheet named "RTH.xls" into MATLAB. 
- 
-tday3=txt3(2:end, 1); % the first column (starting from the second row) is the trading days in format mm/dd/yyyy.
- 
-tday3=datestr(datenum(tday3, 'mm/dd/yyyy'), 'yyyymmdd'); % convert the format into yyyymmdd.
- 
-tday3=str2double(cellstr(tday3)); % convert the date strings first into cell arrays and then into numeric format.
-
-adjcls3=num3(:, end);
-
-% merge these data
-tday=union(tday1, tday2);
-tday=union(tday, tday3);
-adjcls=NaN(length(tday), 3);
-
-[foo idx1 idx]=intersect(tday1, tday);
-adjcls(idx, 1)=adjcls1(idx1);
-[foo idx2 idx]=intersect(tday2, tday);
-adjcls(idx, 2)=adjcls2(idx2);
-[foo idx3 idx]=intersect(tday3, tday);
-adjcls(idx, 3)=adjcls3(idx3);
-
-ret=(adjcls-lag1(adjcls))./lag1(adjcls) % returns
-
-exit;
+%    -1.8099
