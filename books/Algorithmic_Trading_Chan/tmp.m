@@ -9,39 +9,45 @@ etf=load('inputData_ETF', 'tday', 'syms', 'cl');
 stks.cl=stks.cl(idx1, :);
 stks.tday=stks.cl(idx1, :);
 
-A = [stks.cl];
-save('/tmp/out','A');
-A = [stks.stocks];
-save('/tmp/outs','A');
-A = [tday];
-save('/tmp/outd','A');
+%A = [stks.cl];
+%save('/tmp/out','A');
+%A = [stks.stocks];
+%save('/tmp/outs','A');
+%A = [tday];
+%save('/tmp/outd','A');
 
 etf.cl=etf.cl(idx2, :);
 
 % Use SPY
 idxS=find(strcmp('SPY', etf.syms));
 etf.cl=etf.cl(:, idxS);
-A = [etf.cl];
-save('/tmp/etf','A');
+%A = [etf.cl];
+%save('/tmp/etf','A');
 
-exit;
+%exit;
 
 trainDataIdx=find(tday>=20070101 & tday<=20071231);
 testDataIdx=find(tday > 20071231);
 
 isCoint=false(size(stks.stocks));
 for s=1:length(stks.stocks)
+    disp(stks.stocks(s));
     % Combine the two time series into a matrix y2 for input into Johansen test
     y2=[stks.cl(trainDataIdx, s), etf.cl(trainDataIdx)];
     badData=any(isnan(y2), 2);
     y2(badData, :)=[]; % remove any missing data
 
     if (size(y2, 1) > 250)
-        results=johansen(y2, 0, 1); % johansen test with non-zero offset but zero drift, and with the lag k=1.
-        if (results.lr1(1) > results.cvt(1, 1))
-            isCoint(s)=true;
-        end
-    end    
+      % johansen test with non-zero offset but zero drift, and with
+      % the lag k=1.
+      results=johansen(y2, 0, 1);
+      disp(results.lr1(1));
+      disp(results.cvt(1, 1));
+      exit;
+      if (results.lr1(1) > results.cvt(1, 1))
+        isCoint(s)=true;
+      end
+    end
 end
 
 length(find(isCoint))
