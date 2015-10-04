@@ -1,13 +1,13 @@
 clear;
 topN=40;
 
-load('C:/PairsWS/inputData_XLEcomponents');
+load('inputData_XLEcomponents');
 
 cls_comp=cl;
 
 stocks_comp=stocks;
 
-load('C:/PairsWS/inputData_XLE');
+load('inputData_XLE');
 
 xle=strmatch('XLE', stocks, 'exact');
 
