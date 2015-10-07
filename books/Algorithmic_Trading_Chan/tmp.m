@@ -9,22 +9,12 @@ etf=load('inputData_ETF', 'tday', 'syms', 'cl');
 stks.cl=stks.cl(idx1, :);
 stks.tday=stks.cl(idx1, :);
 
-%A = [stks.cl];
-%save('/tmp/out','A');
-%A = [stks.stocks];
-%save('/tmp/outs','A');
-%A = [tday];
-%save('/tmp/outd','A');
-
 etf.cl=etf.cl(idx2, :);
 
 % Use SPY
 idxS=find(strcmp('SPY', etf.syms));
 etf.cl=etf.cl(:, idxS);
-%A = [etf.cl];
-%save('/tmp/etf','A');
 
-%exit;
 
 trainDataIdx=find(tday>=20070101 & tday<=20071231);
 testDataIdx=find(tday > 20071231);
@@ -41,9 +31,6 @@ for s=1:length(stks.stocks)
       % johansen test with non-zero offset but zero drift, and with
       % the lag k=1.
       results=johansen(y2, 0, 1);
-      disp(results.lr1(1));
-      disp(results.cvt(1, 1));
-      exit;
       if (results.lr1(1) > results.cvt(1, 1))
         isCoint(s)=true;
       end
@@ -82,10 +69,14 @@ results.evec
 
 
 % Apply linear mean-reversion model on test set
-yNplus=[stks.cl(testDataIdx, isCoint), etf.cl(testDataIdx)]; % Array of stock and ETF prices
+% Array of stock and ETF prices
+yNplus=[stks.cl(testDataIdx, isCoint), etf.cl(testDataIdx)];
+% Array of log market value of stocks and ETF's
 weights=[repmat(results.evec(1, 1), size(stks.cl(testDataIdx, isCoint))), ...
-       repmat(results.evec(2, 1), size(etf.cl(testDataIdx)))]; % Array of log market value of stocks and ETF's
-   
+       repmat(results.evec(2, 1), size(etf.cl(testDataIdx)))]; 
+
+size(weights)
+
 logMktVal=smartsum(weights.*log(yNplus), 2); % Log market value of long-short portfolio
 
 lookback=5;
