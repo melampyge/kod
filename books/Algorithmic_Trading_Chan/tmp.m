@@ -45,7 +45,9 @@ yN=stks.cl(trainDataIdx, isCoint);
 logMktVal_long=sum(log(yN), 2); % The net market value of the long-only portfolio is same as the "spread"
 
 % Confirm that the portfolio cointegrates with SPY
-ytest=[logMktVal_long, log(etf.cl(trainDataIdx))]; 
+ytest=[logMktVal_long, log(etf.cl(trainDataIdx))];
+size(ytest)
+
 results=johansen(ytest, 0, 1); % johansen test with non-zero offset but zero drift, and with the lag k=1.
 prt(results);
 
@@ -76,15 +78,24 @@ weights=[repmat(results.evec(1, 1), size(stks.cl(testDataIdx, isCoint))), ...
 
 size(weights)
 
-logMktVal=smartsum(weights.*log(yNplus), 2); % Log market value of long-short portfolio
+% Log market value of long-short portfolio
+logMktVal=smartsum(weights.*log(yNplus), 2); 
 
 lookback=5;
-numUnits=-(logMktVal-movingAvg(logMktVal, lookback))./movingStd(logMktVal, lookback); % capital invested in portfolio in dollars.  movingAvg and movingStd are functions from epchan.com/book2
-positions=repmat(numUnits, [1 size(weights, 2)]).*weights; % positions is the dollar capital in each stock or ETF.
-pnl=smartsum(lag(positions, 1).*(log(yNplus)-lag(log(yNplus), 1)), 2); % daily P&L of the strategy
-ret=pnl./smartsum(abs(lag(positions, 1)), 2); % return is P&L divided by gross market value of portfolio
-ret(isnan(ret))=0;
 
+% capital invested in portfolio in dollars. 
+numUnits=-(logMktVal-movingAvg(logMktVal, lookback)) ./ ...
+	  movingStd(logMktVal, lookback);
+
+% positions is the dollar capital in each stock or ETF.
+positions=repmat(numUnits, [1 size(weights, 2)]).*weights;
+% daily P&L of the strategy
+tmp1=(log(yNplus)-lag(log(yNplus), 1));
+pnl=smartsum(lag(positions, 1).*tmp1, 2);
+
+% return is P&L divided by gross market value of portfolio
+ret=pnl./smartsum(abs(lag(positions, 1)), 2); 
+ret(isnan(ret))=0;
 figure;
 plot(cumprod(1+ret)-1); % Cumulative compounded return
 
