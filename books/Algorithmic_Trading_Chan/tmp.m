@@ -54,17 +54,14 @@ for t=1:length(y)
 end
 
 plot(beta(1, :)');
-savefig('/tmp/beta1')
 
 figure;
 
 plot(beta(2, :)');
-savefig('/tmp/beta2')
 
 figure;
 
 plot(e(3:end), 'r');
-savefig('/tmp/e')
 
 hold on;
 plot(sqrt(Q(3:end)));
@@ -81,9 +78,12 @@ numUnitsLong=NaN(length(y2), 1);
 numUnitsShort=NaN(length(y2), 1);
 
 numUnitsLong(1)=0;
-numUnitsLong(longsEntry)=1; 
+numUnitsLong(longsEntry)=1;
 numUnitsLong(longsExit)=0;
-numUnitsLong=fillMissingData(numUnitsLong); % fillMissingData can be downloaded from epchan.com/book2. It simply carry forward an existing position from previous day if today's positio is an indeterminate NaN.
+% fillMissingData can be downloaded from epchan.com/book2. It simply
+% carry forward an existing position from previous day if today's
+% positio is an indeterminate NaN.
+numUnitsLong=fillMissingData(numUnitsLong);
 
 numUnitsShort(1)=0;
 numUnitsShort(shortsEntry)=-1; 
@@ -91,9 +91,21 @@ numUnitsShort(shortsExit)=0;
 numUnitsShort=fillMissingData(numUnitsShort);
 
 numUnits=numUnitsLong+numUnitsShort;
-positions=repmat(numUnits, [1 size(y2, 2)]).*[-beta(1, :)' ones(size(beta(1, :)'))].*y2; % [hedgeRatio -ones(size(hedgeRatio))] is the shares allocation, [hedgeRatio -ones(size(hedgeRatio))].*y2 is the dollar capital allocation, while positions is the dollar capital in each ETF.
-pnl=sum(lag(positions, 1).*(y2-lag(y2, 1))./lag(y2, 1), 2); % daily P&L of the strategy
-ret=pnl./sum(abs(lag(positions, 1)), 2); % return is P&L divided by gross market value of portfolio
+
+numUnits
+
+% [hedgeRatio -ones(size(hedgeRatio))] is the shares allocation,
+% [hedgeRatio -ones(size(hedgeRatio))].*y2 is the dollar capital
+% allocation, while positions is the dollar capital in each ETF.
+tmp1=repmat(numUnits, [1 size(y2, 2)])
+tmp2=[-beta(1, :)' ones(size(beta(1, :)'))]
+
+positions=tmp1.*tmp2.*y2; 
+
+% daily P&L of the strategy
+pnl=sum(lag(positions, 1).*(y2-lag(y2, 1))./lag(y2, 1), 2); 
+% return is P&L divided by gross market value of portfolio
+ret=pnl./sum(abs(lag(positions, 1)), 2); 
 ret(isnan(ret))=0;
 
 figure;
