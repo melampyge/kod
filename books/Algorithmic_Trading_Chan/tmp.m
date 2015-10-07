@@ -21,7 +21,6 @@ testDataIdx=find(tday > 20071231);
 
 isCoint=false(size(stks.stocks));
 for s=1:length(stks.stocks)
-    disp(stks.stocks(s));
     % Combine the two time series into a matrix y2 for input into Johansen test
     y2=[stks.cl(trainDataIdx, s), etf.cl(trainDataIdx)];
     badData=any(isnan(y2), 2);
