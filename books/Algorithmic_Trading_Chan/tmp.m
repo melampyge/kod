@@ -1,103 +1,108 @@
 clear;
+% Daily data on EWA-EWC
+load('inputData_ETF', 'tday', 'syms', 'cl');
+idxA=find(strcmp('EWA', syms));
+idxC=find(strcmp('EWC', syms));
+
+x=cl(:, idxA);
+y=cl(:, idxC);
+
+% Augment x with ones to  accomodate possible offset in the regression
+% between y vs x.
+
+x=[x ones(size(x))];
+
+% delta=1 gives fastest change in beta, delta=0.000....1 allows no
+% change (like traditional linear regression).
+delta=0.0001;
+
+yhat=NaN(size(y)); % measurement prediction
+e=NaN(size(y)); % measurement prediction error
+Q=NaN(size(y)); % measurement prediction error variance
+
+size(e)
+exit;
+
+% For clarity, we denote R(t|t) by P(t).
+% initialize R, P and beta.
+R=zeros(2);
+P=zeros(2);
+beta=NaN(2, size(x, 1));
+Vw=delta/(1-delta)*eye(2);
+Ve=0.001;
 
 
-stks=load('inputDataOHLCDaily_stocks_20120424', 'stocks', 'tday','cl');
-etf=load('inputData_ETF', 'tday', 'syms', 'cl');
 
-% Ensure data have same dates
-[tday idx1 idx2]=intersect(stks.tday, etf.tday);
-stks.cl=stks.cl(idx1, :);
-stks.tday=stks.cl(idx1, :);
+% Initialize beta(:, 1) to zero
+beta(:, 1)=0;
 
-etf.cl=etf.cl(idx2, :);
-
-% Use SPY
-idxS=find(strcmp('SPY', etf.syms));
-etf.cl=etf.cl(:, idxS);
-
-
-trainDataIdx=find(tday>=20070101 & tday<=20071231);
-testDataIdx=find(tday > 20071231);
-
-isCoint=false(size(stks.stocks));
-for s=1:length(stks.stocks)
-    % Combine the two time series into a matrix y2 for input into Johansen test
-    y2=[stks.cl(trainDataIdx, s), etf.cl(trainDataIdx)];
-    badData=any(isnan(y2), 2);
-    y2(badData, :)=[]; % remove any missing data
-
-    if (size(y2, 1) > 250)
-      % johansen test with non-zero offset but zero drift, and with
-      % the lag k=1.
-      results=johansen(y2, 0, 1);
-      if (results.lr1(1) > results.cvt(1, 1))
-        isCoint(s)=true;
-      end
+% Given initial beta and R (and P)
+for t=1:length(y)
+    if (t > 1)
+        beta(:, t)=beta(:, t-1); % state prediction. Equation 3.7
+        R=P+Vw; % state covariance prediction. Equation 3.8
     end
+    
+    yhat(t)=x(t, :)*beta(:, t); % measurement prediction. Equation 3.9
+
+    Q(t)=x(t, :)*R*x(t, :)'+Ve; % measurement variance prediction. Equation 3.10
+    
+    
+    % Observe y(t)
+    e(t)=y(t)-yhat(t); % measurement prediction error
+    
+    K=R*x(t, :)'/Q(t); % Kalman gain
+    
+    beta(:, t)=beta(:, t)+K*e(t); % State update. Equation 3.11
+    P=R-K*x(t, :)*R; % State covariance update. Euqation 3.12
+    
 end
 
-length(find(isCoint))
-% 98: there are 98 stocks that are cointegrating with SPY
 
-% Form a long-only portfolio with all stocks that cointegrate with SPY, with equal
-% capital allocation
-yN=stks.cl(trainDataIdx, isCoint);
-logMktVal_long=sum(log(yN), 2); % The net market value of the long-only portfolio is same as the "spread"
+plot(beta(1, :)');
 
-% Confirm that the portfolio cointegrates with SPY
-ytest=[logMktVal_long, log(etf.cl(trainDataIdx))];
-size(ytest)
+figure;
 
-results=johansen(ytest, 0, 1); % johansen test with non-zero offset but zero drift, and with the lag k=1.
-prt(results);
+plot(beta(2, :)');
 
-% Output:
-%  Johansen MLE estimates 
-% NULL:                  Trace Statistic         Crit 90%         Crit 95%         Crit 99% 
-% r <= 0   variable   1           15.869           13.429           15.494           19.935 
-% r <= 1   variable   2            6.197            2.705            3.841            6.635 
-% 
-% NULL:                  Eigen Statistic         Crit 90%         Crit 95%         Crit 99% 
-% r <= 0   variable   1            9.671           12.297           14.264           18.520 
-% r <= 1   variable   2            6.197            2.705            3.841            6.635 
+figure;
 
-results.evec
-% 
-% ans =
-% 
-%     1.0939   -0.2799
-%  -105.5600   56.0933
+plot(e(3:end), 'r');
 
+hold on;
+plot(sqrt(Q(3:end)));
 
-% Apply linear mean-reversion model on test set
-% Array of stock and ETF prices
-yNplus=[stks.cl(testDataIdx, isCoint), etf.cl(testDataIdx)];
-% Array of log market value of stocks and ETF's
-weights=[repmat(results.evec(1, 1), size(stks.cl(testDataIdx, isCoint))), ...
-       repmat(results.evec(2, 1), size(etf.cl(testDataIdx)))]; 
+y2=[x(:, 1) y];
 
-size(weights)
+longsEntry=e < -sqrt(Q); % a long position means we should buy EWC
+longsExit=e > -sqrt(Q);
 
-% Log market value of long-short portfolio
-logMktVal=smartsum(weights.*log(yNplus), 2); 
+shortsEntry=e > sqrt(Q);
+shortsExit=e < sqrt(Q);
 
-lookback=5;
+numUnitsLong=NaN(length(y2), 1);
+numUnitsShort=NaN(length(y2), 1);
 
-% capital invested in portfolio in dollars. 
-numUnits=-(logMktVal-movingAvg(logMktVal, lookback)) ./ ...
-	  movingStd(logMktVal, lookback);
+numUnitsLong(1)=0;
+numUnitsLong(longsEntry)=1; 
+numUnitsLong(longsExit)=0;
+numUnitsLong=fillMissingData(numUnitsLong); % fillMissingData can be downloaded from epchan.com/book2. It simply carry forward an existing position from previous day if today's positio is an indeterminate NaN.
 
-% positions is the dollar capital in each stock or ETF.
-positions=repmat(numUnits, [1 size(weights, 2)]).*weights;
-% daily P&L of the strategy
-tmp1=(log(yNplus)-lag(log(yNplus), 1));
-pnl=smartsum(lag(positions, 1).*tmp1, 2);
+numUnitsShort(1)=0;
+numUnitsShort(shortsEntry)=-1; 
+numUnitsShort(shortsExit)=0;
+numUnitsShort=fillMissingData(numUnitsShort);
 
-% return is P&L divided by gross market value of portfolio
-ret=pnl./smartsum(abs(lag(positions, 1)), 2); 
+numUnits=numUnitsLong+numUnitsShort;
+positions=repmat(numUnits, [1 size(y2, 2)]).*[-beta(1, :)' ones(size(beta(1, :)'))].*y2; % [hedgeRatio -ones(size(hedgeRatio))] is the shares allocation, [hedgeRatio -ones(size(hedgeRatio))].*y2 is the dollar capital allocation, while positions is the dollar capital in each ETF.
+pnl=sum(lag(positions, 1).*(y2-lag(y2, 1))./lag(y2, 1), 2); % daily P&L of the strategy
+ret=pnl./sum(abs(lag(positions, 1)), 2); % return is P&L divided by gross market value of portfolio
 ret(isnan(ret))=0;
+
 figure;
 plot(cumprod(1+ret)-1); % Cumulative compounded return
 
 fprintf(1, 'APR=%f Sharpe=%f\n', prod(1+ret).^(252/length(ret))-1, sqrt(252)*mean(ret)/std(ret));
-% APR=0.044930 Sharpe=1.319397
+% APR=0.262252 Sharpe=2.361162
+
+
