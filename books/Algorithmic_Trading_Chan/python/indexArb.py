@@ -1,9 +1,10 @@
 import matplotlib.pylab as plt
+import pandas as pd, zipfile
 import numpy as np
-import pandas as pd
 
-import pandas as pd
-dfspy3 = pd.read_csv('SPY3.csv',index_col='Date')
+with zipfile.ZipFile('SPY3.zip', 'r') as z:
+    dfspy3 = pd.read_csv('SPY3.csv',index_col='Date')
+
 train = dfspy3[(dfspy3.index>=20070101) & (dfspy3.index<=20071231)]
 testspy3 = dfspy3[(dfspy3.index > 20071231)]
 resdf = pd.DataFrame(index=dfspy3.columns)
