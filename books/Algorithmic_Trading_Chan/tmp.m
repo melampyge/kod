@@ -20,8 +20,6 @@ yhat=NaN(size(y)); % measurement prediction
 e=NaN(size(y)); % measurement prediction error
 Q=NaN(size(y)); % measurement prediction error variance
 
-size(e)
-exit;
 
 % For clarity, we denote R(t|t) by P(t).
 % initialize R, P and beta.
@@ -29,9 +27,8 @@ R=zeros(2);
 P=zeros(2);
 beta=NaN(2, size(x, 1));
 Vw=delta/(1-delta)*eye(2);
+
 Ve=0.001;
-
-
 
 % Initialize beta(:, 1) to zero
 beta(:, 1)=0;
@@ -44,9 +41,7 @@ for t=1:length(y)
     end
     
     yhat(t)=x(t, :)*beta(:, t); % measurement prediction. Equation 3.9
-
     Q(t)=x(t, :)*R*x(t, :)'+Ve; % measurement variance prediction. Equation 3.10
-    
     
     % Observe y(t)
     e(t)=y(t)-yhat(t); % measurement prediction error
@@ -55,19 +50,21 @@ for t=1:length(y)
     
     beta(:, t)=beta(:, t)+K*e(t); % State update. Equation 3.11
     P=R-K*x(t, :)*R; % State covariance update. Euqation 3.12
-    
+
 end
 
-
 plot(beta(1, :)');
+savefig('/tmp/beta1')
 
 figure;
 
 plot(beta(2, :)');
+savefig('/tmp/beta2')
 
 figure;
 
 plot(e(3:end), 'r');
+savefig('/tmp/e')
 
 hold on;
 plot(sqrt(Q(3:end)));
