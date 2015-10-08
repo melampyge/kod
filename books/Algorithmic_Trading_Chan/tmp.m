@@ -63,16 +63,15 @@ fig = figure;
 plot(beta(1, :)');
 print(fig,'/tmp/beta1','-dpng')
 
-figure;
-
+fig =figure;
 plot(beta(2, :)');
+print(fig,'/tmp/beta2','-dpng')
 
-figure;
-
+fig = figure;
 plot(e(3:end), 'r');
-
 hold on;
 plot(sqrt(Q(3:end)));
+print(fig,'/tmp/Q','-dpng')
 
 y2=[x(:, 1) y];
 
@@ -101,11 +100,14 @@ numUnitsShort=fillMissingData(numUnitsShort);
 numUnits=numUnitsLong+numUnitsShort;
 
 numUnits
+sum(numUnits)
 
 % [hedgeRatio -ones(size(hedgeRatio))] is the shares allocation,
 % [hedgeRatio -ones(size(hedgeRatio))].*y2 is the dollar capital
 % allocation, while positions is the dollar capital in each ETF.
+size(y2, 2)
 tmp1=repmat(numUnits, [1 size(y2, 2)])
+size(beta(1, :)')
 tmp2=[-beta(1, :)' ones(size(beta(1, :)'))]
 
 positions=tmp1.*tmp2.*y2; 
