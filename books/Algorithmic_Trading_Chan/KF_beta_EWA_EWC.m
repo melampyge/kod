@@ -53,18 +53,19 @@ for t=1:length(y)
 end
 
 
+fig = figure;
 plot(beta(1, :)');
+print(fig,'/tmp/beta1m','-dpng')
 
-figure;
-
+fig =figure;
 plot(beta(2, :)');
+print(fig,'/tmp/beta2m','-dpng')
 
-figure;
-
+fig = figure;
 plot(e(3:end), 'r');
-
 hold on;
 plot(sqrt(Q(3:end)));
+print(fig,'/tmp/Qm','-dpng')
 
 y2=[x(:, 1) y];
 
