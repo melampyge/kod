@@ -51,9 +51,17 @@ for t=1:length(y)
     beta(:, t)=beta(:, t)+K*e(t); % State update. Equation 3.11
     P=R-K*x(t, :)*R; % State covariance update. Euqation 3.12
 
+    %disp(R);disp(x(t, :)');disp(Q(t));disp(K)
+        
+    %if (t==3)
+    %   exit;
+    %end
+
 end
 
+fig = figure;
 plot(beta(1, :)');
+print(fig,'/tmp/beta1','-dpng')
 
 figure;
 
