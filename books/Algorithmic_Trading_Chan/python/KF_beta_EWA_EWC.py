@@ -96,6 +96,5 @@ tmp3 = np.array(y2.shift(1))
 pnl = np.sum(tmp1 * tmp2 / tmp3,axis=1)
 ret = pnl / np.sum(np.abs(positions.shift(1)),axis=1)
 ret = ret.fillna(0)
-#ret = ret.dropna()
 print 'APR', ((np.prod(1.+ret))**(252./len(ret)))-1
 print 'Sharpe', np.sqrt(252.)*np.mean(ret)/np.std(ret)

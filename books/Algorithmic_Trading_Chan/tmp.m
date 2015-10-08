@@ -1,118 +1,60 @@
 clear;
-% Daily data on EWA-EWC
-load('inputData_ETF', 'tday', 'syms', 'cl');
-idxA=find(strcmp('EWA', syms));
-idxC=find(strcmp('EWC', syms));
 
-x=cl(:, idxA);
-y=cl(:, idxC);
+load('inputDataOHLCDaily_stocks_20120424');
 
-% Augment x with ones to  accomodate possible offset in the regression
-% between y vs x.
+lookback=252;
+holddays=25;
+topN=50;
 
-x=[x ones(size(x))];
-
-% delta=1 gives fastest change in beta, delta=0.000....1 allows no
-% change (like traditional linear regression).
-delta=0.0001;
-
-yhat=NaN(size(y)); % measurement prediction
-e=NaN(size(y)); % measurement prediction error
-Q=NaN(size(y)); % measurement prediction error variance
+idxStart=find(tday==20070515);
+idxEnd=find(tday==20071231);
 
 
-% For clarity, we denote R(t|t) by P(t).
-% initialize R, P and beta.
-R=zeros(2);
-P=zeros(2);
-beta=NaN(2, size(x, 1));
-Vw=delta/(1-delta)*eye(2);
+% cl is a TxN array of closing prices, where T is the number of trading
+% days, and N is the number of stocks in the S&P 500
+ret=(cl- backshift(lookback,cl))./backshift(lookback,cl); % daily returnslongs=false(size(ret));
 
-Ve=0.001;
+shorts=false(size(ret));
+size(shorts)
 
-% Initialize beta(:, 1) to zero
-beta(:, 1)=0;
+positions=zeros(size(ret));
+length(tday)
 
-% Given initial beta and R (and P)
-for t=1:length(y)
-    if (t > 1)
-        beta(:, t)=beta(:, t-1); % state prediction. Equation 3.7
-        R=P+Vw; % state covariance prediction. Equation 3.8
-    end
-    
-    yhat(t)=x(t, :)*beta(:, t); % measurement prediction. Equation 3.9
-    Q(t)=x(t, :)*R*x(t, :)'+Ve; % measurement variance prediction. Equation 3.10
-    
-    % Observe y(t)
-    e(t)=y(t)-yhat(t); % measurement prediction error
-
-    K=R*x(t, :)'/Q(t); % Kalman gain
-
-    beta(:, t)=beta(:, t)+K*e(t); % State update. Equation 3.11
-
-    P=R-K*x(t, :)*R; % State covariance update. Euqation 3.12
-    
+for t=lookback+1:length(tday)
+   [foo idx]=sort(ret(t, :), 'ascend');
+   nodata=find(isnan(ret(t, :)));
+   idx=setdiff(idx, nodata, 'stable');
+   longs(t, idx(end-topN+1:end))=true;
+   shorts(t, idx(1:topN))=true;
 end
 
-fig = figure;
-plot(beta(1, :)');
-print(fig,'/tmp/beta1m','-dpng')
+for h=0:holddays-1
+    long_lag=backshift(h, longs);
+    long_lag(isnan(long_lag))=false;
+    long_lag=logical(long_lag);
+    
+    short_lag=backshift(h, shorts);
+    short_lag(isnan(short_lag))=false;
+    short_lag=logical(short_lag);
+    
+    positions(long_lag)=positions(long_lag)+1;
+    positions(short_lag)=positions(short_lag)-1;
+end
 
-fig =figure;
-plot(beta(2, :)');
-print(fig,'/tmp/beta2m','-dpng')
+dailyret=smartsum(backshift(1, positions).*(cl-lag(cl))./lag(cl), 2)/(2*topN)/holddays;
 
-fig = figure;
-plot(e(3:end), 'r');
-hold on;
-plot(sqrt(Q(3:end)));
-print(fig,'/tmp/Qm','-dpng')
+dailyret(isnan(dailyret))=0;
 
-y2=[x(:, 1) y];
+cumret=cumprod(1+dailyret(idxStart:idxEnd))-1;
 
-longsEntry=e < -sqrt(Q); % a long position means we should buy EWC
-longsExit=e > -sqrt(Q);
+plot(cumret);
+tday=tday([idxStart:idxEnd]);
 
-shortsEntry=e > sqrt(Q);
-shortsExit=e < sqrt(Q);
-
-numUnitsLong=NaN(length(y2), 1);
-numUnitsShort=NaN(length(y2), 1);
-
-numUnitsLong(1)=0;
-numUnitsLong(longsEntry)=1;
-numUnitsLong(longsExit)=0;
-% fillMissingData can be downloaded from epchan.com/book2. It simply
-% carry forward an existing position from previous day if today's
-% positio is an indeterminate NaN.
-numUnitsLong=fillMissingData(numUnitsLong);
-
-numUnitsShort(1)=0;
-numUnitsShort(shortsEntry)=-1; 
-numUnitsShort(shortsExit)=0;
-numUnitsShort=fillMissingData(numUnitsShort);
-
-numUnits=numUnitsLong+numUnitsShort;
-
-% [hedgeRatio -ones(size(hedgeRatio))] is the shares allocation,
-% [hedgeRatio -ones(size(hedgeRatio))].*y2 is the dollar capital
-% allocation, while positions is the dollar capital in each ETF.
-tmp1=repmat(numUnits, [1 size(y2, 2)]);
-tmp2=[-beta(1, :)' ones(size(beta(1, :)'))]
-exit;
-positions=tmp1.*tmp2.*y2;
-
-
-% daily P&L of the strategy
-pnl=sum(lag(positions, 1).*(y2-lag(y2, 1))./lag(y2, 1), 2); 
-% return is P&L divided by gross market value of portfolio
-ret=pnl./sum(abs(lag(positions, 1)), 2); 
-ret(isnan(ret))=0;
-
-figure;
-plot(cumprod(1+ret)-1); % Cumulative compounded return
-
-fprintf(1, 'APR=%f Sharpe=%f\n', prod(1+ret).^(252/length(ret))-1, sqrt(252)*mean(ret)/std(ret));
-% APR=0.262252 Sharpe=2.361162
-
+fprintf(1, 'Avg Ann Ret=%7.4f Sharpe ratio=%4.2f \n',252*smartmean(dailyret(idxStart:idxEnd)), sqrt(252)*smartmean(dailyret(idxStart:idxEnd))/smartstd(dailyret(idxStart:idxEnd)));
+fprintf(1, 'APR=%10.4f\n', prod(1+dailyret(idxStart:idxEnd)).^(252/length(dailyret(idxStart:idxEnd)))-1);
+[maxDD maxDDD]=calculateMaxDD(cumret);
+fprintf(1, 'Max DD =%f Max DDD in days=%i\n\n', maxDD, round(maxDDD));
+% Avg Ann Ret= 0.0315 Sharpe ratio=0.40 
+% APR=    0.0288
+% Max DD =-0.066923 Max DDD in days=182
 
