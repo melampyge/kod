@@ -12,8 +12,6 @@ y=cl(:, idxC);
 
 x=[x ones(size(x))];
 
-x
-
 % delta=1 gives fastest change in beta, delta=0.000....1 allows no
 % change (like traditional linear regression).
 delta=0.0001;
@@ -47,10 +45,15 @@ for t=1:length(y)
     
     % Observe y(t)
     e(t)=y(t)-yhat(t); % measurement prediction error
-    
+
     K=R*x(t, :)'/Q(t); % Kalman gain
-    
+
+    size(beta(:, t))
+    size(K)
+    size(e(t))
     beta(:, t)=beta(:, t)+K*e(t); % State update. Equation 3.11
+    exit;
+
     P=R-K*x(t, :)*R; % State covariance update. Euqation 3.12
 
     %disp(R);disp(x(t, :)');disp(Q(t));disp(K)
@@ -63,17 +66,17 @@ end
 
 fig = figure;
 plot(beta(1, :)');
-print(fig,'/tmp/beta1','-dpng')
+print(fig,'/tmp/beta1m','-dpng')
 
 fig =figure;
 plot(beta(2, :)');
-print(fig,'/tmp/beta2','-dpng')
+print(fig,'/tmp/beta2m','-dpng')
 
 fig = figure;
 plot(e(3:end), 'r');
 hold on;
 plot(sqrt(Q(3:end)));
-print(fig,'/tmp/Q','-dpng')
+print(fig,'/tmp/Qm','-dpng')
 
 y2=[x(:, 1) y];
 
@@ -100,9 +103,6 @@ numUnitsShort(shortsExit)=0;
 numUnitsShort=fillMissingData(numUnitsShort);
 
 numUnits=numUnitsLong+numUnitsShort;
-
-numUnits
-sum(numUnits)
 
 % [hedgeRatio -ones(size(hedgeRatio))] is the shares allocation,
 % [hedgeRatio -ones(size(hedgeRatio))].*y2 is the dollar capital
