@@ -12,6 +12,8 @@ y=cl(:, idxC);
 
 x=[x ones(size(x))];
 
+x
+
 % delta=1 gives fastest change in beta, delta=0.000....1 allows no
 % change (like traditional linear regression).
 delta=0.0001;

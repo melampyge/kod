@@ -1,5 +1,5 @@
-# the only part I am bugged about is the output is somewhat different
-# from AT. The results of beta are too different for some resaon.
+# the only part I am bugged about is Sharpe ratio is different and I
+# had to use dropna to get this
 
 import matplotlib.pylab as plt
 import numpy as np
@@ -8,10 +8,13 @@ ewdf = pd.read_csv('ETF.csv')
 
 x = ewdf[['ewa']].copy()
 y = ewdf[['ewc']].copy()
+
 x['intercept'] = 1.
+print x.head()
+
 x = np.array(x)
 y = np.array(y)
-delta=0.001;
+delta=0.0001;
 
 yhat = np.ones(len(y))*np.nan
 e = np.ones(len(y))*np.nan
@@ -46,9 +49,15 @@ for t in range(len(y)):
 
     P=R-np.dot(np.dot(K,x[t, :]),R)
 
-    #if t==2: break
-
+    #if t==2: 
 print beta[0, :].T
+
+plt.plot(beta[0, :].T)
+plt.savefig('/tmp/beta0.png')
+plt.hold(False)
+plt.plot(beta[1, :].T)
+plt.savefig('/tmp/beta1.png')
+
 
 cols = ['ewa','ewc']
 y2 = ewdf[cols]
@@ -81,10 +90,12 @@ positions = np.array(tmp1) * np.array(tmp2) * np.array(ewdf[cols])
 positions = pd.DataFrame(positions)
 
 tmp1 = np.array(positions.shift(1))
-tmp2 = np.array(ewdf[cols]-ewdf[cols].shift(1))
-tmp3 = np.array(ewdf[cols].shift(1))
+tmp2 = np.array(y2-y2.shift(1))
+tmp3 = np.array(y2.shift(1))
 pnl = np.sum(tmp1 * tmp2 / tmp3,axis=1)
 ret = pnl / np.sum(np.abs(positions.shift(1)),axis=1)
+#ret = ret.fillna(0)
 ret = ret.dropna()
 print 'APR', ((np.prod(1.+ret))**(252./len(ret)))-1
 print 'Sharpe', np.sqrt(252.)*np.mean(ret)/np.std(ret)
+
