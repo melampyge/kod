@@ -48,20 +48,10 @@ for t=1:length(y)
 
     K=R*x(t, :)'/Q(t); % Kalman gain
 
-    size(beta(:, t))
-    size(K)
-    size(e(t))
     beta(:, t)=beta(:, t)+K*e(t); % State update. Equation 3.11
-    exit;
 
     P=R-K*x(t, :)*R; % State covariance update. Euqation 3.12
-
-    %disp(R);disp(x(t, :)');disp(Q(t));disp(K)
-        
-    %if (t==3)
-    %   exit;
-    %end
-
+    
 end
 
 fig = figure;
@@ -107,12 +97,11 @@ numUnits=numUnitsLong+numUnitsShort;
 % [hedgeRatio -ones(size(hedgeRatio))] is the shares allocation,
 % [hedgeRatio -ones(size(hedgeRatio))].*y2 is the dollar capital
 % allocation, while positions is the dollar capital in each ETF.
-size(y2, 2)
-tmp1=repmat(numUnits, [1 size(y2, 2)])
-size(beta(1, :)')
+tmp1=repmat(numUnits, [1 size(y2, 2)]);
 tmp2=[-beta(1, :)' ones(size(beta(1, :)'))]
+exit;
+positions=tmp1.*tmp2.*y2;
 
-positions=tmp1.*tmp2.*y2; 
 
 % daily P&L of the strategy
 pnl=sum(lag(positions, 1).*(y2-lag(y2, 1))./lag(y2, 1), 2); 
