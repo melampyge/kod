@@ -17,10 +17,11 @@ for t in range(lookback,len(df)):
     
 cols = ['GLD','USO']
 
-yport = np.ones(df[cols].shape); yport[:,0] = -df['hedgeRatio']
+yport = np.ones(df[cols].shape)
+yport[:,0] = -df['hedgeRatio']
 yport = yport * df[cols]
+yport = yport[cols].sum(axis=1)
 
-yport = yport['GLD'] + yport['USO'] 
 data_mean = pd.rolling_mean(yport, window=20)
 data_std = pd.rolling_std(yport, window=20)
 zScore=(yport-data_mean)/data_std
@@ -49,9 +50,10 @@ df['numUnits'] = numUnitsShort + numUnitsLong
 
 tmp1 = np.ones(df[cols].shape) * np.array([df['numUnits']]).T
 tmp2 = np.ones(df[cols].shape); tmp2[:, 0] = -df['hedgeRatio']
-positions = pd.DataFrame(tmp1 * tmp2 * df[cols]).fillna(0)
+positions = pd.DataFrame(tmp1 * tmp2 * df[cols])
 pnl = positions.shift(1) * (df[cols] - df[cols].shift(1))  / df[cols].shift(1)
 pnl = pnl.sum(axis=1)
 ret=pnl / np.sum(np.abs(positions.shift(1)),axis=1)
+ret=ret.fillna(0)
 print 'APR', ((np.prod(1.+ret))**(252./len(ret)))-1
 print 'Sharpe', np.sqrt(252.)*np.mean(ret)/np.std(ret)

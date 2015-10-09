@@ -51,7 +51,10 @@ numUnitsShort(shortsExit)=0;
 numUnitsShort=fillMissingData(numUnitsShort);
 
 numUnits=numUnitsLong+numUnitsShort;
-positions=repmat(numUnits, [1 size(y2, 2)]).*[-hedgeRatio ones(size(hedgeRatio))].*y2; % [hedgeRatio -ones(size(hedgeRatio))] is the shares allocation, [hedgeRatio -ones(size(hedgeRatio))].*y2 is the dollar capital allocation, while positions is the dollar capital in each ETF.
+% [hedgeRatio -ones(size(hedgeRatio))] is the shares allocation,
+% [hedgeRatio -ones(size(hedgeRatio))].*y2 is the dollar capital
+% allocation, while positions is the dollar capital in each ETF.
+positions=repmat(numUnits, [1 size(y2, 2)]).*[-hedgeRatio ones(size(hedgeRatio))].*y2; 
 pnl=sum(lag(positions, 1).*(y2-lag(y2, 1))./lag(y2, 1), 2); % daily P&L of the strategy
 ret=pnl./sum(abs(lag(positions, 1)), 2); % return is P&L divided by gross market value of portfolio
 ret(isnan(ret))=0;
