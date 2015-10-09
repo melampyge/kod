@@ -22,6 +22,8 @@ length(tday)
 
 for t=lookback+1:length(tday)
    [foo idx]=sort(ret(t, :), 'ascend');
+   size(ret(t, :))
+   exit;
    nodata=find(isnan(ret(t, :)));
    idx=setdiff(idx, nodata, 'stable');
    longs(t, idx(end-topN+1:end))=true;
