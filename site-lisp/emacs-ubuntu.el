@@ -993,6 +993,7 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Desktop")
 (find-file-other-window "/home/burak/Dropbox/TODO.txt")
 (find-file-other-window "/home/burak/Dropbox")
+(find-file-other-window "/home/burak/Dropbox/Public/skfiles")
 (find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/Documents")
 (find-file-other-window "/home/burak/kod")
@@ -1001,8 +1002,6 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Documents/classnotes")
 (find-file-other-window "/home/burak/Documents/classnotes/chaos")
 (find-file-other-window "/home/burak/Documents/classnotes/tser")
-(find-file-other-window "/home/burak/kod/books/Quantitative_Trading_Chan")
-(find-file-other-window "/home/burak/kod/books/Algorithmic_Trading_Chan")
 
 (switch-to-buffer "*scratch*")
 (delete-other-windows)
