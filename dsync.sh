@@ -9,4 +9,4 @@ rsync  --safe-links -W --size-only  --delete-after -P -avzh /home/burak/Document
 rsync  --safe-links -W --size-only  --delete-after -P -avzh /home/burak/Documents/emacs-ipython "/media/$DISK/archive" 
 rsync  --safe-links -W --size-only  --delete-after -P -avzh /home/skorsky/mindmeld "/media/$DISK/archive" 
 rsync  --safe-links -W --size-only  --delete-after -P -avzh /home/burak/Dropbox "/media/$DISK/archive" 
-#rsync  -W --size-only  --delete-after -P -avzh /home/burak/Music "/media/$DISK/archive" 
+#rsync  --safe-links -W --size-only  --delete-after -P -avzh /home/burak/Music "/media/$DISK/archive" 
