@@ -4,11 +4,11 @@
 
 extern "C" {
 
-  //int _width=800;
-  //int _height=640;
+  int _width=800;
+  int _height=640;
   int scale=3;
-  int _width=640/scale;
-  int _height=480/scale;
+  //int _width=640/scale;
+  //int _height=480/scale;
   VL::float_t _sigman = 0.500000;
   VL::float_t _sigma0 = 3.200000;
   int _O = 10;
