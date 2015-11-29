@@ -766,7 +766,8 @@ extern "C" {
     if (!PyArg_ParseTuple(args, "s", &filename)) {
       return NULL;
     }
-    char *cmd[] = {"crans_1_small.pgm",
+    //char *cmd[] = {"crans_1_small.pgm",
+    char *cmd[] = {filename,
 		   "-e",
 		   "10"};
     fake_main(4, cmd);
