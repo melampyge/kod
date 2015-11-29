@@ -743,7 +743,7 @@ fake_main(int argc, char** argv)
       
       argc-- ;
       argv++ ;
-      outputFilename = string("") ;
+      outputFilename = string("") ;      
     }
     catch(VL::Exception &e) {
       cerr<<endl<<"Error processing '"<<name<<"': "<<e.msg<<endl ;

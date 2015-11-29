@@ -2,18 +2,12 @@
 ```python
 from PIL import Image
 import siftpy1
-```
-
-```python
-res = siftpy1.sift("crans_1_small.pgm",threshold=2)
-```
-
-```python
-print len(res)
+df1 = siftpy1.sift("crans_1_small.pgm",threshold=5)
+print len(df1)
 ```
 
 ```text
-800
+2939
 ```
 
 
