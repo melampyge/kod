@@ -2,10 +2,7 @@
 ```python
 from PIL import Image
 import siftpy1
-```
-
-```python
-df1 = siftpy1.sift("crans_1_small.pgm",threshold=5)
+df1 = siftpy1.sift("crans_1_small.pgm",threshold=10)
 print len(df1)
 ```
 

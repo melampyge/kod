@@ -156,14 +156,14 @@ bool cmpKeypoints (Keypoints::value_type const&a,
 //                                                                main
 // -------------------------------------------------------------------
 int
-fake_main(int argc, char** argv)
+fake_main(int argc, char** argv, float edgeThreshold)
 {
   
   int    first          = -1 ;
   int    octaves        = -1 ;
   int    levels         = 3 ;
   float  threshold      = 0.04f / levels / 2.0f ;
-  float  edgeThreshold  = 10.0f;
+  //float  edgeThreshold  = 10.0f;
   float  magnif         = 3.0 ;
   int    nodescr        = 0 ;
   int    noorient       = 0 ;
@@ -264,9 +264,7 @@ fake_main(int argc, char** argv)
 		  << "') *"<<endl ;
         return 0 ;
 	
-      case 'v' : // verbose
-        verbose = 1 ;
-        break ;
+      verbose = 1 ;
         
       case 'f': // first octave
         {
@@ -310,51 +308,6 @@ fake_main(int argc, char** argv)
         }
         break ;
 
-      case 'e' : // edge-threshold
-        {
-          std::istringstream iss(optarg) ;
-          iss >> edgeThreshold ;
-          if( iss.fail() )
-            VL_THROW("Invalid argument '" << optarg << "'.") ;
-        }
-        break ;
-
-      case 'm' : // magnification
-        {
-          std::istringstream iss(optarg) ;
-          iss >> magnif ;
-          if( iss.fail() )
-            VL_THROW("Invalid argument '" << optarg << "'.") ;
-        }
-        break ;
-
-
-      case 'o' : // output filename
-        {
-          outputFilename = std::string(optarg) ;
-	  cout << "output " << outputFilename << endl;
-          break ;
-        }
-
-      case 'p' : // output prefix
-        {
-          outputFilenamePrefix = std::string(optarg) ;
-          break ;
-        }
-
-      case 'k' : // keypoint file
-	{
-	  keypointsFilename = std::string(optarg) ;
-	  haveKeypoints = 1 ;
-	  break ;
-	}
-
-	//      case 'b' : // write descriptors to a binary file
-	//        {
-	//          binary = 1 ;
-	//          break ;
-	//        }
-
       case 0 : // all other options
         break ;
         
@@ -380,287 +333,286 @@ fake_main(int argc, char** argv)
   // -----------------------------------------------------------------
   //                                            Loop over input images
   // -----------------------------------------------------------------      
-  //while( argc > 0 ) {
 
-    string name(argv[0]) ;
+  string name(argv[0]) ;
 
-    try {
-      VL::PgmBuffer buffer ;
+  try {
+    VL::PgmBuffer buffer ;
       
-      // compute the output filenames:
-      //
-      // 1) if --output is specified, then we just use the one provided
-      //    by the user
-      //
-      // 2) if --output is not specified, we derive the output filename
-      //    from the input filename by
-      //    - removing the extension part from the output filename
-      //    - and if outputFilenamePrefix is non void, removing 
-      //      the directory part and prefixing outputFilenamePrefix.
-      //
-      // 3) in any case we derive the binary descriptor filename by
-      //    removing from the output filename the .key extension (if any)
-      //    and adding a .desc extension.
+    // compute the output filenames:
+    //
+    // 1) if --output is specified, then we just use the one provided
+    //    by the user
+    //
+    // 2) if --output is not specified, we derive the output filename
+    //    from the input filename by
+    //    - removing the extension part from the output filename
+    //    - and if outputFilenamePrefix is non void, removing 
+    //      the directory part and prefixing outputFilenamePrefix.
+    //
+    // 3) in any case we derive the binary descriptor filename by
+    //    removing from the output filename the .key extension (if any)
+    //    and adding a .desc extension.
       
-      if(outputFilename.size() == 0) {
-        // case 2) above
-        outputFilename = name ;
+    if(outputFilename.size() == 0) {
+      // case 2) above
+      outputFilename = name ;
 	
-        // if we specify an output directory, then extract
-        // the basename
-        if(outputFilenamePrefix.size() != 0) {
-          char * tmp = new char [outputFilename.length()+1] ;
-          strcpy(tmp, outputFilename.c_str()) ;
-          outputFilename = outputFilenamePrefix + 
-            std::string(basename(tmp)) ;
-          delete [] tmp ;
-        }
-	
-        // remove .pgm extension, add .key
-        outputFilename = removeExtension(outputFilename, ".pgm") ;
-        outputFilename += ".key" ;
-	outputFilename = "/tmp/" + outputFilename;
+      // if we specify an output directory, then extract
+      // the basename
+      if(outputFilenamePrefix.size() != 0) {
+	char * tmp = new char [outputFilename.length()+1] ;
+	strcpy(tmp, outputFilename.c_str()) ;
+	outputFilename = outputFilenamePrefix + 
+	  std::string(basename(tmp)) ;
+	delete [] tmp ;
       }
+	
+      // remove .pgm extension, add .key
+      outputFilename = removeExtension(outputFilename, ".pgm") ;
+      outputFilename += ".key" ;
+      outputFilename = "/tmp/" + outputFilename;
+    }
       
-      // remove .key extension, add .desc
-      descriptorsFilename = removeExtension(outputFilename, ".key") ;
-      descriptorsFilename += ".desc" ;
+    // remove .key extension, add .desc
+    descriptorsFilename = removeExtension(outputFilename, ".key") ;
+    descriptorsFilename += ".desc" ;
       
-      // ---------------------------------------------------------------
-      //                                                  Load PGM image
-      // ---------------------------------------------------------------    
+    // ---------------------------------------------------------------
+    //                                                  Load PGM image
+    // ---------------------------------------------------------------    
+    verbose && cout
+      << "siftpp: lodaing PGM image '" << name << "' ..."
+      << flush;
+      
+    try {          
+      ifstream in(name.c_str(), ios::binary) ; 
+      if(! in.good()) VL_THROW("Could not open '"<<name<<"'.") ;      
+      extractPgm(in, buffer) ;
+    }    
+    catch(VL::Exception const& e) {
+      throw VL::Exception("PGM read error: "+e.msg) ;	
+    }
+      
+    verbose && cout 
+      << " read "
+      << buffer.width  <<" x "
+      << buffer.height <<" pixels" 
+      << endl ;
+      
+    // ---------------------------------------------------------------
+    //                                            Gaussian scale space
+    // ---------------------------------------------------------------    
+    verbose && cout 
+      << "siftpp: computing Gaussian scale space" 
+      << endl ;
+      
+    int         O      = octaves ;    
+    int const   S      = levels ;
+    int const   omin   = first ;
+    float const sigman = .5 ;
+    float const sigma0 = 1.6 * powf(2.0f, 1.0f / S) ;
+      
+    // optionally autoselect the number number of octaves
+    // we downsample up to 8x8 patches
+    if(O < 1) {
+      O = std::max
+	(int
+	 (std::floor
+	  (log2
+	   (std::min(buffer.width,buffer.height))) - omin -3), 1) ;
+    }
+
+    verbose && cout
+      << "siftpp:   number of octaves     : " << O << endl 
+      << "siftpp:   first octave          : " << omin << endl 
+      << "siftpp:   levels per octave     : " << S 
+      << endl ;
+      
+    // initialize scalespace
+    VL::Sift sift(buffer.data, buffer.width, buffer.height, 
+		  sigman, sigma0,
+		  O, S,
+		  omin, -1, S+1) ;
+      
+    verbose && cout 
+      << "siftpp: Gaussian scale space completed"
+      << endl ;
+      
+    // ---------------------------------------------------------------
+    //                                       Save Gaussian scale space
+    // ---------------------------------------------------------------    
+      
+    if(savegss) {
+      verbose && cout<<"siftpp: saving Gaussian scale space"<<endl ;
+	
+      string imageBasename = removeExtension(outputFilename, ".key") ;
+	
+      for(int o = omin ; o < omin + O ; ++o) {
+	for(int s = 0 ; s < S ; ++s) {
+	    
+	  ostringstream suffix ;
+	  suffix<<'.'<<o<<'.'<<s<<".pgm" ;
+	  string imageFilename = imageBasename + suffix.str() ;
+	    
+	  verbose && cout 
+	    << "siftpp:   octave " << setw(3) << o
+	    << " level " << setw(3) << s
+	    << " to '" << imageFilename
+	    << "' ..." << flush ;
+	    
+	  ofstream fout(imageFilename.c_str(), ios::binary) ;
+	  if(!fout.good()) 
+	    VL_THROW("Could not open '"<<imageFilename<<'\'') ;
+	    
+	  VL::insertPgm(fout,
+			sift.getLevel(o,s),
+			sift.getOctaveWidth(o),
+			sift.getOctaveHeight(o)) ;
+	  fout.close() ;
+	    
+	  verbose && cout
+	    << " done." << endl ;
+	}
+      }
+    }
+      
+    // -------------------------------------------------------------
+    //                                             Run SIFT detector
+    // -------------------------------------------------------------    
+    if( ! haveKeypoints ) {
+
+      verbose && cout 
+	<< "siftpp: running detector  "<< endl
+	<< "siftpp:   threshold             : " << threshold << endl
+	<< "siftpp:   edge-threshold        : " << edgeThreshold
+	<< endl ;
+	
+      sift.detectKeypoints(threshold, edgeThreshold) ;
+	
+      verbose && cout 
+	<< "siftpp: detector completed with " 
+	<< sift.keypointsEnd() - sift.keypointsBegin() 
+	<< " keypoints" 
+	<< endl ;
+    }
+      
+    // -------------------------------------------------------------
+    //                  Run SIFT orientation detector and descriptor
+    // -------------------------------------------------------------    
+
+    /* set descriptor options */
+    sift.setNormalizeDescriptor( ! unnormalized ) ;
+    sift.setMagnification( magnif ) ;
+
+    if( verbose ) {
+      cout << "siftpp: " ;
+      if( ! noorient &   nodescr) cout << "computing keypoint orientations" ;
+      if(   noorient & ! nodescr) cout << "computing keypoint descriptors" ;
+      if( ! noorient & ! nodescr) cout << "computing orientations and descriptors" ;
+      if(   noorient &   nodescr) cout << "finalizing" ; 
+      cout << endl ;
+    }
+      
+    {            
+      // open output file
+      ofstream out(outputFilename.c_str(), ios::binary) ;
+        
+      if( ! out.good() ) 
+	VL_THROW("Could not open output file '"
+		 << outputFilename
+		 << "'.") ;
+        
       verbose && cout
-        << "siftpp: lodaing PGM image '" << name << "' ..."
-        << flush;
-      
-      try {          
-        ifstream in(name.c_str(), ios::binary) ; 
-        if(! in.good()) VL_THROW("Could not open '"<<name<<"'.") ;      
-        extractPgm(in, buffer) ;
-      }    
-      catch(VL::Exception const& e) {
-        throw VL::Exception("PGM read error: "+e.msg) ;	
-      }
-      
-      verbose && cout 
-        << " read "
-        << buffer.width  <<" x "
-        << buffer.height <<" pixels" 
-        << endl ;
-      
-      // ---------------------------------------------------------------
-      //                                            Gaussian scale space
-      // ---------------------------------------------------------------    
-      verbose && cout 
-        << "siftpp: computing Gaussian scale space" 
-        << endl ;
-      
-      int         O      = octaves ;    
-      int const   S      = levels ;
-      int const   omin   = first ;
-      float const sigman = .5 ;
-      float const sigma0 = 1.6 * powf(2.0f, 1.0f / S) ;
-      
-      // optionally autoselect the number number of octaves
-      // we downsample up to 8x8 patches
-      if(O < 1) {
-        O = std::max
-          (int
-           (std::floor
-            (log2
-             (std::min(buffer.width,buffer.height))) - omin -3), 1) ;
-      }
-
-      verbose && cout
-        << "siftpp:   number of octaves     : " << O << endl 
-        << "siftpp:   first octave          : " << omin << endl 
-        << "siftpp:   levels per octave     : " << S 
-        << endl ;
-      
-      // initialize scalespace
-      VL::Sift sift(buffer.data, buffer.width, buffer.height, 
-                    sigman, sigma0,
-                    O, S,
-                    omin, -1, S+1) ;
-      
-      verbose && cout 
-        << "siftpp: Gaussian scale space completed"
-        << endl ;
-      
-      // ---------------------------------------------------------------
-      //                                       Save Gaussian scale space
-      // ---------------------------------------------------------------    
-      
-      if(savegss) {
-        verbose && cout<<"siftpp: saving Gaussian scale space"<<endl ;
-	
-        string imageBasename = removeExtension(outputFilename, ".key") ;
-	
-        for(int o = omin ; o < omin + O ; ++o) {
-          for(int s = 0 ; s < S ; ++s) {
-	    
-            ostringstream suffix ;
-            suffix<<'.'<<o<<'.'<<s<<".pgm" ;
-            string imageFilename = imageBasename + suffix.str() ;
-	    
-            verbose && cout 
-              << "siftpp:   octave " << setw(3) << o
-              << " level " << setw(3) << s
-              << " to '" << imageFilename
-              << "' ..." << flush ;
-	    
-            ofstream fout(imageFilename.c_str(), ios::binary) ;
-            if(!fout.good()) 
-              VL_THROW("Could not open '"<<imageFilename<<'\'') ;
-	    
-            VL::insertPgm(fout,
-                          sift.getLevel(o,s),
-                          sift.getOctaveWidth(o),
-                          sift.getOctaveHeight(o)) ;
-            fout.close() ;
-	    
-            verbose && cout
-              << " done." << endl ;
-          }
-        }
-      }
-      
-      // -------------------------------------------------------------
-      //                                             Run SIFT detector
-      // -------------------------------------------------------------    
-      if( ! haveKeypoints ) {
-
-        verbose && cout 
-          << "siftpp: running detector  "<< endl
-          << "siftpp:   threshold             : " << threshold << endl
-          << "siftpp:   edge-threshold        : " << edgeThreshold
-          << endl ;
-	
-        sift.detectKeypoints(threshold, edgeThreshold) ;
-	
-        verbose && cout 
-          << "siftpp: detector completed with " 
-          << sift.keypointsEnd() - sift.keypointsBegin() 
-          << " keypoints" 
-          << endl ;
-      }
-      
-      // -------------------------------------------------------------
-      //                  Run SIFT orientation detector and descriptor
-      // -------------------------------------------------------------    
-
-      /* set descriptor options */
-      sift.setNormalizeDescriptor( ! unnormalized ) ;
-      sift.setMagnification( magnif ) ;
-
-      if( verbose ) {
-        cout << "siftpp: " ;
-        if( ! noorient &   nodescr) cout << "computing keypoint orientations" ;
-        if(   noorient & ! nodescr) cout << "computing keypoint descriptors" ;
-        if( ! noorient & ! nodescr) cout << "computing orientations and descriptors" ;
-        if(   noorient &   nodescr) cout << "finalizing" ; 
-        cout << endl ;
-      }
-      
-      {            
-        // open output file
-        ofstream out(outputFilename.c_str(), ios::binary) ;
+	<< "siftpp:   write keypoints to    : '" << outputFilename << "'"         << endl
+	<< "siftpp:   floating point descr. : "  << (fp           ? "yes" : "no") << endl
+	<< "siftpp:   binary descr.         : "  << (binary       ? "yes" : "no") << endl
+	<< "siftpp:   unnormalized descr.   : "  << (unnormalized ? "yes" : "no") << endl
+	<< "siftpp:   descr. magnif.        : "  << setprecision(3) << magnif
+	<< endl ;
         
-        if( ! out.good() ) 
-          VL_THROW("Could not open output file '"
-                   << outputFilename
-                   << "'.") ;
-        
-        verbose && cout
-          << "siftpp:   write keypoints to    : '" << outputFilename << "'"         << endl
-          << "siftpp:   floating point descr. : "  << (fp           ? "yes" : "no") << endl
-          << "siftpp:   binary descr.         : "  << (binary       ? "yes" : "no") << endl
-          << "siftpp:   unnormalized descr.   : "  << (unnormalized ? "yes" : "no") << endl
-          << "siftpp:   descr. magnif.        : "  << setprecision(3) << magnif
-          << endl ;
-        
-        out.flags(ios::fixed) ;
+      out.flags(ios::fixed) ;
       
-        /* If a keypoint file is provided, then open it now */
-        auto_ptr<ifstream> keypointsIn_pt ;
+      /* If a keypoint file is provided, then open it now */
+      auto_ptr<ifstream> keypointsIn_pt ;
         
-        if( haveKeypoints ) {
-          keypointsIn_pt = auto_ptr<ifstream>
-            (new ifstream(keypointsFilename.c_str(), ios::binary)) ;
+      if( haveKeypoints ) {
+	keypointsIn_pt = auto_ptr<ifstream>
+	  (new ifstream(keypointsFilename.c_str(), ios::binary)) ;
           
-          if( ! keypointsIn_pt->good() ) 
-            VL_THROW("Could not open keypoints file '"
-                     << keypointsFilename
-                     << "'.") ;
+	if( ! keypointsIn_pt->good() ) 
+	  VL_THROW("Could not open keypoints file '"
+		   << keypointsFilename
+		   << "'.") ;
           
-          verbose && cout
-            << "siftpp:   read keypoints from   : '" 
-            << keypointsFilename << "'"
-            << endl ;
-        }
+	verbose && cout
+	  << "siftpp:   read keypoints from   : '" 
+	  << keypointsFilename << "'"
+	  << endl ;
+      }
         
-        /* If the descriptors are redirected to a binary file, then open it now */
-        auto_ptr<ofstream> descriptorsOut_pt ;
+      /* If the descriptors are redirected to a binary file, then open it now */
+      auto_ptr<ofstream> descriptorsOut_pt ;
         
-        if( binary ) {        
-          descriptorsOut_pt = auto_ptr<ofstream>
-            (new ofstream(descriptorsFilename.c_str(), ios::binary)) ;
+      if( binary ) {        
+	descriptorsOut_pt = auto_ptr<ofstream>
+	  (new ofstream(descriptorsFilename.c_str(), ios::binary)) ;
           
-          if( ! descriptorsOut_pt->good() )
-            VL_THROW("Could not open descriptors file '"
-                     << descriptorsFilename 
-                     << "'.") ;
+	if( ! descriptorsOut_pt->good() )
+	  VL_THROW("Could not open descriptors file '"
+		   << descriptorsFilename 
+		   << "'.") ;
           
-          verbose && cout 
-            << "siftpp:   write descriptors to  : '" 
-            << descriptorsFilename << "'"
-            << endl ;         
-        }
+	verbose && cout 
+	  << "siftpp:   write descriptors to  : '" 
+	  << descriptorsFilename << "'"
+	  << endl ;         
+      }
         
-        if( haveKeypoints ) {
-          // -------------------------------------------------------------
-          //                 Reads keypoint from file, compute descriptors
-          // -------------------------------------------------------------
-          Keypoints keypoints ;
+      if( haveKeypoints ) {
+	// -------------------------------------------------------------
+	//                 Reads keypoint from file, compute descriptors
+	// -------------------------------------------------------------
+	Keypoints keypoints ;
           
-          while( !keypointsIn_pt->eof() ) {
-            VL::float_t x,y,sigma,th ;
+	while( !keypointsIn_pt->eof() ) {
+	  VL::float_t x,y,sigma,th ;
             
-            /* read x, y, sigma and th from the beginning of the line */
-            (*keypointsIn_pt) 
-              >> x
-              >> y
-              >> sigma
-              >> th ;
+	  /* read x, y, sigma and th from the beginning of the line */
+	  (*keypointsIn_pt) 
+	    >> x
+	    >> y
+	    >> sigma
+	    >> th ;
 
-            /* skip the rest of the line */
-            (*keypointsIn_pt).ignore(numeric_limits<streamsize>::max(),'\n') ;
+	  /* skip the rest of the line */
+	  (*keypointsIn_pt).ignore(numeric_limits<streamsize>::max(),'\n') ;
 
-            /* break the loop if end of file reached */
-            if( keypointsIn_pt->eof() ) break ;
+	  /* break the loop if end of file reached */
+	  if( keypointsIn_pt->eof() ) break ;
 
-            /* trhow an error if something wrong */
-            if( ! keypointsIn_pt->good() ) 
-              VL_THROW("Error reading keypoints file.") ;
+	  /* trhow an error if something wrong */
+	  if( ! keypointsIn_pt->good() ) 
+	    VL_THROW("Error reading keypoints file.") ;
             
-            /* compute integer components */
-            VL::Sift::Keypoint key 
-              = sift.getKeypoint(x,y,sigma) ;
+	  /* compute integer components */
+	  VL::Sift::Keypoint key 
+	    = sift.getKeypoint(x,y,sigma) ;
             
-            Keypoints::value_type entry ;
-            entry.first  = key ;
-            entry.second = th ;
-            keypoints.push_back(entry) ;
-          }
+	  Keypoints::value_type entry ;
+	  entry.first  = key ;
+	  entry.second = th ;
+	  keypoints.push_back(entry) ;
+	}
           
-          /* sort keypoints by scale if not required otherwise */
-          if(! stableorder)
-            sort(keypoints.begin(), keypoints.end(), cmpKeypoints) ;
+	/* sort keypoints by scale if not required otherwise */
+	if(! stableorder)
+	  sort(keypoints.begin(), keypoints.end(), cmpKeypoints) ;
           
-          // process in batch
-          for(Keypoints::const_iterator iter = keypoints.begin() ;
-              iter != keypoints.end() ;
-              ++iter) 
+	// process in batch
+	for(Keypoints::const_iterator iter = keypoints.begin() ;
+	    iter != keypoints.end() ;
+	    ++iter) 
           {
             
             VL::Sift::Keypoint const& key = iter->first ;
@@ -688,68 +640,67 @@ fake_main(int argc, char** argv)
             out << endl ;    
           } // next keypoint
           
-        } else {
+      } else {
           
           
-          // -------------------------------------------------------------
-          //            Run detector, compute orientations and descriptors
-          // -------------------------------------------------------------
-          for( VL::Sift::KeypointsConstIter iter = sift.keypointsBegin() ;
-               iter != sift.keypointsEnd() ; ++iter ) {
+	// -------------------------------------------------------------
+	//            Run detector, compute orientations and descriptors
+	// -------------------------------------------------------------
+	for( VL::Sift::KeypointsConstIter iter = sift.keypointsBegin() ;
+	     iter != sift.keypointsEnd() ; ++iter ) {
 	    
-            // detect orientations
-            VL::float_t angles [4] ;
-            int nangles ;
-            if( ! noorient ) {
-              nangles = sift.computeKeypointOrientations(angles, *iter) ;
-            } else {
-              nangles = 1;
-              angles[0] = VL::float_t(0) ;
-            }
+	  // detect orientations
+	  VL::float_t angles [4] ;
+	  int nangles ;
+	  if( ! noorient ) {
+	    nangles = sift.computeKeypointOrientations(angles, *iter) ;
+	  } else {
+	    nangles = 1;
+	    angles[0] = VL::float_t(0) ;
+	  }
 	    
-            // compute descriptors
-            for(int a = 0 ; a < nangles ; ++a) {
+	  // compute descriptors
+	  for(int a = 0 ; a < nangles ; ++a) {
 
-              out << setprecision(2) << iter->x << ' '
-                  << setprecision(2) << iter->y << ' '
-                  << setprecision(2) << iter->sigma << ' ' 
-                  << setprecision(3) << angles[a] ;
+	    out << setprecision(2) << iter->x << ' '
+		<< setprecision(2) << iter->y << ' '
+		<< setprecision(2) << iter->sigma << ' ' 
+		<< setprecision(3) << angles[a] ;
 
-              /* compute descriptor */
-              VL::float_t descr_pt [128] ;
-              sift.computeKeypointDescriptor(descr_pt, *iter, angles[a]) ;
+	    /* compute descriptor */
+	    VL::float_t descr_pt [128] ;
+	    sift.computeKeypointDescriptor(descr_pt, *iter, angles[a]) ;
 	
-              /* save descriptor to to appropriate file */	      
-              if( ! nodescr ) {
-                if( descriptorsOut_pt.get() ) {
-                  ostream& os = *descriptorsOut_pt.get() ;
-                  insertDescriptor(os, descr_pt, true, fp) ;
-                } else {
-                  insertDescriptor(out, descr_pt, false, fp) ;
-                }
-              }
-              /* next line */
-              out << endl ;
-            } // next angle
-          } // next keypoint
-        }
-	
-        out.close() ;
-        if(descriptorsOut_pt.get()) descriptorsOut_pt->close(); 
-        if(keypointsIn_pt.get())    keypointsIn_pt->close(); 
-        verbose && cout 
-          << "siftpp: job completed"<<endl ;
+	    /* save descriptor to to appropriate file */	      
+	    if( ! nodescr ) {
+	      if( descriptorsOut_pt.get() ) {
+		ostream& os = *descriptorsOut_pt.get() ;
+		insertDescriptor(os, descr_pt, true, fp) ;
+	      } else {
+		insertDescriptor(out, descr_pt, false, fp) ;
+	      }
+	    }
+	    /* next line */
+	    out << endl ;
+	  } // next angle
+	} // next keypoint
       }
-      
-      argc-- ;
-      argv++ ;
-      outputFilename = string("") ;      
+	
+      out.close() ;
+      if(descriptorsOut_pt.get()) descriptorsOut_pt->close(); 
+      if(keypointsIn_pt.get())    keypointsIn_pt->close(); 
+      verbose && cout 
+	<< "siftpp: job completed"<<endl ;
     }
-    catch(VL::Exception &e) {
-      cerr<<endl<<"Error processing '"<<name<<"': "<<e.msg<<endl ;
-      return 1 ;
-    }    
-    //} // next image
+      
+    argc-- ;
+    argv++ ;
+    outputFilename = string("") ;      
+  }
+  catch(VL::Exception &e) {
+    cerr<<endl<<"Error processing '"<<name<<"': "<<e.msg<<endl ;
+    return 1 ;
+  }    
   
   return 0 ;
 }
@@ -757,9 +708,6 @@ fake_main(int argc, char** argv)
 
 extern "C" {
   
-  //
-  // sift()
-  //
   static PyObject* py_sift_imp(PyObject* self, PyObject* args)
   {
     char *filename;
@@ -767,14 +715,16 @@ extern "C" {
     if (!PyArg_ParseTuple(args, "ss", &filename, &threshold)) {
       return NULL;
     }
-    char *cmd[] = {filename, "-e", threshold};
-    fake_main(4, cmd);
+    printf("%s\n", filename);
+    printf("%s\n", threshold);
+    char *cmd[] = {filename};
+    fake_main(4, cmd, atof(threshold));
     Py_RETURN_NONE;
   }
 
   static PyMethodDef myModule_methods[] = {
-    {"sift_imp", py_sift_imp, METH_VARARGS},
-    {NULL, NULL}
+    {"sift_imp", py_sift_imp, METH_VARARGS, "sift"},
+    {NULL, NULL, NULL, NULL}
   };
 
   void initsiftimp()
