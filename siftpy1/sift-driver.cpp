@@ -380,7 +380,7 @@ fake_main(int argc, char** argv)
   // -----------------------------------------------------------------
   //                                            Loop over input images
   // -----------------------------------------------------------------      
-  while( argc > 0 ) {
+  //while( argc > 0 ) {
 
     string name(argv[0]) ;
 
@@ -749,7 +749,7 @@ fake_main(int argc, char** argv)
       cerr<<endl<<"Error processing '"<<name<<"': "<<e.msg<<endl ;
       return 1 ;
     }    
-  } // next image
+    //} // next image
   
   return 0 ;
 }
