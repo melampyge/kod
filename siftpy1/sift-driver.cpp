@@ -158,6 +158,7 @@ bool cmpKeypoints (Keypoints::value_type const&a,
 int
 fake_main(int argc, char** argv)
 {
+  
   int    first          = -1 ;
   int    octaves        = -1 ;
   int    levels         = 3 ;
@@ -331,6 +332,7 @@ fake_main(int argc, char** argv)
       case 'o' : // output filename
         {
           outputFilename = std::string(optarg) ;
+	  cout << "output " << outputFilename << endl;
           break ;
         }
 
@@ -347,11 +349,11 @@ fake_main(int argc, char** argv)
 	  break ;
 	}
 
-      case 'b' : // write descriptors to a binary file
-        {
-          binary = 1 ;
-          break ;
-        }
+	//      case 'b' : // write descriptors to a binary file
+	//        {
+	//          binary = 1 ;
+	//          break ;
+	//        }
 
       case 0 : // all other options
         break ;
@@ -359,15 +361,6 @@ fake_main(int argc, char** argv)
       default:
         assert(false) ;
       }
-    }
-    
-    argc -= optind;
-    argv += optind;
-
-    // check for argument consistency
-    if(argc == 0) VL_THROW("No input image specfied.") ;
-    if(outputFilename.size() != 0 && (argc > 1 | binary)) {
-      VL_THROW("--output cannot be used with multiple images or --binary.") ;
     }
 
     if(outputFilename.size() !=0 && 
@@ -445,7 +438,7 @@ fake_main(int argc, char** argv)
         extractPgm(in, buffer) ;
       }    
       catch(VL::Exception const& e) {
-        throw VL::Exception("PGM read error: "+e.msg) ;
+        throw VL::Exception("PGM read error: "+e.msg) ;	
       }
       
       verbose && cout 
@@ -466,13 +459,6 @@ fake_main(int argc, char** argv)
       int const   omin   = first ;
       float const sigman = .5 ;
       float const sigma0 = 1.6 * powf(2.0f, 1.0f / S) ;
-
-      printf("%10.2f\n", sigman);
-      printf("%10.2f\n", sigma0);
-      printf("%10.2f\n", threshold);
-      printf("%d\n", O);
-      printf("%d\n", S);
-      printf("%d\n", omin);
       
       // optionally autoselect the number number of octaves
       // we downsample up to 8x8 patches
@@ -779,10 +765,12 @@ extern "C" {
     if (!PyArg_ParseTuple(args, "s", &filename)) {
       return NULL;
     }
-    //printf ("%s",
-    //char** cmd = {"crans_1_small.pgm", "--edge-thresh","10"}
-    char *cmd = "crans_1_small.pgm --edge-thresh 10 --output=/tmp/out1.key";
-    fake_main(1, &cmd);
+    char *cmd[] = {"crans_1_small.pgm",
+		   "-e",
+		   "10"
+		   "-o",
+		   "/tmp/out1.key"};
+    fake_main(6, cmd);
     Py_RETURN_NONE;
   }
 
