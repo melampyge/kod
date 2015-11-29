@@ -4,8 +4,8 @@
 
 // AUTORIGTHS
 
+#include "Python.h"
 #include<sift.hpp>
-
 #include<string>
 #include<iostream>
 #include<iomanip>
@@ -768,3 +768,31 @@ _main(int argc, char** argv)
 }
 
 
+extern "C" {
+  
+  //
+  // sift()
+  //
+  static PyObject* py_sift(PyObject* self, PyObject* args)
+  {
+    char *filename;
+    if (!PyArg_ParseTuple(args, "s", &filename)) {
+      return NULL;
+    }
+    //printf ("%s",
+    //char** cmd = {"crans_1_small.pgm", "--edge-thresh","10"}
+    char *cmd = "crans_1_small.pgm --edge-thresh 10 --output=/tmp/out1.key";
+    _main(1, &cmd);
+    Py_RETURN_NONE;
+  }
+
+  static PyMethodDef myModule_methods[] = {
+    {"sift", py_sift, METH_VARARGS},
+    {NULL, NULL}
+  };
+
+  void initsiftpy1()
+  {
+    (void) Py_InitModule("siftpy1", myModule_methods);
+  }
+}

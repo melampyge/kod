@@ -1,6 +1,7 @@
 #include "Python.h"
 
 #include "sift.hpp"
+#include "sift-driver.cpp"
 
 extern "C" {
   
@@ -14,6 +15,8 @@ extern "C" {
       return NULL;
     }
     //printf ("%s",
+    char** cmd = {"crans_1_small.pgm", "--edge-thresh"};
+    _main(2, cmd);
     Py_RETURN_NONE;
   }
 
@@ -28,4 +31,3 @@ extern "C" {
   }
 }
 
-#include "sift.cpp"
