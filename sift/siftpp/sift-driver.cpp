@@ -86,15 +86,12 @@ insertDescriptor(std::ostream& os,
 
   if( fp ) {
 
-    printf("yes fp\n");
-    
     /* convert to 32 bits floats (single precision) */
     VL::float32_t fdescr_pt [128] ;
     for(int i = 0 ; i < 128 ; ++i)
       fdescr_pt[i] = VL::float32_t( descr_pt[i]) ;
 
     if( binary ) {
-      printf("yes binary\n");
       /* 
          Test for endianess. Recall: big_endian = the most significant
          byte at lower memory address.
@@ -107,7 +104,6 @@ insertDescriptor(std::ostream& os,
          little endiand do the appropriate conversion.
       */
       if( little_endian ) {
-        printf("little en\n");
         for(int i = 0 ; i < 128 ; ++i) {
           VL::float32_t tmp = fdescr_pt[ i ] ;        
           char* pt  = RAW_PT(fdescr_pt + i) ;
@@ -121,7 +117,6 @@ insertDescriptor(std::ostream& os,
       os.write( RAW_PT(fdescr_pt), 128 * sizeof(VL::float32_t) ) ;
 
     } else {
-      printf("else\n");
 
       for(int i = 0 ; i < 128 ; ++i) 
         os << ' ' 
@@ -129,7 +124,6 @@ insertDescriptor(std::ostream& os,
     }
 
   } else {
-    printf("else 2\n");
 
     VL::uint8_t idescr_pt [128] ;
 
@@ -137,13 +131,9 @@ insertDescriptor(std::ostream& os,
       idescr_pt[i] = VL::uint8_t(float_t(512) * descr_pt[i]) ;
     
     if( binary ) {
-      printf("else 2 bin\n");
-
       os.write( RAW_PT(idescr_pt), 128) ;	
 
     } else { 
-      
-      printf("else 3\n");
       
       for(int i = 0 ; i < 128 ; ++i) 
         os << ' ' 
@@ -476,6 +466,13 @@ main(int argc, char** argv)
       int const   omin   = first ;
       float const sigman = .5 ;
       float const sigma0 = 1.6 * powf(2.0f, 1.0f / S) ;
+
+      printf("%10.2f\n", sigman);
+      printf("%10.2f\n", sigma0);
+      printf("%10.2f\n", threshold);
+      printf("%d\n", O);
+      printf("%d\n", S);
+      printf("%d\n", omin);
       
       // optionally autoselect the number number of octaves
       // we downsample up to 8x8 patches
@@ -707,8 +704,6 @@ main(int argc, char** argv)
         } else {
           
           
-          printf("in else\n");
-          
           // -------------------------------------------------------------
           //            Run detector, compute orientations and descriptors
           // -------------------------------------------------------------
@@ -725,8 +720,6 @@ main(int argc, char** argv)
               angles[0] = VL::float_t(0) ;
             }
 	    
-            printf("nangles %d\n",nangles);
-            
             // compute descriptors
             for(int a = 0 ; a < nangles ; ++a) {
 
@@ -741,13 +734,10 @@ main(int argc, char** argv)
 	
               /* save descriptor to to appropriate file */	      
               if( ! nodescr ) {
-                printf("! nodesc\n");
                 if( descriptorsOut_pt.get() ) {
-                  printf("! 1 nodesc\n");
                   ostream& os = *descriptorsOut_pt.get() ;
                   insertDescriptor(os, descr_pt, true, fp) ;
                 } else {
-                  printf("! 2 nodesc\n");
                   insertDescriptor(out, descr_pt, false, fp) ;
                 }
               }

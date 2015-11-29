@@ -3,40 +3,43 @@
 from PIL import Image
 import sys
 from pylab import *
-from siftpy1 import *
 ```
 
 ```python
-im=Image.open("/home/burak/Desktop/crans_1_small.jpg")
-im = im.resize((800,640))
-a = asarray(im).flatten('C')
-print a.shape
-res = sift(a)
-```
-
-```text
-(1536000,)
+import pandas as pd
+df = pd.read_csv('/tmp/out.key',sep=' ',header=None)
+res = np.array(df[[0,1]])
 ```
 
 ```python
 print len(res)
-item = res[0]
-print item[0:2]
-print item[4:-1]
 ```
 
 ```text
-22
-[469.3800048828125, 96.70999908447266]
-[72.0, 77.0, 25.0, 0.0, 0.0, 0.0, 0.0, 4.0, 9.0, 83.0, 80.0, 1.0, 0.0, 0.0, 0.0, 0.0, 91.0, 77.0, 7.0, 0.0, 0.0, 0.0, 0.0, 23.0, 56.0, 2.0, 0.0, 0.0, 0.0, 0.0, 6.0, 127.0, 62.0, 12.0, 13.0, 5.0, 3.0, 10.0, 5.0, 16.0, 32.0, 74.0, 43.0, 9.0, 6.0, 12.0, 3.0, 7.0, 127.0, 118.0, 1.0, 0.0, 0.0, 0.0, 0.0, 26.0, 127.0, 43.0, 2.0, 0.0, 0.0, 0.0, 0.0, 59.0, 75.0, 57.0, 0.0, 0.0, 1.0, 25.0, 9.0, 11.0, 26.0, 8.0, 0.0, 0.0, 4.0, 42.0, 53.0, 92.0, 127.0, 18.0, 0.0, 0.0, 0.0, 0.0, 7.0, 127.0, 127.0, 67.0, 11.0, 10.0, 1.0, 0.0, 0.0, 17.0, 90.0, 62.0, 0.0, 0.0, 0.0, 0.0, 1.0, 15.0, 99.0, 28.0, 0.0, 0.0, 0.0, 1.0, 16.0, 73.0, 66.0, 14.0, 3.0, 0.0, 0.0, 0.0, 3.0, 127.0, 34.0, 8.0, 12.0, 55.0, 13.0, 0.0, 0.0]
+2939
+```
+
+```python
+im=Image.open("crans_1_small.jpg")
+df.plot(kind='scatter',x=0,y=1)
+plt.hold(True)
+plt.imshow(im)
+plt.savefig('test_02.png')
 ```
 
 
 
 
+```python
+im=Image.open("crans_1_small.jpg")
+res = np.array(df[[0,1]])
+for x in res: plt.plot(x[0],x[1],'o'); plt.hold(True)
+plt.hold(True)
+plt.imshow(im)
+plt.savefig('test_02.png')
+```
 
-
-
+![](test_02.png)
 
 
 
