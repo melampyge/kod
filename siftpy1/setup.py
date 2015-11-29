@@ -3,7 +3,7 @@ import os
 
 setup(name='siftpy1',
       version='1.0',
-      py_modules=['sift'],
+      py_modules=['siftpy1'],
       ext_modules = [Extension('siftimp',
                                ['sift-driver.cpp','sift.cpp'],
                                include_dirs=['.']) ]
