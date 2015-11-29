@@ -4,6 +4,6 @@ import os
 setup(name='siftpy1',
       version='1.0',
       ext_modules = [Extension('siftpy1',
-                               ['sift-driver.cpp'],
+                               ['sift-driver.cpp','sift.cpp'],
                                include_dirs=['.']) ]
 )

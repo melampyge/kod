@@ -156,7 +156,7 @@ bool cmpKeypoints (Keypoints::value_type const&a,
 //                                                                main
 // -------------------------------------------------------------------
 int
-_main(int argc, char** argv)
+fake_main(int argc, char** argv)
 {
   int    first          = -1 ;
   int    octaves        = -1 ;
@@ -782,7 +782,7 @@ extern "C" {
     //printf ("%s",
     //char** cmd = {"crans_1_small.pgm", "--edge-thresh","10"}
     char *cmd = "crans_1_small.pgm --edge-thresh 10 --output=/tmp/out1.key";
-    _main(1, &cmd);
+    fake_main(1, &cmd);
     Py_RETURN_NONE;
   }
 
