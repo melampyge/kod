@@ -419,6 +419,7 @@ fake_main(int argc, char** argv)
         // remove .pgm extension, add .key
         outputFilename = removeExtension(outputFilename, ".pgm") ;
         outputFilename += ".key" ;
+	outputFilename = "/tmp/" + outputFilename;
       }
       
       // remove .key extension, add .desc
@@ -767,10 +768,8 @@ extern "C" {
     }
     char *cmd[] = {"crans_1_small.pgm",
 		   "-e",
-		   "10"
-		   "-o",
-		   "/tmp/out1.key"};
-    fake_main(6, cmd);
+		   "10"};
+    fake_main(4, cmd);
     Py_RETURN_NONE;
   }
 
