@@ -1,5 +1,14 @@
 
 ```python
+import siftpy1 
+#df1 = sift.sift("crans_1_small.pgm")
+siftpy1.
+```
+
+
+
+
+```python
 from PIL import Image
 import sys
 from pylab import *
@@ -7,7 +16,7 @@ import siftpy1
 ```
 
 ```python
-res = siftpy1.sift("crans_1_small.pgm")
+res = siftpy1.sift_imp("crans_1_small.pgm")
 ```
 
 
