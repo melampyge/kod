@@ -763,10 +763,11 @@ extern "C" {
   static PyObject* py_sift_imp(PyObject* self, PyObject* args)
   {
     char *filename;
-    if (!PyArg_ParseTuple(args, "s", &filename)) {
+    char *threshold;
+    if (!PyArg_ParseTuple(args, "ss", &filename, &threshold)) {
       return NULL;
     }
-    char *cmd[] = {filename, "-e", "10"};
+    char *cmd[] = {filename, "-e", threshold};
     fake_main(4, cmd);
     Py_RETURN_NONE;
   }
