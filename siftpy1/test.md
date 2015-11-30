@@ -1,24 +1,85 @@
 
 ```python
-from PIL import Image
 import siftpy1
-df1 = siftpy1.sift("crans_1_small.pgm",threshold=5)
+from PIL import Image
+df1 = siftpy1.sift("crans_1_small.pgm",threshold=10.0)
 print len(df1)
 ```
 
 ```text
-2196
+2939
+```
+
+```python
+import pandas as pd
+im=Image.open("crans_2_small.jpg")
+df2.plot(kind='scatter',x=0,y=1)
+plt.hold(True)
+plt.imshow(im)
+plt.savefig('test_02.png')
 ```
 
 
 ```python
+df2 = siftpy1.sift("crans_2_small.pgm",threshold=10.0)
+```
+
+```python
 import pandas as pd
-im=Image.open("crans_1_small.jpg")
-df1.plot(kind='scatter',x=0,y=1)
+im=Image.open("crans_2_small.jpg")
+df2.plot(kind='scatter',x=0,y=1)
 plt.hold(True)
 plt.imshow(im)
-plt.savefig('test_01.png')
+plt.savefig('test_02.png')
 ```
+
+```python
+df1.to_csv("/tmp/out1.csv",index=None)
+df2.to_csv("/tmp/out2.csv",index=None)
+```
+
+```python
+import pandas as pd
+df1 = pd.read_csv('/tmp/out1.csv')
+df2 = pd.read_csv('/tmp/out2.csv')
+```
+
+```python
+d1 = np.array(df1)[:,4:]
+d2 = np.array(df2)[:,4:]
+print d1.shape, d2.shape
+```
+
+```text
+(2939, 128) (1862, 128)
+```
+
+```python
+res = siftpy1.match(d1,d2)
+```
+
+```python
+df1['match'] = res
+df1.to_csv('/tmp/out1match.csv')
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
