@@ -25,6 +25,10 @@ The variable `df` is a Pandas dataframe that carries the SIFT
 descriptors; first 4 columns are location / angle, the last 128 are
 the descriptors.
 
+![](test_01.png)
+
+![](test_02.png)
+
 ### Resources
 
 Solem, *Computer Vision with Python*
