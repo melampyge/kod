@@ -45,23 +45,46 @@ df2 = pd.read_csv('/tmp/out2.csv')
 ```
 
 ```python
-d1 = np.array(df1)[:,4:]
-d2 = np.array(df2)[:,4:]
-print d1.shape, d2.shape
-```
-
-```text
-(2939, 128) (1862, 128)
+res = siftpy1.match_twosided(df1,df2)
 ```
 
 ```python
-res = siftpy1.match(d1,d2)
+print len(res)
 ```
+
+```text
+2939
+```
+
 
 ```python
 df1['match'] = res
 df1.to_csv('/tmp/out1match.csv')
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

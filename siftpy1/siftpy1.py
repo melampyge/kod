@@ -1,6 +1,7 @@
 import numpy.linalg as lin
 import siftimp, os
 import pandas as pd
+import numpy as np
 
 def sift(fin, threshold=10.0):
     fout = "/tmp/" + fin.replace(".pgm",".key")
@@ -9,7 +10,9 @@ def sift(fin, threshold=10.0):
     df = pd.read_csv(fout,sep=' ',header=None)
     return df
 
-def match(desc1,desc2):
+def match(df1,df2):
+    desc1 = np.array(df1)[:,4:]
+    desc2 = np.array(df2)[:,4:]
     desc1 = np.array([d/lin.norm(d) for d in desc1])
     desc2 = np.array([d/lin.norm(d) for d in desc2])
     
@@ -29,4 +32,16 @@ def match(desc1,desc2):
             matchscores[i] = int(indx[0])    
     return matchscores
     
+def match_twosided(desc1,desc2):
+    matches_12 = match(desc1,desc2)
+    matches_21 = match(desc2,desc1)
+    
+    ndx_12 = matches_12.nonzero()[0]
+    
+    # remove matches that are not symmetric
+    for n in ndx_12:
+        if matches_21[int(matches_12[n])] != n:
+            matches_12[n] = 0
+    
+    return matches_12
 
