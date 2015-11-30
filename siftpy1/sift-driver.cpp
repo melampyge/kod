@@ -715,8 +715,6 @@ extern "C" {
     if (!PyArg_ParseTuple(args, "ss", &filename, &threshold)) {
       return NULL;
     }
-    printf("%s\n", filename);
-    printf("%s\n", threshold);
     char *cmd[] = {filename};
     fake_main(4, cmd, atof(threshold));
     Py_RETURN_NONE;
