@@ -34,6 +34,55 @@ interface (I updated the link so it points to this one).
 
 http://vision.ucla.edu/~vedaldi/code/siftpp.html
 
+## Matching
+
+```python
+from PIL import Image
+import pandas as pd
+import siftpy1
+df1 = siftpy1.sift('alcatraz1s.pgm', threshold=5.0)
+df2 = siftpy1.sift('alcatraz2s.pgm', threshold=5.0)
+```
+
+```python
+matches = siftpy1.match(df1,df2)
+print len(matches), len(df1)
+print len(matches[matches!=0])
+```
+
+```text
+1732 1732
+371
+```
+
+```python
+lines = []
+for i in df1.index:
+      if matches[i] == 0: continue
+      tmp1 = (df1.ix[i][0],df1.ix[i][1])
+      tmp2 = (df2.ix[matches[i]][0],df2.ix[matches[i]][1])
+      lines.append([tmp1,tmp2])
+```
+
+```python
+f = plt.figure()
+ax = f.add_subplot(111)
+im = Image.open('alcatraz1s.pgm')
+plt.imshow(im,cmap = plt.get_cmap('gray'))
+plt.hold(True)
+df1.plot(kind='scatter',x=0,y=1,ax=ax,marker='.',color='red')
+plt.hold(True)
+df2.plot(kind='scatter',x=0,y=1,ax=ax,marker='+',color='green')
+plt.hold(True)
+from matplotlib import collections  as mc
+lc = mc.LineCollection(lines,color='yellow')
+ax.add_collection(lc)
+plt.savefig('test_03.png')
+```
+
+![](test_03.png)
+
+
 ### Resources
 
 Solem, *Computer Vision with Python*

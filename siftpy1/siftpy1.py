@@ -10,13 +10,12 @@ def sift(fin, threshold=10.0):
     df = pd.read_csv(fout,sep=' ',header=None)
     return df
 
-def match(df1,df2):
+def match(df1,df2,dist_ratio=0.7):
     desc1 = np.array(df1)[:,4:]
     desc2 = np.array(df2)[:,4:]
     desc1 = np.array([d/lin.norm(d) for d in desc1])
     desc2 = np.array([d/lin.norm(d) for d in desc2])
     
-    dist_ratio = 0.6
     desc1_size = desc1.shape
     
     matchscores = np.zeros((desc1_size[0]),'int')
@@ -29,9 +28,10 @@ def match(df1,df2):
         
         # check if nearest neighbor has angle less than dist_ratio times 2nd
         if np.arccos(dotprods)[indx[0]] < dist_ratio * np.arccos(dotprods)[indx[1]]:
-            matchscores[i] = int(indx[0])    
-    return matchscores
+            matchscores[i] = int(indx[0])
     
+    return matchscores
+        
 def match_twosided(desc1,desc2):
     matches_12 = match(desc1,desc2)
     matches_21 = match(desc2,desc1)
