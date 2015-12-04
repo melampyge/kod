@@ -38,10 +38,10 @@ The code will assume these files are under `[HOME]/Dropbox/Public/data` folder.
 
 I prefer to work with CSV files, the Pandas library makes it a breeze
 to access them plus I can view the contents of CSV files easily,
-manipulate them with Unix based tools if necessary. For converting any
-of mat files into csv, this is the method I followed: 1) Find the
-Matlab script from AT that reads and prepares the data,
-i.e. `TU_mom.m` 2) find the point where the data is all ready, i.e.
+manipulate them with Unix based tools if necessary. For converting a
+mat file into csv this is the method I followed: 1) Find the Matlab
+script for AT that reads and prepares the data, i.e. `TU_mom.m` 2)
+find the point where the data is all ready, i.e.
 
 ```
 clear;

@@ -38,8 +38,8 @@ for t in range(trainlen,len(y)):
    numUnits[t] = -(yport[-1]-ma)/mstd
 
 
-# copy positions in multiple coumns. positions are market values of AUDUSD and CADUSD in portfolio expressed
-# in US.
+# copy positions in multiple coumns. positions are market values of
+# AUDUSD and CADUSD in portfolio expressed in US.
 tmp1=np.kron(np.ones((y.shape[1],1)),numUnits)
 positions = tmp1.T * hedgeRatio * y
 pnl = positions.shift(1) * (y - y.shift(1))  / y.shift(1)
