@@ -56,7 +56,7 @@ from PIL import Image
 
 f = plt.figure()
 ax = f.add_subplot(111)
-im = Image.open('alcatraz1.pgm')
+im = Image.open('/home/burak/Downloads/pcv_data/data/alcatraz1.pgm')
 plt.imshow(im,cmap = plt.get_cmap('gray'))
 plt.hold(True)
 df1.plot(kind='scatter',x=0,y=1,ax=ax,marker='.',color='red')
@@ -66,7 +66,7 @@ plt.hold(True)
 from matplotlib import collections  as mc
 lc = mc.LineCollection(lines,color='yellow')
 ax.add_collection(lc)
-plt.savefig('mvg_06.png')
+plt.savefig('/tmp/mvg_06.png')
 ```
 
 

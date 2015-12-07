@@ -1,5 +1,5 @@
-I1 = imread('alcatraz1.pgm');
-I2 = imread('alcatraz2.pgm');
+I1 = imread('/home/burak/Downloads/pcv_data/data/alcatraz1.pgm');
+I2 = imread('/home/burak/Downloads/pcv_data/data/alcatraz2.pgm');
 
 points1 = detectSURFFeatures(I1);
 points2 = detectSURFFeatures(I2);
@@ -22,4 +22,4 @@ save('ip12','A');
 
 f=figure;
 showMatchedFeatures2(I1,I2,matchedPoints1,matchedPoints2);
-saveas(f, 'out.png')
+saveas(f, '/tmp/out.png')
