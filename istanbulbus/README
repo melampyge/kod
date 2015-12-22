@@ -70,28 +70,3 @@ planlama yapmayi dusunuyorsa birden fazla durak koduyla is yapmaya hazir
 olmali. Istanbulbus kullanicidan durak ismi aldigi icin biz bunu goz onune
 almaliydik.
 
-YAPILACAKLAR:
-
-* Yol bulma algoritmasi eger baglantisiz (mesela sehir disindan gelen) bir hat
-  ile baslarsa, sonuca varamayabilir, cunku derinlige bakan "sonraki hatlar"
-  islemi sadece 5 seviye derine iniyor (komsunun, komsulari, vs..). Bu tur uzun
-  sure "baglantisiz" kalan hatlar icin, baslangic duragindan sonraki o hat
-  uzerindeki "tum duraklar" oldugu gibi komsular listesine alinabilir.
-
-* Bir diger ilerleme, eger normal algoritma islemezse, problemi parcalara
-  bolmek, ve once merkezi, bilinen noktalara erismeye calismak (Mecidiyekoy,
-  Taksim, vs).  Veriye bakarak bu merkezleri nasil bilecegiz? duraklar veri
-  yapisinin "isim" tarafini (values() ile) gezmek iyi bir yaklasim olabilir,
-  boylece ayni isim altindaki tum duraklara bakabiliriz. prepare_route_list() bu
-  "isim altindaki toparlama" isini zaten yapiyor. Tekil isimler alindiktan sonra
-  tum bu duraklara teker teker bakariz ve SR sayilarini (yani duraktan gecen
-  hatlarin sayisi) toplariz, ve bu toplam belli bir sayi (diyelim ki 20)
-  uzerinde ise, o duragi "merkezi", "odak" olarak addedebiliriz, ve once oraya
-  erismeye ugrasiriz. Cok hat gecen yerlere erismek herhalde daha kolay
-  olacaktir dusuncesinden faydalanmaya ugrasiriz yani. Sonra bu merkezi noktaya
-  vardiktan sonra (buyuk bir ihtimalle variriz), artik esas hedefe ulasmaya
-  calisabiliriz.
-
-  
-  
-  
