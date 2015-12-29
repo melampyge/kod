@@ -21,11 +21,13 @@ def to_tr(s):
         x = dea.convert_to_turkish()
         res.append(x)
     return ''.join(res)
-
     
 def convert():
+    remember_where = lisp.point()
     block_begin, block_end, content = get_block_content("\n\n","\n\n")
     result = to_tr(content)
+    lisp.delete_region(block_begin, block_end)
     lisp.insert(result)
+    lisp.goto_char(remember_where)
             
 interactions[convert] = ''
