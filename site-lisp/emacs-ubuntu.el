@@ -1032,6 +1032,8 @@ This command does not push erased text to kill-ring."
       (kill-buffer (get-buffer "*Pymacs*")))
   (message (buffer-file-name (current-buffer)))
   (message (file-name-extension (buffer-file-name (current-buffer))))
+  (pymacs-load "/usr/share/emacs/site-lisp/deascify")
+  (global-set-key "\M-]" 'deascify-convert)  
   (if (equal (file-name-extension (buffer-file-name (current-buffer))) "tex")
       (progn 
 	(pymacs-load "/usr/share/emacs/site-lisp/ipython-tex")
@@ -1062,3 +1064,4 @@ This command does not push erased text to kill-ring."
   )
 
 (global-set-key [f11] 'reload-pymacs)
+
