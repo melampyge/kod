@@ -9,16 +9,23 @@ def get_block_content(start_tag, end_tag):
     block_end = lisp.search_forward(end_tag)
     block_end = lisp.search_forward(end_tag)
     content = lisp.buffer_substring(block_begin, block_end)
-    lisp.message(content)
     lisp.goto_char(remember_where)
     return block_begin, block_end, content
 
+def to_tr(s):    
+    tokens = re.split("(\\$.*?\\$)",s)
+    res = []
+    for x in tokens:
+        if x[0]=='$' and x[-1] == '$': res.append(x); continue
+        dea = Deasciifier(x)
+        x = dea.convert_to_turkish()
+        res.append(x)
+    return ''.join(res)
+
+    
 def convert():
     block_begin, block_end, content = get_block_content("\n\n","\n\n")
-    #s = u"Bogurtuler opucukler."
-    #dea = Deasciifier(s)
-    #result = dea.convert_to_turkish()
-    lisp.message(content)
-    #lisp.insert(content)
+    result = to_tr(content)
+    lisp.insert(result)
             
 interactions[convert] = ''
