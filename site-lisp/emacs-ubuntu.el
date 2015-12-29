@@ -478,10 +478,6 @@ This command does not push erased text to kill-ring."
 
 
 (tool-bar-add-item "fwd-arrow" 'revert-buffer 'revert-buffer :help "Refresh" )
-(tool-bar-add-item "contact" 
-                   'open-notebook-in-current-dir
-                   'open-notebook-in-current-dir
-                   :help "Open iPython Notebook Server" )
 
 ;;/usr/share/emacs/23.3/etc/images/diropen.xpm
 (tool-bar-add-item "diropen" 'my-dired 'my-dired :help "Open Dired" )
@@ -1035,18 +1031,6 @@ This command does not push erased text to kill-ring."
     (preview-section)
     )
   )
-
-;; (eval-after-load 'doc-view
-;;   '(defun doc-view-buffer-message ()
-;;   ;; Only show this message initially, not when refreshing the buffer (in which
-;;   ;; case it's better to keep displaying the "stale" page while computing
-;;   ;; the fresh new ones).
-;;   (unless (overlay-get (doc-view-current-overlay) 'display)
-;;     (overlay-put (doc-view-current-overlay) 'display
-;;                  (concat (propertize "" 'face 'bold)
-;;                          "\n"
-;;                          ""))))
-;;      )
 
 (defun reload-pymacs()
   (interactive)
