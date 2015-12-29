@@ -1018,7 +1018,7 @@ This command does not push erased text to kill-ring."
 
 (setq inferior-lisp-program "sbcli")
 
-;;(add-to-list 'compile-history compile-command)
+(add-to-list 'compile-history compile-command)
 
 (defvar previewable-environments
   "List of environments that should be previewed."
