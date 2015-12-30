@@ -25,7 +25,11 @@ def to_tr(s):
 def convert():
     remember_where = lisp.point()
     block_begin, block_end, content = get_block_content("\n\n","\n\n")
+    content = content.replace("verisi","WWXXD1")
+    content = content.replace("Calculus","WWXXD2")
     result = to_tr(content)
+    result = result.replace("WWXXD1","verisi")
+    result = result.replace("WWXXD2","Calculus")
     lisp.delete_region(block_begin, block_end)
     lisp.insert(result)
     lisp.goto_char(remember_where)
