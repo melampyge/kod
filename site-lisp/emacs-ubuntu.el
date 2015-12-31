@@ -953,16 +953,6 @@ This command does not push erased text to kill-ring."
 ;; iptal et boylece bizim tanimladigimiz aktif olsun. 
 ;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; ein: mode icin not: change ein-notebook.el icinde
-;;  (define-key map "\M-p"          'previous-line)
-;;  (define-key map "\M-n"          'next-line)
-;;  (define-key map "\M-3"          'ein:notebook-save-notebook-command)
-;;
-;; olmali.
-
-
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
@@ -987,7 +977,6 @@ This command does not push erased text to kill-ring."
 (find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/Documents")
 (find-file-other-window "/home/burak/kod")
-(find-file-other-window "/home/burak/Documents/classnotes/stat")
 (find-file-other-window "/home/burak/Documents/classnotes/app_math/dict")
 (find-file-other-window "/home/burak/Documents/classnotes")
 (find-file-other-window "/home/burak/Documents/classnotes/vision")
@@ -1033,7 +1022,9 @@ This command does not push erased text to kill-ring."
   (message (buffer-file-name (current-buffer)))
   (message (file-name-extension (buffer-file-name (current-buffer))))
   (pymacs-load "/usr/share/emacs/site-lisp/deascify")
-  (global-set-key "\M-]" 'deascify-convert)  
+  (global-set-key "\M-]" 'deascify-convert)
+  ;;
+  ;; load tex or md mode based on the extension
   (if (equal (file-name-extension (buffer-file-name (current-buffer))) "tex")
       (progn 
 	(pymacs-load "/usr/share/emacs/site-lisp/ipython-tex")
