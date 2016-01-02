@@ -39,6 +39,7 @@ def convert():
     content = content.replace("entegral","WWXXD10")
     content = content.replace("olduguna","WWXXDx1")
     content = content.replace(" aci","WWXXDx2")
+    content = content.replace("Oklit","WWXXDx3")
 
     result = to_tr(content)
     result = result.replace("WWXXD1","verisi")
@@ -51,6 +52,7 @@ def convert():
     result = result.replace("WWXXD10","entegral" )
     result = result.replace('WWXXDx1',u'olduğuna' )
     result = result.replace('WWXXDx2',u' açı' )
+    result = result.replace('WWXXDx3',u'Öklit' )
     lisp.delete_region(block_begin, block_end)
     lisp.insert(result)
     lisp.goto_char(remember_where)
