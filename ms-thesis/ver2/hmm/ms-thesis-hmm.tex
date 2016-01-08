@@ -224,9 +224,9 @@ is a multidimensional Gaussian.
 \begin{pseudocode}
 \codename $\code{hmm\_inference}\left(Y,A,\pi,C,R\right)$\\
 \codeline $\code{for} $ $t=1$ to  $T$  ; forward pass \\
-\codeline \> \code{for } $i=1$ to $k$ \\
+\codeline \> $\code{for } i=1$ to $k$ \\
 \codeline \> \> $b_{t,i}=\texttt{exp}\{-\frac{1}{2}(y_t - C_i)'R^{-1}(y_t - C_i)\}|R|^{-1/2}(2\pi)^{-p/2}$\\
-\codeline \> $\code{if } \code{ then } t=1 \alpha_t = \pi \odot b_1\code{ else } \alpha_t = [A'\alpha_{t-1}]\odot b_t$ \\
+\codeline \> $\code{if } t=1 \code{ then } \alpha_t = \pi \odot b_1\code{ else } \alpha_t = [A'\alpha_{t-1}]\odot b_t$ \\
 \codeline \> $\rho_t = \sum_i \alpha_{t,i}$\\
 \codeline \> $\alpha_t = \alpha_t / \rho_t$ ; normalization \\
 \codeline  $\beta_T = 1/\rho_t$ \\
