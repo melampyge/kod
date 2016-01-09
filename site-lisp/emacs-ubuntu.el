@@ -968,18 +968,17 @@ This command does not push erased text to kill-ring."
 ;; ;; boylece ikidebir oraya dired'den gezerek gitmek gerekmez
 ;; ;;
 (find-file-other-window "/tmp")
-(find-file-other-window "/home/burak/kod/site-lisp")
-(find-file-other-window "/home/skorsky/mindmeld")
 (find-file-other-window "/home/burak/Desktop")
 (find-file-other-window "/home/burak/Dropbox/TODO.txt")
 (find-file-other-window "/home/burak/Dropbox")
-(find-file-other-window "/home/burak/kod")
+(find-file-other-window "/home/burak/kod/books")
 (find-file-other-window "/home/skorsky/mindmeld/doc/details")
 (find-file-other-window "/home/skorsky/mindmeld/data")
 (find-file-other-window "/home/burak/Downloads")
 (find-file-other-window "/home/burak/Documents")
-(find-file-other-window "/home/burak/Documents/classnotes/app_math/dict")
 (find-file-other-window "/home/burak/Documents/classnotes")
+(find-file-other-window "/home/burak/Documents/classnotes/app_math/dict")
+(find-file-other-window "/home/burak/Documents/classnotes/tser")
 (find-file-other-window "/home/burak/Documents/classnotes/vision")
 
 (switch-to-buffer "*scratch*")
