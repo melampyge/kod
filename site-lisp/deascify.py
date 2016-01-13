@@ -44,6 +44,8 @@ def convert():
     content = content.replace("gayri","WWXXDy2")
     content = content.replace("oldugu","WWXXDy3")
     content = content.replace("Pandas","WWXXDy4")
+    content = content.replace("algoritma","WWXXDy5")
+    content = content.replace("minimize","WWXXDy6")
 
     result = to_tr(content)
     result = result.replace("WWXXD1","verisi")
@@ -62,6 +64,9 @@ def convert():
     result = result.replace('WWXXDy2',u' gayrı' )
     result = result.replace('WWXXDy3',u'olduğu' )
     result = result.replace('WWXXDy4',u'Pandas' )
+    result = result.replace('WWXXDy5',u'algoritma' )
+    result = result.replace('WWXXDy6',u'minimize' )
+
     lisp.delete_region(block_begin, block_end)
     lisp.insert(result)
     lisp.goto_char(remember_where)
